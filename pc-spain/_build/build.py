@@ -354,7 +354,8 @@ def orbit_html(items):
     texts = ''.join(f'<div class="orbit__item{" on" if i == 0 else ""}"><span class="label">{i+1:02d} / {n:02d}</span><h3 class="h3">{t}</h3><p>{p}</p></div>' for i, (t, p) in enumerate(items))
     return f'''<div class="orbit" data-orbit style="--n:{n}">
       <svg class="orbit__ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="49.6"/><circle class="orbit__dash" cx="50" cy="50" r="46"/><circle class="orbit__prog" cx="50" cy="50" r="49.6" pathLength="100"/></svg>
-      <div class="orbit__core"><video muted loop playsinline preload="none" poster="assets/video/contract-keys.jpg" data-src="assets/video/contract-keys.mp4"></video><div class="orbit__text" aria-live="polite">{texts}</div></div>
+      <div class="orbit__core"><video muted loop playsinline preload="none" poster="assets/video/contract-keys.jpg" data-src="assets/video/contract-keys.mp4"></video></div>
+      <div class="orbit__text" aria-live="polite">{texts}</div>
       <div class="orbit__nodes">{nodes}</div>
     </div>'''
 
@@ -387,6 +388,26 @@ def reviews_wall(label, btn_label, btn_href, sub='Klant van PC-Spain'):
   </div>
 </section>'''
 
+
+def reviews_home(label, btn_label, btn_href, sub='Klant van PC-Spain', all_label=None):
+    all_label = all_label or ('Alle reviews' if sub.startswith('Klant') else 'All reviews')
+    picks = [QUOTES[3], QUOTES[0]]
+    cards = ''.join(f'''<figure class="rfeat rfeat--{i}" data-reveal="{i * .15}">
+      <span class="rfeat__mark" aria-hidden="true">“</span>
+      <blockquote>{q}</blockquote>
+      <figcaption><span class="rcard__av">{f'<img src="{im}" alt="{n}" loading="lazy">' if im else REVIEW_AVATARS.get(n, n[:2])}</span><span><b>{n}</b><small class="label">{sub}</small></span></figcaption>
+    </figure>''' for i, (n, im, q) in enumerate(picks))
+    return f'''<section class="sec reviews-home">
+  <div class="wrap reviews-home__grid">
+    <div class="reviews-home__side">
+      <span class="label label--brass">{btn_label}</span>
+      <h2 class="h2" data-split>{label}</h2>
+      <p class="reviews-home__count"><b>{len(QUOTES):02d}</b><span class="label muted">{btn_label}</span></p>
+      <div data-reveal>{btn(all_label, btn_href)}</div>
+    </div>
+    <div class="reviews-home__cards">{cards}</div>
+  </div>
+</section>'''
 # =====================================================================  HOME (NL)
 def home_nl():
     pillars = [
@@ -437,13 +458,12 @@ def home_body(**k):
     rows = ''.join(f'<span class="row"><span>{r}</span></span>' for r in k['title_rows'])
     pillars = ''.join(f'<article class="pillar"><span class="label label--brass">0{i+1}</span><h3 class="h3" data-split>{t}</h3><p data-reveal=".2">{p}</p></article>' for i, (t, p) in enumerate(k['pillars']))
     orbit = orbit_html(k['advies'])
-    orbit_list = ''.join(f'<li><button data-orbit-go="{i}"><span class="label">{i+1:02d}</span>{t}</button></li>' for i, (t, _) in enumerate(k['advies']))
     n = len(k['hs'])
     hs = ''.join(f'''<article class="hs__card">
         <span class="label">{str(i+1).zfill(2)} / {str(n).zfill(2)}</span>
         <div class="frame"><img src="{img}" alt="" loading="lazy"></div>
         <h3 class="h3">{t}</h3><p>{p}</p></article>''' for i, (t, p, img) in enumerate(k['hs']))
-    quotes = reviews_wall(*k['quotes']) + k.get('quotes_alt', '')
+    quotes = reviews_home(*k['quotes']) + k.get('quotes_alt', '')
     nb = ''
     if k.get('nb_title'):
         nb = f'''<section class="band band--expand">
@@ -481,7 +501,15 @@ def home_body(**k):
     <div class="orbit-intro">
       <span class="label label--brass" data-reveal>{k['advies_label']}</span>
       <h2 class="h2" data-split>{k['advies_title']}</h2>
-      <ol class="orbit-list" aria-hidden="true">{orbit_list}</ol>
+      <div class="orbit-count" aria-hidden="true">
+        <span class="orbit-count__num" data-orbit-num>01</span>
+        <span class="orbit-count__of label">/ {len(k['advies']):02d}</span>
+      </div>
+      <div class="orbit-ctrl">
+        <button data-orbit-prev aria-label="Vorige">{ARROW_L}</button>
+        <button data-orbit-next aria-label="Volgende">{ARROW}</button>
+        <span class="orbit-ctrl__bar"><i data-orbit-bar></i></span>
+      </div>
       <div data-reveal>{btn(*k['advies_cta'])}</div>
     </div>
     {orbit}
@@ -506,7 +534,7 @@ def home_body(**k):
 
 <section class="sec">
   <div class="wrap split split--rev">
-    <div class="split__media"><figure class="frame frame--tall" data-img><video muted loop playsinline preload="none" poster="assets/video/villa-palms.jpg" data-src="assets/video/villa-palms.mp4"></video></figure></div>
+    <div class="split__media"><figure class="frame frame--tall" data-img><video muted loop playsinline preload="none" poster="assets/video/pool-house.jpg" data-src="assets/video/pool-house.mp4"></video></figure></div>
     <div class="split__text">
       <span class="label label--brass" data-reveal>{k['exp_label']}</span>
       <h2 class="h2" data-split>{k['exp_title']}</h2>
@@ -544,7 +572,7 @@ def home_en():
     ]
     owner = f'''<section class="sec bg-white">
   <div class="wrap split">
-    <div class="split__media"><figure class="frame frame--arch" data-img><video muted loop playsinline preload="none" poster="assets/video/villa-palms.jpg" data-src="assets/video/villa-palms.mp4"></video></figure></div>
+    <div class="split__media"><figure class="frame frame--arch" data-img><video muted loop playsinline preload="none" poster="assets/video/valencia-street.jpg" data-src="assets/video/valencia-street.mp4"></video></figure></div>
     <div class="split__text">
       <h2 class="h2" data-split>Are you an owner of a Spanish property?</h2>
       <div class="rows">

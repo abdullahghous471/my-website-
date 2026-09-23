@@ -215,14 +215,17 @@
   /* ------------------------------------------------ orbit (advantages around a circle) */
   $$('[data-orbit]').forEach(orb => {
     const nodes = $$('.orbit__node', orb), items = $$('.orbit__item', orb);
-    const list = $$('[data-orbit-go]', orb.closest('section')).filter(b => !b.classList.contains('orbit__node'));
+    const sec = orb.closest('section');
+    const list = $$('[data-orbit-go]', sec).filter(b => !b.classList.contains('orbit__node'));
     const prog = $('.orbit__prog', orb);
+    const num = $('[data-orbit-num]', sec), bar = $('[data-orbit-bar]', sec);
     const n = nodes.length, step = 360 / n, DUR = 5200;
     let i = 0, rot = 0, timer = null, t0 = 0, raf = 0, paused = false, visible = false;
     const draw = () => {
       if (!prog) return;
       const p = paused || !visible ? 0 : Math.min(1, (performance.now() - t0) / DUR);
       prog.style.strokeDasharray = `${(p * 100).toFixed(2)} 100`;
+      if (bar) bar.style.transform = `scaleX(${p})`;
       raf = requestAnimationFrame(draw);
     };
     const go = (k, user) => {
@@ -235,6 +238,10 @@
       nodes.forEach((b, j) => b.classList.toggle('on', j === i));
       items.forEach((b, j) => b.classList.toggle('on', j === i));
       list.forEach(b => b.classList.toggle('on', +b.dataset.orbitGo === i));
+      if (num) {
+        num.classList.add('swap');
+        setTimeout(() => { num.textContent = String(i + 1).padStart(2, '0'); num.classList.remove('swap'); }, reduce ? 0 : 320);
+      }
       schedule();
     };
     const schedule = () => {
@@ -242,6 +249,9 @@
       if (!reduce && visible && !paused) timer = setTimeout(() => go(i + 1), DUR);
     };
     nodes.concat(list).forEach(b => b.addEventListener('click', () => go(+b.dataset.orbitGo, true)));
+    const prevB = $('[data-orbit-prev]', sec), nextB = $('[data-orbit-next]', sec);
+    prevB && prevB.addEventListener('click', () => go(i - 1, true));
+    nextB && nextB.addEventListener('click', () => go(i + 1, true));
     orb.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); });
     orb.addEventListener('mouseleave', () => { paused = false; schedule(); });
     new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; schedule(); }), { threshold: .35 }).observe(orb);

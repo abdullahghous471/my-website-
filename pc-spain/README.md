@@ -1,6 +1,6 @@
-# PC-Spain – homepage redesign
+# PC-Spain – website redesign
 
-Redesign of the https://pc-spain.com/ homepage. All original Dutch copy, menu structure, links, testimonials, offices and opening hours are unchanged; only the design and interaction layer is new.
+Redesign of https://pc-spain.com/ (all 10 main pages). All original Dutch copy, menu structure, testimonials, listings, partners, prices, offices and opening hours are unchanged; only the design and interaction layer is new.
 
 Open `index.html` in a browser (or serve the folder with any static server). All pages link to each other locally.
 

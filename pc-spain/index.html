@@ -1,401 +1,211 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Nederlandse Makelaar in Spanje - Property Consultancy Spain</title>
 <meta name="description" content="Property Consultancy Spain – Woning kopen of huren in Spanje. Ontmoet ons team van experts die u verbinden met topadvocaten, architecten en makelaars.">
-<link rel="icon" type="image/png" href="assets/property-consultancy-spain-favicon.png">
+<meta name="theme-color" content="#233759">
+<link rel="icon" type="image/png" href="assets/logo/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-<a class="skip" href="#content">Skip to content</a>
-<!-- Preloader -->
-<div class="loader" id="loader" aria-hidden="true">
-  <div class="loader__inner">
-    <svg class="loader__mark" viewBox="0 0 64 64" fill="none"><path d="M32 4a28 28 0 1 0 12.6 53l9.4 5-3.2-11A28 28 0 0 0 32 4Z" fill="#c29a4f"/><path d="M20 46V29l12-10 12 10v17H20Z" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>
-    <div class="loader__word">PC · Spain</div>
-    <div class="loader__bar"><span></span></div>
-  </div>
-</div>
-<div class="progress" id="progress"></div>
-<div class="cursor" id="cursor"></div>
+<a class="skip" href="#main">Skip to content</a>
+<div class="curtain" aria-hidden="true"><div class="curtain__word"><span>Property Consultancy Spain</span></div></div>
 
-<header class="topbar" id="topbar">
-  <div class="container nav">
-    <a href="index.html" class="brand" aria-label="Property Consultancy Spain – Home">
-      <svg viewBox="0 0 64 64" fill="none"><path d="M32 4a28 28 0 1 0 12.6 53l9.4 5-3.2-11A28 28 0 0 0 32 4Z" fill="#c29a4f"/><path d="M20 46V29l12-10 12 10v17H20Z" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>
-      <span class="brand__txt"><b>PROPERTY CONSULTANCY</b><small>SPAIN</small><span class="brand__tag">Woning kopen of huren in Spanje</span></span>
-    </a>
-    <nav aria-label="Hoofdmenu">
-      <ul class="menu">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="werkwijze.html">Over ons <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" stroke="currentColor" fill="none" stroke-width="1.5"/></svg></a>
-          <ul class="sub">
-            <li><a href="over-pc-spain.html">Over PC-Spain</a></li>
-            <li><a href="expertises.html">Expertises</a></li>
-            <li><a href="werkwijze.html">Werkwijze</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="partners.html">Partners</a></li>
-          </ul>
-        </li>
-        <li><a href="tarieven.html">Tarieven</a></li>
-        <li><a href="woning-kopen.html">Woning kopen <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" stroke="currentColor" fill="none" stroke-width="1.5"/></svg></a>
-          <ul class="sub">
-            <li><a href="informatie-tips.html">Informatie &amp; Tips</a></li>
-          </ul>
-        </li>
-        <li><a href="intake.html">Intake</a></li>
-      </ul>
-    </nav>
-    <div class="nav__right">
-      <div class="lang">
-        <a href="index.html" class="on"><img src="assets/nl.png" alt="">NL</a>
-        <a href="https://pc-spain.com/en/" target="_blank" rel="noopener"><img src="assets/en.png" alt="">EN</a>
-      </div>
-      <a href="intake.html" class="btn" data-magnetic>Doe de intake</a>
-      <button class="burger" id="burger" aria-label="Menu openen" aria-expanded="false"><span></span><span></span><span></span></button>
-    </div>
+<header class="hd" id="top">
+  <div class="hd__left">
+    <button class="hd__menu label" data-menu-open aria-label="Menu"><i></i><span>Menu</span></button>
+    <a class="hd__quick label" href="woning-kopen.html">Woning kopen</a>
+  </div>
+  <a class="hd__logo" href="index.html" aria-label="Property Consultancy Spain"><img src="assets/logo/pc-spain.png" alt="Property Consultancy Spain" width="800" height="258"></a>
+  <div class="hd__right">
+    <nav class="hd__lang label" aria-label="Language"><a href="index.html" class="on">NL</a><a href="en.html">EN</a></nav>
+    <a class="hd__cta label" href="intake.html">Doe de intake</a>
   </div>
 </header>
 
-<div class="drawer" id="drawer">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="werkwijze.html">Over ons</a>
-      <ul class="dsub">
-        <li><a href="over-pc-spain.html">Over PC-Spain</a></li>
-        <li><a href="expertises.html">Expertises</a></li>
-        <li><a href="werkwijze.html">Werkwijze</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="partners.html">Partners</a></li>
-      </ul>
-    </li>
-    <li><a href="tarieven.html">Tarieven</a></li>
-    <li><a href="woning-kopen.html">Woning kopen</a>
-      <ul class="dsub"><li><a href="informatie-tips.html">Informatie &amp; Tips</a></li></ul>
-    </li>
-    <li><a href="intake.html">Intake</a></li>
-  </ul>
-  <div class="lang" style="margin-top:28px;display:inline-flex">
-    <a href="index.html" class="on">NL</a><a href="https://pc-spain.com/en/" target="_blank" rel="noopener">EN</a>
-  </div><br>
-  <a href="intake.html" class="btn">Doe de intake</a>
+<div class="menu" aria-hidden="false">
+  <button class="menu__close label" data-menu-close><i></i>Sluiten</button>
+  <div class="menu__main">
+    <nav aria-label="Menu"><ul class="menu__list"><li><a href="index.html" class="on">Home</a></li><li><a href="over-pc-spain.html">Over ons</a><ul class="menu__sub"><li><a href="over-pc-spain.html">Over PC-Spain</a></li><li><a href="expertises.html">Expertises</a></li><li><a href="werkwijze.html">Werkwijze</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="partners.html">Partners</a></li></ul></li><li><a href="tarieven.html">Tarieven</a></li><li><a href="woning-kopen.html">Woning kopen</a><ul class="menu__sub"><li><a href="informatie-tips.html">Informatie &amp; Tips</a></li></ul></li><li><a href="intake.html">Intake</a></li></ul></nav>
+    <div class="menu__foot">
+      <div><span class="label">Kantoren:</span>Valencia · Dénia · Amsterdam · Barcelona</div>
+      <div><span class="label">Openingstijden:</span>Maandag- Zaterdag: 10:00 - 18:00</div>
+      <div><span class="label">Vind ons op:</span><a href="https://instagram.com/pc_spain" target="_blank" rel="noopener">Instagram @pc_spain</a></div>
+    </div>
+  </div>
+  <div class="menu__media" aria-hidden="true"><img src="assets/video/valencia-ciencias.jpg" alt="" class="on"><img src="assets/media/2024-10-travelling_a_team_of_real_estates_professionals_in_spanish_ci_18f2c688-8a7c-42df-a2f7-da7706d1ec0f_0.jpg" alt=""><img src="assets/media/2017-03-s025.jpg" alt=""><img src="assets/media/2024-10-nieuwbouw-pc-spain.jpg" alt=""><img src="assets/media/2020-04-slider-property-consultancy-spain.jpg" alt=""></div>
 </div>
+<main id="main">
 
-<main id="content">
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero__media" data-parallax="0.25">
-    <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/slider-property-consultancy-spain.jpg">
-      <source src="assets/hero-valencia.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="container hero__content">
-    <span class="eyebrow hero__fade" style="transition-delay:.3s">Property Consultancy Spain</span>
-    <h1 style="margin-top:22px">
-      <span class="line"><span>Investeren in</span></span>
-      <span class="line"><span>vastgoed in</span></span>
-      <span class="line"><span><em>spanje?</em></span></span>
-    </h1>
-    <div class="hero__row">
-      <div class="hero__fade">
-        <p class="hero__lead">Ontmoet ons team van experts die u verbinden met topadvocaten, architecten en makelaars.</p>
-        <div class="hero__ctas">
-          <a href="intake.html" class="btn" data-magnetic>Doe de intake <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </div>
-      <div class="hero__side hero__fade">
-        <button class="play" id="playBtn" aria-label="Bekijk video"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i>Bekijk video</button>
-      </div>
+<section class="intro" id="intro">
+  <div class="intro__window"><video autoplay muted loop playsinline preload="auto" poster="assets/video/valencia-ciencias.jpg"><source src="assets/video/valencia-ciencias.mp4" type="video/mp4"></video></div>
+  <h1 class="intro__title" aria-label="Investeren in vastgoed in Spanje?"><span class="row"><span>Investeren in</span></span><span class="row"><span>vastgoed in</span></span><span class="script">Spanje?</span></h1>
+  <span class="intro__side intro__side--l label">Valencia</span>
+  <span class="intro__side intro__side--r label">Dénia</span>
+  <div class="intro__over">
+    <h2>Investeren in vastgoed in <span class="script">Spanje?</span></h2>
+    <div class="intro__over-side">
+      <p>Ontmoet ons team van experts die u verbinden met topadvocaten, architecten en makelaars.</p>
+      <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:center"><a class="btn btn--light" href="intake.html">Doe de intake <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></a><button class="lk" data-video="assets/video/valencia-city.mp4">Bekijk video <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button></div>
     </div>
   </div>
-  <a href="#pijlers" class="scroll-cue" aria-label="Scroll naar beneden"></a>
+  <div class="intro__scroll label"><span>Scroll</span><i></i></div>
 </section>
 
-<!-- PILLARS -->
-<section class="pillars" id="pijlers">
-  <div class="container">
-    <div class="pillars__grid">
-      <article class="pillar rv">
-        <span class="pillar__num">01</span>
-        <div class="pillar__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
-        <h3>Meerdere expertises</h3>
-        <p>Van aankoopbegeleiding en raad over je vastgoedportefeuille tot juridisch advies: wij verzorgen het allemaal.</p>
-      </article>
-      <article class="pillar rv" data-d="1">
-        <span class="pillar__num">02</span>
-        <div class="pillar__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></div>
-        <h3>Volledige ontzorging</h3>
-        <p>Wij begeleiden jou van de huizenjacht tot het tekenen van het koopcontract, en verder.</p>
-      </article>
-      <article class="pillar rv" data-d="2">
-        <span class="pillar__num">03</span>
-        <div class="pillar__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 10.5h7M8.5 13.5h4"/></svg></div>
-        <h3>Advies in jouw eigen taal</h3>
-        <p>De kwaliteit, kennis en kracht van deskundigen uit beide landen gebundeld in één team.</p>
-      </article>
+<section class="sec sec--tight">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:28px"><span class="label">Property Consultancy Spain</span></div>
+    <div class="pillars"><article class="pillar"><span class="label label--brass">01</span><h3 class="h3" data-split>Meerdere expertises</h3><p data-reveal=".2">Van aankoopbegeleiding en raad over je vastgoedportefeuille tot juridisch advies: wij verzorgen het allemaal.</p></article><article class="pillar"><span class="label label--brass">02</span><h3 class="h3" data-split>Volledige ontzorging</h3><p data-reveal=".2">Wij begeleiden jou van de huizenjacht tot het tekenen van het koopcontract, en verder.</p></article><article class="pillar"><span class="label label--brass">03</span><h3 class="h3" data-split>Advies in jouw eigen taal</h3><p data-reveal=".2">De kwaliteit, kennis en kracht van deskundigen uit beide landen gebundeld in één team.</p></article></div>
+  </div>
+</section>
+
+<section class="sec bg-white">
+  <div class="wrap split">
+    <div class="split__media"><figure class="frame frame--arch" data-img><img src="assets/media/2017-03-s025.jpg" alt="" loading="lazy"></figure></div>
+    <div class="split__text">
+      <span class="label label--brass" data-reveal>Waarom PC-Spain</span>
+      <h2 class="h2" data-split>Investeren in Spanje? Laat je adviseren</h2>
+      <div class="rows"><div class="row-item" data-reveal><h3 class="h3">Volledige ontzorging</h3><p>Meerdere experts slaan de handen in elkaar om jou zo goed en volledig mogelijk te begeleiden bij de koop van vastgoed in Spanje. Hierbij heeft de klant één aanspreekpunt.</p></div><div class="row-item" data-reveal><h3 class="h3">Professionele ondersteuning</h3><p>Ons team beschikt over uitgebreide kennis van Spaans vastgoed. Bij de aankoop van een woning ontvang je altijd begeleiding mét juridisch advies. PC-Spain staat als één partij aan de kant van de klant.</p></div><div class="row-item" data-reveal><h3 class="h3">Een woning zonder gebreken</h3><p>Ons huizenaanbod is zorgvuldig geselecteerd en gecontroleerd door onze juridische afdeling. Zo heb jij geen zorgen over (onzichtbare) gebreken van een woning.</p></div><div class="row-item" data-reveal><h3 class="h3">Transparante tarieven</h3><p>Geen onduidelijke commissies, maar transparante gesprekken over tarieven.</p></div><div class="row-item" data-reveal><h3 class="h3">Kwaliteit en ervaring</h3><p>Alle betrokken partijen hebben ruime ervaring in de aankoop van woningen in Spanje.</p></div></div>
+      <div data-reveal><a class="btn " href="intake.html">Doe de intake <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></a></div>
     </div>
   </div>
 </section>
 
-<!-- ADVIES -->
-<section class="sec advies">
-  <div class="container advies__grid">
-    <div class="advies__media rv">
-      <img src="assets/s025.jpg" alt="Begeleiding bij het koopcontract" data-parallax-img="0.12" loading="lazy">
-      <div class="advies__badge">
-        <b>Eén aanspreekpunt</b>
-        <span>Makelaar én advocaat in ons standaard pakket</span>
-      </div>
-    </div>
-    <div>
-      <span class="eyebrow rv">Waarom PC-Spain</span>
-      <h2 class="rv" data-d="1" style="margin-top:18px;color:var(--navy)">Investeren in Spanje? <em>Laat je adviseren</em></h2>
-      <div class="acc rv" data-d="2" id="acc">
-        <div class="acc__item open">
-          <button class="acc__btn" aria-expanded="true"><span class="n">01</span><h3>Volledige ontzorging</h3><span class="pm"></span></button>
-          <div class="acc__panel"><div><p>Meerdere experts slaan de handen in elkaar om jou zo goed en volledig mogelijk te begeleiden bij de koop van vastgoed in Spanje. Hierbij heeft de klant één aanspreekpunt.</p></div></div>
-        </div>
-        <div class="acc__item">
-          <button class="acc__btn" aria-expanded="false"><span class="n">02</span><h3>Professionele ondersteuning</h3><span class="pm"></span></button>
-          <div class="acc__panel"><div><p>Ons team beschikt over uitgebreide kennis van Spaans vastgoed. Bij de aankoop van een woning ontvang je altijd begeleiding mét juridisch advies. PC-Spain staat als één partij aan de kant van de klant.</p></div></div>
-        </div>
-        <div class="acc__item">
-          <button class="acc__btn" aria-expanded="false"><span class="n">03</span><h3>Een woning zonder gebreken</h3><span class="pm"></span></button>
-          <div class="acc__panel"><div><p>Ons huizenaanbod is zorgvuldig geselecteerd en gecontroleerd door onze juridische afdeling. Zo heb jij geen zorgen over (onzichtbare) gebreken van een woning.</p></div></div>
-        </div>
-        <div class="acc__item">
-          <button class="acc__btn" aria-expanded="false"><span class="n">04</span><h3>Transparante tarieven</h3><span class="pm"></span></button>
-          <div class="acc__panel"><div><p>Geen onduidelijke commissies, maar transparante gesprekken over tarieven.</p></div></div>
-        </div>
-        <div class="acc__item">
-          <button class="acc__btn" aria-expanded="false"><span class="n">05</span><h3>Kwaliteit en ervaring</h3><span class="pm"></span></button>
-          <div class="acc__panel"><div><p>Alle betrokken partijen hebben ruime ervaring in de aankoop van woningen in Spanje.</p></div></div>
-        </div>
-      </div>
-      <a href="intake.html" class="btn btn--navy rv" data-d="3" data-magnetic>Doe de intake <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<section class="hs">
+  <div class="hs__pin">
+    <div class="hs__head"><div><span class="label label--brass">Voordelen</span><h2 class="h2" data-split style="margin-top:18px">Voordelen van Property Consultancy Spain</h2></div><span class="hs__count label"><b>01</b> / 06</span></div>
+    <div class="hs__track"><article class="hs__card">
+        <span class="label">01 / 06</span>
+        <div class="frame"><img src="assets/media/2024-10-travelling_a_team_of_real_estates_professionals_in_spanish_ci_18f2c688-8a7c-42df-a2f7-da7706d1ec0f_0.jpg" alt="" loading="lazy"></div>
+        <h3 class="h3">Volledige ontzorging</h3><p>Meerdere experts slaan de handen in elkaar om jou zo goed en volledig mogelijk te begeleiden bij de koop van vastgoed in Spanje. Hierbij heeft de klant één aanspreekpunt.</p></article><article class="hs__card">
+        <span class="label">02 / 06</span>
+        <div class="frame"><img src="assets/media/x-s0061.jpg" alt="" loading="lazy"></div>
+        <h3 class="h3">Professionele ondersteuning</h3><p>Ons team beschikt over uitgebreide kennis van Spaans vastgoed. Bij de aankoop van een woning ontvang je altijd begeleiding mét juridisch advies. PC-Spain staat als één partij aan de kant van de klant.</p></article><article class="hs__card">
+        <span class="label">03 / 06</span>
+        <div class="frame"><img src="assets/media/2024-10-mislata-after.jpg" alt="" loading="lazy"></div>
+        <h3 class="h3">Een woning zonder gebreken</h3><p>Ons huizenaanbod is zorgvuldig geselecteerd en gecontroleerd door onze juridische afdeling. Zo heb jij geen zorgen over (onzichtbare) gebreken van een woning.</p></article><article class="hs__card">
+        <span class="label">04 / 06</span>
+        <div class="frame"><img src="assets/media/x-s0051.jpg" alt="" loading="lazy"></div>
+        <h3 class="h3">Maatwerk op het gebied van beleggen in Spanje</h3><p>Gespecialiseerd in op maat gemaakte plannen om uw ideale vastgoedbelegging in Spanje te vinden en optimaal te laten renderen.</p></article><article class="hs__card">
+        <span class="label">05 / 06</span>
+        <div class="frame"><img src="assets/media/2020-11-pc4.jpg" alt="" loading="lazy"></div>
+        <h3 class="h3">Transparante tarieven</h3><p>Geen onduidelijke commissies, maar transparante gesprekken over tarieven. Wanneer je met ons in zee gaat, kom je niet voor ongewenste verrassingen te staan.</p></article><article class="hs__card">
+        <span class="label">06 / 06</span>
+        <div class="frame"><img src="assets/media/2020-04-slider-property-consultancy-spain.jpg" alt="" loading="lazy"></div>
+        <h3 class="h3">Kwaliteit en ervaring</h3><p>Alle bij PC-Spain betrokken partijen hebben bewezen en ruime ervaring in de aankoop van woningen in Spanje.</p></article></div>
+    <div class="hs__bar"><i></i></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="band__media"><video muted loop playsinline preload="none" poster="assets/video/valencia-city.jpg" data-src="assets/video/valencia-city.mp4" data-parallax="10"></video></div>
+  <div class="band__inner wrap"><div class="grid-12">
+    <div class="band__title"><span class="label" data-reveal>Werkwijze</span><h2 class="h1" data-split style="margin-top:22px;font-size:clamp(2.6rem,6.4vw,6.8rem)">Volledige ontzorging in Spanje</h2></div>
+    <div class="band__text" data-reveal=".2"><p>Om de kwaliteit van onze dienstverlening te garanderen, werken wij uitsluitend met onze partners samen. Dit betreft in ons standaard pakket een makelaar én advocaat. Je kan optioneel aanvullende experts toevoegen in het team, zoals een hypotheekadviseur bij een Spaanse bank. Het zijn partijen die <strong>jarenlange ervaring</strong> hebben in hun vak, in Nederlands en Spaans werkgebied. Als je Property Consultancy Spain inschakelt ontvang je de volledige service van alle deskundige, op één plek. Handig toch?</p><a class="lk" href="werkwijze.html">Werkwijze <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></a></div>
+  </div></div>
+</section>
+
+<section class="sec">
+  <div class="wrap split split--rev">
+    <div class="split__media"><figure class="frame frame--tall" data-img><img src="assets/media/2024-10-pc-spain-team.jpg" alt="Het team van PC-Spain" loading="lazy"></figure></div>
+    <div class="split__text">
+      <span class="label label--brass" data-reveal>Expertises</span>
+      <h2 class="h2" data-split>Ben jij investeerder in Spaans vastgoed?</h2>
+      <div class="body" data-reveal=".2"><p>Laat ons je ondersteunen bij het optimaliseren van je investeringen met professioneel advies en begeleiding. Property Consultancy Group helpt je graag verder met expertise op het gebied van investeringen, juridische ondersteuning en hypotheekadvies.</p></div>
+      <div data-reveal=".3"><a class="btn " href="expertises.html">Meer informatie! <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></a></div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE: offices -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    <span>Valencia</span><span>Dénia</span><span>Amsterdam</span><span>Barcelona</span><span>Valencia</span><span>Dénia</span><span>Amsterdam</span><span>Barcelona</span>
-    <span>Valencia</span><span>Dénia</span><span>Amsterdam</span><span>Barcelona</span><span>Valencia</span><span>Dénia</span><span>Amsterdam</span><span>Barcelona</span>
-  </div>
-</div>
-
-<!-- VOORDELEN -->
-<section class="sec voordelen">
-  <div class="container">
-    <div class="sec-head">
+<section class="sec bg-navy on-dark">
+  <div class="wrap quotes">
+    <div class="quotes__side">
+      <div><span class="label muted">Wat klanten over ons zeggen</span></div>
       <div>
-        <span class="eyebrow rv">Onze voordelen</span>
-        <h2 class="rv" data-d="1">Voordelen van <em>Property Consultancy Spain</em></h2>
+        <div class="quotes__nav"><button data-q-prev aria-label="Vorige"><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M26 5H1M5 1L1 5l4 4"/></svg></button><button data-q-next aria-label="Volgende"><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button><span class="quotes__count"><b>01</b> / 04</span></div>
+        <div class="quotes__bar"><i></i></div>
+        <div style="margin-top:40px"><a class="lk" href="portfolio.html">Succesverhalen <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></a></div>
       </div>
     </div>
-    <div class="v-grid">
-      <article class="v-card rv" data-tilt><span class="glow"></span><span class="idx">01</span>
-        <div class="v-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
-        <h3>Volledige ontzorging</h3>
-        <p>Meerdere experts slaan de handen in elkaar om jou zo goed en volledig mogelijk te begeleiden bij de koop van vastgoed in Spanje. Hierbij heeft de klant één aanspreekpunt.</p>
-      </article>
-      <article class="v-card rv" data-d="1" data-tilt><span class="glow"></span><span class="idx">02</span>
-        <div class="v-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M5 7h14M5 7l-3 7a3.5 3.5 0 0 0 6 0zM19 7l-3 7a3.5 3.5 0 0 0 6 0zM8 21h8"/></svg></div>
-        <h3>Professionele ondersteuning</h3>
-        <p>Ons team beschikt over uitgebreide kennis van Spaans vastgoed. Bij de aankoop van een woning ontvang je altijd begeleiding mét juridisch advies. PC-Spain staat als één partij aan de kant van de klant.</p>
-      </article>
-      <article class="v-card rv" data-d="2" data-tilt><span class="glow"></span><span class="idx">03</span>
-        <div class="v-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 15l2 2 4-4"/></svg></div>
-        <h3>Een woning zonder gebreken</h3>
-        <p>Ons huizenaanbod is zorgvuldig geselecteerd en gecontroleerd door onze juridische afdeling. Zo heb jij geen zorgen over (onzichtbare) gebreken van een woning.</p>
-      </article>
-      <article class="v-card rv" data-tilt><span class="glow"></span><span class="idx">04</span>
-        <div class="v-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20h18M5 16l4-5 4 3 6-8"/><path d="M15 6h4v4"/></svg></div>
-        <h3>Maatwerk op het gebied van beleggen in Spanje</h3>
-        <p>Gespecialiseerd in op maat gemaakte plannen om uw ideale vastgoedbelegging in Spanje te vinden en optimaal te laten renderen.</p>
-      </article>
-      <article class="v-card rv" data-d="1" data-tilt><span class="glow"></span><span class="idx">05</span>
-        <div class="v-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .9-3 2s1 1.7 3 2 3 .9 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6.5v11"/></svg></div>
-        <h3>Transparante tarieven</h3>
-        <p>Geen onduidelijke commissies, maar transparante gesprekken over tarieven. Wanneer je met ons in zee gaat, kom je niet voor ongewenste verrassingen te staan.</p>
-      </article>
-      <article class="v-card rv" data-d="2" data-tilt><span class="glow"></span><span class="idx">06</span>
-        <div class="v-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg></div>
-        <h3>Kwaliteit en ervaring</h3>
-        <p>Alle bij PC-Spain betrokken partijen hebben bewezen en ruime ervaring in de aankoop van woningen in Spanje.</p>
-      </article>
-    </div>
+    <div class="quotes__stage"><figure class="quote on">
+      <blockquote>PC Spain heeft me geholpen om mijn investering in Spaans vastgoed te optimaliseren. Met hun begeleiding en netwerk kon ik het verhuurproces professioneel opzetten, en nu loopt alles vrijwel automatisch. Het resultaat? Een zorgeloos, passief inkomen dat elke maand binnenkomt. Dankzij hun advies en connecties heb ik echt het maximale uit mijn investering gehaald. Ik…</blockquote>
+      <figcaption><span class="label">Arnout Bakker</span></figcaption>
+    </figure><figure class="quote">
+      <blockquote>Als investeerder was ik op zoek naar een betrouwbaar team dat me kon helpen bij het opzetten van het verhuurproces. Dankzij PC Spain loopt alles nu vrijwel automatisch, en kan ik passief genieten van een stabiel extra inkomen. Ze hebben me verbonden met de juiste partners en begeleid bij elke stap. Het systeem dat ze…</blockquote>
+      <figcaption><span class="label">Marloes &amp; Peter van den Akker</span></figcaption>
+    </figure><figure class="quote">
+      <blockquote>Als investeerder wilde ik niet alleen goed advies, maar ook toegang tot een sterk netwerk. Dankzij PC Spain kon ik gebruikmaken van hun connecties met topadvocaten, architecten en lokale makelaars. Hun partners hebben me geholpen bij de aankoop en renovatie van een pand, waardoor ik het met een mooie winst heb kunnen flippen. Het team…</blockquote>
+      <figcaption><span class="label">Wim van Brakel</span></figcaption>
+    </figure><figure class="quote">
+      <blockquote>Ik heb via Property Consultancy Group geïnvesteerd in een vakantieappartement in Spanje. Het proces verliep soepel en het team gaf uitstekende begeleiding bij zowel de juridische als fiscale aspecten. Ze denken echt met je mee!</blockquote>
+      <figcaption><img src="assets/media/2024-10-johan-hove.jpg" alt="" loading="lazy"><span class="label">Johan Hoven</span></figcaption>
+    </figure></div>
   </div>
 </section>
-
-<!-- WERKWIJZE -->
-<section class="sec werk">
-  <div class="container werk__grid">
-    <div>
-      <span class="eyebrow rv">Werkwijze</span>
-      <h2 class="rv" data-d="1">Volledige ontzorging <em>in Spanje</em></h2>
-      <p class="rv" data-d="2">Om de kwaliteit van onze dienstverlening te garanderen, werken wij uitsluitend met onze partners samen. Dit betreft in ons standaard pakket een makelaar én advocaat. Je kan optioneel aanvullende experts toevoegen in het team, zoals een hypotheekadviseur bij een Spaanse bank. Het zijn partijen die <strong>jarenlange ervaring</strong> hebben in hun vak, in Nederlands en Spaans werkgebied. Als je Property Consultancy Spain inschakelt ontvang je de volledige service van alle deskundige, op één plek. Handig toch?</p>
-      <div class="steps rv" data-d="3"><span>Makelaar</span><span>Advocaat</span><span>Hypotheekadviseur</span></div>
-      <a href="werkwijze.html" class="btn rv" data-d="4" data-magnetic>Werkwijze <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
-    <div class="werk__visual">
-      <div class="werk__img" data-clip><img src="assets/PC-Spain-team.png" alt="Het team van PC-Spain" loading="lazy"></div>
-      <div class="orbit" aria-hidden="true">
-        <svg viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text><textPath href="#circ">ÉÉN TEAM · ÉÉN AANSPREEKPUNT · ÉÉN PLEK ·</textPath></text></svg>
-        <div class="orbit__core"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg></div>
-      </div>
-    </div>
-  </div>
+<section class="band band--expand">
+  <div class="band__media"><video muted loop playsinline preload="none" poster="assets/video/villa.jpg" data-src="assets/video/villa.mp4"></video></div>
+  <div class="band__inner wrap"><div class="grid-12">
+    <div class="band__title"><span class="label" data-reveal>Nieuwbouw</span><h2 class="h2" data-split style="margin-top:22px">Op zoek naar een nieuwbouw woning in Spanje?</h2></div>
+    <div class="band__text" data-reveal=".2"><p>Wij helpen u graag bij het vinden van nieuwbouwprojecten voor eigen gebruik of als investering met uitstekend verhuurrendement. Dankzij onze connecties met de grootste projectontwikkelaars in Spanje hebben we toegang tot exclusieve nieuwbouwmogelijkheden.</p><p><strong>Laat ons u begeleiden in het vinden van de perfecte woning of investering!</strong></p><a class="lk" href="woning-kopen.html">Meer informatie! <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></a></div>
+  </div></div>
 </section>
-
-<!-- EXPERTISES -->
-<section class="expert">
-  <div class="container">
-    <div class="expert__card rv">
-      <div class="expert__bg" data-parallax="0.08"></div>
-      <div class="expert__content">
-        <span class="eyebrow">Expertises</span>
-        <h2>Ben jij investeerder in <em>Spaans vastgoed?</em></h2>
-        <p>Laat ons je ondersteunen bij het optimaliseren van je investeringen met professioneel advies en begeleiding. Property Consultancy Group helpt je graag verder met expertise op het gebied van investeringen, juridische ondersteuning en hypotheekadvies.</p>
-        <div class="chips"><span>Investeringen</span><span>Juridische ondersteuning</span><span>Hypotheekadvies</span></div>
-        <a href="expertises.html" class="btn" data-magnetic>Meer informatie! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testi">
-  <div class="container">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow rv">Succesverhalen</span>
-        <h2 class="rv" data-d="1">Wat klanten <em>over ons zeggen</em></h2>
-      </div>
-      <a href="portfolio.html" class="btn btn--navy rv" data-d="2" data-magnetic>Succesverhalen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
-    <div class="t-wrap rv" data-d="2">
-      <div class="t-track" id="tTrack">
-        <article class="t-card">
-          <div class="q">“</div>
-          <div class="stars" aria-label="5 sterren"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg></div>
-          <p>PC Spain heeft me geholpen om mijn investering in Spaans vastgoed te optimaliseren. Met hun begeleiding en netwerk kon ik het verhuurproces professioneel opzetten, en nu loopt alles vrijwel automatisch. Het resultaat? Een zorgeloos, passief inkomen dat elke maand binnenkomt. Dankzij hun advies en connecties heb ik echt het maximale uit mijn investering gehaald. Ik…</p>
-          <div class="t-who"><span class="t-av">AB</span><div><b>Arnout Bakker</b><small>Investeerder</small></div></div>
-        </article>
-        <article class="t-card">
-          <div class="q">“</div>
-          <div class="stars" aria-label="5 sterren"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg></div>
-          <p>Als investeerder was ik op zoek naar een betrouwbaar team dat me kon helpen bij het opzetten van het verhuurproces. Dankzij PC Spain loopt alles nu vrijwel automatisch, en kan ik passief genieten van een stabiel extra inkomen. Ze hebben me verbonden met de juiste partners en begeleid bij elke stap. Het systeem dat ze…</p>
-          <div class="t-who"><span class="t-av">MP</span><div><b>Marloes &amp; Peter van den Akker</b><small>Investeerders</small></div></div>
-        </article>
-        <article class="t-card">
-          <div class="q">“</div>
-          <div class="stars" aria-label="5 sterren"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg></div>
-          <p>Als investeerder wilde ik niet alleen goed advies, maar ook toegang tot een sterk netwerk. Dankzij PC Spain kon ik gebruikmaken van hun connecties met topadvocaten, architecten en lokale makelaars. Hun partners hebben me geholpen bij de aankoop en renovatie van een pand, waardoor ik het met een mooie winst heb kunnen flippen. Het team…</p>
-          <div class="t-who"><span class="t-av">WB</span><div><b>Wim van Brakel</b><small>Investeerder</small></div></div>
-        </article>
-        <article class="t-card">
-          <div class="q">“</div>
-          <div class="stars" aria-label="5 sterren"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7L12 17.5 5.7 21.2l1.6-7L2 9.6 9 9z"/></svg></div>
-          <p>Ik heb via Property Consultancy Group geïnvesteerd in een vakantieappartement in Spanje. Het proces verliep soepel en het team gaf uitstekende begeleiding bij zowel de juridische als fiscale aspecten. Ze denken echt met je mee!</p>
-          <div class="t-who"><span class="t-av"><img src="assets/Johan-Hove-160x160.png" alt="Johan Hoven" loading="lazy"></span><div><b>Johan Hoven</b><small>Vakantieappartement</small></div></div>
-        </article>
-      </div>
-      <div class="t-ctrl">
-        <div class="t-dots" id="tDots"></div>
-        <div class="t-arrows">
-          <button id="tPrev" aria-label="Vorige"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-          <button id="tNext" aria-label="Volgende"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NIEUWBOUW (video) -->
-<section class="nieuw">
-  <div class="nieuw__media" data-parallax="0.1">
-    <video muted loop playsinline preload="none" poster="assets/Nieuwbouw-PC-Spain-2048x1044.jpg" data-src="assets/villa-marbella.mp4"></video>
-  </div>
-  <div class="container nieuw__content">
-    <div>
-      <span class="eyebrow rv">Nieuwbouw</span>
-      <h2 class="rv" data-d="1">Op zoek naar een <em>nieuwbouw woning</em> in Spanje?</h2>
-    </div>
-    <div class="nieuw__glass rv" data-d="2">
-      <p>Wij helpen u graag bij het vinden van nieuwbouwprojecten voor eigen gebruik of als investering met uitstekend verhuurrendement. Dankzij onze connecties met de grootste projectontwikkelaars in Spanje hebben we toegang tot exclusieve nieuwbouwmogelijkheden.</p>
-      <p>Laat ons u begeleiden in het vinden van de perfecte woning of investering!</p>
-      <a href="woning-kopen.html" class="btn" data-magnetic>Meer informatie! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
 <section class="cta">
-  <div class="container">
-    <div class="cta__box rv">
-      <h2>Benieuwd naar de mogelijkheden?</h2>
-      <p>Doe de intake en start direct met uw belegging in Spanje.</p>
-      <a href="intake.html" class="btn" data-magnetic>Start intake <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
+  <div class="cta__media"><video muted loop playsinline preload="none" poster="assets/video/valencia-waves.jpg" data-src="assets/video/valencia-waves.mp4"></video></div>
+  <div class="cta__inner">
+    <h2 class="h1" data-split>Benieuwd naar de mogelijkheden?</h2>
+    <p data-reveal=".2">Doe de intake en start direct met uw belegging in Spanje.</p>
+    <div data-reveal=".3"><a class="btn btn--light" href="intake.html">Start intake <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></a></div>
   </div>
 </section>
 
 </main>
 
-<footer id="contact">
-  <div class="f-big" aria-hidden="true">PC · Spain</div>
-  <div class="container">
-    <div class="f-grid">
-      <div class="f-brand">
-        <a href="index.html" class="brand">
-          <svg viewBox="0 0 64 64" fill="none"><path d="M32 4a28 28 0 1 0 12.6 53l9.4 5-3.2-11A28 28 0 0 0 32 4Z" fill="#c29a4f"/><path d="M20 46V29l12-10 12 10v17H20Z" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>
-          <span class="brand__txt"><b>PROPERTY CONSULTANCY</b><small>SPAIN</small></span>
-        </a>
-        <p>Woning kopen of huren in Spanje</p>
-        <a href="https://orange-estates.com" class="partner" target="_blank" rel="noopener" aria-label="Orange Estates"><img src="assets/Orange-Logo-small.png" alt="Orange Estates"></a>
-      </div>
-      <div>
-        <h4>Contact informatie</h4>
-        <p style="color:#fff;font-weight:600;margin-bottom:8px">Kantoren:</p>
-        <ul class="offices"><li>Valencia</li><li>Dénia</li><li>Amsterdam</li><li>Barcelona</li></ul>
-      </div>
-      <div>
-        <h4>Openingstijden:</h4>
-        <p>Maandag- Zaterdag:<br><span style="color:#fff;font-weight:600">10:00 - 18:00</span></p>
-        <h4 style="margin-top:34px">Vind ons op:</h4>
-        <a href="https://instagram.com/pc_spain" target="_blank" rel="noopener" class="social" aria-label="Instagram page opens in new window"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></i>@pc_spain</a>
-      </div>
-      <div>
-        <h4>Property Consultancy Spain</h4>
-        <ul>
-          <li><a href="expertises.html">Expertises in Spanje</a></li>
-          <li><a href="tarieven.html">Tarieven</a></li>
-          <li><a href="woning-kopen.html">Woning kopen Spanje</a></li>
-          <li><a href="tarieven.html">Tarieven</a></li>
-          <li><a href="intake.html">Intake</a></li>
-        </ul>
-      </div>
+<footer class="ft" id="contact">
+  <div class="wrap ft__top">
+    <div class="ft__brand">
+      <a href="index.html"><img src="assets/logo/pc-spain.png" alt="Property Consultancy Spain" width="800" height="258" loading="lazy"></a>
+      <p>Woning kopen of huren in Spanje</p>
     </div>
-    <div class="f-bottom">
-      <span>© Property Consultant Spain - All rights reserved.</span>
-      <button class="to-top" id="toTop">Go to Top <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></i></button>
+    <div class="ft__col">
+      <h4>Contact informatie</h4>
+      <p class="label muted" style="margin-bottom:10px">Kantoren:</p>
+      <ul><li>Valencia</li><li>Dénia</li><li>Amsterdam</li><li>Barcelona</li></ul>
+    </div>
+    <div class="ft__col">
+      <h4>Openingstijden:</h4>
+      <p>Maandag- Zaterdag: 10:00 - 18:00</p>
+      <h4 style="margin-top:34px">Vind ons op:</h4>
+      <a href="https://instagram.com/pc_spain" target="_blank" rel="noopener" aria-label="Instagram page opens in new window">Instagram — @pc_spain</a>
+    </div>
+    <div class="ft__col" style="grid-column:span 3">
+      <h4>Property Consultancy Spain</h4>
+      <ul><li><a href="expertises.html">Expertises in Spanje</a></li><li><a href="tarieven.html">Tarieven</a></li><li><a href="woning-kopen.html">Woning kopen Spanje</a></li><li><a href="tarieven.html">Tarieven</a></li><li><a href="intake.html">Intake</a></li></ul>
     </div>
   </div>
+  <div class="ft__partner">
+    <span class="label">Partner</span>
+    <img src="assets/logo/orange-estates.png" alt="Orange Estates" width="788" height="212" loading="lazy">
+  </div>
+  <div class="ft__bottom">
+    <span>© Property Consultant Spain - All rights reserved.</span>
+    <button class="label" data-top>Go to Top ↑</button>
+  </div>
 </footer>
-<script src="assets/site.js"></script>
-<!-- Video modal -->
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Video">
-  <button class="modal__x" id="modalX" aria-label="Sluiten">×</button>
-  <video id="modalVideo" controls playsinline preload="none" src="assets/hero-valencia.mp4"></video>
+
+<div class="lb" role="dialog" aria-modal="true" aria-label="Media">
+  <div class="lb__top"><span class="lb__count label"></span><button class="label" data-lb-close>✕</button></div>
+  <div class="lb__stage"></div>
+  <div class="lb__bot"><button class="label" data-lb-prev><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M26 5H1M5 1L1 5l4 4"/></svg></button><button class="label" data-lb-next><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button></div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

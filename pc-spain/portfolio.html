@@ -1,173 +1,154 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Portfolio - Property Consultancy Spain</title>
-<meta name="description" content="Transformatie van oude panden naar moderne woon- of werkruimtes in Spanje.">
-<link rel="icon" type="image/png" href="assets/property-consultancy-spain-favicon.png">
+<meta name="description" content="Transformatie van oude panden naar moderne woon- of werkruimtes.">
+<meta name="theme-color" content="#233759">
+<link rel="icon" type="image/png" href="assets/logo/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-<a class="skip" href="#content">Skip to content</a>
-<div class="progress" id="progress"></div>
-<div class="cursor" id="cursor"></div>
+<a class="skip" href="#main">Skip to content</a>
+<div class="curtain" aria-hidden="true"><div class="curtain__word"><span>Property Consultancy Spain</span></div></div>
 
-<header class="topbar" id="topbar">
-  <div class="container nav">
-    <a href="index.html" class="brand" aria-label="Property Consultancy Spain – Home">
-      <svg viewBox="0 0 64 64" fill="none"><path d="M32 4a28 28 0 1 0 12.6 53l9.4 5-3.2-11A28 28 0 0 0 32 4Z" fill="#c29a4f"/><path d="M20 46V29l12-10 12 10v17H20Z" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>
-      <span class="brand__txt"><b>PROPERTY CONSULTANCY</b><small>SPAIN</small><span class="brand__tag">Woning kopen of huren in Spanje</span></span>
-    </a>
-    <nav aria-label="Hoofdmenu">
-      <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="werkwijze.html" class="active">Over ons <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" stroke="currentColor" fill="none" stroke-width="1.5"/></svg></a>
-          <ul class="sub">
-            <li><a href="over-pc-spain.html">Over PC-Spain</a></li>
-            <li><a href="expertises.html">Expertises</a></li>
-            <li><a href="werkwijze.html">Werkwijze</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="partners.html">Partners</a></li>
-          </ul>
-        </li>
-        <li><a href="tarieven.html">Tarieven</a></li>
-        <li><a href="woning-kopen.html">Woning kopen <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" stroke="currentColor" fill="none" stroke-width="1.5"/></svg></a>
-          <ul class="sub">
-            <li><a href="informatie-tips.html">Informatie &amp; Tips</a></li>
-          </ul>
-        </li>
-        <li><a href="intake.html">Intake</a></li>
-      </ul>
-    </nav>
-    <div class="nav__right">
-      <div class="lang">
-        <a href="index.html" class="on"><img src="assets/nl.png" alt="">NL</a>
-        <a href="https://pc-spain.com/en/" target="_blank" rel="noopener"><img src="assets/en.png" alt="">EN</a>
-      </div>
-      <a href="intake.html" class="btn" data-magnetic>Doe de intake</a>
-      <button class="burger" id="burger" aria-label="Menu openen" aria-expanded="false"><span></span><span></span><span></span></button>
-    </div>
+<header class="hd" id="top">
+  <div class="hd__left">
+    <button class="hd__menu label" data-menu-open aria-label="Menu"><i></i><span>Menu</span></button>
+    <a class="hd__quick label" href="woning-kopen.html">Woning kopen</a>
+  </div>
+  <a class="hd__logo" href="index.html" aria-label="Property Consultancy Spain"><img src="assets/logo/pc-spain.png" alt="Property Consultancy Spain" width="800" height="258"></a>
+  <div class="hd__right">
+    <nav class="hd__lang label" aria-label="Language"><a href="portfolio.html" class="on">NL</a><a href="en-success-stories.html">EN</a></nav>
+    <a class="hd__cta label" href="intake.html">Doe de intake</a>
   </div>
 </header>
 
-<div class="drawer" id="drawer">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="werkwijze.html">Over ons</a>
-      <ul class="dsub">
-        <li><a href="over-pc-spain.html">Over PC-Spain</a></li>
-        <li><a href="expertises.html">Expertises</a></li>
-        <li><a href="werkwijze.html">Werkwijze</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="partners.html">Partners</a></li>
-      </ul>
-    </li>
-    <li><a href="tarieven.html">Tarieven</a></li>
-    <li><a href="woning-kopen.html">Woning kopen</a>
-      <ul class="dsub"><li><a href="informatie-tips.html">Informatie &amp; Tips</a></li></ul>
-    </li>
-    <li><a href="intake.html">Intake</a></li>
-  </ul>
-  <div class="lang" style="margin-top:28px;display:inline-flex">
-    <a href="index.html" class="on">NL</a><a href="https://pc-spain.com/en/" target="_blank" rel="noopener">EN</a>
-  </div><br>
-  <a href="intake.html" class="btn">Doe de intake</a>
+<div class="menu" aria-hidden="false">
+  <button class="menu__close label" data-menu-close><i></i>Sluiten</button>
+  <div class="menu__main">
+    <nav aria-label="Menu"><ul class="menu__list"><li><a href="index.html">Home</a></li><li><a href="over-pc-spain.html" class="on">Over ons</a><ul class="menu__sub"><li><a href="over-pc-spain.html">Over PC-Spain</a></li><li><a href="expertises.html">Expertises</a></li><li><a href="werkwijze.html">Werkwijze</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="partners.html">Partners</a></li></ul></li><li><a href="tarieven.html">Tarieven</a></li><li><a href="woning-kopen.html">Woning kopen</a><ul class="menu__sub"><li><a href="informatie-tips.html">Informatie &amp; Tips</a></li></ul></li><li><a href="intake.html">Intake</a></li></ul></nav>
+    <div class="menu__foot">
+      <div><span class="label">Kantoren:</span>Valencia · Dénia · Amsterdam · Barcelona</div>
+      <div><span class="label">Openingstijden:</span>Maandag- Zaterdag: 10:00 - 18:00</div>
+      <div><span class="label">Vind ons op:</span><a href="https://instagram.com/pc_spain" target="_blank" rel="noopener">Instagram @pc_spain</a></div>
+    </div>
+  </div>
+  <div class="menu__media" aria-hidden="true"><img src="assets/video/valencia-ciencias.jpg" alt="" class="on"><img src="assets/media/2024-10-travelling_a_team_of_real_estates_professionals_in_spanish_ci_18f2c688-8a7c-42df-a2f7-da7706d1ec0f_0.jpg" alt=""><img src="assets/media/2017-03-s025.jpg" alt=""><img src="assets/media/2024-10-nieuwbouw-pc-spain.jpg" alt=""><img src="assets/media/2020-04-slider-property-consultancy-spain.jpg" alt=""></div>
 </div>
-
-<main id="content">
-<section class="phero">
-  <div class="phero__media" data-parallax="0.12"><img src="assets/img/Mislata-after.png" alt=""></div>
-  <div class="container phero__content">
-    <div class="crumbs"><a href="index.html">Home</a><span>/</span>Over ons / Portfolio</div>
-    <h1><span class="line"><span>Portfolio &amp;</span></span><span class="line"><span><em>succesverhalen</em></span></span></h1>
-    
+<main id="main">
+<section class="ph">
+  <div class="wrap ph__top">
+    <nav class="ph__crumbs" aria-label="Breadcrumb"><a class="label" href="index.html">Home</a><span class="label" aria-hidden="true">/</span><a class="label" href="over-pc-spain.html">Over ons</a><span class="label" aria-hidden="true">/</span><span class="label">Portfolio</span></nav>
+    <h1 class="h1" data-split>Portfolio</h1>
+    <div class="ph__aside" data-reveal=".3">Succesverhalen</div>
   </div>
+  <div class="ph__media"><img src="assets/media/2024-10-mislata-after.jpg" alt="" data-parallax="14"></div>
 </section>
-
 <section class="sec">
-  <div class="container">
-    <div class="prose rv" style="max-width:80ch;font-size:1.1rem">
-      <p>Bij Property Consultancy Spain begeleiden we klanten in het transformeren van oude panden, zoals kantoren en loodsen, naar moderne woon- of werkruimtes. Of het nu gaat om co-living projecten of kantoorruimtes, wij zorgen ervoor dat elk gebouw wordt omgevormd tot een innovatieve en functionele ruimte. Hier onder vind je een selectie van ons portfolio, waarin we enkele van onze meest succesvolle transformatieprojecten laten zien. Deze voorbeelden geven een goed beeld van ons vakmanschap en toewijding aan kwaliteit en design.</p>
+  <div class="wrap split">
+    <div class="split__label"><span class="label label--brass">Portfolio</span></div>
+    <div class="split__main"><p class="lead" data-split>Bij Property Consultancy Spain begeleiden we klanten in het transformeren van oude panden, zoals kantoren en loodsen, naar moderne woon- of werkruimtes. Of het nu gaat om co-living projecten of kantoorruimtes, wij zorgen ervoor dat elk gebouw wordt omgevormd tot een innovatieve en functionele ruimte.</p>
+    <div class="body" data-reveal><p>Hier onder vind je een selectie van ons portfolio, waarin we enkele van onze meest succesvolle transformatieprojecten laten zien. Deze voorbeelden geven een goed beeld van ons vakmanschap en toewijding aan kwaliteit en design.</p></div></div>
+  </div>
+</section>
+<section class="sec bg-white" style="padding-top:0;background:linear-gradient(var(--paper) 30%, var(--white) 30%)">
+  <div class="wrap">
+    <div class="ba" data-reveal>
+      <img src="assets/media/2024-10-mislata-after.jpg" alt="Transitie Valencia – na">
+      <img class="ba__before" src="assets/media/2024-10-mislata-before-cropped.jpg" alt="Transitie Valencia – voor">
+      <div class="ba__line"><span class="ba__knob"><span>⟷</span></span></div>
+      <span class="ba__tag ba__tag--b label">Voor</span><span class="ba__tag ba__tag--a label">Na</span>
+      <input type="range" id="ba-range" min="0" max="100" value="50" aria-label="Voor en na vergelijken">
+    </div>
+    <div class="split" style="margin-top:clamp(56px,6vw,96px)">
+      <div class="split__label"><span class="label label--brass">Transformatie</span></div>
+      <div class="split__main"><h2 class="h2" data-split>Transitie Valencia</h2><div class="body" data-reveal><p>Dit prachtige appartement in Valencia is ontstaan uit de transformatie van een oud kantoorpand naar een moderne woonruimte. Met aandacht voor detail en hoogwaardige afwerking is het kantoor volledig omgebouwd tot een stijlvol appartement. De ligging in het hart van Valencia, gecombineerd met de vernieuwde en comfortabele inrichting, maakt dit de perfecte plek om te wonen of te investeren. Het appartement biedt een unieke mix van geschiedenis en moderne voorzieningen, waardoor het een bijzondere en aantrekkelijke optie is voor de liefhebber van eigentijds wonen.</p></div></div>
     </div>
   </div>
 </section>
-<section class="sec sand">
-  <div class="container split">
-    <div class="ba rv">
-      <img src="assets/img/Mislata-after.png" alt="Transitie Valencia – na">
-      <img class="ba__before" src="assets/img/Mislata-before-cropped.png" alt="Transitie Valencia – voor">
-      <span class="ba__lbl ba__lbl--b">Voor</span><span class="ba__lbl ba__lbl--a">Na</span>
-      <div class="ba__handle"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></i></div>
-      <input type="range" id="baRange" min="0" max="100" value="50" aria-label="Vergelijk voor en na">
-    </div>
-    <div>
-      <span class="eyebrow rv">Transformatie</span>
-      <h2 class="rv" data-d="1">Transitie <em>Valencia</em></h2>
-      <div class="prose rv" data-d="2"><p>Dit prachtige appartement in Valencia is ontstaan uit de transformatie van een oud kantoorpand naar een moderne woonruimte. Met aandacht voor detail en hoogwaardige afwerking is het kantoor volledig omgebouwd tot een stijlvol appartement. De ligging in het hart van Valencia, gecombineerd met de vernieuwde en comfortabele inrichting, maakt dit de perfecte plek om te wonen of te investeren. Het appartement biedt een unieke mix van geschiedenis en moderne voorzieningen, waardoor het een bijzondere en aantrekkelijke optie is voor de liefhebber van eigentijds wonen.</p></div>
-    </div>
-  </div>
-</section>
-<section class="expert">
-  <div class="container">
-    <div class="expert__card rv">
-      <div class="expert__bg" data-parallax="0.08" style="background-image:url(assets/img/Mislata-after.png)"></div>
-      <div class="expert__content">
-        <span class="eyebrow">Transformatie</span>
-        <h2>Start jouw <em>vastgoedtransformatie!</em></h2>
-        <p>Ben je klaar om een oude ruimte om te toveren tot een moderne woon- of werkplek? Wij begeleiden je van begin tot eind, met innovatieve oplossingen en een team van experts. Neem vandaag nog de eerste stap naar jouw succesvolle transformatie!</p>
-        <p style="margin-top:14px">Laat ons je ondersteunen bij het optimaliseren van je investeringen met professioneel advies en begeleiding. Property Consultancy Group helpt je graag verder met expertise op het gebied van investeringen, juridische ondersteuning en hypotheekadvies.</p>
-        <a href="intake.html" class="btn " data-magnetic>Meer informatie! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<section class="sec bg-navy on-dark">
+  <div class="wrap quotes">
+    <div class="quotes__side">
+      <div><span class="label muted">Wat klanten over ons zeggen</span></div>
+      <div>
+        <div class="quotes__nav"><button data-q-prev aria-label="Vorige"><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M26 5H1M5 1L1 5l4 4"/></svg></button><button data-q-next aria-label="Volgende"><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button><span class="quotes__count"><b>01</b> / 04</span></div>
+        <div class="quotes__bar"><i></i></div>
+        <div style="margin-top:40px"><a class="lk" href="intake.html">Doe de intake <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></a></div>
       </div>
+    </div>
+    <div class="quotes__stage"><figure class="quote on">
+      <blockquote>PC Spain heeft me geholpen om mijn investering in Spaans vastgoed te optimaliseren. Met hun begeleiding en netwerk kon ik het verhuurproces professioneel opzetten, en nu loopt alles vrijwel automatisch. Het resultaat? Een zorgeloos, passief inkomen dat elke maand binnenkomt. Dankzij hun advies en connecties heb ik echt het maximale uit mijn investering gehaald. Ik…</blockquote>
+      <figcaption><span class="label">Arnout Bakker</span></figcaption>
+    </figure><figure class="quote">
+      <blockquote>Als investeerder was ik op zoek naar een betrouwbaar team dat me kon helpen bij het opzetten van het verhuurproces. Dankzij PC Spain loopt alles nu vrijwel automatisch, en kan ik passief genieten van een stabiel extra inkomen. Ze hebben me verbonden met de juiste partners en begeleid bij elke stap. Het systeem dat ze…</blockquote>
+      <figcaption><span class="label">Marloes &amp; Peter van den Akker</span></figcaption>
+    </figure><figure class="quote">
+      <blockquote>Als investeerder wilde ik niet alleen goed advies, maar ook toegang tot een sterk netwerk. Dankzij PC Spain kon ik gebruikmaken van hun connecties met topadvocaten, architecten en lokale makelaars. Hun partners hebben me geholpen bij de aankoop en renovatie van een pand, waardoor ik het met een mooie winst heb kunnen flippen. Het team…</blockquote>
+      <figcaption><span class="label">Wim van Brakel</span></figcaption>
+    </figure><figure class="quote">
+      <blockquote>Ik heb via Property Consultancy Group geïnvesteerd in een vakantieappartement in Spanje. Het proces verliep soepel en het team gaf uitstekende begeleiding bij zowel de juridische als fiscale aspecten. Ze denken echt met je mee!</blockquote>
+      <figcaption><img src="assets/media/2024-10-johan-hove.jpg" alt="" loading="lazy"><span class="label">Johan Hoven</span></figcaption>
+    </figure></div>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap split">
+    <div class="split__media"><figure class="frame frame--arch" data-img><img src="assets/media/2024-10-nieuwbouw-pc-spain.jpg" alt="" loading="lazy"></figure></div>
+    <div class="split__text">
+      <h2 class="h2" data-split>Start jouw vastgoedtransformatie!</h2>
+      <div class="body" data-reveal><p>Ben je klaar om een oude ruimte om te toveren tot een moderne woon- of werkplek? Wij begeleiden je van begin tot eind, met innovatieve oplossingen en een team van experts. Neem vandaag nog de eerste stap naar jouw succesvolle transformatie!</p><p>Laat ons je ondersteunen bij het optimaliseren van je investeringen met professioneel advies en begeleiding. Property Consultancy Group helpt je graag verder met expertise op het gebied van investeringen, juridische ondersteuning en hypotheekadvies.</p></div>
+      <div data-reveal><a class="btn " href="intake.html">Meer informatie! <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></a></div>
     </div>
   </div>
 </section>
 </main>
 
-<footer id="contact">
-  <div class="f-big" aria-hidden="true">PC · Spain</div>
-  <div class="container">
-    <div class="f-grid">
-      <div class="f-brand">
-        <a href="index.html" class="brand">
-          <svg viewBox="0 0 64 64" fill="none"><path d="M32 4a28 28 0 1 0 12.6 53l9.4 5-3.2-11A28 28 0 0 0 32 4Z" fill="#c29a4f"/><path d="M20 46V29l12-10 12 10v17H20Z" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>
-          <span class="brand__txt"><b>PROPERTY CONSULTANCY</b><small>SPAIN</small></span>
-        </a>
-        <p>Woning kopen of huren in Spanje</p>
-        <a href="https://orange-estates.com" class="partner" target="_blank" rel="noopener" aria-label="Orange Estates"><img src="assets/Orange-Logo-small.png" alt="Orange Estates"></a>
-      </div>
-      <div>
-        <h4>Contact informatie</h4>
-        <p style="color:#fff;font-weight:600;margin-bottom:8px">Kantoren:</p>
-        <ul class="offices"><li>Valencia</li><li>Dénia</li><li>Amsterdam</li><li>Barcelona</li></ul>
-      </div>
-      <div>
-        <h4>Openingstijden:</h4>
-        <p>Maandag- Zaterdag:<br><span style="color:#fff;font-weight:600">10:00 - 18:00</span></p>
-        <h4 style="margin-top:34px">Vind ons op:</h4>
-        <a href="https://instagram.com/pc_spain" target="_blank" rel="noopener" class="social" aria-label="Instagram page opens in new window"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></i>@pc_spain</a>
-      </div>
-      <div>
-        <h4>Property Consultancy Spain</h4>
-        <ul>
-          <li><a href="expertises.html">Expertises in Spanje</a></li>
-          <li><a href="tarieven.html">Tarieven</a></li>
-          <li><a href="woning-kopen.html">Woning kopen Spanje</a></li>
-          <li><a href="tarieven.html">Tarieven</a></li>
-          <li><a href="intake.html">Intake</a></li>
-        </ul>
-      </div>
+<footer class="ft" id="contact">
+  <div class="wrap ft__top">
+    <div class="ft__brand">
+      <a href="index.html"><img src="assets/logo/pc-spain.png" alt="Property Consultancy Spain" width="800" height="258" loading="lazy"></a>
+      <p>Woning kopen of huren in Spanje</p>
     </div>
-    <div class="f-bottom">
-      <span>© Property Consultant Spain - All rights reserved.</span>
-      <button class="to-top" id="toTop">Go to Top <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></i></button>
+    <div class="ft__col">
+      <h4>Contact informatie</h4>
+      <p class="label muted" style="margin-bottom:10px">Kantoren:</p>
+      <ul><li>Valencia</li><li>Dénia</li><li>Amsterdam</li><li>Barcelona</li></ul>
+    </div>
+    <div class="ft__col">
+      <h4>Openingstijden:</h4>
+      <p>Maandag- Zaterdag: 10:00 - 18:00</p>
+      <h4 style="margin-top:34px">Vind ons op:</h4>
+      <a href="https://instagram.com/pc_spain" target="_blank" rel="noopener" aria-label="Instagram page opens in new window">Instagram — @pc_spain</a>
+    </div>
+    <div class="ft__col" style="grid-column:span 3">
+      <h4>Property Consultancy Spain</h4>
+      <ul><li><a href="expertises.html">Expertises in Spanje</a></li><li><a href="tarieven.html">Tarieven</a></li><li><a href="woning-kopen.html">Woning kopen Spanje</a></li><li><a href="tarieven.html">Tarieven</a></li><li><a href="intake.html">Intake</a></li></ul>
     </div>
   </div>
+  <div class="ft__partner">
+    <span class="label">Partner</span>
+    <img src="assets/logo/orange-estates.png" alt="Orange Estates" width="788" height="212" loading="lazy">
+  </div>
+  <div class="ft__bottom">
+    <span>© Property Consultant Spain - All rights reserved.</span>
+    <button class="label" data-top>Go to Top ↑</button>
+  </div>
 </footer>
-<script src="assets/site.js"></script>
+
+<div class="lb" role="dialog" aria-modal="true" aria-label="Media">
+  <div class="lb__top"><span class="lb__count label"></span><button class="label" data-lb-close>✕</button></div>
+  <div class="lb__stage"></div>
+  <div class="lb__bot"><button class="label" data-lb-prev><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M26 5H1M5 1L1 5l4 4"/></svg></button><button class="label" data-lb-next><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

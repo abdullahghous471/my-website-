@@ -211,6 +211,44 @@
   };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(ready); else addEventListener('load', ready);
 
+
+  /* ------------------------------------------------ orbit (advantages around a circle) */
+  $$('[data-orbit]').forEach(orb => {
+    const nodes = $$('.orbit__node', orb), items = $$('.orbit__item', orb);
+    const list = $$('[data-orbit-go]', orb.closest('section')).filter(b => !b.classList.contains('orbit__node'));
+    const prog = $('.orbit__prog', orb);
+    const n = nodes.length, step = 360 / n, DUR = 5200;
+    let i = 0, rot = 0, timer = null, t0 = 0, raf = 0, paused = false, visible = false;
+    const draw = () => {
+      if (!prog) return;
+      const p = paused || !visible ? 0 : Math.min(1, (performance.now() - t0) / DUR);
+      prog.style.strokeDasharray = `${(p * 100).toFixed(2)} 100`;
+      raf = requestAnimationFrame(draw);
+    };
+    const go = (k, user) => {
+      const next = (k + n) % n;
+      let delta = ((next - i) % n + n) % n;          // always rotate forward
+      if (user && delta > n / 2) delta -= n;          // user clicks take the short way
+      rot -= delta * step;
+      i = next;
+      orb.style.setProperty('--rot', rot + 'deg');
+      nodes.forEach((b, j) => b.classList.toggle('on', j === i));
+      items.forEach((b, j) => b.classList.toggle('on', j === i));
+      list.forEach(b => b.classList.toggle('on', +b.dataset.orbitGo === i));
+      schedule();
+    };
+    const schedule = () => {
+      clearTimeout(timer); t0 = performance.now();
+      if (!reduce && visible && !paused) timer = setTimeout(() => go(i + 1), DUR);
+    };
+    nodes.concat(list).forEach(b => b.addEventListener('click', () => go(+b.dataset.orbitGo, true)));
+    orb.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); });
+    orb.addEventListener('mouseleave', () => { paused = false; schedule(); });
+    new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; schedule(); }), { threshold: .35 }).observe(orb);
+    list.forEach(b => b.classList.toggle('on', +b.dataset.orbitGo === 0));
+    if (!reduce) raf = requestAnimationFrame(draw);
+  });
+
   /* ------------------------------------------------ testimonials */
   const qs = $('.quotes');
   if (qs) {

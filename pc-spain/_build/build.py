@@ -38,6 +38,9 @@ def slug_city(c):
 ARROW = '<svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg>'
 ARROW_L = '<svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M26 5H1M5 1L1 5l4 4"/></svg>'
 
+IG_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>'
+IG = f'<a class="ig" href="https://instagram.com/pc_spain" target="_blank" rel="noopener" aria-label="Instagram @pc_spain (opens in new window)">{IG_SVG}</a>'
+
 def lk(label, href, ext=False, cls='lk'):
     t = ' target="_blank" rel="noopener"' if ext else ''
     return f'<a class="{cls}" href="{href}"{t}>{label} {ARROW}</a>'
@@ -189,7 +192,7 @@ def header(lang, active, alt):
     <div class="menu__foot">
       <div><span class="label">{t['offices']}</span>Valencia · Dénia · Amsterdam · Barcelona</div>
       <div><span class="label">{t['hours']}</span>{t['hours_v']}</div>
-      <div><span class="label">{t['find']}</span><a href="https://instagram.com/pc_spain" target="_blank" rel="noopener">Instagram @pc_spain</a></div>
+      <div><span class="label">{t['find']}</span>{IG}</div>
     </div>
   </div>
   <div class="menu__media" aria-hidden="true">{''.join(imgs)}</div>
@@ -216,7 +219,7 @@ def footer(lang):
       <h4>{t['hours']}</h4>
       <p>{t['hours_v']}</p>
       <h4 style="margin-top:34px">{t['find']}</h4>
-      <a href="https://instagram.com/pc_spain" target="_blank" rel="noopener" aria-label="Instagram page opens in new window">Instagram — @pc_spain</a>
+      {IG}
     </div>
     <div class="ft__col" style="grid-column:span 3">
       <h4>Property Consultancy Spain</h4>
@@ -326,6 +329,9 @@ def quotes_block(label, btn_label, btn_href):
   </div>
 </section>'''
 
+def LPH(slug, n=0):
+    return media(C['listings'][slug]['gallery'][n])
+
 IMG = {k: media(v) for k, v in {
     'team_travel': 'https://pc-spain.com/wp-content/uploads/2024/10/travelling_a_team_of_real_estates_professionals_in_spanish_ci_18f2c688-8a7c-42df-a2f7-da7706d1ec0f_0.png',
     'team': 'https://pc-spain.com/wp-content/uploads/2024/10/PC-Spain-team.png',
@@ -340,6 +346,46 @@ IMG = {k: media(v) for k, v in {
     'pc4': 'https://pc-spain.com/wp-content/uploads/2020/11/PC4.jpg',
     'pc1': 'https://pc-spain.com/wp-content/uploads/2020/11/PC1.jpg',
 }.items()}
+
+
+def orbit_html(items):
+    n = len(items)
+    nodes = ''.join(f'<button class="orbit__node{" on" if i == 0 else ""}" style="--a:{i * 360 / n}deg" data-orbit-go="{i}" aria-label="{t}"><i></i><span>{t}</span></button>' for i, (t, _) in enumerate(items))
+    texts = ''.join(f'<div class="orbit__item{" on" if i == 0 else ""}"><span class="label">{i+1:02d} / {n:02d}</span><h3 class="h3">{t}</h3><p>{p}</p></div>' for i, (t, p) in enumerate(items))
+    return f'''<div class="orbit" data-orbit style="--n:{n}">
+      <svg class="orbit__ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="49.6"/><circle class="orbit__dash" cx="50" cy="50" r="46"/><circle class="orbit__prog" cx="50" cy="50" r="49.6" pathLength="100"/></svg>
+      <div class="orbit__core"><video muted loop playsinline preload="none" poster="assets/video/contract-keys.jpg" data-src="assets/video/contract-keys.mp4"></video><div class="orbit__text" aria-live="polite">{texts}</div></div>
+      <div class="orbit__nodes">{nodes}</div>
+    </div>'''
+
+REVIEW_AVATARS = {
+    'Arnout Bakker': 'AB', 'Marloes &amp; Peter van den Akker': 'M&amp;P', 'Wim van Brakel': 'WB', 'Johan Hoven': 'JH',
+}
+
+def review_card(i, name, img, text, sub):
+    tone = ['rcard--paper', 'rcard--navy', 'rcard--white', 'rcard--brass'][i % 4]
+    av = f'<img src="{img}" alt="{name}" loading="lazy">' if img else f'<span>{REVIEW_AVATARS.get(name, name[:2])}</span>'
+    return f'''<figure class="rcard {tone}">
+      <span class="rcard__mark" aria-hidden="true">“</span>
+      <blockquote>{text}</blockquote>
+      <figcaption><span class="rcard__av">{av}</span><span><b>{name}</b><small class="label">{sub}</small></span></figcaption>
+    </figure>'''
+
+def reviews_wall(label, btn_label, btn_href, sub='Klant van PC-Spain'):
+    row1 = ''.join(review_card(i, n, im, q, sub) for i, (n, im, q) in enumerate(QUOTES))
+    order = [3, 2, 0, 1]
+    row2 = ''.join(review_card(i + 1, *QUOTES[j], sub) for i, j in enumerate(order))
+    return f'''<section class="sec reviews">
+  <div class="wrap reviews__head">
+    <span class="label label--brass">{btn_label}</span>
+    <h2 class="h2" data-split>{label}</h2>
+    <div data-reveal>{lk(btn_label, btn_href)}</div>
+  </div>
+  <div class="reviews__rows">
+    <div class="reviews__row"><div class="reviews__track">{row1}{row1.replace('<figure class="rcard', '<figure aria-hidden="true" class="rcard')}</div></div>
+    <div class="reviews__row reviews__row--rev"><div class="reviews__track">{row2}{row2.replace('<figure class="rcard', '<figure aria-hidden="true" class="rcard')}</div></div>
+  </div>
+</section>'''
 
 # =====================================================================  HOME (NL)
 def home_nl():
@@ -356,11 +402,11 @@ def home_nl():
         ('Kwaliteit en ervaring', 'Alle betrokken partijen hebben ruime ervaring in de aankoop van woningen in Spanje.'),
     ]
     voordelen = [
-        ('Volledige ontzorging', 'Meerdere experts slaan de handen in elkaar om jou zo goed en volledig mogelijk te begeleiden bij de koop van vastgoed in Spanje. Hierbij heeft de klant één aanspreekpunt.', IMG['team_travel']),
-        ('Professionele ondersteuning', 'Ons team beschikt over uitgebreide kennis van Spaans vastgoed. Bij de aankoop van een woning ontvang je altijd begeleiding mét juridisch advies. PC-Spain staat als één partij aan de kant van de klant.', IMG['s0061']),
+        ('Volledige ontzorging', 'Meerdere experts slaan de handen in elkaar om jou zo goed en volledig mogelijk te begeleiden bij de koop van vastgoed in Spanje. Hierbij heeft de klant één aanspreekpunt.', LPH('luxe-villa-moraira')),
+        ('Professionele ondersteuning', 'Ons team beschikt over uitgebreide kennis van Spaans vastgoed. Bij de aankoop van een woning ontvang je altijd begeleiding mét juridisch advies. PC-Spain staat als één partij aan de kant van de klant.', LPH('luxe-penthouse-valencia')),
         ('Een woning zonder gebreken', 'Ons huizenaanbod is zorgvuldig geselecteerd en gecontroleerd door onze juridische afdeling. Zo heb jij geen zorgen over (onzichtbare) gebreken van een woning.', IMG['after']),
-        ('Maatwerk op het gebied van beleggen in Spanje', 'Gespecialiseerd in op maat gemaakte plannen om uw ideale vastgoedbelegging in Spanje te vinden en optimaal te laten renderen.', IMG['s0051']),
-        ('Transparante tarieven', 'Geen onduidelijke commissies, maar transparante gesprekken over tarieven. Wanneer je met ons in zee gaat, kom je niet voor ongewenste verrassingen te staan.', IMG['pc4']),
+        ('Maatwerk op het gebied van beleggen in Spanje', 'Gespecialiseerd in op maat gemaakte plannen om uw ideale vastgoedbelegging in Spanje te vinden en optimaal te laten renderen.', LPH('luxe-design-villa-in-benissa')),
+        ('Transparante tarieven', 'Geen onduidelijke commissies, maar transparante gesprekken over tarieven. Wanneer je met ons in zee gaat, kom je niet voor ongewenste verrassingen te staan.', LPH('villa-6-slaapkamers-javea')),
         ('Kwaliteit en ervaring', 'Alle bij PC-Spain betrokken partijen hebben bewezen en ruime ervaring in de aankoop van woningen in Spanje.', IMG['mijas']),
     ]
     return home_body(
@@ -390,13 +436,14 @@ def home_nl():
 def home_body(**k):
     rows = ''.join(f'<span class="row"><span>{r}</span></span>' for r in k['title_rows'])
     pillars = ''.join(f'<article class="pillar"><span class="label label--brass">0{i+1}</span><h3 class="h3" data-split>{t}</h3><p data-reveal=".2">{p}</p></article>' for i, (t, p) in enumerate(k['pillars']))
-    advies = ''.join(f'<div class="row-item" data-reveal><h3 class="h3">{t}</h3><p>{p}</p></div>' for t, p in k['advies'])
+    orbit = orbit_html(k['advies'])
+    orbit_list = ''.join(f'<li><button data-orbit-go="{i}"><span class="label">{i+1:02d}</span>{t}</button></li>' for i, (t, _) in enumerate(k['advies']))
     n = len(k['hs'])
     hs = ''.join(f'''<article class="hs__card">
         <span class="label">{str(i+1).zfill(2)} / {str(n).zfill(2)}</span>
         <div class="frame"><img src="{img}" alt="" loading="lazy"></div>
         <h3 class="h3">{t}</h3><p>{p}</p></article>''' for i, (t, p, img) in enumerate(k['hs']))
-    quotes = quotes_block(*k['quotes']) if k.get('quotes') else k.get('quotes_alt', '')
+    quotes = reviews_wall(*k['quotes']) + k.get('quotes_alt', '')
     nb = ''
     if k.get('nb_title'):
         nb = f'''<section class="band band--expand">
@@ -408,7 +455,7 @@ def home_body(**k):
 </section>'''
     return f'''
 <section class="intro" id="intro">
-  <div class="intro__window"><video autoplay muted loop playsinline preload="auto" poster="assets/video/valencia-ciencias.jpg"><source src="assets/video/valencia-ciencias.mp4" type="video/mp4"></video></div>
+  <div class="intro__window"><video autoplay muted loop playsinline preload="auto" poster="assets/video/intro-montage.jpg"><source src="assets/video/intro-montage.mp4" type="video/mp4"></video></div>
   <h1 class="intro__title" aria-label="{re.sub('<[^>]+>', '', ' '.join(k['title_rows']) + ' ' + k['script'])}">{rows}<span class="script">{k['script']}</span></h1>
   <span class="intro__side intro__side--l label">{k['sides'][0]}</span>
   <span class="intro__side intro__side--r label">{k['sides'][1]}</span>
@@ -429,15 +476,15 @@ def home_body(**k):
   </div>
 </section>
 
-<section class="sec bg-white">
-  <div class="wrap split">
-    <div class="split__media"><figure class="frame frame--arch" data-img><img src="{IMG['contract']}" alt="" loading="lazy"></figure></div>
-    <div class="split__text">
+<section class="sec bg-white orbit-sec">
+  <div class="wrap orbit-grid">
+    <div class="orbit-intro">
       <span class="label label--brass" data-reveal>{k['advies_label']}</span>
       <h2 class="h2" data-split>{k['advies_title']}</h2>
-      <div class="rows">{advies}</div>
+      <ol class="orbit-list" aria-hidden="true">{orbit_list}</ol>
       <div data-reveal>{btn(*k['advies_cta'])}</div>
     </div>
+    {orbit}
   </div>
 </section>
 
@@ -459,7 +506,7 @@ def home_body(**k):
 
 <section class="sec">
   <div class="wrap split split--rev">
-    <div class="split__media"><figure class="frame frame--tall" data-img><img src="{IMG['team']}" alt="Het team van PC-Spain" loading="lazy"></figure></div>
+    <div class="split__media"><figure class="frame frame--tall" data-img><video muted loop playsinline preload="none" poster="assets/video/villa-palms.jpg" data-src="assets/video/villa-palms.mp4"></video></figure></div>
     <div class="split__text">
       <span class="label label--brass" data-reveal>{k['exp_label']}</span>
       <h2 class="h2" data-split>{k['exp_title']}</h2>
@@ -489,15 +536,15 @@ def home_en():
         ('Quality and experience', 'All sides involved have extensive and proven experience in Spain.'),
     ]
     adv = [
-        ('Completely carefree', 'Multiple experts join forces to guide you in purchasing real estate in Spain. While you only have one contact person.', IMG['team_travel']),
-        ('Professional support', 'The team has extensive knowledge. When purchasing or renting property you will always receive support with legal advice. One party on the customers side!', IMG['s0061']),
+        ('Completely carefree', 'Multiple experts join forces to guide you in purchasing real estate in Spain. While you only have one contact person.', LPH('luxe-villa-moraira')),
+        ('Professional support', 'The team has extensive knowledge. When purchasing or renting property you will always receive support with legal advice. One party on the customers side!', LPH('luxe-penthouse-valencia')),
         ('A property without defects', 'The offer of real estate has been carefully selected and checked by our own legal devision. This way, you won’t have to worry about (hidden) defects in a property!', IMG['after']),
-        ('Transparent prices', 'No vague commissions, but transparent conversations about prices! When you choose Property Consultancy Spain, you will not face any unpleasant surprises.', IMG['pc4']),
+        ('Transparent prices', 'No vague commissions, but transparent conversations about prices! When you choose Property Consultancy Spain, you will not face any unpleasant surprises.', LPH('villa-6-slaapkamers-javea')),
         ('Quality and experience', 'All sides involved have extensive and proven experience in purchasing or renting property in Spain!', IMG['mijas']),
     ]
     owner = f'''<section class="sec bg-white">
   <div class="wrap split">
-    <div class="split__media"><figure class="frame frame--arch" data-img><img src="{IMG['contract']}" alt="" loading="lazy"></figure></div>
+    <div class="split__media"><figure class="frame frame--arch" data-img><video muted loop playsinline preload="none" poster="assets/video/villa-palms.jpg" data-src="assets/video/villa-palms.mp4"></video></figure></div>
     <div class="split__text">
       <h2 class="h2" data-split>Are you an owner of a Spanish property?</h2>
       <div class="rows">
@@ -506,12 +553,6 @@ def home_en():
       </div>
       <div data-reveal>{btn('Meer informatie!', '#contact')}</div>
     </div>
-  </div>
-</section>
-<section class="sec bg-navy on-dark sec--tight">
-  <div class="wrap split">
-    <div class="split__label"><span class="label muted">Succesverhalen</span></div>
-    <div class="split__main"><h2 class="h2" data-split>What customers say about us</h2>{lk('Succesverhalen', 'en-success-stories.html')}</div>
   </div>
 </section>'''
     return home_body(
@@ -528,7 +569,7 @@ def home_en():
         exp_label='Expertises', exp_title='Expertises in Spain',
         exp_text='<p>From purchasing guidance to legal councelling… All gathered in one place.</p>',
         exp_cta=('Expertises', 'en-expertises.html'),
-        quotes=None, quotes_alt=owner,
+        quotes=('What customers say about us', 'Success stories', 'en-success-stories.html', 'Customer of PC-Spain'), quotes_alt=owner,
         cta_block=('Curious to find out about the possibilities?', 'Feel free to contact us!', 'Contact', '#contact'),
     )
 
@@ -851,7 +892,7 @@ def intake():
         <h2 class="h3" style="margin-bottom:26px">Contact informatie</h2>
         <dl><dt class="label">Kantoren:</dt><dd>Valencia · Dénia · Amsterdam · Barcelona</dd>
         <dt class="label">Openingstijden:</dt><dd>Maandag- Zaterdag: 10:00 - 18:00</dd>
-        <dt class="label">Vind ons op:</dt><dd><a href="https://instagram.com/pc_spain" target="_blank" rel="noopener">Instagram — @pc_spain</a></dd></dl>
+        <dt class="label">Vind ons op:</dt><dd>{IG}</dd></dl>
       </aside>
     </div>
   </div>

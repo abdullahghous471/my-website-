@@ -1335,3 +1335,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @keyframes reel { to { transform: translateX(calc(-50% - var(--g) / 2)); } }
 @media (prefers-reduced-motion: reduce) { .reel__track, .ratecard__seal { animation: none; } }
 .stack__body .h2 { overflow-wrap: break-word; }
+/* safety net: the page-transition curtain can never block the page, even if a script fails */
+.curtain { animation: curtain-off 0s linear 4s forwards; }
+@keyframes curtain-off { to { visibility: hidden; pointer-events: none; } }

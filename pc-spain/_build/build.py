@@ -14,6 +14,7 @@ HERE = Path(__file__).parent
 OUT = Path(os.environ.get('OUT', HERE.parent))
 OUT_ASSETS = HERE.parent / 'assets'
 GALLERY_CAP = int(os.environ.get('GALLERY_CAP', '0'))  # preview builds only
+PREVIEW_SM = os.environ.get('PREVIEW_SM') == '1'      # preview builds only: lightbox uses card-size images
 MEDIA = json.loads((HERE / 'media.json').read_text())
 C = json.loads((HERE / 'content.json').read_text())
 CARDS = json.loads((HERE / 'listings.json').read_text())
@@ -962,10 +963,10 @@ def listing_page(i, card):
     gal = [media(u) for u in d['gallery']] or [media(d['hero'] or card['img'])]
     if GALLERY_CAP:
         gal = gal[:GALLERY_CAP]
-    hero = gal[0]
+    hero = sm(gal[0]) if PREVIEW_SM else gal[0]
     price = next((s for s in card['specs'] if '€' in s), '')
     specs = ''.join(f'<div><dt class="label">{k}</dt><dd>{esc(v)}</dd></div>' for k, v in spec_rows(card['specs']))
-    gallery = ''.join(f'<button data-full="{g}" aria-label="Foto {n+1}"><img src="{sm(g)}" decoding="async" alt="{esc(card["title"])} – foto {n+1}" loading="lazy"></button>' for n, g in enumerate(gal))
+    gallery = ''.join(f'<button data-full="{sm(g) if PREVIEW_SM else g}" aria-label="Foto {n+1}"><img src="{sm(g)}" decoding="async" alt="{esc(card["title"])} – foto {n+1}" loading="lazy"></button>' for n, g in enumerate(gal))
     prev_c, next_c = CARDS[i - 1], CARDS[(i + 1) % len(CARDS)]
     ps, ns = prev_c['url'].rstrip('/').split('/')[-1], next_c['url'].rstrip('/').split('/')[-1]
     related = [c for c in CARDS if c['city'] == card['city'] and c is not card][:3]

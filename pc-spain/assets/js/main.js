@@ -592,6 +592,42 @@
   };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(extras, 50)); else addEventListener('load', extras);
 
+
+  /* ------------------------------------------------ v5: commission calculator */
+  $$('[data-calc]').forEach(box => {
+    const r = $('input[type=range]', box), out = $('.calc__amount', box), fee = $('.calc__fee', box), rows = $$('.calc__tiers li', box);
+    const eur = n => '€ ' + Math.round(n).toLocaleString('nl-NL');
+    const upd = () => {
+      const v = +r.value, pct = (v - r.min) / (r.max - r.min) * 100;
+      r.style.setProperty('--p', pct + '%');
+      out.textContent = eur(v);
+      let k = rows.findIndex(li => +li.dataset.max && v <= +li.dataset.max);
+      if (k < 0) k = rows.length - 1;
+      rows.forEach((li, j) => li.classList.toggle('on', j === k));
+      fee.textContent = +rows[k].dataset.max ? $('b', rows[k]).textContent : eur(v * .04) + ',-';
+    };
+    r.addEventListener('input', upd); upd();
+  });
+
+  /* ------------------------------------------------ v5: article index hover preview */
+  $$('[data-tindex]').forEach(ix => {
+    const imgs = $$('.tindex__frame img', ix), links = $$('.tindex__list a', ix);
+    const go = i => { imgs.forEach((im, j) => im.classList.toggle('on', j === i)); links.forEach((a, j) => a.classList.toggle('on', j === i)); };
+    links.forEach((a, i) => { a.addEventListener('mouseenter', () => go(i)); a.addEventListener('focus', () => go(i)); });
+    go(0);
+  });
+
+  /* ------------------------------------------------ v5: reading progress */
+  const rb = $('.readbar i');
+  if (rb) {
+    const art = $('.ar-body') || document.body;
+    const onS = () => {
+      const r = art.getBoundingClientRect(), total = r.height - innerHeight * .6;
+      rb.style.transform = `scaleX(${Math.min(1, Math.max(0, -r.top / Math.max(1, total)))})`;
+    };
+    addEventListener('scroll', onS, { passive: true }); onS();
+  }
+
   /* ------------------------------------------------ to top */
   $$('[data-top]').forEach(b => b.addEventListener('click', () => scrollTo(0)));
 })();

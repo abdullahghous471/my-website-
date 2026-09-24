@@ -12,6 +12,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 OUT = Path(os.environ.get('OUT', HERE.parent))
+OUT_ASSETS = HERE.parent / 'assets'
 GALLERY_CAP = int(os.environ.get('GALLERY_CAP', '0'))  # preview builds only
 MEDIA = json.loads((HERE / 'media.json').read_text())
 C = json.loads((HERE / 'content.json').read_text())
@@ -103,10 +104,10 @@ def localize_html(s):
 
 # =====================================================================  shell
 FONTS = 'https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap'
-LIBS = '''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>'''
+LIBS = '''<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>'''
 
 NAV = {
     'nl': [
@@ -151,6 +152,7 @@ def head(title, desc, lang):
 <link rel="icon" type="image/png" href="assets/logo/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="stylesheet" href="{FONTS}">
 <link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -171,7 +173,7 @@ def header(lang, active, alt):
             s = '<ul class="menu__sub">' + ''.join(f'<li><a href="{h}">{l}</a></li>' for l, h in sub) + '</ul>'
         items.append(f'<li><a href="{href}"{on}>{label}</a>{s}</li>')
         on_img = ' class="on"' if i == 0 else ''
-        imgs.append(f'<img src="{img}" alt=""{on_img}>')
+        imgs.append(f'<img src="{sm(img)}" alt="" loading="lazy"{on_img}>')
     return f'''
 <header class="hd" id="top">
   <div class="hd__left">
@@ -237,12 +239,12 @@ def footer(lang):
 </footer>
 
 <div class="lb" role="dialog" aria-modal="true" aria-label="Media">
-  <div class="lb__top"><span class="lb__count label"></span><button class="label" data-lb-close>✕</button></div>
+  <div class="lb__top"><span class="lb__count label"></span><button class="label" data-lb-close aria-label="Sluiten / Close">✕</button></div>
   <div class="lb__stage"></div>
-  <div class="lb__bot"><button class="label" data-lb-prev>{ARROW_L}</button><button class="label" data-lb-next>{ARROW}</button></div>
+  <div class="lb__bot"><button class="label" data-lb-prev aria-label="Vorige / Previous">{ARROW_L}</button><button class="label" data-lb-next aria-label="Volgende / Next">{ARROW}</button></div>
 </div>
 {LIBS}
-<script src="assets/js/main.js"></script>
+<script defer src="assets/js/main.js"></script>
 '''
 
 ALT = {  # NL <-> EN equivalents for the language switch
@@ -256,14 +258,29 @@ def active_file(fname, lang):
         return ALT_REV.get(fname, fname if not fname.startswith('en') else 'index.html')
     return ALT.get(fname, fname if fname.startswith('en') else 'en.html')
 
+def sm(path):
+    return path + '#sm'
+
+WEBP_RE = re.compile(r'assets/(?:media|video)/([^"#)\s]+?)\.(?:jpe?g|png)(#sm)?(?=["#)\s])')
+
+def webp(doc):
+    def rep(m):
+        stem, small = m.group(1), m.group(2)
+        cand = OUT_ASSETS / 'img' / f'{stem}{"-sm" if small else ""}.webp'
+        if cand.exists():
+            return f'assets/img/{cand.name}'
+        return m.group(0).replace('#sm', '')
+    return WEBP_RE.sub(rep, doc)
+
 def write(fname, title, desc, body, lang='nl', active=None, extra=''):
     doc = head(title, desc, lang) + header(lang, active or fname, fname) + f'<main id="main">\n{body}\n</main>\n' + footer(lang) + extra + '</body>\n</html>\n'
+    doc = webp(doc)
     (OUT / fname).write_text(doc)
 
 def page_hero(crumbs, h1, aside='', img=None, video=None, poster=None, short=False, script=None):
     cr = ''.join(f'<a class="label" href="{h}">{l}</a><span class="label" aria-hidden="true">/</span>' for l, h in crumbs[:-1]) + f'<span class="label">{crumbs[-1][0]}</span>'
     if video:
-        m = f'<video autoplay muted loop playsinline preload="metadata" poster="{poster}" data-parallax="14"><source src="{video}" type="video/mp4"></video>'
+        m = f'<video autoplay muted loop playsinline preload="none" poster="{poster}" data-parallax="14" data-src="{video}"></video>'
     else:
         m = f'<img src="{img}" alt="" data-parallax="14">'
     sc = f'<span class="script">{script}</span>' if script else ''
@@ -296,7 +313,7 @@ def listing_card(l, i, lang='nl'):
         # prefer the card crop used on the live overview if it exists locally
         pass
     return f'''<a class="lcard" data-city="{slug_city(l['city'])}" href="{LISTING_FILES[slug]}">
-  <div class="frame"><img src="{img}" alt="{esc(l['title'])}" loading="lazy"></div>
+  <div class="frame"><img src="{sm(img)}" alt="{esc(l['title'])}" loading="lazy" decoding="async"></div>
   <div class="lcard__meta label"><span>{esc(l['city'])}</span><span>{esc(rest[0]) if rest else ''}</span></div>
   <h3>{esc(l['title'])}</h3>
   {f'<div class="lcard__price">{esc(price)}</div>' if price else ''}
@@ -437,7 +454,7 @@ def home_nl():
         over_title='Investeren in vastgoed in <span class="script">Spanje?</span>',
         over_text='Ontmoet ons team van experts die u verbinden met topadvocaten, architecten en makelaars.',
         over_cta=('Doe de intake', 'intake.html'), video_label='Bekijk video',
-        pillars_label='Property Consultancy Spain', pillars=pillars,
+        pillars_label='Property Consultancy Spain', pillars_heading='Woning kopen of huren in Spanje', pillars=pillars,
         advies_label='Waarom PC-Spain', advies_title='Investeren in Spanje? Laat je adviseren', advies=advies,
         advies_cta=('Doe de intake', 'intake.html'),
         hs_label='Voordelen', hs_title='Voordelen van Property Consultancy Spain', hs=voordelen,
@@ -447,7 +464,7 @@ def home_nl():
         exp_label='Expertises', exp_title='Ben jij investeerder in Spaans vastgoed?',
         exp_text='<p>Laat ons je ondersteunen bij het optimaliseren van je investeringen met professioneel advies en begeleiding. Property Consultancy Group helpt je graag verder met expertise op het gebied van investeringen, juridische ondersteuning en hypotheekadvies.</p>',
         exp_cta=('Meer informatie!', 'expertises.html'),
-        quotes=('Wat klanten over ons zeggen', 'Succesverhalen', 'portfolio.html'),
+        quotes=('Wat klanten over ons zeggen', 'Succesverhalen', 'portfolio.html#reviews', 'Klant van PC-Spain', 'Alle reviews'),
         nb_label='Nieuwbouw', nb_title='Op zoek naar een nieuwbouw woning in Spanje?',
         nb_text='<p>Wij helpen u graag bij het vinden van nieuwbouwprojecten voor eigen gebruik of als investering met uitstekend verhuurrendement. Dankzij onze connecties met de grootste projectontwikkelaars in Spanje hebben we toegang tot exclusieve nieuwbouwmogelijkheden.</p><p><strong>Laat ons u begeleiden in het vinden van de perfecte woning of investering!</strong></p>',
         nb_cta=('Meer informatie!', 'woning-kopen.html'),
@@ -461,9 +478,9 @@ def home_body(**k):
     n = len(k['hs'])
     hs = ''.join(f'''<article class="hs__card">
         <span class="label">{str(i+1).zfill(2)} / {str(n).zfill(2)}</span>
-        <div class="frame"><img src="{img}" alt="" loading="lazy"></div>
+        <div class="frame"><img src="{sm(img)}" alt="" loading="lazy" decoding="async"></div>
         <h3 class="h3">{t}</h3><p>{p}</p></article>''' for i, (t, p, img) in enumerate(k['hs']))
-    quotes = reviews_home(*k['quotes']) + k.get('quotes_alt', '')
+    quotes = reviews_show(*k['quotes']) + k.get('quotes_alt', '')
     nb = ''
     if k.get('nb_title'):
         nb = f'''<section class="band band--expand">
@@ -475,7 +492,7 @@ def home_body(**k):
 </section>'''
     return f'''
 <section class="intro" id="intro">
-  <div class="intro__window"><video autoplay muted loop playsinline preload="auto" poster="assets/video/intro-montage.jpg"><source src="assets/video/intro-montage.mp4" type="video/mp4"></video></div>
+  <div class="intro__window"><video autoplay muted loop playsinline preload="none" poster="assets/video/intro-montage.jpg" data-src="assets/video/intro-montage.mp4"></video></div>
   <h1 class="intro__title" aria-label="{re.sub('<[^>]+>', '', ' '.join(k['title_rows']) + ' ' + k['script'])}">{rows}<span class="script">{k['script']}</span></h1>
   <span class="intro__side intro__side--l label">{k['sides'][0]}</span>
   <span class="intro__side intro__side--r label">{k['sides'][1]}</span>
@@ -489,12 +506,7 @@ def home_body(**k):
   <div class="intro__scroll label"><span>Scroll</span><i></i></div>
 </section>
 
-<section class="sec sec--tight">
-  <div class="wrap">
-    <div class="sec-head" style="margin-bottom:28px"><span class="label">{k['pillars_label']}</span></div>
-    <div class="pillars">{pillars}</div>
-  </div>
-</section>
+{panels_html(k['pillars_label'], k.get('pillars_heading', ''), k['pillars'])}
 
 <section class="sec bg-white orbit-sec">
   <div class="wrap orbit-grid">
@@ -533,8 +545,8 @@ def home_body(**k):
 </section>
 
 <section class="sec">
-  <div class="wrap split split--rev">
-    <div class="split__media"><figure class="frame frame--tall" data-img><video muted loop playsinline preload="none" poster="assets/video/pool-house.jpg" data-src="assets/video/pool-house.mp4"></video></figure></div>
+  <div class="wrap split split--rev split--wide">
+    <div class="split__media"><figure class="frame frame--land" data-img><video muted loop playsinline preload="none" poster="assets/video/pool-house.jpg" data-src="assets/video/pool-house.mp4"></video></figure></div>
     <div class="split__text">
       <span class="label label--brass" data-reveal>{k['exp_label']}</span>
       <h2 class="h2" data-split>{k['exp_title']}</h2>
@@ -572,7 +584,7 @@ def home_en():
     ]
     owner = f'''<section class="sec bg-white">
   <div class="wrap split">
-    <div class="split__media"><figure class="frame frame--arch" data-img><video muted loop playsinline preload="none" poster="assets/video/valencia-street.jpg" data-src="assets/video/valencia-street.mp4"></video></figure></div>
+    <div class="split__media"><figure class="frame frame--arch" data-img><video muted loop playsinline preload="none" poster="assets/video/villa.jpg" data-src="assets/video/villa.mp4"></video></figure></div>
     <div class="split__text">
       <h2 class="h2" data-split>Are you an owner of a Spanish property?</h2>
       <div class="rows">
@@ -597,7 +609,7 @@ def home_en():
         exp_label='Expertises', exp_title='Expertises in Spain',
         exp_text='<p>From purchasing guidance to legal councelling… All gathered in one place.</p>',
         exp_cta=('Expertises', 'en-expertises.html'),
-        quotes=('What customers say about us', 'Success stories', 'en-success-stories.html', 'Customer of PC-Spain'), quotes_alt=owner,
+        quotes=('What customers say about us', 'Success stories', 'en-success-stories.html', 'Customer of PC-Spain', 'All reviews'), quotes_alt=owner,
         cta_block=('Curious to find out about the possibilities?', 'Feel free to contact us!', 'Contact', '#contact'),
     )
 
@@ -887,7 +899,7 @@ def tips():
     cards = ''
     for s in TIPS_ORDER:
         t = TIPS_TITLE.get(s, C['articles'][s]['title'])
-        cards += f'<a class="acard" href="{ART_FILES[s]}" data-reveal><figure class="frame" data-img><img src="{article_hero(s)}" alt="" loading="lazy"></figure><h3 class="h3">{t}</h3><span class="lk">Meer informatie {ARROW}</span></a>'
+        cards += f'<a class="acard" href="{ART_FILES[s]}" data-reveal><figure class="frame" data-img><img src="{sm(article_hero(s))}" alt="" loading="lazy" decoding="async"></figure><h3 class="h3">{t}</h3><span class="lk">Meer informatie {ARROW}</span></a>'
     return page_hero([('Home', 'index.html'), ('Woning kopen', 'woning-kopen.html'), ('Informatie &amp; Tips', '')], 'Informatie &amp; Tips', img=IMG['pc1'], short=True) + f'''
 <section class="sec">
   <div class="wrap split">
@@ -953,7 +965,7 @@ def listing_page(i, card):
     hero = gal[0]
     price = next((s for s in card['specs'] if '€' in s), '')
     specs = ''.join(f'<div><dt class="label">{k}</dt><dd>{esc(v)}</dd></div>' for k, v in spec_rows(card['specs']))
-    gallery = ''.join(f'<button data-full="{g}" aria-label="Foto {n+1}"><img src="{g}" alt="{esc(card["title"])} – foto {n+1}" loading="lazy"></button>' for n, g in enumerate(gal))
+    gallery = ''.join(f'<button data-full="{g}" aria-label="Foto {n+1}"><img src="{sm(g)}" decoding="async" alt="{esc(card["title"])} – foto {n+1}" loading="lazy"></button>' for n, g in enumerate(gal))
     prev_c, next_c = CARDS[i - 1], CARDS[(i + 1) % len(CARDS)]
     ps, ns = prev_c['url'].rstrip('/').split('/')[-1], next_c['url'].rstrip('/').split('/')[-1]
     related = [c for c in CARDS if c['city'] == card['city'] and c is not card][:3]
@@ -1008,7 +1020,7 @@ def article_page(slug):
     h = re.sub(r'<p><a href="[^"]*">Contact opnemen</a></p>$', '', h)
     title = TIPS_TITLE.get(slug, a['title'])
     others = [s for s in TIPS_ORDER if s != slug][:3]
-    cards = ''.join(f'<a class="acard" href="{ART_FILES[s]}" data-reveal><figure class="frame" data-img><img src="{article_hero(s)}" alt="" loading="lazy"></figure><h3 class="h3">{TIPS_TITLE.get(s, C["articles"][s]["title"])}</h3><span class="lk">Meer informatie {ARROW}</span></a>' for s in others)
+    cards = ''.join(f'<a class="acard" href="{ART_FILES[s]}" data-reveal><figure class="frame" data-img><img src="{sm(article_hero(s))}" alt="" loading="lazy" decoding="async"></figure><h3 class="h3">{TIPS_TITLE.get(s, C["articles"][s]["title"])}</h3><span class="lk">Meer informatie {ARROW}</span></a>' for s in others)
     body = page_hero([('Home', 'index.html'), ('Informatie &amp; Tips', 'informatie-tips.html'), (esc(a['title']), '')], esc(a['title']), img=hero, short=True) + f'''
 <section class="sec bg-white">
   <div class="wrap split">
@@ -1111,6 +1123,8 @@ def build_en():
 </section>'''
     write('en-buying-property.html', 'Buying property Spain - Property Consultancy Spain', 'Property for sale in Spain.', body, lang='en')
 
+exec((HERE / 'pages_v4.py').read_text())
+
 # =====================================================================  run
 write('index.html', 'Nederlandse Makelaar in Spanje - Property Consultancy Spain', 'Property Consultancy Spain – Woning kopen of huren in Spanje. Ontmoet ons team van experts die u verbinden met topadvocaten, architecten en makelaars.', home_nl())
 write('over-pc-spain.html', 'Over PC-Spain - Property Consultancy Spain', 'Property Consultancy Spain is een bedrijf van vastgoedexperts.', over_pc_spain(), active='over-pc-spain.html')
@@ -1121,7 +1135,7 @@ write('partners.html', 'Partners - Property Consultancy Spain', 'Het netwerk van
 write('tarieven.html', 'Tarieven - Property Consultancy Spain', 'Transparante tarieven.', tarieven())
 write('woning-kopen.html', 'Woning kopen Spanje - Property Consultancy Spain', 'Woningaanbod in Spanje.', woning_kopen())
 write('informatie-tips.html', 'Informatie & Tips - Property Consultancy Spain', 'Hoe koop je een woning of doe je een investering in Spanje? Wij geven tips!', tips(), active='woning-kopen.html')
-write('intake.html', 'Intake - Property Consultancy Spain', 'Doe de intake en start direct met uw belegging in Spanje.', intake(), extra='<script src="https://embed.typeform.com/next/embed.js"></script>\n')
+write('intake.html', 'Intake - Property Consultancy Spain', 'Doe de intake en start direct met uw belegging in Spanje.', intake(), extra='<script defer src="https://embed.typeform.com/next/embed.js"></script>\n')
 for i, card in enumerate(CARDS):
     listing_page(i, card)
 for s in C['articles']:

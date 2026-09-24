@@ -93,12 +93,13 @@
     items.forEach((a, i) => a.addEventListener('mouseenter', () => imgs.forEach((im, j) => im.classList.toggle('on', j === i))));
   }
 
-  /* ------------------------------------------------ lazy / in-view videos */
+  /* ------------------------------------------------ lazy / in-view videos (720p on phones) */
+  const vsrc = u => (innerWidth < 900 && /\.mp4$/.test(u)) ? u.replace(/\.mp4$/, '-m.mp4') : u;
   const vids = $$('video[data-src]');
   const vio = new IntersectionObserver(es => es.forEach(e => {
     const v = e.target;
     if (e.isIntersecting) {
-      if (!v.src) { v.src = v.dataset.src; }
+      if (!v.src) { v.src = vsrc(v.dataset.src); }
       v.play().catch(() => {});
     } else if (v.src) v.pause();
   }), { rootMargin: '200px' });
@@ -326,7 +327,7 @@
     let list = [], k = 0;
     const draw = () => {
       const it = list[k];
-      stage.innerHTML = it.video ? `<video src="${it.video}" controls autoplay playsinline></video>` : `<img src="${it.src}" alt="">`;
+      stage.innerHTML = it.video ? `<video src="${vsrc(it.video)}" controls autoplay playsinline></video>` : `<img src="${it.src}" alt="">`;
       if (cnt) cnt.textContent = list.length > 1 ? `${String(k + 1).padStart(2, '0')} / ${String(list.length).padStart(2, '0')}` : '';
       $$('.lb__bot button', lb).forEach(b => b.hidden = list.length < 2);
     };
@@ -372,6 +373,224 @@
       if (r.ok) f.reset();
     } catch { msg.textContent = f.dataset.fail; }
   }));
+
+
+  /* ================================================================ v4 components */
+
+  /* ---- home: video panels ---- */
+  $$('[data-panels]').forEach(wrap => {
+    const panels = $$('.panel', wrap);
+    let cur = 0, timer = null, hover = false, visible = false;
+    const play = (p, on) => {
+      const v = $('video', p);
+      if (!v) return;
+      if (on) { if (!v.src) v.src = vsrc(v.dataset.panelSrc); v.play().catch(() => {}); } else if (v.src) v.pause();
+    };
+    const open = (k) => {
+      cur = (k + panels.length) % panels.length;
+      panels.forEach((p, j) => { p.classList.toggle('is-open', j === cur); play(p, j === cur && visible); });
+      schedule();
+    };
+    const schedule = () => { clearTimeout(timer); if (!reduce && visible && !hover && desktop()) timer = setTimeout(() => open(cur + 1), 6500); };
+    panels.forEach((p, j) => {
+      p.addEventListener('mouseenter', () => { hover = true; if (desktop()) open(j); });
+      p.addEventListener('mouseleave', () => { hover = false; schedule(); });
+      p.addEventListener('click', () => open(j));
+      p.addEventListener('focus', () => open(j));
+    });
+    new IntersectionObserver(es => es.forEach(e => {
+      visible = e.isIntersecting;
+      if (!desktop()) panels.forEach(p => play(p, visible));
+      else play(panels[cur], visible);
+      schedule();
+    }), { threshold: .3 }).observe(wrap);
+  });
+
+  /* ---- home: review showcase ---- */
+  $$('[data-rshow]').forEach(st => {
+    const items = $$('.rshow__item', st), idx = $('.rshow__idx b', st), bar = $('.rshow__bar i', st);
+    let i = 0, timer, t0 = 0, raf;
+    const DUR = 9000;
+    const tick = () => { if (bar) bar.style.transform = `scaleX(${Math.min(1, (performance.now() - t0) / DUR)})`; raf = requestAnimationFrame(tick); };
+    const show = (k) => {
+      i = (k + items.length) % items.length;
+      items.forEach((it, j) => it.classList.toggle('on', j === i));
+      if (idx) idx.textContent = String(i + 1).padStart(2, '0');
+      t0 = performance.now();
+      clearTimeout(timer);
+      if (!reduce) timer = setTimeout(() => show(i + 1), DUR);
+    };
+    $('[data-rs-prev]', st).addEventListener('click', () => show(i - 1));
+    $('[data-rs-next]', st).addEventListener('click', () => show(i + 1));
+    show(0);
+    if (!reduce) raf = requestAnimationFrame(tick);
+  });
+
+  /* ---- over pc-spain: office globe ---- */
+  $$('canvas[data-globe]').forEach(cv => {
+    const pts = JSON.parse(cv.dataset.globe);
+    const ctx = cv.getContext('2d');
+    const rad = d => d * Math.PI / 180;
+    let W = 0, R = 0, dpr = 1, base = -30, lat0 = rad(32), lon0 = rad(base), visible = false, dragX = null, dragBase = 0, t0 = performance.now();
+    const resize = () => {
+      W = cv.clientWidth; dpr = Math.min(2, window.devicePixelRatio || 1);
+      cv.width = W * dpr; cv.height = W * dpr; R = W * .4;
+    };
+    const proj = (la, lo) => {
+      la = rad(la); lo = rad(lo);
+      const cl = Math.cos(la), d = lo - lon0;
+      return { x: cl * Math.sin(d), y: Math.cos(lat0) * Math.sin(la) - Math.sin(lat0) * cl * Math.cos(d), z: Math.sin(lat0) * Math.sin(la) + Math.cos(lat0) * cl * Math.cos(d) };
+    };
+    const vec = (la, lo) => [Math.cos(rad(la)) * Math.cos(rad(lo)), Math.cos(rad(la)) * Math.sin(rad(lo)), Math.sin(rad(la))];
+    const toLL = v => [Math.asin(v[2]) * 180 / Math.PI, Math.atan2(v[1], v[0]) * 180 / Math.PI];
+    const slerp = (a, b, t) => {
+      const dot = Math.max(-1, Math.min(1, a[0] * b[0] + a[1] * b[1] + a[2] * b[2])), om = Math.acos(dot), so = Math.sin(om) || 1;
+      const k1 = Math.sin((1 - t) * om) / so, k2 = Math.sin(t * om) / so;
+      return [a[0] * k1 + b[0] * k2, a[1] * k1 + b[1] * k2, a[2] * k1 + b[2] * k2];
+    };
+    const hub = pts.find(p => p[0] === 'Amsterdam');
+    const draw = (now) => {
+      const c = W / 2;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, W);
+      // sphere (navy) + soft halo
+      const halo = ctx.createRadialGradient(c, c, R * .9, c, c, R * 1.25);
+      halo.addColorStop(0, 'rgba(35,55,89,.16)'); halo.addColorStop(1, 'rgba(35,55,89,0)');
+      ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(c, c, R * 1.25, 0, Math.PI * 2); ctx.fill();
+      const g = ctx.createRadialGradient(c - R * .35, c - R * .4, R * .1, c, c, R);
+      g.addColorStop(0, '#34507F'); g.addColorStop(1, '#172642');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c, c, R, 0, Math.PI * 2); ctx.fill();
+      // graticule
+      ctx.strokeStyle = 'rgba(255,255,255,.13)'; ctx.lineWidth = 1;
+      const line = (fn, from, to, step) => {
+        ctx.beginPath(); let pen = false;
+        for (let t = from; t <= to; t += step) {
+          const p = fn(t);
+          if (p.z > 0) { const X = c + p.x * R, Y = c - p.y * R; pen ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); pen = true; } else pen = false;
+        }
+        ctx.stroke();
+      };
+      for (let la = -75; la <= 75; la += 15) line(lo => proj(la, lo), -180, 180, 3);
+      for (let lo = -180; lo < 180; lo += 15) line(la => proj(la, lo), -90, 90, 3);
+      // arcs from Amsterdam
+      const phase = (now / 1400) % 1;
+      pts.forEach(p => {
+        if (p === hub) return;
+        const a = vec(hub[1], hub[2]), b = vec(p[1], p[2]);
+        const N = 64, far = Math.acos(a[0] * b[0] + a[1] * b[1] + a[2] * b[2]);
+        const lift = Math.min(.35, .06 + far * .25);
+        ctx.beginPath(); let pen = false;
+        for (let i = 0; i <= N; i++) {
+          const t = i / N, [la, lo] = toLL(slerp(a, b, t)), q = proj(la, lo), h = 1 + lift * Math.sin(Math.PI * t);
+          if (q.z > -.15) { const X = c + q.x * R * h, Y = c - q.y * R * h; pen ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); pen = true; } else pen = false;
+        }
+        ctx.setLineDash([4, 6]); ctx.lineDashOffset = -phase * 10;
+        ctx.strokeStyle = 'rgba(214,186,140,.95)'; ctx.lineWidth = 1.4; ctx.stroke(); ctx.setLineDash([]);
+      });
+      // markers
+      ctx.font = `500 ${Math.max(11, W * .022)}px Jost, sans-serif`;
+      pts.forEach(p => {
+        const q = proj(p[1], p[2]);
+        if (q.z <= 0) return;
+        const X = c + q.x * R, Y = c - q.y * R, pulse = (now / 1600 + p[1]) % 1;
+        ctx.beginPath(); ctx.arc(X, Y, 5 + pulse * 14, 0, Math.PI * 2); ctx.strokeStyle = `rgba(214,186,140,${.7 * (1 - pulse)})`; ctx.lineWidth = 1; ctx.stroke();
+        ctx.beginPath(); ctx.arc(X, Y, 5, 0, Math.PI * 2); ctx.fillStyle = p === hub ? '#FFFFFF' : '#D6BA8C'; ctx.fill();
+        ctx.fillStyle = '#FFFFFF';
+        const right = q.x < .5;
+        ctx.textAlign = right ? 'left' : 'right';
+        ctx.fillText(p[0], X + (right ? 12 : -12), Y + ({ 'Dénia': 17, 'Barcelona': -8, 'Valencia': 3 }[p[0]] ?? 4));
+      });
+    };
+    const loop = (now) => {
+      if (visible) {
+        if (dragX === null && !reduce) lon0 = rad(base + Math.sin((now - t0) / 5200) * 16);
+        draw(now);
+      }
+      requestAnimationFrame(loop);
+    };
+    resize(); draw(performance.now());
+    addEventListener('resize', () => { resize(); draw(performance.now()); });
+    new IntersectionObserver(es => es.forEach(e => visible = e.isIntersecting)).observe(cv);
+    cv.addEventListener('pointerdown', e => { dragX = e.clientX; dragBase = lon0 * 180 / Math.PI; cv.setPointerCapture(e.pointerId); });
+    cv.addEventListener('pointermove', e => { if (dragX === null) return; lon0 = rad(dragBase - (e.clientX - dragX) * .35); });
+    const end = () => { if (dragX === null) return; base = lon0 * 180 / Math.PI; t0 = performance.now(); dragX = null; };
+    cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+    requestAnimationFrame(loop);
+  });
+
+  /* ---- draggable carousels ---- */
+  $$('[data-drag]').forEach(d => {
+    let x0 = 0, s0 = 0, down = false, moved = false;
+    d.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; moved = false; x0 = e.clientX; s0 = d.scrollLeft; d.classList.add('is-drag'); });
+    addEventListener('pointermove', e => { if (!down) return; const dx = e.clientX - x0; if (Math.abs(dx) > 4) moved = true; d.scrollLeft = s0 - dx; });
+    addEventListener('pointerup', () => { down = false; d.classList.remove('is-drag'); });
+    d.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
+    d.addEventListener('dragstart', e => e.preventDefault());
+  });
+
+  /* ---- werkwijze: 16 expert dots + satisfaction ring ---- */
+  const lightObs = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    lightObs.unobserve(e.target);
+    if (e.target.classList.contains('dots')) $$('i', e.target).forEach((d, k) => setTimeout(() => d.classList.add('on'), reduce ? 0 : 120 * k));
+    else e.target.classList.add('in');
+  }), { threshold: .4 });
+  $$('.dots, .ring').forEach(el => lightObs.observe(el));
+
+  /* ---- partners: filter + accordion ---- */
+  const pts = $('[data-pts]');
+  if (pts) {
+    const rows = $$('.pt', pts), btns = $$('.pt-filters button');
+    btns.forEach(b => b.addEventListener('click', () => {
+      btns.forEach(x => x.classList.toggle('on', x === b));
+      rows.forEach(r => r.hidden = !(b.dataset.cat === 'all' || r.dataset.cat === b.dataset.cat));
+      if (hasGsap && !reduce) gsap.fromTo(rows.filter(r => !r.hidden), { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, stagger: .05, duration: .8, ease: 'expo.out' });
+      hasGsap && ScrollTrigger.refresh();
+    }));
+    rows.forEach(r => $('.pt__head', r).addEventListener('click', () => {
+      const open = !r.classList.contains('open');
+      r.classList.toggle('open', open);
+      $('.pt__head', r).setAttribute('aria-expanded', open);
+      setTimeout(() => hasGsap && ScrollTrigger.refresh(), 850);
+    }));
+  }
+
+  /* ---- scroll-driven extras (GSAP) ---- */
+  const extras = () => {
+    if (!hasGsap || reduce) return;
+    // words brighten as you read
+    $$('[data-words]').forEach(el => {
+      const words = el.textContent.trim().split(/\s+/);
+      el.innerHTML = words.map(w => `<span class="w">${w}</span>`).join(' ');
+      gsap.fromTo($$('.w', el), { opacity: .14 }, { opacity: 1, stagger: .05, ease: 'none',
+        scrollTrigger: { trigger: el, start: 'top 80%', end: 'bottom 45%', scrub: true } });
+    });
+    // collage route line draws in
+    $$('.collage__route path').forEach(p => {
+      gsap.fromTo(p, { strokeDashoffset: 1, strokeDasharray: 1 }, { strokeDashoffset: 0, duration: 2.4, delay: .8, ease: 'power2.inOut' });
+    });
+    $$('.collage figure').forEach((f, k) => gsap.to(f, { yPercent: [-8, 10, -14][k] || 0, ease: 'none',
+      scrollTrigger: { trigger: f.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } }));
+    // step rail
+    const rs = $('[data-rail]');
+    if (rs && desktop()) {
+      const track = $('.rail__track', rs), prog = $('.rail__prog', rs), cards = $$('.rail__card', rs);
+      const dist = () => Math.max(0, track.scrollWidth - innerWidth);
+      gsap.to(track, { x: () => -dist(), ease: 'none',
+        scrollTrigger: { trigger: rs, start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true,
+          onUpdate: s => { if (prog) prog.style.strokeDashoffset = 100 - s.progress * 100; cards.forEach((c, k) => c.classList.toggle('lit', s.progress >= k / cards.length - .02)); } } });
+    }
+    // stacking cards: earlier cards recede
+    const sc = $$('.stack__card');
+    if (desktop()) sc.forEach((card, k) => {
+      const next = sc[k + 1];
+      if (!next) return;
+      gsap.to(card, { scale: .94, opacity: .55, ease: 'none',
+        scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 30%', scrub: true } });
+    });
+    ScrollTrigger.refresh();
+  };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(extras, 50)); else addEventListener('load', extras);
 
   /* ------------------------------------------------ to top */
   $$('[data-top]').forEach(b => b.addEventListener('click', () => scrollTo(0)));

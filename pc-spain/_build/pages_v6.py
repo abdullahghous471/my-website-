@@ -139,7 +139,9 @@ CAT_EN = {'Beleggen': 'Investing', 'Architectuur': 'Architecture', 'Bank': 'Bank
 def en_partners():
     pairs = [('<a class="label" href="en.html">Home</a><span class="label" aria-hidden="true">/</span><a class="label" href="en-about.html">Over ons</a>',
               '<a class="label" href="en.html">Home</a><span class="label" aria-hidden="true">/</span><a class="label" href="en-about.html">About us</a>'),
-             ('>Alle<sup>', '>All<sup>')]
+             ('>Alle<sup>', '>All<sup>'),
+             ('Mede door ons ruime en goed geselecteerde netwerk van makelaars, projectontwikkelaars, notarissen, financiële adviseurs, veilingen en advocaten kunnen wij jou volledig ondersteunen gedurende het gehele aankoopproces.',
+              'Thanks in part to our broad, carefully selected network of estate agents, property developers, notaries, financial advisers, auctions and lawyers, we can support you fully throughout the entire buying process.')]
     for n, _l, _u, ps in PARTNERS:
         for a, b in zip(ps, PARTNER_EN[n]):
             pairs.append((a, b))

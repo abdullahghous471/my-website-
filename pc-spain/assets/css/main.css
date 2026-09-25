@@ -1385,3 +1385,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .form__foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: 34px; }
 .form__msg { font-size: 15px; color: var(--navy); }
 .in-fallback[hidden], .in-tf[hidden] { display: none !important; }
+
+/* v6 — partners hero: title in line with the other page headings */
+.pn-hero__grid { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: clamp(16px, 2vw, 32px); align-items: end; }
+.pn-hero__title { grid-column: 1 / span 6; }
+.pn-hero__title .label { display: block; margin-bottom: 18px; }
+.pn-hero__grid .h1 { font-size: clamp(2.6rem, 6.1vw, 7rem); }
+.pn-hero__side { grid-column: 8 / span 5; padding-bottom: .5em; }
+.pn-hero__lead { font-family: var(--display); font-size: clamp(1.15rem, 1.6vw, 1.5rem); line-height: 1.4; color: #2A3342; }
+.pn-hero__count { padding: 22px 0 0; margin-top: 24px; border-top: 1px solid var(--line); }
+.pn-hero__count b { font-size: clamp(2.6rem, 4vw, 4rem); }
+@media (max-width: 900px) { .pn-hero__title, .pn-hero__side { grid-column: 1 / -1; } .pn-hero__side { margin-top: 28px; } }
+.pn-hero__grid { align-items: start; } .pn-hero__side { padding-top: 34px; padding-bottom: 0; }

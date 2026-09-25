@@ -413,8 +413,11 @@ def partners():
   <div class="wrap">
     <nav class="ph__crumbs" aria-label="Breadcrumb"><a class="label" href="index.html">Home</a><span class="label" aria-hidden="true">/</span><a class="label" href="over-pc-spain.html">Over ons</a><span class="label" aria-hidden="true">/</span><span class="label">Partners</span></nav>
     <div class="pn-hero__grid">
-      <h1 class="h1" data-split>Partners</h1>
-      <p class="pn-hero__count"><b data-count="{len(PARTNERS)}">{len(PARTNERS)}</b><span class="label muted">Partners</span></p>
+      <div class="pn-hero__title"><span class="label label--brass">Property Consultancy Spain</span><h1 class="h1" data-split>Partners</h1></div>
+      <div class="pn-hero__side" data-reveal=".25">
+        <p class="pn-hero__lead">Mede door ons ruime en goed geselecteerde netwerk van makelaars, projectontwikkelaars, notarissen, financiële adviseurs, veilingen en advocaten kunnen wij jou volledig ondersteunen gedurende het gehele aankoopproces.</p>
+        <p class="pn-hero__count"><b data-count="{len(PARTNERS)}">{len(PARTNERS)}</b><span class="label muted">Partners</span></p>
+      </div>
     </div>
   </div>
   <div class="logowall" aria-label="Partners">

@@ -59,7 +59,21 @@
     </div>
     <div class="in-form" data-reveal=".15">
       <div class="in-form__bar"><span class="label">Intake</span><span class="label muted">Property Consultancy Spain</span></div>
-      <div class="in-form__body"><div data-tf-live="01J8J7W38XSF5PMAV91S5H8HA1"></div></div>
+      <div class="in-form__body"><div class="in-loading" role="status"><i></i>Formulier wordt geladen…</div>
+        <div class="in-tf" data-tf-live="01J8J7W38XSF5PMAV91S5H8HA1"></div>
+        <form class="form in-fallback" hidden data-form data-endpoint=""
+          data-offline="Dit formulier is nog niet gekoppeld. Neem contact met ons op via Instagram @pc_spain."
+          data-sending="Versturen…" data-ok="Dank u wel! Wij nemen spoedig contact met u op."
+          data-fail="Versturen mislukt. Probeer het later opnieuw.">
+          <div class="field"><label for="in-name">Naam *</label><input id="in-name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="in-mail">E-mail *</label><input id="in-mail" name="email" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="in-tel">Telefoon</label><input id="in-tel" name="telephone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="in-region">Voorkeursregio</label><input id="in-region" name="region" placeholder="Bijv. Valencia, Costa Blanca"></div>
+          <div class="field"><label for="in-kind">Waar bent u naar op zoek? *</label><select id="in-kind" name="looking_for" required><option value="">Maak een keuze</option><option>Tweede woning voor eigen gebruik</option><option>Vastgoedbelegging</option><option>Een woning huren</option><option>Mijn woning verkopen of verhuren</option></select></div>
+          <div class="field"><label for="in-budget">Budget</label><select id="in-budget" name="budget"><option value="">Maak een keuze</option><option>Tot € 150.000</option><option>€ 150.000 – € 300.000</option><option>€ 300.000 – € 600.000</option><option>Boven € 600.000</option></select></div>
+          <div class="field field--full"><label for="in-msg">Uw wensen</label><textarea id="in-msg" name="message"></textarea></div>
+          <div class="form__foot"><button class="btn btn--solid" type="submit">Verstuur intake <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button><span class="form__msg" role="status"></span></div>
+        </form></div>
     </div>
   </div>
 </section>

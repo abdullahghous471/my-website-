@@ -1368,3 +1368,20 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .hd__logo img { width: 112px; }
 }
 @media (max-width: 380px) { .hd__menu span { display: none; } .hd__logo img { width: 100px; } }
+
+/* v6 — intake: loading state + built-in form when Typeform cannot load */
+.in-form__body { position: relative; }
+.in-form__body, .in-form__body > div { min-height: 0; }
+.in-tf:not(:empty) { min-height: 640px; }
+.in-loading { display: flex; align-items: center; justify-content: center; gap: 14px; min-height: 420px; color: var(--muted); font-size: 15px; }
+.in-loading i { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line); border-top-color: var(--brass); animation: spin 1s linear infinite; }
+.in-form.tf-ready .in-loading, .in-form.tf-failed .in-loading { display: none; }
+.in-fallback { padding: clamp(20px, 3vw, 40px); padding-top: 8px; }
+.field select { font: 300 18px/1.5 var(--sans); color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 10px 0 14px; border-radius: 0; -webkit-appearance: none; appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(-45deg, transparent 50%, var(--ink) 50%);
+  background-position: calc(100% - 12px) 55%, calc(100% - 6px) 55%; background-size: 6px 6px; background-repeat: no-repeat; }
+.field select:focus { outline: none; border-color: var(--ink); }
+.field input::placeholder { color: #9AA1AB; }
+.form__foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: 34px; }
+.form__msg { font-size: 15px; color: var(--navy); }
+.in-fallback[hidden], .in-tf[hidden] { display: none !important; }

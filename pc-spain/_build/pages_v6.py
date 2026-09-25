@@ -586,3 +586,46 @@ def en_prices():
 
 def en_buying():
     return to_en(woning_kopen(), COMMON_EN + [('>Woningaanbod<', '>Properties<')])
+
+
+# ---------------------------------------------------------------- intake: never a blank box
+# Typeform is loaded when it can be; when it is blocked (preview, ad blockers, no connection) the
+# built-in form below takes its place. Set INTAKE_ENDPOINT (e.g. a Formspree URL) to receive its submissions.
+INTAKE_ENDPOINT = os.environ.get('INTAKE_ENDPOINT', '')
+TF_ID = '01J8J7W38XSF5PMAV91S5H8HA1'
+
+
+def intake_form(lang):
+    nl = lang == 'nl'
+    L = (lambda a, b: a if nl else b)
+    opts = lambda xs: ''.join(f'<option>{x}</option>' for x in xs)
+    kind = [L('Tweede woning voor eigen gebruik', 'Second home for own use'), L('Vastgoedbelegging', 'Property investment'),
+            L('Een woning huren', 'Renting a home'), L('Mijn woning verkopen of verhuren', 'Selling or letting my home')]
+    budget = [L('Tot € 150.000', 'Up to € 150,000'), '€ 150.000 – € 300.000' if nl else '€ 150,000 – € 300,000',
+              '€ 300.000 – € 600.000' if nl else '€ 300,000 – € 600,000', L('Boven € 600.000', 'Above € 600,000')]
+    return f'''<div class="in-loading" role="status"><i></i>{L('Formulier wordt geladen…', 'Loading the form…')}</div>
+        <div class="in-tf" data-tf-live="{TF_ID}"></div>
+        <form class="form in-fallback" hidden data-form data-endpoint="{INTAKE_ENDPOINT}"
+          data-offline="{L('Dit formulier is nog niet gekoppeld. Neem contact met ons op via Instagram @pc_spain.', 'This form is not connected yet. Please contact us via Instagram @pc_spain.')}"
+          data-sending="{L('Versturen…', 'Sending…')}" data-ok="{L('Dank u wel! Wij nemen spoedig contact met u op.', 'Thank you! We will contact you shortly.')}"
+          data-fail="{L('Versturen mislukt. Probeer het later opnieuw.', 'Sending failed. Please try again later.')}">
+          <div class="field"><label for="in-name">{L('Naam', 'Name')} *</label><input id="in-name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="in-mail">E-mail *</label><input id="in-mail" name="email" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="in-tel">{L('Telefoon', 'Telephone')}</label><input id="in-tel" name="telephone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="in-region">{L('Voorkeursregio', 'Preferred region')}</label><input id="in-region" name="region" placeholder="{L('Bijv. Valencia, Costa Blanca', 'E.g. Valencia, Costa Blanca')}"></div>
+          <div class="field"><label for="in-kind">{L('Waar bent u naar op zoek?', 'What are you looking for?')} *</label><select id="in-kind" name="looking_for" required><option value="">{L('Maak een keuze', 'Please choose')}</option>{opts(kind)}</select></div>
+          <div class="field"><label for="in-budget">{L('Budget', 'Budget')}</label><select id="in-budget" name="budget"><option value="">{L('Maak een keuze', 'Please choose')}</option>{opts(budget)}</select></div>
+          <div class="field field--full"><label for="in-msg">{L('Uw wensen', 'Your wishes')}</label><textarea id="in-msg" name="message"></textarea></div>
+          <div class="form__foot"><button class="btn btn--solid" type="submit">{L('Verstuur intake', 'Send intake')} {ARROW}</button><span class="form__msg" role="status"></span></div>
+        </form>'''
+
+
+_intake_v5, _en_intake_v6 = intake, en_intake
+
+
+def intake():
+    return _intake_v5().replace(f'<div data-tf-live="{TF_ID}"></div>', intake_form('nl'))
+
+
+def en_intake():
+    return _en_intake_v6().replace(f'<div data-tf-live="{TF_ID}"></div>', intake_form('en'))

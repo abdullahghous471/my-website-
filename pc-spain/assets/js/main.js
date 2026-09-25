@@ -628,6 +628,21 @@
     addEventListener('scroll', onS, { passive: true }); onS();
   }
 
+
+  /* ------------------------------------------------ intake: Typeform or built-in form, never a blank box */
+  const inForm = $('.in-form');
+  if (inForm) {
+    const tf = $('.in-tf', inForm), fb = $('.in-fallback', inForm);
+    const ready = () => !!(tf && tf.querySelector('iframe'));
+    const t0 = Date.now();
+    const check = () => {
+      if (ready()) { inForm.classList.add('tf-ready'); return; }
+      if (Date.now() - t0 > 5000) { inForm.classList.add('tf-failed'); if (tf) tf.hidden = true; if (fb) fb.hidden = false; hasGsap && ScrollTrigger.refresh(); return; }
+      setTimeout(check, 300);
+    };
+    check();
+  }
+
   /* ------------------------------------------------ to top */
   $$('[data-top]').forEach(b => b.addEventListener('click', () => scrollTo(0)));
 })();

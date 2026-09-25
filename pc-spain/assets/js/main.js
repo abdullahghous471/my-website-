@@ -451,30 +451,70 @@
       const k1 = Math.sin((1 - t) * om) / so, k2 = Math.sin(t * om) / so;
       return [a[0] * k1 + b[0] * k2, a[1] * k1 + b[1] * k2, a[2] * k1 + b[2] * k2];
     };
+    const earth = { ready: false, buf: document.createElement('canvas'), S: 0, map: null, tex: null, TW: 0, TH: 0 };
+    const buildMap = () => {
+      const S = earth.S = Math.round(Math.min(500, R * 2 * dpr));
+      earth.buf.width = earth.buf.height = S;
+      earth.img = earth.buf.getContext('2d').createImageData(S, S);
+      const n = S * S, rowI = new Int32Array(n), lonR = new Float32Array(n), shade = new Float32Array(n), alpha = new Uint8Array(n);
+      const sl = Math.sin(lat0), cl0 = Math.cos(lat0), L = [-.45, .5, .74], Ln = Math.hypot(...L);
+      for (let j = 0; j < S; j++) for (let i = 0; i < S; i++) {
+        const k = j * S + i, x = (i + .5) / S * 2 - 1, y = 1 - (j + .5) / S * 2, rr = x * x + y * y;
+        if (rr > 1) { alpha[k] = 0; continue; }
+        const z = Math.sqrt(1 - rr), la = Math.asin(Math.max(-1, Math.min(1, y * cl0 + z * sl)));
+        lonR[k] = Math.atan2(x, z * cl0 - y * sl);
+        rowI[k] = Math.min(earth.TH - 1, Math.max(0, Math.floor((.5 - la / Math.PI) * earth.TH))) * earth.TW;
+        const lam = (x * L[0] + y * L[1] + z * L[2]) / Ln;
+        shade[k] = Math.min(1.12, .32 + Math.max(0, lam) * .95) * (.82 + .18 * z);
+        alpha[k] = Math.round(255 * Math.min(1, (1 - Math.sqrt(rr)) * S * .5));
+      }
+      earth.map = { rowI, lonR, shade, alpha }; lastLon = null;
+    };
+    let lastLon = null;
+    const paintEarth = () => {
+      if (earth.map && lastLon !== null && Math.abs(lastLon - lon0) < 1e-4) return;
+      lastLon = lon0;
+      if (!earth.map || earth.S !== Math.round(Math.min(500, R * 2 * dpr))) buildMap();
+      const { rowI, lonR, shade, alpha } = earth.map, d = earth.img.data, t = earth.tex, TW = earth.TW, n = earth.S * earth.S;
+      const k0 = TW / (2 * Math.PI);
+      for (let k = 0; k < n; k++) {
+        const a = alpha[k], o = k * 4;
+        if (!a) { d[o + 3] = 0; continue; }
+        let u = Math.floor((lonR[k] + lon0 + Math.PI) * k0) % TW; if (u < 0) u += TW;
+        const q = (rowI[k] + u) * 4, sh = shade[k];
+        d[o] = t[q] * sh; d[o + 1] = t[q + 1] * sh; d[o + 2] = t[q + 2] * sh; d[o + 3] = a;
+      }
+      earth.buf.getContext('2d').putImageData(earth.img, 0, 0);
+    };
+    const texImg = new Image();
+    texImg.onload = () => {
+      const tc = document.createElement('canvas'); tc.width = earth.TW = texImg.naturalWidth; tc.height = earth.TH = texImg.naturalHeight;
+      const tx = tc.getContext('2d'); tx.drawImage(texImg, 0, 0);
+      earth.tex = tx.getImageData(0, 0, earth.TW, earth.TH).data; earth.ready = true; earth.map = null; lastLon = null; draw(performance.now());
+    };
+    texImg.src = cv.dataset.earth || 'assets/img/earth.jpg';
     const hub = pts.find(p => p[0] === 'Amsterdam');
     const draw = (now) => {
       const c = W / 2;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, W, W);
-      // sphere (navy) + soft halo
-      const halo = ctx.createRadialGradient(c, c, R * .9, c, c, R * 1.25);
-      halo.addColorStop(0, 'rgba(35,55,89,.16)'); halo.addColorStop(1, 'rgba(35,55,89,0)');
-      ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(c, c, R * 1.25, 0, Math.PI * 2); ctx.fill();
-      const g = ctx.createRadialGradient(c - R * .35, c - R * .4, R * .1, c, c, R);
-      g.addColorStop(0, '#34507F'); g.addColorStop(1, '#172642');
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c, c, R, 0, Math.PI * 2); ctx.fill();
-      // graticule
-      ctx.strokeStyle = 'rgba(255,255,255,.13)'; ctx.lineWidth = 1;
-      const line = (fn, from, to, step) => {
-        ctx.beginPath(); let pen = false;
-        for (let t = from; t <= to; t += step) {
-          const p = fn(t);
-          if (p.z > 0) { const X = c + p.x * R, Y = c - p.y * R; pen ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); pen = true; } else pen = false;
-        }
-        ctx.stroke();
-      };
-      for (let la = -75; la <= 75; la += 15) line(lo => proj(la, lo), -180, 180, 3);
-      for (let lo = -180; lo < 180; lo += 15) line(la => proj(la, lo), -90, 90, 3);
+      // realistic Earth: NASA Blue Marble texture, orthographic, lit from the upper left
+      const glow = ctx.createRadialGradient(c, c, R * .96, c, c, R * 1.16);
+      glow.addColorStop(0, 'rgba(120,170,235,.55)'); glow.addColorStop(.35, 'rgba(120,170,235,.18)'); glow.addColorStop(1, 'rgba(120,170,235,0)');
+      ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(c, c, R * 1.16, 0, Math.PI * 2); ctx.fill();
+      if (earth.ready) {
+        paintEarth();
+        ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(earth.buf, c - R, c - R, R * 2, R * 2);
+      } else {
+        const g = ctx.createRadialGradient(c - R * .35, c - R * .4, R * .1, c, c, R);
+        g.addColorStop(0, '#2C5D8F'); g.addColorStop(1, '#0B1B33');
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c, c, R, 0, Math.PI * 2); ctx.fill();
+      }
+      // thin bright rim of atmosphere
+      const rim = ctx.createRadialGradient(c, c, R * .9, c, c, R);
+      rim.addColorStop(0, 'rgba(160,200,255,0)'); rim.addColorStop(1, 'rgba(170,210,255,.35)');
+      ctx.fillStyle = rim; ctx.beginPath(); ctx.arc(c, c, R, 0, Math.PI * 2); ctx.fill();
       // arcs from Amsterdam
       const phase = (now / 1400) % 1;
       pts.forEach(p => {
@@ -498,10 +538,11 @@
         const X = c + q.x * R, Y = c - q.y * R, pulse = (now / 1600 + p[1]) % 1;
         ctx.beginPath(); ctx.arc(X, Y, 5 + pulse * 14, 0, Math.PI * 2); ctx.strokeStyle = `rgba(214,186,140,${.7 * (1 - pulse)})`; ctx.lineWidth = 1; ctx.stroke();
         ctx.beginPath(); ctx.arc(X, Y, 5, 0, Math.PI * 2); ctx.fillStyle = p === hub ? '#FFFFFF' : '#D6BA8C'; ctx.fill();
-        ctx.fillStyle = '#FFFFFF';
+        ctx.fillStyle = '#FFFFFF'; ctx.shadowColor = 'rgba(0,0,0,.75)'; ctx.shadowBlur = 6;
         const right = q.x < .5;
         ctx.textAlign = right ? 'left' : 'right';
         ctx.fillText(p[0], X + (right ? 12 : -12), Y + ({ 'Dénia': 17, 'Barcelona': -8, 'Valencia': 3 }[p[0]] ?? 4));
+        ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
       });
     };
     const loop = (now) => {

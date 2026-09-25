@@ -1409,3 +1409,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (prefers-reduced-motion: reduce) { .curtain { display: none !important; } }
 .curtain__in { width: fit-content; max-width: 88vw; }
 .curtain__word .curtain__logo { display: flex; }
+/* curtain logo = the header logo on its white panel */
+.curtain__word .curtain__logo { display: block; background: var(--white); padding: 22px 38px 24px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.45); }
+.curtain__logo img { width: clamp(190px, 17vw, 260px); }
+.curtain__word { padding: 0 0 40px; }

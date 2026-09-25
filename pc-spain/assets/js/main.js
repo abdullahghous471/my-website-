@@ -22,21 +22,42 @@
   }
   const scrollTo = (y) => lenis ? lenis.scrollTo(y, { duration: 1.6 }) : window.scrollTo({ top: typeof y === 'number' ? y : 0, behavior: 'smooth' });
 
-  /* ------------------------------------------------ page transitions */
+  /* ------------------------------------------------ brand loader + page transitions */
   const curtain = $('.curtain');
+  let curtainDone; const curtainReady = new Promise(r => { curtainDone = r; });
+  const store = (() => { try { return sessionStorage; } catch (e) { return null; } })();
+  let seen = false;
+  try { seen = store && store.getItem('pcs-intro') === '1'; store && store.setItem('pcs-intro', '1'); } catch (e) {}
+  const bar = curtain && $('.curtain__bar i', curtain), pct = curtain && $('.curtain__pct b', curtain);
+  const setP = p => { if (bar) bar.style.transform = `scaleX(${p})`; if (pct) pct.textContent = Math.round(p * 100); };
   const leave = (href) => {
     if (!hasGsap || reduce || !curtain) { location.href = href; return; }
-    gsap.set(curtain, { yPercent: 100, display: 'grid' });
+    curtain.classList.add('is-quick'); curtain.style.animation = 'none'; setP(1);
+    gsap.set(curtain, { display: 'grid', visibility: 'visible', yPercent: 100, borderRadius: '50% 50% 0 0 / 14vh 14vh 0 0' });
+    gsap.set('.curtain__in, .curtain__cities', { autoAlpha: 1, y: 0 });
     gsap.timeline({ onComplete: () => { location.href = href; } })
-      .to(curtain, { yPercent: 0, duration: .8, ease: 'expo.inOut' })
-      .fromTo('.curtain__word span', { yPercent: 110 }, { yPercent: 0, duration: .6, ease: 'expo.out' }, '-=.35');
+      .to(curtain, { yPercent: 0, borderRadius: '0% 0% 0 0 / 0vh 0vh 0 0', duration: .75, ease: 'expo.inOut' });
   };
   if (curtain && hasGsap && !reduce) {
-    gsap.timeline({ delay: .1 })
-      .to('.curtain__word span', { yPercent: -110, duration: .6, ease: 'expo.in' })
-      .to(curtain, { yPercent: -100, duration: 1, ease: 'expo.inOut' }, '-=.15')
+    if (seen) curtain.classList.add('is-quick');
+    const minT = seen ? 350 : 2100, maxT = seen ? 1800 : 3600, t0 = performance.now();
+    let loaded = document.readyState === 'complete', done = false;
+    addEventListener('load', () => { loaded = true; });
+    const tick = () => {
+      if (done) return;
+      const el = performance.now() - t0;
+      const target = loaded ? Math.min(1, el / minT) : Math.min(.9, el / maxT * 1.1);
+      setP(target);
+      if ((loaded && el >= minT) || el >= maxT) { done = true; setP(1); out(); return; }
+      requestAnimationFrame(tick);
+    };
+    const out = () => gsap.timeline({ delay: seen ? .05 : .25 })
+      .to('.curtain__in', { y: -30, autoAlpha: 0, duration: .5, ease: 'power3.in' })
+      .to('.curtain__cities', { autoAlpha: 0, duration: .3 }, '<')
+      .to(curtain, { yPercent: -100, borderRadius: '0 0 50% 50% / 0 0 16vh 16vh', duration: 1, ease: 'expo.inOut', onStart: () => setTimeout(curtainDone, 250) }, '-=.15')
       .set(curtain, { display: 'none' });
-  } else if (curtain) curtain.style.display = 'none';
+    requestAnimationFrame(tick);
+  } else { if (curtain) curtain.style.display = 'none'; curtainDone(); }
   addEventListener('pageshow', e => { if (e.persisted && curtain) curtain.style.display = 'none'; });
   document.addEventListener('click', e => {
     const a = e.target.closest('a');
@@ -162,10 +183,11 @@
       const mob = !desktop();
       const title = $$('.intro__title .row > span, .intro__title .script', intro);
       gsap.set(win, { '--shade': 0 });
-      gsap.timeline({ delay: .9 })
+      const introTl = gsap.timeline({ paused: true })
         .from(title, { yPercent: 120, duration: 1.4, stagger: .1, ease: 'expo.out' })
         .from(win, { clipPath: mob ? 'inset(100% 16% 0% 16% round 50vw 50vw 0vw 0vw)' : 'inset(100% 37% 0% 37% round 40vw 40vw 0vw 0vw)', duration: 1.6, ease: 'expo.inOut' }, '<.1')
         .from('.intro__side', { autoAlpha: 0, duration: 1 }, '<.6');
+      curtainReady.then(() => introTl.play());
       const tl = gsap.timeline({
         scrollTrigger: { trigger: intro, start: 'top top', end: '+=110%', pin: true, scrub: 1,
           

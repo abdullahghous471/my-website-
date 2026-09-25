@@ -199,6 +199,7 @@ def header(lang, active, alt):
 
 <div class="menu" aria-hidden="false">
   <button class="menu__close label" data-menu-close><i></i>{t['close']}</button>
+  <a class="menu__logo" href="{home}" aria-label="Property Consultancy Spain"><img src="assets/logo/pc-spain.png" alt="Property Consultancy Spain" width="800" height="258"></a>
   <div class="menu__main">
     <nav aria-label="Menu"><ul class="menu__list">{''.join(items)}</ul></nav>
   </div>
@@ -217,7 +218,7 @@ def header(lang, active, alt):
       <div class="menu__lang" aria-label="Language"><a href="{nl_href}"{' class="on"' if lang == 'nl' else ''} lang="nl">NL</a><a href="{en_href}"{' class="on"' if lang == 'en' else ''} lang="en">EN</a></div>
       {IG}
     </div>
-    <a class="btn btn--light menu__cta" href="{t['cta'][1]}">{t['cta'][0]} {ARROW}</a>
+    <a class="btn btn--solid menu__cta" href="{t['cta'][1]}">{t['cta'][0]} {ARROW}</a>
   </aside>
 </div>
 '''

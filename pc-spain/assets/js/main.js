@@ -753,6 +753,16 @@
     go(0);
   });
 
+
+  /* ------------------------------------------------ floating contact button */
+  $$('[data-fab]').forEach(fab => {
+    const btn = $('.fab__btn', fab);
+    const set = open => { fab.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); };
+    btn.addEventListener('click', e => { e.stopPropagation(); set(!fab.classList.contains('open')); });
+    document.addEventListener('click', e => { if (!fab.contains(e.target)) set(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+  });
+
   /* ------------------------------------------------ to top */
   $$('[data-top]').forEach(b => b.addEventListener('click', () => scrollTo(0)));
 })();

@@ -151,10 +151,9 @@ def head(title, desc, lang):
 <meta name="description" content="{esc(desc)}">
 <meta name="theme-color" content="#233759">
 <link rel="icon" type="image/png" href="assets/logo/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="stylesheet" href="{FONTS}">
+<link rel="preload" href="assets/fonts/jost-5054f2c4.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
@@ -1138,6 +1137,7 @@ def build_en():
 exec((HERE / 'pages_v4.py').read_text())
 exec((HERE / 'pages_v5.py').read_text())
 exec((HERE / 'pages_v6.py').read_text())
+exec((HERE / 'pages_v7.py').read_text())
 
 # =====================================================================  run
 write('index.html', 'Nederlandse Makelaar in Spanje - Property Consultancy Spain', 'Property Consultancy Spain – Woning kopen of huren in Spanje. Ontmoet ons team van experts die u verbinden met topadvocaten, architecten en makelaars.', home_nl())

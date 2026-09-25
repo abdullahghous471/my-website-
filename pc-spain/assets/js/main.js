@@ -54,11 +54,11 @@
   const intro = $('#intro');
   let lastY = 0;
   const setHeader = () => {
+    // The header stays visible on every page; it only gains its solid background once the page moves,
+    // or immediately on pages that open without the home intro.
     const y = lenis ? lenis.scroll : scrollY;
-    const heroH = intro ? intro.offsetHeight * (hasGsap && !reduce ? 2.1 : 1) - 80 : ($('.lx-hero') ? $('.lx-hero').offsetHeight - 80 : 60);
-    hd.classList.toggle('is-solid', y > heroH || (!intro && !$('.lx-hero') && y > 40));
-    hd.classList.toggle('is-hidden', y > lastY + 2 && y > 600 && !$('.menu.is-open'));
-    if (y < lastY - 2) hd.classList.remove('is-hidden');
+    hd.classList.toggle('is-solid', y > 10 || !intro);
+    hd.classList.remove('is-hidden', 'is-light');
     lastY = y;
   };
   if (hd) {
@@ -168,8 +168,8 @@
         .from('.intro__side', { autoAlpha: 0, duration: 1 }, '<.6');
       const tl = gsap.timeline({
         scrollTrigger: { trigger: intro, start: 'top top', end: '+=110%', pin: true, scrub: 1,
-          onUpdate: s => hd && hd.classList.toggle('is-light', s.progress > .82 && !hd.classList.contains('is-solid')),
-          onLeaveBack: () => hd && hd.classList.remove('is-light') }
+          
+          }
       });
       tl.to(win, { clipPath: 'inset(0% 0% 0% 0% round 0vw 0vw 0vw 0vw)', ease: 'none', duration: 1 })
         .to(vid, { scale: 1, ease: 'none', duration: 1 }, 0)

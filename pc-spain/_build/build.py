@@ -191,7 +191,8 @@ def header(lang, active, alt):
 <div class="menu" aria-hidden="false">
   <button class="menu__close label" data-menu-close><i></i>{t['close']}</button>
   <div class="menu__main">
-    <nav aria-label="Menu"><ul class="menu__list">{''.join(items)}</ul></nav>
+    <nav aria-label="Menu"><ul class="menu__list">{''.join(items)}</ul>
+      <div class="menu__lang" aria-label="Language"><a href="{nl_href}"{' class="on"' if lang == 'nl' else ''} lang="nl">Nederlands</a><a href="{en_href}"{' class="on"' if lang == 'en' else ''} lang="en">English</a></div></nav>
     <div class="menu__foot">
       <div><span class="label">{t['offices']}</span>Valencia · Dénia · Amsterdam · Barcelona</div>
       <div><span class="label">{t['hours']}</span>{t['hours_v']}</div>
@@ -240,9 +241,9 @@ def footer(lang):
 </footer>
 
 <div class="lb" role="dialog" aria-modal="true" aria-label="Media">
-  <div class="lb__top"><span class="lb__count label"></span><button class="label" data-lb-close aria-label="Sluiten / Close">✕</button></div>
+  <div class="lb__top"><span class="lb__count label"></span><button class="label" data-lb-close aria-label="{'Sluiten' if lang == 'nl' else 'Close'}">✕</button></div>
   <div class="lb__stage"></div>
-  <div class="lb__bot"><button class="label" data-lb-prev aria-label="Vorige / Previous">{ARROW_L}</button><button class="label" data-lb-next aria-label="Volgende / Next">{ARROW}</button></div>
+  <div class="lb__bot"><button class="label" data-lb-prev aria-label="{'Vorige' if lang == 'nl' else 'Previous'}">{ARROW_L}</button><button class="label" data-lb-next aria-label="{'Volgende' if lang == 'nl' else 'Next'}">{ARROW}</button></div>
 </div>
 {LIBS}
 <script defer src="assets/js/main.js"></script>
@@ -1126,6 +1127,7 @@ def build_en():
 
 exec((HERE / 'pages_v4.py').read_text())
 exec((HERE / 'pages_v5.py').read_text())
+exec((HERE / 'pages_v6.py').read_text())
 
 # =====================================================================  run
 write('index.html', 'Nederlandse Makelaar in Spanje - Property Consultancy Spain', 'Property Consultancy Spain – Woning kopen of huren in Spanje. Ontmoet ons team van experts die u verbinden met topadvocaten, architecten en makelaars.', home_nl())

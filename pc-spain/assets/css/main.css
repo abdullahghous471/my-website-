@@ -1338,3 +1338,33 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* safety net: the page-transition curtain can never block the page, even if a script fails */
 .curtain { animation: curtain-off 0s linear 4s forwards; }
 @keyframes curtain-off { to { visibility: hidden; pointer-events: none; } }
+
+/* ==========================================================================
+   v6 — header usability: always visible, clear menu button, language switch on every size
+   ========================================================================== */
+.hd.is-hidden { transform: none; }
+.hd.is-solid { background: rgba(241, 240, 236, .97); }
+.hd__menu { background: var(--navy); color: #fff; padding: 13px 20px 13px 18px; gap: 12px; transition: background .4s; }
+.hd__menu:hover { background: var(--ink); }
+.hd__menu i { width: 24px; height: 10px; }
+.hd__menu span { font-weight: 500; }
+.hd__menu:focus-visible, .hd__lang a:focus-visible, .hd__cta:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+.hd__lang { border: 1px solid var(--line); padding: 7px 10px; gap: 4px; }
+.hd__lang a { padding: 2px 6px; opacity: .55; }
+.hd__lang a.on { background: var(--ink); color: #fff; opacity: 1; }
+.hd__logo { box-shadow: 0 8px 24px -16px rgba(18,27,41,.35); }
+.menu__close { background: #fff; color: var(--navy); padding: 13px 20px 13px 18px; top: calc(env(safe-area-inset-top, 0px) + (var(--hd) - 44px) / 2); }
+.menu__close i { width: 16px; height: 16px; }
+.menu__lang { display: flex; gap: 6px; margin-top: 26px; }
+.menu__lang a { font: 500 12px/1 var(--sans); letter-spacing: .25em; padding: 10px 14px; border: 1px solid var(--line-d); color: rgba(255,255,255,.7); }
+.menu__lang a.on { background: #fff; color: var(--navy); border-color: #fff; }
+@media (max-width: 900px) {
+  .hd { grid-template-columns: auto 1fr auto; column-gap: 10px; }
+  .hd__logo { justify-self: center; }
+  .hd__menu span { display: inline; }
+  .hd__menu { padding: 11px 14px; }
+  .hd__lang { display: inline-flex; padding: 5px 6px; }
+  .hd__lang a { padding: 2px 5px; font-size: 10px; }
+  .hd__logo img { width: 112px; }
+}
+@media (max-width: 380px) { .hd__menu span { display: none; } .hd__logo img { width: 100px; } }

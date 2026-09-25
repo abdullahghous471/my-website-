@@ -387,7 +387,7 @@ def build_en():
     write('en-about.html', 'About PC-Spain - Property Consultancy Spain', 'Property Consultancy Spain is a company of real-estate experts.', en_about(), lang='en', active='en-about.html')
     write('en-partners.html', 'Partners - Property Consultancy Spain', 'The partner network of Property Consultancy Spain.', en_partners(), lang='en', active='en-about.html')
     write('en-information-tips.html', 'Information & Tips - Property Consultancy Spain', 'How do you buy a home or make an investment in Spain? We give you tips!', en_tips(), lang='en', active='en-buying-property.html')
-    write('en-intake.html', 'Intake - Property Consultancy Spain', 'Do the intake and start your investment in Spain right away.', en_intake(), lang='en', extra='<script defer src="https://embed.typeform.com/next/embed.js"></script>\n')
+    write('en-intake.html', 'Intake - Property Consultancy Spain', 'Do the intake and start your investment in Spain right away.', en_intake(), lang='en')
     for i, card in enumerate(CARDS):
         en_listing_page(i, card)
     for s in C['articles']:
@@ -631,3 +631,89 @@ def intake():
 
 def en_intake():
     return _en_intake_v6().replace(f'<div data-tf-live="{TF_ID}"></div>', intake_form('en'))
+
+
+# ---------------------------------------------------------------- intake v2: step-by-step form, e-mailed to info@pc-spain.com
+# FormSubmit forwards each submission to the address below. The first submission triggers a one-time
+# activation e-mail to that inbox; after clicking it, every submission arrives as a normal e-mail.
+INTAKE_TO = 'info@pc-spain.com'
+INTAKE_ENDPOINT = os.environ.get('INTAKE_ENDPOINT', f'https://formsubmit.co/ajax/{INTAKE_TO}')
+
+
+def intake_form(lang):
+    nl = lang == 'nl'
+    L = (lambda a, b: a if nl else b)
+
+    def tiles(name, opts, required=True, cols=2):
+        out = ''
+        for i, (val, sub) in enumerate(opts):
+            rid = f'in-{sum(map(ord, name)) % 997}-{i}'
+            out += f'''<label class="itile" for="{rid}"><input type="radio" id="{rid}" name="{name}" value="{val}"{' required' if required and i == 0 else ''}>
+              <span class="itile__n">{i + 1:02d}</span><span class="itile__t">{val}</span>{f'<span class="itile__s">{sub}</span>' if sub else ''}</label>'''
+        return f'<div class="itiles itiles--{cols}">{out}</div>'
+
+    k_looking = L('Waar bent u naar op zoek', 'Looking for')
+    k_budget, k_region, k_when = L('Budget', 'Budget'), L('Regio', 'Region'), L('Termijn', 'Timing')
+    step1 = tiles(k_looking, [
+        (L('Tweede woning', 'Second home'), L('Voor eigen gebruik', 'For your own use')),
+        (L('Vastgoedbelegging', 'Property investment'), L('Verhuur en rendement', 'Rental and returns')),
+        (L('Een woning huren', 'Renting a home'), L('Kort of lang verblijf', 'Short or long stay')),
+        (L('Verkopen of verhuren', 'Selling or letting'), L('Mijn woning in Spanje', 'My home in Spain')),
+    ])
+    budget = tiles(k_budget, [(L('Tot € 150.000', 'Up to € 150,000'), ''), ('€ 150.000 – € 300.000' if nl else '€ 150,000 – € 300,000', ''),
+                              ('€ 300.000 – € 600.000' if nl else '€ 300,000 – € 600,000', ''), (L('Boven € 600.000', 'Above € 600,000'), '')], cols=4)
+    region = tiles(k_region, [('Valencia', ''), (L('Costa Blanca Noord', 'Costa Blanca North'), ''), (L('Costa Blanca Zuid', 'Costa Blanca South'), ''),
+                              (L('Nog open', 'Still open'), '')], cols=4)
+    when = tiles(k_when, [(L('Binnen 3 maanden', 'Within 3 months'), ''), (L('3 – 12 maanden', '3 – 12 months'), ''), (L('Oriënterend', 'Just exploring'), '')], cols=3)
+    labels = [L('Uw wens', 'Your goal'), L('Uw plannen', 'Your plans'), L('Uw gegevens', 'Your details')]
+    on = ' class="on"'
+    steps_nav = ''.join(f'<li{on if i == 0 else ""}><span>{i + 1:02d}</span>{t}</li>' for i, t in enumerate(labels))
+    return f'''<form class="iform" data-iform novalidate data-endpoint="{INTAKE_ENDPOINT}"
+          data-fail="{L('Versturen is niet gelukt. Probeer het opnieuw of mail ons via ' + INTAKE_TO + '.', 'Sending failed. Please try again or e-mail us at ' + INTAKE_TO + '.')}"
+          data-need="{L('Maak een keuze om verder te gaan.', 'Please make a choice to continue.')}"
+          data-fields="{L('Vul de verplichte velden correct in.', 'Please fill in the required fields correctly.')}">
+        <input type="hidden" name="_subject" value="{L('Nieuwe intake via pc-spain.com', 'New intake via pc-spain.com')}">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="{L('Taal', 'Language')}" value="{L('Nederlands', 'English')}">
+        <input type="text" name="_honey" class="iform__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <ol class="iform__steps">{steps_nav}</ol>
+        <div class="iform__bar"><i></i></div>
+
+        <fieldset class="istep on" data-step="0">
+          <legend class="istep__q">{L('Waar bent u naar op zoek?', 'What are you looking for?')}</legend>
+          {step1}
+        </fieldset>
+
+        <fieldset class="istep" data-step="1">
+          <legend class="istep__q">{L('Vertel iets over uw plannen', 'Tell us about your plans')}</legend>
+          <p class="istep__sub label">{L('Budget', 'Budget')}</p>{budget}
+          <p class="istep__sub label">{L('Voorkeursregio', 'Preferred region')}</p>{region}
+          <p class="istep__sub label">{L('Wanneer wilt u starten?', 'When would you like to start?')}</p>{when}
+        </fieldset>
+
+        <fieldset class="istep" data-step="2">
+          <legend class="istep__q">{L('Hoe kunnen wij u bereiken?', 'How can we reach you?')}</legend>
+          <div class="form">
+            <div class="field"><label for="in-name">{L('Naam', 'Name')} *</label><input id="in-name" name="{L('Naam', 'Name')}" required autocomplete="name"></div>
+            <div class="field"><label for="in-mail">E-mail *</label><input id="in-mail" name="email" type="email" required autocomplete="email"></div>
+            <div class="field"><label for="in-tel">{L('Telefoon', 'Telephone')}</label><input id="in-tel" name="{L('Telefoon', 'Telephone')}" type="tel" autocomplete="tel"></div>
+            <div class="field"><label for="in-pref">{L('Voorkeur voor contact', 'Preferred contact')}</label><select id="in-pref" name="{L('Contactvoorkeur', 'Contact preference')}"><option>E-mail</option><option>{L('Telefoon', 'Phone')}</option><option>WhatsApp</option><option>{L('Videocall', 'Video call')}</option></select></div>
+            <div class="field field--full"><label for="in-msg">{L('Uw wensen', 'Your wishes')}</label><textarea id="in-msg" name="{L('Wensen', 'Wishes')}" placeholder="{L('Bijv. aantal slaapkamers, zeezicht, verhuurmogelijkheden…', 'E.g. number of bedrooms, sea view, rental potential…')}"></textarea></div>
+          </div>
+          <label class="icheck"><input type="checkbox" name="{L('Akkoord privacy', 'Privacy consent')}" value="{L('Ja', 'Yes')}" required><span>{L('Ik ga ermee akkoord dat PC-Spain mijn gegevens gebruikt om contact met mij op te nemen over deze aanvraag.', 'I agree that PC-Spain may use my details to contact me about this request.')}</span></label>
+        </fieldset>
+
+        <div class="iform__done" hidden>
+          <span class="iform__tick" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg></span>
+          <h3 class="h3">{L('Dank u wel!', 'Thank you!')}</h3>
+          <p>{L('Zodra we uw informatie hebben ontvangen, nemen we spoedig contact met u op om een vervolgafspraak te maken.', 'As soon as we have received your information, we will contact you promptly to arrange a follow-up meeting.')}</p>
+        </div>
+
+        <div class="iform__foot">
+          <button type="button" class="iform__back label" data-back hidden>{ARROW_L} {L('Terug', 'Back')}</button>
+          <span class="iform__msg" role="status"></span>
+          <button type="button" class="btn btn--solid" data-next>{L('Volgende', 'Next')} {ARROW}</button>
+          <button type="submit" class="btn btn--solid" data-send hidden>{L('Verstuur intake', 'Send intake')} {ARROW}</button>
+        </div>
+      </form>'''

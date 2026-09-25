@@ -69,21 +69,70 @@
     </div>
     <div class="in-form" data-reveal=".15">
       <div class="in-form__bar"><span class="label">Intake</span><span class="label muted">Property Consultancy Spain</span></div>
-      <div class="in-form__body"><div class="in-loading" role="status"><i></i>Loading the form…</div>
-        <div class="in-tf" data-tf-live="01J8J7W38XSF5PMAV91S5H8HA1"></div>
-        <form class="form in-fallback" hidden data-form data-endpoint=""
-          data-offline="This form is not connected yet. Please contact us via Instagram @pc_spain."
-          data-sending="Sending…" data-ok="Thank you! We will contact you shortly."
-          data-fail="Sending failed. Please try again later.">
-          <div class="field"><label for="in-name">Name *</label><input id="in-name" name="name" required autocomplete="name"></div>
-          <div class="field"><label for="in-mail">E-mail *</label><input id="in-mail" name="email" type="email" required autocomplete="email"></div>
-          <div class="field"><label for="in-tel">Telephone</label><input id="in-tel" name="telephone" type="tel" autocomplete="tel"></div>
-          <div class="field"><label for="in-region">Preferred region</label><input id="in-region" name="region" placeholder="E.g. Valencia, Costa Blanca"></div>
-          <div class="field"><label for="in-kind">What are you looking for? *</label><select id="in-kind" name="looking_for" required><option value="">Please choose</option><option>Second home for own use</option><option>Property investment</option><option>Renting a home</option><option>Selling or letting my home</option></select></div>
-          <div class="field"><label for="in-budget">Budget</label><select id="in-budget" name="budget"><option value="">Please choose</option><option>Up to € 150,000</option><option>€ 150,000 – € 300,000</option><option>€ 300,000 – € 600,000</option><option>Above € 600,000</option></select></div>
-          <div class="field field--full"><label for="in-msg">Your wishes</label><textarea id="in-msg" name="message"></textarea></div>
-          <div class="form__foot"><button class="btn btn--solid" type="submit">Send intake <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button><span class="form__msg" role="status"></span></div>
-        </form></div>
+      <div class="in-form__body"><form class="iform" data-iform novalidate data-endpoint="https://formsubmit.co/ajax/info@pc-spain.com"
+          data-fail="Sending failed. Please try again or e-mail us at info@pc-spain.com."
+          data-need="Please make a choice to continue."
+          data-fields="Please fill in the required fields correctly.">
+        <input type="hidden" name="_subject" value="New intake via pc-spain.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="Language" value="English">
+        <input type="text" name="_honey" class="iform__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <ol class="iform__steps"><li class="on"><span>01</span>Your goal</li><li><span>02</span>Your plans</li><li><span>03</span>Your details</li></ol>
+        <div class="iform__bar"><i></i></div>
+
+        <fieldset class="istep on" data-step="0">
+          <legend class="istep__q">What are you looking for?</legend>
+          <div class="itiles itiles--2"><label class="itile" for="in-85-0"><input type="radio" id="in-85-0" name="Looking for" value="Second home" required>
+              <span class="itile__n">01</span><span class="itile__t">Second home</span><span class="itile__s">For your own use</span></label><label class="itile" for="in-85-1"><input type="radio" id="in-85-1" name="Looking for" value="Property investment">
+              <span class="itile__n">02</span><span class="itile__t">Property investment</span><span class="itile__s">Rental and returns</span></label><label class="itile" for="in-85-2"><input type="radio" id="in-85-2" name="Looking for" value="Renting a home">
+              <span class="itile__n">03</span><span class="itile__t">Renting a home</span><span class="itile__s">Short or long stay</span></label><label class="itile" for="in-85-3"><input type="radio" id="in-85-3" name="Looking for" value="Selling or letting">
+              <span class="itile__n">04</span><span class="itile__t">Selling or letting</span><span class="itile__s">My home in Spain</span></label></div>
+        </fieldset>
+
+        <fieldset class="istep" data-step="1">
+          <legend class="istep__q">Tell us about your plans</legend>
+          <p class="istep__sub label">Budget</p><div class="itiles itiles--4"><label class="itile" for="in-603-0"><input type="radio" id="in-603-0" name="Budget" value="Up to € 150,000" required>
+              <span class="itile__n">01</span><span class="itile__t">Up to € 150,000</span></label><label class="itile" for="in-603-1"><input type="radio" id="in-603-1" name="Budget" value="€ 150,000 – € 300,000">
+              <span class="itile__n">02</span><span class="itile__t">€ 150,000 – € 300,000</span></label><label class="itile" for="in-603-2"><input type="radio" id="in-603-2" name="Budget" value="€ 300,000 – € 600,000">
+              <span class="itile__n">03</span><span class="itile__t">€ 300,000 – € 600,000</span></label><label class="itile" for="in-603-3"><input type="radio" id="in-603-3" name="Budget" value="Above € 600,000">
+              <span class="itile__n">04</span><span class="itile__t">Above € 600,000</span></label></div>
+          <p class="istep__sub label">Preferred region</p><div class="itiles itiles--4"><label class="itile" for="in-612-0"><input type="radio" id="in-612-0" name="Region" value="Valencia" required>
+              <span class="itile__n">01</span><span class="itile__t">Valencia</span></label><label class="itile" for="in-612-1"><input type="radio" id="in-612-1" name="Region" value="Costa Blanca North">
+              <span class="itile__n">02</span><span class="itile__t">Costa Blanca North</span></label><label class="itile" for="in-612-2"><input type="radio" id="in-612-2" name="Region" value="Costa Blanca South">
+              <span class="itile__n">03</span><span class="itile__t">Costa Blanca South</span></label><label class="itile" for="in-612-3"><input type="radio" id="in-612-3" name="Region" value="Still open">
+              <span class="itile__n">04</span><span class="itile__t">Still open</span></label></div>
+          <p class="istep__sub label">When would you like to start?</p><div class="itiles itiles--3"><label class="itile" for="in-616-0"><input type="radio" id="in-616-0" name="Timing" value="Within 3 months" required>
+              <span class="itile__n">01</span><span class="itile__t">Within 3 months</span></label><label class="itile" for="in-616-1"><input type="radio" id="in-616-1" name="Timing" value="3 – 12 months">
+              <span class="itile__n">02</span><span class="itile__t">3 – 12 months</span></label><label class="itile" for="in-616-2"><input type="radio" id="in-616-2" name="Timing" value="Just exploring">
+              <span class="itile__n">03</span><span class="itile__t">Just exploring</span></label></div>
+        </fieldset>
+
+        <fieldset class="istep" data-step="2">
+          <legend class="istep__q">How can we reach you?</legend>
+          <div class="form">
+            <div class="field"><label for="in-name">Name *</label><input id="in-name" name="Name" required autocomplete="name"></div>
+            <div class="field"><label for="in-mail">E-mail *</label><input id="in-mail" name="email" type="email" required autocomplete="email"></div>
+            <div class="field"><label for="in-tel">Telephone</label><input id="in-tel" name="Telephone" type="tel" autocomplete="tel"></div>
+            <div class="field"><label for="in-pref">Preferred contact</label><select id="in-pref" name="Contact preference"><option>E-mail</option><option>Phone</option><option>WhatsApp</option><option>Video call</option></select></div>
+            <div class="field field--full"><label for="in-msg">Your wishes</label><textarea id="in-msg" name="Wishes" placeholder="E.g. number of bedrooms, sea view, rental potential…"></textarea></div>
+          </div>
+          <label class="icheck"><input type="checkbox" name="Privacy consent" value="Yes" required><span>I agree that PC-Spain may use my details to contact me about this request.</span></label>
+        </fieldset>
+
+        <div class="iform__done" hidden>
+          <span class="iform__tick" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg></span>
+          <h3 class="h3">Thank you!</h3>
+          <p>As soon as we have received your information, we will contact you promptly to arrange a follow-up meeting.</p>
+        </div>
+
+        <div class="iform__foot">
+          <button type="button" class="iform__back label" data-back hidden><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M26 5H1M5 1L1 5l4 4"/></svg> Back</button>
+          <span class="iform__msg" role="status"></span>
+          <button type="button" class="btn btn--solid" data-next>Next <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button>
+          <button type="submit" class="btn btn--solid" data-send hidden>Send intake <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button>
+        </div>
+      </form></div>
     </div>
   </div>
 </section>
@@ -131,6 +180,5 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
 <script defer src="assets/js/main.js"></script>
-<script defer src="https://embed.typeform.com/next/embed.js"></script>
 </body>
 </html>

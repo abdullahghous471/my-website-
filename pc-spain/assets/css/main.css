@@ -1535,3 +1535,59 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .figs__row { border-bottom: 1px solid var(--line); overflow: hidden; }
 .figs__line { border-bottom: 0; }
+
+/* ==========================================================================
+   v6 — intake: step-by-step form (sent to info@pc-spain.com)
+   ========================================================================== */
+.in-form { background: var(--white); }
+.in-form__body { padding: clamp(24px, 3vw, 44px); }
+.iform__hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.iform__steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.iform__steps li { font: 500 11px/1.4 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); display: flex; gap: 8px; align-items: baseline; transition: color .4s; }
+.iform__steps li span { font-family: var(--display); font-size: 1rem; letter-spacing: 0; color: inherit; }
+.iform__steps li.on, .iform__steps li.done { color: var(--ink); }
+.iform__steps li.done span { color: var(--brass); }
+.iform__bar { height: 2px; background: var(--line); margin: 14px 0 clamp(28px, 3vw, 40px); position: relative; }
+.iform__bar i { position: absolute; inset: 0; background: var(--brass); transform-origin: left; transform: scaleX(.3333); transition: transform .8s var(--ease); }
+.istep { border: 0; padding: 0; margin: 0; min-width: 0; display: none; }
+.istep.on { display: block; animation: istepIn .7s var(--ease); }
+@keyframes istepIn { from { opacity: 0; transform: translateX(24px); } }
+.istep__q { font-family: var(--display); font-size: clamp(1.5rem, 2.3vw, 2.1rem); line-height: 1.15; margin-bottom: 22px; padding: 0; }
+.istep__sub { color: var(--muted); margin: 24px 0 10px; }
+.istep__sub:first-of-type { margin-top: 0; }
+.itiles { display: grid; gap: 10px; }
+.itiles--2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.itiles--3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.itiles--4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+.itile { position: relative; display: grid; gap: 4px; align-content: start; padding: 16px 16px 16px; border: 1px solid var(--line); background: var(--paper); cursor: pointer; transition: border-color .3s, background .4s var(--ease), color .3s, transform .4s var(--ease); }
+.itiles--2 .itile { min-height: 118px; padding: 20px; }
+.itile:hover { border-color: var(--ink); transform: translateY(-2px); }
+.itile input { position: absolute; opacity: 0; pointer-events: none; }
+.itile__n { font-family: var(--display); font-size: .95rem; color: var(--brass); }
+.itile__t { font-family: var(--display); font-size: 1.05rem; line-height: 1.25; }
+.itiles--2 .itile__t { font-size: clamp(1.15rem, 1.5vw, 1.35rem); }
+.itile__s { font-size: 13px; color: var(--muted); }
+.itile:has(input:checked) { background: var(--navy); border-color: var(--navy); color: #fff; }
+.itile:has(input:checked) .itile__s { color: rgba(255,255,255,.7); }
+.itile:has(input:checked)::after { content: ""; position: absolute; top: 14px; right: 14px; width: 8px; height: 8px; border-radius: 50%; background: var(--brass); }
+.itile:has(input:focus-visible) { outline: 2px solid var(--brass); outline-offset: 2px; }
+.icheck { display: flex; gap: 12px; align-items: flex-start; margin-top: 22px; font-size: 14px; color: var(--muted); cursor: pointer; }
+.icheck input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--navy); flex: 0 0 auto; }
+.iform .field.bad input, .iform .field.bad textarea { border-color: #B4453A; }
+.iform__foot { display: flex; align-items: center; gap: 16px; margin-top: clamp(28px, 3vw, 40px); padding-top: 22px; border-top: 1px solid var(--line); }
+.iform__foot .btn { margin-left: auto; }
+.iform__back { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); }
+.iform__back:hover { color: var(--ink); }
+.iform__back svg { width: 22px; height: 10px; }
+.iform__msg { font-size: 14px; color: #B4453A; }
+.iform.sending [data-send] { opacity: .6; pointer-events: none; }
+.iform__done { text-align: center; padding: clamp(30px, 5vw, 60px) 10px; }
+.iform__done .h3 { margin: 18px 0 12px; }
+.iform__done p { color: var(--muted); max-width: 40ch; margin-inline: auto; }
+.iform__tick svg { width: 64px; height: 64px; fill: none; stroke: var(--brass); stroke-width: 2; }
+.iform__tick circle { stroke-dasharray: 151; stroke-dashoffset: 151; animation: itick .9s var(--ease) forwards; }
+.iform__tick path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: itick .6s var(--ease) .6s forwards; }
+@keyframes itick { to { stroke-dashoffset: 0; } }
+.iform.is-done .iform__steps, .iform.is-done .iform__bar, .iform.is-done .iform__foot { display: none; }
+@media (max-width: 700px) { .itiles--2, .itiles--3, .itiles--4 { grid-template-columns: 1fr 1fr; } .iform__steps li { font-size: 9px; letter-spacing: .12em; } }
+[data-iform] [hidden] { display: none !important; }

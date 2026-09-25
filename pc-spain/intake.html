@@ -69,21 +69,70 @@
     </div>
     <div class="in-form" data-reveal=".15">
       <div class="in-form__bar"><span class="label">Intake</span><span class="label muted">Property Consultancy Spain</span></div>
-      <div class="in-form__body"><div class="in-loading" role="status"><i></i>Formulier wordt geladen…</div>
-        <div class="in-tf" data-tf-live="01J8J7W38XSF5PMAV91S5H8HA1"></div>
-        <form class="form in-fallback" hidden data-form data-endpoint=""
-          data-offline="Dit formulier is nog niet gekoppeld. Neem contact met ons op via Instagram @pc_spain."
-          data-sending="Versturen…" data-ok="Dank u wel! Wij nemen spoedig contact met u op."
-          data-fail="Versturen mislukt. Probeer het later opnieuw.">
-          <div class="field"><label for="in-name">Naam *</label><input id="in-name" name="name" required autocomplete="name"></div>
-          <div class="field"><label for="in-mail">E-mail *</label><input id="in-mail" name="email" type="email" required autocomplete="email"></div>
-          <div class="field"><label for="in-tel">Telefoon</label><input id="in-tel" name="telephone" type="tel" autocomplete="tel"></div>
-          <div class="field"><label for="in-region">Voorkeursregio</label><input id="in-region" name="region" placeholder="Bijv. Valencia, Costa Blanca"></div>
-          <div class="field"><label for="in-kind">Waar bent u naar op zoek? *</label><select id="in-kind" name="looking_for" required><option value="">Maak een keuze</option><option>Tweede woning voor eigen gebruik</option><option>Vastgoedbelegging</option><option>Een woning huren</option><option>Mijn woning verkopen of verhuren</option></select></div>
-          <div class="field"><label for="in-budget">Budget</label><select id="in-budget" name="budget"><option value="">Maak een keuze</option><option>Tot € 150.000</option><option>€ 150.000 – € 300.000</option><option>€ 300.000 – € 600.000</option><option>Boven € 600.000</option></select></div>
-          <div class="field field--full"><label for="in-msg">Uw wensen</label><textarea id="in-msg" name="message"></textarea></div>
-          <div class="form__foot"><button class="btn btn--solid" type="submit">Verstuur intake <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button><span class="form__msg" role="status"></span></div>
-        </form></div>
+      <div class="in-form__body"><form class="iform" data-iform novalidate data-endpoint="https://formsubmit.co/ajax/info@pc-spain.com"
+          data-fail="Versturen is niet gelukt. Probeer het opnieuw of mail ons via info@pc-spain.com."
+          data-need="Maak een keuze om verder te gaan."
+          data-fields="Vul de verplichte velden correct in.">
+        <input type="hidden" name="_subject" value="Nieuwe intake via pc-spain.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="Taal" value="Nederlands">
+        <input type="text" name="_honey" class="iform__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <ol class="iform__steps"><li class="on"><span>01</span>Uw wens</li><li><span>02</span>Uw plannen</li><li><span>03</span>Uw gegevens</li></ol>
+        <div class="iform__bar"><i></i></div>
+
+        <fieldset class="istep on" data-step="0">
+          <legend class="istep__q">Waar bent u naar op zoek?</legend>
+          <div class="itiles itiles--2"><label class="itile" for="in-185-0"><input type="radio" id="in-185-0" name="Waar bent u naar op zoek" value="Tweede woning" required>
+              <span class="itile__n">01</span><span class="itile__t">Tweede woning</span><span class="itile__s">Voor eigen gebruik</span></label><label class="itile" for="in-185-1"><input type="radio" id="in-185-1" name="Waar bent u naar op zoek" value="Vastgoedbelegging">
+              <span class="itile__n">02</span><span class="itile__t">Vastgoedbelegging</span><span class="itile__s">Verhuur en rendement</span></label><label class="itile" for="in-185-2"><input type="radio" id="in-185-2" name="Waar bent u naar op zoek" value="Een woning huren">
+              <span class="itile__n">03</span><span class="itile__t">Een woning huren</span><span class="itile__s">Kort of lang verblijf</span></label><label class="itile" for="in-185-3"><input type="radio" id="in-185-3" name="Waar bent u naar op zoek" value="Verkopen of verhuren">
+              <span class="itile__n">04</span><span class="itile__t">Verkopen of verhuren</span><span class="itile__s">Mijn woning in Spanje</span></label></div>
+        </fieldset>
+
+        <fieldset class="istep" data-step="1">
+          <legend class="istep__q">Vertel iets over uw plannen</legend>
+          <p class="istep__sub label">Budget</p><div class="itiles itiles--4"><label class="itile" for="in-603-0"><input type="radio" id="in-603-0" name="Budget" value="Tot € 150.000" required>
+              <span class="itile__n">01</span><span class="itile__t">Tot € 150.000</span></label><label class="itile" for="in-603-1"><input type="radio" id="in-603-1" name="Budget" value="€ 150.000 – € 300.000">
+              <span class="itile__n">02</span><span class="itile__t">€ 150.000 – € 300.000</span></label><label class="itile" for="in-603-2"><input type="radio" id="in-603-2" name="Budget" value="€ 300.000 – € 600.000">
+              <span class="itile__n">03</span><span class="itile__t">€ 300.000 – € 600.000</span></label><label class="itile" for="in-603-3"><input type="radio" id="in-603-3" name="Budget" value="Boven € 600.000">
+              <span class="itile__n">04</span><span class="itile__t">Boven € 600.000</span></label></div>
+          <p class="istep__sub label">Voorkeursregio</p><div class="itiles itiles--4"><label class="itile" for="in-502-0"><input type="radio" id="in-502-0" name="Regio" value="Valencia" required>
+              <span class="itile__n">01</span><span class="itile__t">Valencia</span></label><label class="itile" for="in-502-1"><input type="radio" id="in-502-1" name="Regio" value="Costa Blanca Noord">
+              <span class="itile__n">02</span><span class="itile__t">Costa Blanca Noord</span></label><label class="itile" for="in-502-2"><input type="radio" id="in-502-2" name="Regio" value="Costa Blanca Zuid">
+              <span class="itile__n">03</span><span class="itile__t">Costa Blanca Zuid</span></label><label class="itile" for="in-502-3"><input type="radio" id="in-502-3" name="Regio" value="Nog open">
+              <span class="itile__n">04</span><span class="itile__t">Nog open</span></label></div>
+          <p class="istep__sub label">Wanneer wilt u starten?</p><div class="itiles itiles--3"><label class="itile" for="in-729-0"><input type="radio" id="in-729-0" name="Termijn" value="Binnen 3 maanden" required>
+              <span class="itile__n">01</span><span class="itile__t">Binnen 3 maanden</span></label><label class="itile" for="in-729-1"><input type="radio" id="in-729-1" name="Termijn" value="3 – 12 maanden">
+              <span class="itile__n">02</span><span class="itile__t">3 – 12 maanden</span></label><label class="itile" for="in-729-2"><input type="radio" id="in-729-2" name="Termijn" value="Oriënterend">
+              <span class="itile__n">03</span><span class="itile__t">Oriënterend</span></label></div>
+        </fieldset>
+
+        <fieldset class="istep" data-step="2">
+          <legend class="istep__q">Hoe kunnen wij u bereiken?</legend>
+          <div class="form">
+            <div class="field"><label for="in-name">Naam *</label><input id="in-name" name="Naam" required autocomplete="name"></div>
+            <div class="field"><label for="in-mail">E-mail *</label><input id="in-mail" name="email" type="email" required autocomplete="email"></div>
+            <div class="field"><label for="in-tel">Telefoon</label><input id="in-tel" name="Telefoon" type="tel" autocomplete="tel"></div>
+            <div class="field"><label for="in-pref">Voorkeur voor contact</label><select id="in-pref" name="Contactvoorkeur"><option>E-mail</option><option>Telefoon</option><option>WhatsApp</option><option>Videocall</option></select></div>
+            <div class="field field--full"><label for="in-msg">Uw wensen</label><textarea id="in-msg" name="Wensen" placeholder="Bijv. aantal slaapkamers, zeezicht, verhuurmogelijkheden…"></textarea></div>
+          </div>
+          <label class="icheck"><input type="checkbox" name="Akkoord privacy" value="Ja" required><span>Ik ga ermee akkoord dat PC-Spain mijn gegevens gebruikt om contact met mij op te nemen over deze aanvraag.</span></label>
+        </fieldset>
+
+        <div class="iform__done" hidden>
+          <span class="iform__tick" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg></span>
+          <h3 class="h3">Dank u wel!</h3>
+          <p>Zodra we uw informatie hebben ontvangen, nemen we spoedig contact met u op om een vervolgafspraak te maken.</p>
+        </div>
+
+        <div class="iform__foot">
+          <button type="button" class="iform__back label" data-back hidden><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M26 5H1M5 1L1 5l4 4"/></svg> Terug</button>
+          <span class="iform__msg" role="status"></span>
+          <button type="button" class="btn btn--solid" data-next>Volgende <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button>
+          <button type="submit" class="btn btn--solid" data-send hidden>Verstuur intake <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button>
+        </div>
+      </form></div>
     </div>
   </div>
 </section>
@@ -131,6 +180,5 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
 <script defer src="assets/js/main.js"></script>
-<script defer src="https://embed.typeform.com/next/embed.js"></script>
 </body>
 </html>

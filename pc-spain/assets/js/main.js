@@ -681,19 +681,6 @@
   }
 
 
-  /* ------------------------------------------------ intake: Typeform or built-in form, never a blank box */
-  const inForm = $('.in-form');
-  if (inForm) {
-    const tf = $('.in-tf', inForm), fb = $('.in-fallback', inForm);
-    const ready = () => !!(tf && tf.querySelector('iframe'));
-    const t0 = Date.now();
-    const check = () => {
-      if (ready()) { inForm.classList.add('tf-ready'); return; }
-      if (Date.now() - t0 > 5000) { inForm.classList.add('tf-failed'); if (tf) tf.hidden = true; if (fb) fb.hidden = false; hasGsap && ScrollTrigger.refresh(); return; }
-      setTimeout(check, 300);
-    };
-    check();
-  }
 
 
   /* ------------------------------------------------ reviews: quote switched by the reviewer tabs */
@@ -710,6 +697,60 @@
     box.addEventListener('mouseenter', () => { box.classList.add('paused'); clearTimeout(timer); });
     box.addEventListener('mouseleave', () => { box.classList.remove('paused'); show(i + 1); });
     show(0);
+  });
+
+
+  /* ------------------------------------------------ intake: step-by-step form, posted to FormSubmit (info@pc-spain.com) */
+  $$('[data-iform]').forEach(f => {
+    const steps = $$('.istep', f), nav = $$('.iform__steps li', f), bar = $('.iform__bar i', f), msg = $('.iform__msg', f);
+    const back = $('[data-back]', f), next = $('[data-next]', f), send = $('[data-send]', f), done = $('.iform__done', f);
+    let cur = 0;
+    const go = k => {
+      cur = k;
+      steps.forEach((s, j) => s.classList.toggle('on', j === k));
+      nav.forEach((n, j) => { n.classList.toggle('on', j === k); n.classList.toggle('done', j < k); });
+      bar.style.transform = `scaleX(${(k + 1) / steps.length})`;
+      back.hidden = k === 0; next.hidden = k === steps.length - 1; send.hidden = k !== steps.length - 1; msg.textContent = '';
+      const top = f.getBoundingClientRect().top;
+      if (top < 80) (lenis ? lenis.scrollTo(f, { offset: -120 }) : f.scrollIntoView({ behavior: 'smooth' }));
+    };
+    const valid = k => {
+      const s = steps[k];
+      const groups = [...new Set($$('input[type=radio]', s).map(r => r.name))];
+      if (k === 0 && groups.some(g => !$(`input[name="${CSS.escape(g)}"]:checked`, s))) { msg.textContent = f.dataset.need; return false; }
+      let ok = true;
+      $$('input[required], textarea[required], select[required]', s).forEach(el => {
+        if (el.type === 'radio') return;
+        const bad = !el.checkValidity();
+        el.closest('.field') && el.closest('.field').classList.toggle('bad', bad);
+        if (bad) ok = false;
+      });
+      if (!ok) msg.textContent = f.dataset.fields;
+      return ok;
+    };
+    // choosing an answer on step 1 moves on by itself
+    $$('input[type=radio]', steps[0]).forEach(r => r.addEventListener('change', () => setTimeout(() => go(1), 280)));
+    next.addEventListener('click', () => { if (valid(cur)) go(cur + 1); });
+    f.addEventListener('input', e => {
+      const fld = e.target.closest('.field');
+      if (fld && e.target.checkValidity()) fld.classList.remove('bad');
+      if (!$$('.field.bad', f).length) msg.textContent = '';
+    });
+    f.addEventListener('change', () => { if (!$$('.field.bad', f).length) msg.textContent = ''; });
+    back.addEventListener('click', () => go(cur - 1));
+    f.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!valid(cur)) return;
+      if ($('.iform__hp', f).value) return;
+      f.classList.add('sending'); msg.textContent = '';
+      try {
+        const r = await fetch(f.dataset.endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(f) });
+        if (!r.ok) throw new Error(r.status);
+        f.classList.add('is-done'); steps.forEach(s => s.classList.remove('on')); done.hidden = false;
+      } catch (err) { msg.textContent = f.dataset.fail; }
+      f.classList.remove('sending');
+    });
+    go(0);
   });
 
   /* ------------------------------------------------ to top */

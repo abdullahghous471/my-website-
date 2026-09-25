@@ -1149,7 +1149,7 @@ write('partners.html', 'Partners - Property Consultancy Spain', 'Het netwerk van
 write('tarieven.html', 'Tarieven - Property Consultancy Spain', 'Transparante tarieven.', tarieven())
 write('woning-kopen.html', 'Woning kopen Spanje - Property Consultancy Spain', 'Woningaanbod in Spanje.', woning_kopen())
 write('informatie-tips.html', 'Informatie & Tips - Property Consultancy Spain', 'Hoe koop je een woning of doe je een investering in Spanje? Wij geven tips!', tips(), active='woning-kopen.html')
-write('intake.html', 'Intake - Property Consultancy Spain', 'Doe de intake en start direct met uw belegging in Spanje.', intake(), extra='<script defer src="https://embed.typeform.com/next/embed.js"></script>\n')
+write('intake.html', 'Intake - Property Consultancy Spain', 'Doe de intake en start direct met uw belegging in Spanje.', intake())
 for i, card in enumerate(CARDS):
     listing_page(i, card)
 for s in C['articles']:

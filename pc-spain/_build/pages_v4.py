@@ -180,19 +180,22 @@ def werkwijze():
     <div class="split__label"><span class="label label--brass">Makelaardij in Spanje</span></div>
     <div class="split__main"><div class="body" data-reveal><p>Property Consultancy Spain is er om jouw zorgen uit handen te nemen! Onze volledige expertise op verschillende vakgebieden is wat ons <strong>uniek maakt in de makelaardij</strong> in Spanje. Er zijn geen onduidelijke afspraken tussen meerdere externe partijen, omdat wij alle expertise onder één dak hebben die nodig is bij de begeleiding in de koop van een woning in Spanje. Hierdoor is het gehele proces vanaf het begin af aan transparant en zijn er geen onaangename verrassingen. Wij zijn één team met alle expertise!</p></div></div>
   </div>
-  <div class="wrap bento">
-    <article class="bento__tile bento__tile--video">
-      <video muted loop playsinline preload="none" poster="assets/video/valencia-city.jpg" data-src="assets/video/valencia-city.mp4"></video>
-      <div class="bento__in"><b data-count="23">23</b><span class="label">Jaar ervaring in Spanje</span></div>
-    </article>
-    <article class="bento__tile bento__tile--navy">
-      <div class="dots" aria-hidden="true">{'<i></i>' * 16}</div>
-      <div class="bento__in"><b data-count="16">16</b><span class="label">Experts</span></div>
-    </article>
-    <article class="bento__tile bento__tile--sand">
-      <svg class="ring" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54"/><circle class="ring__p" cx="60" cy="60" r="54" pathLength="100"/></svg>
-      <div class="bento__in"><b data-count="120">120</b><span class="label">Tevreden klanten</span></div>
-    </article>
+  <div class="figs" data-figs>
+    <div class="figs__row"><div class="figs__line" data-dir="-1">
+      <b class="figs__n" data-count="23">23</b>
+      <span class="figs__media"><video muted loop playsinline preload="none" poster="assets/video/valencia-city.jpg" data-src="assets/video/valencia-city.mp4"></video></span>
+      <span class="figs__t">Jaar ervaring in Spanje</span>
+    </div></div>
+    <div class="figs__row"><div class="figs__line figs__line--r" data-dir="1">
+      <span class="figs__t">Experts</span>
+      <span class="figs__media figs__media--wide"><video muted loop playsinline preload="none" poster="assets/video/lawyer-contract.jpg" data-src="assets/video/lawyer-contract.mp4"></video></span>
+      <b class="figs__n" data-count="16">16</b>
+    </div></div>
+    <div class="figs__row"><div class="figs__line" data-dir="-1">
+      <b class="figs__n" data-count="120">120</b>
+      <span class="figs__media"><img src="{sm(LPH('luxe-villa-moraira'))}" alt="" loading="lazy"></span>
+      <span class="figs__t">Tevreden klanten</span>
+    </div></div>
   </div>
 </section>
 

@@ -211,6 +211,14 @@
       });
     }
 
+    // werkwijze figures: lines drift in opposite directions while scrolling
+    $$('[data-figs] .figs__line').forEach(line => {
+      const dir = +line.dataset.dir || 1;
+      gsap.fromTo(line, { xPercent: dir * -9 }, { xPercent: dir * 4, ease: 'none',
+        scrollTrigger: { trigger: line, start: 'top bottom', end: 'bottom top', scrub: true } });
+      gsap.from($$('.figs__media', line), { scale: .4, autoAlpha: 0, duration: 1.2, ease: 'expo.out',
+        scrollTrigger: { trigger: line, start: 'top 85%' } });
+    });
     ScrollTrigger.refresh();
   };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(ready); else addEventListener('load', ready);

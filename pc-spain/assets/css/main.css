@@ -1429,3 +1429,46 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @keyframes bfloor { 0% { opacity: 0; transform: translateY(-18px); } 14%, 80% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
 @keyframes bhook { 0%, 100% { transform: translate(0, 0); } 45% { transform: translate(-14px, 16px); } 70% { transform: translate(-6px, 4px); } }
 .curtain__build { width: clamp(150px, 13vw, 190px); margin-top: 30px; }
+
+/* ==========================================================================
+   v6 — reviews: light, compact, quiet (home slider + all-reviews grid)
+   ========================================================================== */
+.rshow--light { background: var(--white); color: var(--ink); padding-block: clamp(80px, 9vw, 140px); border-top: 1px solid var(--line); }
+.rshow--light .rshow__grid { align-items: center; }
+.rshow--light .rshow__side { grid-column: 1 / span 4; }
+.rshow--light .rshow__side .h2 { font-size: clamp(2rem, 3.3vw, 3.2rem); margin: 16px 0 26px; }
+.rshow--light .rshow__count { display: flex; align-items: baseline; gap: 14px; margin-bottom: 34px; padding-top: 22px; border-top: 1px solid var(--line); }
+.rshow--light .rshow__count b { font-size: clamp(2.4rem, 3.4vw, 3.2rem); color: var(--brass); }
+.rshow--light .rshow__stage { grid-column: 6 / span 7; }
+.rshow__card { position: relative; background: var(--paper); border: 1px solid var(--line); padding: clamp(34px, 3.6vw, 56px) clamp(28px, 3.6vw, 60px) clamp(30px, 3vw, 44px); }
+.rshow__card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--brass); }
+.rshow__mark { position: absolute; top: clamp(8px, 1vw, 14px); right: clamp(22px, 3vw, 40px); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(5rem, 7vw, 7rem); line-height: 1; color: rgba(169,132,76,.28); pointer-events: none; }
+.rshow--light .rshow__item { display: block; }
+.rshow--light .rshow__quote { font-family: var(--display); font-style: italic; font-size: clamp(1.15rem, 1.55vw, 1.5rem); line-height: 1.55; color: var(--ink); max-width: 46ch; }
+.rshow--light figcaption { display: flex; align-items: center; gap: 16px; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+.rshow__av { width: 54px; height: 54px; flex: 0 0 auto; border-radius: 50%; overflow: hidden; background: var(--navy); color: #fff; display: grid; place-items: center; font-family: var(--display); font-size: 1.1rem; box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--brass); }
+.rshow__av img { width: 100%; height: 100%; object-fit: cover; }
+.rshow--light figcaption b { display: block; font-weight: 500; font-size: 16px; }
+.rshow--light figcaption .label { display: block; margin-top: 4px; color: var(--muted); }
+.rshow--light .rshow__nav { margin-top: 26px; }
+.rshow--light .rshow__idx { color: var(--muted); }
+.rshow--light .rshow__idx b { color: var(--ink); }
+.rshow--light .rshow__bar { background: var(--line); }
+.rshow--light .rshow__bar i { background: var(--brass); }
+.rshow--light .rshow__nav button { width: 48px; height: 48px; border-color: var(--line); color: var(--ink); }
+.rshow--light .rshow__nav button:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+@media (max-width: 1000px) { .rshow--light .rshow__side, .rshow--light .rshow__stage { grid-column: 1 / -1; } .rshow--light .rshow__stage { margin-top: 44px; } }
+
+/* all reviews: one calm card style, no coloured blocks */
+.rall__card, .rall__card:nth-child(2), .rall__card:nth-child(3) { background: var(--white); color: var(--ink); border: 1px solid var(--line); margin-top: 0; position: relative; }
+.rall__card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--brass); }
+.rall__card:nth-child(2) figcaption { border-color: var(--line); }
+.rall__card:nth-child(2) figcaption small { color: var(--muted); }
+.rall__card blockquote { font-style: italic; font-size: clamp(1.05rem, 1.3vw, 1.25rem); }
+.rall__card .rcard__av, .rall__card:nth-child(2) .rcard__av { background: var(--navy); color: #fff; box-shadow: 0 0 0 3px var(--white), 0 0 0 4px var(--brass); }
+.rall__card .rfeat__mark { color: rgba(169,132,76,.5); }
+.rall__grid { align-items: stretch; }
+.rshow--light .rshow__count .label { color: var(--muted); }
+.rshow--light .rshow__items { display: block; position: relative; }
+.rshow--light .rshow__item { position: absolute; inset: 0 0 auto 0; }
+.rshow--light .rshow__item.on { position: relative; }

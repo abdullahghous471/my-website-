@@ -30,28 +30,24 @@ def reviews_show(label, btn_label, all_href, sub, all_label):
     picks = [QUOTES[3], QUOTES[0]]
     items = ''
     for i, (n, im, q) in enumerate(picks):
-        if im:
-            portrait = f'<img src="{sm(im)}" alt="{n}" loading="lazy">'
-        else:
-            portrait = f'<span class="rshow__mono">{REVIEW_AVATARS.get(n, n[:2])}</span>'
+        av = f'<img src="{sm(im)}" alt="{n}" loading="lazy">' if im else f'<span>{REVIEW_AVATARS.get(n, n[:2])}</span>'
         items += f'''<figure class="rshow__item{' on' if i == 0 else ''}">
-        <div class="rshow__portrait">{portrait}</div>
-        <div class="rshow__body">
-          <blockquote class="rshow__quote">{q}</blockquote>
-          <figcaption><b>{n}</b><span class="label">{sub}</span></figcaption>
-        </div>
+        <blockquote class="rshow__quote">{q}</blockquote>
+        <figcaption><span class="rshow__av">{av}</span><span><b>{n}</b><span class="label">{sub}</span></span></figcaption>
       </figure>'''
-    return f'''<section class="rshow on-dark">
-  <div class="rshow__bg" aria-hidden="true">“</div>
+    return f'''<section class="rshow rshow--light">
   <div class="wrap rshow__grid">
     <div class="rshow__side">
-      <span class="label" style="color:#C9B288">{btn_label}</span>
+      <span class="label label--brass">{btn_label}</span>
       <h2 class="h2" data-split>{label}</h2>
-      <div class="rshow__count"><b>{len(QUOTES):02d}</b><span class="label">{btn_label}</span></div>
-      <div data-reveal>{btn(all_label, all_href, 'btn--light')}</div>
+      <p class="rshow__count"><b>{len(QUOTES):02d}</b><span class="label muted">{btn_label}</span></p>
+      <div data-reveal>{btn(all_label, all_href)}</div>
     </div>
     <div class="rshow__stage" data-rshow>
-      <div class="rshow__items">{items}</div>
+      <div class="rshow__card">
+        <span class="rshow__mark" aria-hidden="true">“</span>
+        <div class="rshow__items">{items}</div>
+      </div>
       <div class="rshow__nav">
         <span class="rshow__idx label"><b>01</b> / 02</span>
         <span class="rshow__bar"><i></i></span>

@@ -22,41 +22,22 @@
   }
   const scrollTo = (y) => lenis ? lenis.scrollTo(y, { duration: 1.6 }) : window.scrollTo({ top: typeof y === 'number' ? y : 0, behavior: 'smooth' });
 
-  /* ------------------------------------------------ brand loader + page transitions */
+  /* ------------------------------------------------ page transitions (logo curtain) */
   const curtain = $('.curtain');
   let curtainDone; const curtainReady = new Promise(r => { curtainDone = r; });
-  const store = (() => { try { return sessionStorage; } catch (e) { return null; } })();
-  let seen = false;
-  try { seen = store && store.getItem('pcs-intro') === '1'; store && store.setItem('pcs-intro', '1'); } catch (e) {}
-  const bar = curtain && $('.curtain__bar i', curtain), pct = curtain && $('.curtain__pct b', curtain);
-  const setP = p => { if (bar) bar.style.transform = `scaleX(${p})`; if (pct) pct.textContent = Math.round(p * 100); };
   const leave = (href) => {
     if (!hasGsap || reduce || !curtain) { location.href = href; return; }
-    curtain.classList.add('is-quick'); curtain.style.animation = 'none'; setP(1);
-    gsap.set(curtain, { display: 'grid', visibility: 'visible', yPercent: 100, borderRadius: '50% 50% 0 0 / 14vh 14vh 0 0' });
-    gsap.set('.curtain__in, .curtain__cities', { autoAlpha: 1, y: 0 });
+    curtain.style.animation = 'none';
+    gsap.set(curtain, { yPercent: 100, display: 'grid', visibility: 'visible' });
     gsap.timeline({ onComplete: () => { location.href = href; } })
-      .to(curtain, { yPercent: 0, borderRadius: '0% 0% 0 0 / 0vh 0vh 0 0', duration: .75, ease: 'expo.inOut' });
+      .to(curtain, { yPercent: 0, duration: .8, ease: 'expo.inOut' })
+      .fromTo('.curtain__logo', { yPercent: 110 }, { yPercent: 0, duration: .6, ease: 'expo.out' }, '-=.35');
   };
   if (curtain && hasGsap && !reduce) {
-    if (seen) curtain.classList.add('is-quick');
-    const minT = seen ? 350 : 2100, maxT = seen ? 1800 : 3600, t0 = performance.now();
-    let loaded = document.readyState === 'complete', done = false;
-    addEventListener('load', () => { loaded = true; });
-    const tick = () => {
-      if (done) return;
-      const el = performance.now() - t0;
-      const target = loaded ? Math.min(1, el / minT) : Math.min(.9, el / maxT * 1.1);
-      setP(target);
-      if ((loaded && el >= minT) || el >= maxT) { done = true; setP(1); out(); return; }
-      requestAnimationFrame(tick);
-    };
-    const out = () => gsap.timeline({ delay: seen ? .05 : .25 })
-      .to('.curtain__in', { y: -30, autoAlpha: 0, duration: .5, ease: 'power3.in' })
-      .to('.curtain__cities', { autoAlpha: 0, duration: .3 }, '<')
-      .to(curtain, { yPercent: -100, borderRadius: '0 0 50% 50% / 0 0 16vh 16vh', duration: 1, ease: 'expo.inOut', onStart: () => setTimeout(curtainDone, 250) }, '-=.15')
+    gsap.timeline({ delay: .1 })
+      .to('.curtain__logo', { yPercent: -110, duration: .6, ease: 'expo.in' })
+      .to(curtain, { yPercent: -100, duration: 1, ease: 'expo.inOut', onStart: curtainDone }, '-=.15')
       .set(curtain, { display: 'none' });
-    requestAnimationFrame(tick);
   } else { if (curtain) curtain.style.display = 'none'; curtainDone(); }
   addEventListener('pageshow', e => { if (e.persisted && curtain) curtain.style.display = 'none'; });
   document.addEventListener('click', e => {

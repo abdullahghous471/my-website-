@@ -1398,34 +1398,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 900px) { .pn-hero__title, .pn-hero__side { grid-column: 1 / -1; } .pn-hero__side { margin-top: 28px; } }
 .pn-hero__grid { align-items: start; } .pn-hero__side { padding-top: 34px; padding-bottom: 0; }
 
-/* ==========================================================================
-   v6 — brand loader: the logo draws itself, the gold underline is the progress bar
-   ========================================================================== */
-.curtain { background: radial-gradient(120% 90% at 50% 100%, #2B4470 0%, var(--navy) 55%, var(--navy-deep) 100%); overflow: hidden; animation: curtain-off 0s linear 6s forwards; }
-.curtain__word:is(img) { display: block; }
-.curtain__arch { position: absolute; left: 50%; bottom: 0; width: min(78vw, 560px); height: 88vh; transform: translateX(-50%); fill: none; overflow: visible; }
-.curtain__arch path { stroke: var(--brass); stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .45; stroke-dasharray: 1; stroke-dashoffset: 1; animation: cdraw 2.2s var(--ease) .1s forwards; }
-.curtain__arch path.in { opacity: .18; animation-delay: .35s; }
-.curtain__in { position: relative; z-index: 2; width: min(84vw, 520px); }
-.curtain__logo { display: flex; align-items: center; gap: clamp(14px, 2vw, 22px); }
-.curtain__mark { flex: 0 0 auto; width: clamp(62px, 8vw, 92px); height: auto; overflow: visible; }
-.curtain__mark .b { fill: #fff; transform-origin: 106px 104px; transform: scale(0); animation: cpop .9s cubic-bezier(.34,1.56,.64,1) .15s forwards; }
-.curtain__mark .h { fill: none; stroke: var(--navy); stroke-width: 12; stroke-linejoin: miter; stroke-dasharray: 1; stroke-dashoffset: 1; animation: cdraw 1.1s var(--ease) .55s forwards; }
-.curtain__word:is(img) { width: clamp(170px, 26vw, 330px); height: auto; clip-path: inset(0 100% 0 0); animation: cwipe 1s var(--ease-io) .7s forwards; }
-.curtain__bar { position: relative; height: 3px; margin-top: clamp(16px, 2vw, 22px); background: rgba(255,255,255,.12); overflow: hidden; }
-.curtain__bar i { position: absolute; inset: 0; background: var(--brass); transform-origin: 0 50%; transform: scaleX(0); }
-.curtain__meta { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; margin-top: 14px; opacity: 0; animation: cfade .8s ease 1s forwards; }
-.curtain__tag { font-family: var(--script); font-size: clamp(1.3rem, 2vw, 1.7rem); color: #E7D7BA; line-height: 1; }
-.curtain__pct { font: 500 11px/1 var(--sans); letter-spacing: .3em; color: rgba(255,255,255,.7); }
-.curtain__pct b { font: 400 clamp(1.6rem, 2.4vw, 2.1rem)/1 var(--display); letter-spacing: 0; color: #fff; margin-right: 2px; font-variant-numeric: tabular-nums; }
-.curtain__cities { position: absolute; left: 0; right: 0; bottom: clamp(22px, 4vh, 40px); text-align: center; color: rgba(255,255,255,.45); opacity: 0; animation: cfade 1s ease 1.2s forwards; }
-@keyframes cdraw { to { stroke-dashoffset: 0; } }
-@keyframes cpop { to { transform: scale(1); } }
-@keyframes cwipe { to { clip-path: inset(0 0 0 0); } }
-@keyframes cfade { to { opacity: 1; } }
-/* quick version for page-to-page navigation within a visit */
-.curtain.is-quick .curtain__mark .b, .curtain.is-quick .curtain__mark .h, .curtain.is-quick .curtain__word, .curtain.is-quick .curtain__meta,
-.curtain.is-quick .curtain__cities, .curtain.is-quick .curtain__arch path { animation-duration: .01s; animation-delay: 0s; }
+/* v6 — page-transition curtain with the logo (white on navy) */
+.curtain { background: var(--navy); overflow: hidden; }
+.curtain__word { overflow: hidden; padding: 6px 0; }
+.curtain__logo { display: flex; align-items: center; gap: clamp(12px, 1.6vw, 18px); }
+.curtain__mark { width: clamp(52px, 6vw, 72px); height: auto; flex: 0 0 auto; }
+.curtain__mark .b { fill: #fff; }
+.curtain__mark .h { fill: none; stroke: var(--navy); stroke-width: 12; }
+.curtain__logo img { width: clamp(150px, 19vw, 240px); height: auto; display: block; }
 @media (prefers-reduced-motion: reduce) { .curtain { display: none !important; } }
 .curtain__in { width: fit-content; max-width: 88vw; }
-.curtain__arch path { vector-effect: none; stroke-width: 1.3; }
+.curtain__word .curtain__logo { display: flex; }

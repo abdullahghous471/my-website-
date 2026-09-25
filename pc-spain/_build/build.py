@@ -181,7 +181,7 @@ def header(lang, active, alt):
         s = ''
         if sub:
             s = '<ul class="menu__sub">' + ''.join(f'<li><a href="{h}">{l}</a></li>' for l, h in sub) + '</ul>'
-        items.append(f'<li><a href="{href}"{on}>{label}</a>{s}</li>')
+        items.append(f'<li><span class="menu__n">{i + 1:02d}</span><a href="{href}"{on}>{label}</a>{s}</li>')
         on_img = ' class="on"' if i == 0 else ''
         imgs.append(f'<img src="{sm(img)}" alt="" loading="lazy"{on_img}>')
     return f'''
@@ -200,15 +200,25 @@ def header(lang, active, alt):
 <div class="menu" aria-hidden="false">
   <button class="menu__close label" data-menu-close><i></i>{t['close']}</button>
   <div class="menu__main">
-    <nav aria-label="Menu"><ul class="menu__list">{''.join(items)}</ul>
-      <div class="menu__lang" aria-label="Language"><a href="{nl_href}"{' class="on"' if lang == 'nl' else ''} lang="nl">Nederlands</a><a href="{en_href}"{' class="on"' if lang == 'en' else ''} lang="en">English</a></div></nav>
-    <div class="menu__foot">
-      <div><span class="label">{t['offices']}</span>Valencia · Dénia · Amsterdam · Barcelona</div>
-      <div><span class="label">{t['hours']}</span>{t['hours_v']}</div>
-      <div><span class="label">{t['find']}</span>{IG}</div>
-    </div>
+    <nav aria-label="Menu"><ul class="menu__list">{''.join(items)}</ul></nav>
   </div>
-  <div class="menu__media" aria-hidden="true">{''.join(imgs)}</div>
+  <aside class="menu__side">
+    <div class="menu__block">
+      <span class="label">{'Direct contact' if lang == 'nl' else 'Talk to us'}</span>
+      <a class="menu__phone" href="tel:{PHONE_TEL}">{PHONE}</a>
+      <a class="menu__mail" href="mailto:{EMAIL}">{EMAIL}</a>
+      <a class="menu__wa" href="https://wa.me/{PHONE_TEL.lstrip('+')}" target="_blank" rel="noopener">WhatsApp {ARROW}</a>
+    </div>
+    <div class="menu__block menu__block--2">
+      <div><span class="label">{t['offices']}</span><p>Valencia · Dénia · Amsterdam · Barcelona</p></div>
+      <div><span class="label">{t['hours']}</span><p>{t['hours_v']}</p></div>
+    </div>
+    <div class="menu__block menu__block--3">
+      <div class="menu__lang" aria-label="Language"><a href="{nl_href}"{' class="on"' if lang == 'nl' else ''} lang="nl">NL</a><a href="{en_href}"{' class="on"' if lang == 'en' else ''} lang="en">EN</a></div>
+      {IG}
+    </div>
+    <a class="btn btn--light menu__cta" href="{t['cta'][1]}">{t['cta'][0]} {ARROW}</a>
+  </aside>
 </div>
 '''
 

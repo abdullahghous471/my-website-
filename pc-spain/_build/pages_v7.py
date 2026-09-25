@@ -173,3 +173,34 @@ def intake_form(lang):
     if lang == 'nl':
         return h.replace('over deze aanvraag.</span>', 'over deze aanvraag (zie ons <a href="privacy.html">privacybeleid</a>).</span>')
     return h.replace('about this request.</span>', 'about this request (see our <a href="en-privacy.html">privacy policy</a>).</span>')
+
+
+# ---------------------------------------------------------------- contact v2: discreet button + slide-in panel
+def contact_fab(lang):
+    nl = lang == 'nl'
+    L = (lambda a, b: a if nl else b)
+    msg = L('Hallo PC-Spain, ik heb een vraag over het kopen van een woning in Spanje.', 'Hello PC-Spain, I have a question about buying a property in Spain.')
+    wa = 'https://wa.me/' + PHONE_TEL.lstrip('+') + '?text=' + msg.replace(' ', '%20').replace(',', '%2C')
+    rows = [
+        (wa, WA_SVG, 'WhatsApp', L('Stuur ons direct een bericht', 'Send us a message directly'), ' target="_blank" rel="noopener"'),
+        (f'tel:{PHONE_TEL}', PHONE_SVG, L('Bellen', 'Call us'), PHONE, ''),
+        (f'mailto:{EMAIL}', MAIL_SVG, 'E-mail', EMAIL, ''),
+    ]
+    items = ''.join(f'<li><a href="{h}"{x}><span class="cd__ic">{ic}</span><span class="cd__tx"><b>{t}</b><small>{s}</small></span><span class="cd__go" aria-hidden="true">{ARROW}</span></a></li>' for h, ic, t, s, x in rows)
+    return f'''
+<button class="cbtn" type="button" data-copen aria-controls="cdrawer" aria-expanded="false">{PHONE_SVG}<span>Contact</span></button>
+<div class="cd" id="cdrawer" data-cd aria-hidden="true">
+  <div class="cd__shade" data-cclose></div>
+  <aside class="cd__panel" role="dialog" aria-modal="true" aria-labelledby="cd-title">
+    <button class="cd__close label" type="button" data-cclose><i></i>{L('Sluiten', 'Close')}</button>
+    <span class="label label--brass">Property Consultancy Spain</span>
+    <h2 class="cd__title" id="cd-title">{L('Spreek met een', 'Talk to an')} <span class="script">{L('adviseur', 'adviser')}</span></h2>
+    <p class="cd__lead">{L('Heeft u een vraag over een woning of belegging in Spanje? Wij helpen u graag verder.', 'Do you have a question about a property or investment in Spain? We are happy to help.')}</p>
+    <ul class="cd__list">{items}</ul>
+    <dl class="cd__meta">
+      <div><dt class="label">{L('Openingstijden', 'Opening hours')}</dt><dd>{L('Maandag- Zaterdag: 10:00 - 18:00', 'Monday - Saturday: 10:00 - 18:00')}</dd></div>
+      <div><dt class="label">{L('Kantoren', 'Offices')}</dt><dd>Valencia · Dénia · Amsterdam · Barcelona</dd></div>
+    </dl>
+    <a class="btn btn--solid cd__cta" href="{'intake.html' if nl else 'en-intake.html'}">{L('Doe de intake', 'Do the intake')} {ARROW}</a>
+  </aside>
+</div>'''

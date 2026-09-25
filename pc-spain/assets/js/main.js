@@ -763,6 +763,21 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
   });
 
+
+  /* ------------------------------------------------ contact panel */
+  const cd = $('[data-cd]'), copen = $('[data-copen]');
+  if (cd && copen) {
+    const set = open => {
+      cd.classList.toggle('open', open); cd.setAttribute('aria-hidden', !open); copen.setAttribute('aria-expanded', open);
+      document.body.classList.toggle('cd-open', open);
+      if (open) { lenis && lenis.stop(); setTimeout(() => { const c = $('.cd__close', cd); c && c.focus(); }, 400); }
+      else { lenis && lenis.start(); copen.focus(); }
+    };
+    copen.addEventListener('click', () => set(true));
+    $$('[data-cclose]', cd).forEach(b => b.addEventListener('click', () => set(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && cd.classList.contains('open')) set(false); });
+  }
+
   /* ------------------------------------------------ to top */
   $$('[data-top]').forEach(b => b.addEventListener('click', () => scrollTo(0)));
 })();

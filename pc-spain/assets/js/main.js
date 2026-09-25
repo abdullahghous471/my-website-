@@ -687,6 +687,23 @@
     check();
   }
 
+
+  /* ------------------------------------------------ reviews: quote switched by the reviewer tabs */
+  $$('[data-rq]').forEach(box => {
+    const qs = $$('.rq__q', box), ps = $$('.rq__p', box);
+    let i = 0, timer = null;
+    const show = k => {
+      i = (k + qs.length) % qs.length;
+      qs.forEach((q, j) => q.classList.toggle('on', j === i));
+      ps.forEach((p, j) => { p.classList.remove('on'); void p.offsetWidth; p.classList.toggle('on', j === i); });
+      clearTimeout(timer); if (!reduce) timer = setTimeout(() => show(i + 1), 8000);
+    };
+    ps.forEach((p, j) => p.addEventListener('click', () => show(j)));
+    box.addEventListener('mouseenter', () => { box.classList.add('paused'); clearTimeout(timer); });
+    box.addEventListener('mouseleave', () => { box.classList.remove('paused'); show(i + 1); });
+    show(0);
+  });
+
   /* ------------------------------------------------ to top */
   $$('[data-top]').forEach(b => b.addEventListener('click', () => scrollTo(0)));
 })();

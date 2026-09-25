@@ -28,32 +28,21 @@ def panels_html(label, heading, items):
 
 def reviews_show(label, btn_label, all_href, sub, all_label):
     picks = [QUOTES[3], QUOTES[0]]
-    items = ''
+    quotes, people = '', ''
     for i, (n, im, q) in enumerate(picks):
-        av = f'<img src="{sm(im)}" alt="{n}" loading="lazy">' if im else f'<span>{REVIEW_AVATARS.get(n, n[:2])}</span>'
-        items += f'''<figure class="rshow__item{' on' if i == 0 else ''}">
-        <blockquote class="rshow__quote">{q}</blockquote>
-        <figcaption><span class="rshow__av">{av}</span><span><b>{n}</b><span class="label">{sub}</span></span></figcaption>
-      </figure>'''
-    return f'''<section class="rshow rshow--light">
-  <div class="wrap rshow__grid">
-    <div class="rshow__side">
+        av = f'<img src="{sm(im)}" alt="" loading="lazy">' if im else f'<span>{REVIEW_AVATARS.get(n, n[:2])}</span>'
+        quotes += f'<blockquote class="rq__q{" on" if i == 0 else ""}">{q}</blockquote>'
+        people += f'<button class="rq__p{" on" if i == 0 else ""}" type="button"><span class="rq__av">{av}</span><span class="rq__who"><b>{n}</b><span class="label">{sub}</span></span><i></i></button>'
+    return f'''<section class="rq">
+  <div class="wrap rq__grid">
+    <div class="rq__side">
       <span class="label label--brass">{btn_label}</span>
       <h2 class="h2" data-split>{label}</h2>
-      <p class="rshow__count"><b>{len(QUOTES):02d}</b><span class="label muted">{btn_label}</span></p>
-      <div data-reveal>{btn(all_label, all_href)}</div>
+      <div data-reveal>{lk(all_label, all_href)}</div>
     </div>
-    <div class="rshow__stage" data-rshow>
-      <div class="rshow__card">
-        <span class="rshow__mark" aria-hidden="true">“</span>
-        <div class="rshow__items">{items}</div>
-      </div>
-      <div class="rshow__nav">
-        <span class="rshow__idx label"><b>01</b> / 02</span>
-        <span class="rshow__bar"><i></i></span>
-        <button data-rs-prev aria-label="Vorige">{ARROW_L}</button>
-        <button data-rs-next aria-label="Volgende">{ARROW}</button>
-      </div>
+    <div class="rq__main" data-rq>
+      <div class="rq__quotes" aria-live="polite">{quotes}</div>
+      <div class="rq__people">{people}</div>
     </div>
   </div>
 </section>'''
@@ -297,18 +286,17 @@ def expertises():
 
 # ----------------------------------------------------------------- PORTFOLIO
 def reviews_all(label, sub):
-    cards = ''
+    rows = ''
     for i, (n, im, q) in enumerate(QUOTES):
-        av = f'<img src="{sm(im)}" alt="{n}" loading="lazy">' if im else REVIEW_AVATARS.get(n, n[:2])
-        cards += f'''<figure class="rall__card rall__card--{i}" data-reveal="{(i % 2) * .12:.2f}">
-      <span class="rfeat__mark" aria-hidden="true">“</span>
-      <blockquote>{q}</blockquote>
-      <figcaption><span class="rcard__av">{av}</span><span><b>{n}</b><small class="label">{sub}</small></span></figcaption>
-    </figure>'''
+        av = f'<img src="{sm(im)}" alt="" loading="lazy">' if im else f'<span>{REVIEW_AVATARS.get(n, n[:2])}</span>'
+        rows += f'''<li class="rlist__row" data-reveal>
+      <div class="rlist__who"><span class="rlist__n">{i + 1:02d}</span><span class="rq__av">{av}</span><span><b>{n}</b><small class="label">{sub}</small></span></div>
+      <blockquote class="rlist__q">{q}</blockquote>
+    </li>'''
     return f'''<section class="sec rall" id="reviews">
   <div class="wrap">
     <div class="sec-head"><span class="label">Succesverhalen</span><h2 class="h2" data-split>{label}</h2></div>
-    <div class="rall__grid">{cards}</div>
+    <ol class="rlist">{rows}</ol>
   </div>
 </section>'''
 

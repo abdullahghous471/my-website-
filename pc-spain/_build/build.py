@@ -568,8 +568,8 @@ def home_body(**k):
   </div>
 </section>
 
-{quotes}
 {nb}
+{quotes}
 {cta(*k['cta_block'])}
 '''
 

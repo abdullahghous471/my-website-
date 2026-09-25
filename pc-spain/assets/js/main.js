@@ -31,11 +31,11 @@
     gsap.set(curtain, { yPercent: 100, display: 'grid', visibility: 'visible' });
     gsap.timeline({ onComplete: () => { location.href = href; } })
       .to(curtain, { yPercent: 0, duration: .8, ease: 'expo.inOut' })
-      .fromTo('.curtain__logo', { yPercent: 110 }, { yPercent: 0, duration: .6, ease: 'expo.out' }, '-=.35');
+      .fromTo('.curtain__logo, .curtain__build', { yPercent: 110 }, { yPercent: 0, duration: .6, ease: 'expo.out' }, '-=.35');
   };
   if (curtain && hasGsap && !reduce) {
     gsap.timeline({ delay: .1 })
-      .to('.curtain__logo', { yPercent: -110, duration: .6, ease: 'expo.in' })
+      .to('.curtain__logo, .curtain__build', { yPercent: -110, duration: .6, ease: 'expo.in' })
       .to(curtain, { yPercent: -100, duration: 1, ease: 'expo.inOut', onStart: curtainDone }, '-=.15')
       .set(curtain, { display: 'none' });
   } else { if (curtain) curtain.style.display = 'none'; curtainDone(); }

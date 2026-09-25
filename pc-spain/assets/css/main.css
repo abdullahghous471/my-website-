@@ -1413,3 +1413,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .curtain__word .curtain__logo { display: block; background: var(--white); padding: 22px 38px 24px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.45); }
 .curtain__logo img { width: clamp(190px, 17vw, 260px); }
 .curtain__word { padding: 0 0 40px; }
+
+/* curtain: building under construction (loops while the curtain is visible) */
+.curtain__word { display: flex; flex-direction: column; align-items: center; }
+.curtain__build { display: block; width: clamp(120px, 11vw, 150px); height: auto; margin-top: 26px; overflow: visible; }
+.curtain__build line, .curtain__build rect, .curtain__build path { fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.curtain__build .g { stroke: var(--brass); stroke-width: 2; }
+.curtain__build .crane line { stroke: rgba(255,255,255,.55); }
+.curtain__build .hook { animation: bhook 2.4s ease-in-out infinite; }
+.curtain__build .hook rect { stroke: var(--brass); }
+.curtain__build .f { opacity: 0; transform: translateY(-18px); animation: bfloor 2.4s cubic-bezier(.2,.8,.2,1) infinite; }
+.curtain__build .f2 { animation-delay: .35s; } .curtain__build .f3 { animation-delay: .7s; } .curtain__build .f4 { animation-delay: 1.05s; }
+.curtain__build .w { stroke: var(--brass); }
+.curtain__build .roof { stroke: var(--brass); }
+@keyframes bfloor { 0% { opacity: 0; transform: translateY(-18px); } 14%, 80% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+@keyframes bhook { 0%, 100% { transform: translate(0, 0); } 45% { transform: translate(-14px, 16px); } 70% { transform: translate(-6px, 4px); } }
+.curtain__build { width: clamp(150px, 13vw, 190px); margin-top: 30px; }

@@ -2018,3 +2018,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .band__text p { text-shadow: 0 1px 12px rgba(10,14,20,.55); }
 }
 @media (max-width: 700px) { body.is-reading .cbtn--bot .cbtn__hi { opacity: 0; } }
+
+/* v9.1 — Bodoni with sturdier hairlines everywhere: pin the optical size instead of letting
+   large headings switch to the ultra-thin display cut (same letterforms, better legibility) */
+*, *::before, *::after { font-variation-settings: 'opsz' 14 !important; }
+
+/* v9.1 — contact robot sits above the host's badge in the bottom-right corner */
+.cbtn.cbtn--bot { bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
+@media (max-width: 700px) {
+  .cbtn.cbtn--bot { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+  body.is-reading .cbtn--bot { transform: translateY(190px); }
+}
+@media (min-width: 701px) { body:has(.pf-hero) .band__title .h1[style] { font-size: min(3.7vw, 64px) !important; } }
+@media (max-width: 900px) { .lx-hero__in > div[style] { grid-column: 1 / -1 !important; } }
+@media (min-width: 701px) { .cta__inner .h1 { max-width: 15.5ch; } }

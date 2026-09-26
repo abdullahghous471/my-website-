@@ -1935,3 +1935,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   /* tips index: no hover indent on touch */
   .tindex__list a:hover, .tindex__list a.on { padding-left: 0; }
 }
+/* v8.3 — phones: the circle's description must not jump when the slide changes.
+   A transform on .orbit__item would become the positioning box of the absolute <p>,
+   so the item only fades; its children carry the gentle rise instead. */
+@media (max-width: 700px) {
+  .orbit__item, .orbit__item.on { transform: none; }
+  .orbit__item > * { transform: translateY(12px); transition: transform 1s var(--ease); }
+  .orbit__item.on > * { transform: none; }
+}

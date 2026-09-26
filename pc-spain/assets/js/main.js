@@ -938,6 +938,53 @@ float a=clamp((1.-sqrt(rr))*S*.5,0.,1.);gl_FragColor=vec4(min(c*s,vec3(1.))*a,a)
     addEventListener('resize', update);
     update();
   }
+  /* ------------------------------------------------ generic carousels: [data-carousel] gets arrows, drag, keys and a progress line */
+  $$('[data-carousel]').forEach(track => {
+    const en = (document.documentElement.lang || '').startsWith('en');
+    const items = [...track.children];
+    const nav = document.createElement('div');
+    nav.className = 'car-nav';
+    nav.innerHTML = `<span class="car-nav__bar"><i></i></span><button type="button" data-prev aria-label="${en ? 'Previous' : 'Vorige'}"><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M26 5H1M5 1L1 5l4 4"/></svg></button><button type="button" data-next aria-label="${en ? 'Next' : 'Volgende'}"><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button>`;
+    (track.dataset.carouselNav && $(track.dataset.carouselNav) || track).insertAdjacentElement(track.dataset.carouselNav ? 'beforeend' : 'afterend', nav);
+    const bar = $('.car-nav__bar i', nav), prevB = $('[data-prev]', nav), nextB = $('[data-next]', nav);
+    track.setAttribute('tabindex', '0');
+    const stepW = () => (items[1] ? items[1].offsetLeft - items[0].offsetLeft : track.clientWidth * .8);
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth, p = max > 0 ? track.scrollLeft / max : 1;
+      const vis = Math.min(1, track.clientWidth / Math.max(1, track.scrollWidth));
+      bar.style.transform = `scaleX(${Math.max(vis, vis + (1 - vis) * p)})`;
+      prevB.disabled = track.scrollLeft < 4; nextB.disabled = track.scrollLeft > max - 4;
+    };
+    const go = d => track.scrollBy({ left: d * stepW(), behavior: reduce ? 'auto' : 'smooth' });
+    prevB.addEventListener('click', () => go(-1));
+    nextB.addEventListener('click', () => go(1));
+    track.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    });
+    let x0 = 0, s0 = 0, down = false, moved = false;
+    track.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button) return; down = true; moved = false; x0 = e.clientX; s0 = track.scrollLeft; track.classList.add('is-drag'); });
+    addEventListener('pointermove', e => { if (!down) return; const dx = e.clientX - x0; if (Math.abs(dx) > 4) moved = true; track.scrollLeft = s0 - dx; });
+    addEventListener('pointerup', () => { if (!down) return; down = false; track.classList.remove('is-drag'); });
+    track.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
+    track.addEventListener('dragstart', e => e.preventDefault());
+    track.addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  });
+
+  /* ------------------------------------------------ Tarieven: commission split + checklist draw in */
+  $$('[data-tt-split], .tt-incl').forEach(el => {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { el.classList.add('in'); io.disconnect(); } }), { threshold: .3 });
+    io.observe(el);
+  });
+
+  /* ------------------------------------------------ Werkwijze stats: draw in once visible */
+  $$('[data-stats]').forEach(st => {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { st.classList.add('in'); io.disconnect(); } }), { threshold: .35 });
+    io.observe(st);
+  });
+
   let readY = scrollY;
   addEventListener('scroll', () => {
     const y = scrollY, nearEnd = y + innerHeight > document.documentElement.scrollHeight - 700;

@@ -65,61 +65,80 @@
 </div>
 <main id="main">
 
-<section class="tf-hero">
-  <div class="wrap tf-hero__grid">
-    <div class="tf-hero__text">
+<section class="tt-hero">
+  <div class="wrap tt-hero__grid">
+    <div class="tt-hero__text">
       <nav class="ph__crumbs" aria-label="Breadcrumb"><a class="label" href="en.html">Home</a><span class="label" aria-hidden="true">/</span><span class="label">Prices</span></nav>
       <h1 class="h1" data-split>Transparent <span class="script">prices</span></h1>
-      <p class="tf-hero__lead" data-reveal=".3">At Property Consultancy Spain we use transparent prices, tailored to your specific situation. Our fees vary with the type of purchase: whether you want guidance buying a second home for your own use, or you are investing in property for rental and returns.</p>
+      <p class="tt-hero__lead" data-reveal=".3">At Property Consultancy Spain we use transparent prices, tailored to your specific situation. Our fees vary with the type of purchase: whether you want guidance buying a second home for your own use, or you are investing in property for rental and returns.</p>
     </div>
-    <aside class="ratecard on-dark" data-reveal=".2">
-      <div class="ratecard__row"><span class="label">01 · Buying a second home</span><b><span data-count="3">3</span>%</b><small class="label">Minimum €5,750 excluding VAT</small></div>
-      <div class="ratecard__row"><span class="label">02 · Property investment</span><b>€ 1.750,-</b><small class="label">Start-up invoice, excluding VAT</small></div>
-      <span class="ratecard__seal" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="seal" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs><text><textPath href="#seal">TRANSPARENT PRICES · PC-SPAIN · </textPath></text></svg></span>
-    </aside>
+    <div class="tt-price" data-reveal=".2">
+      <span class="tt-price__seal" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="tt-seal" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs><text><textPath href="#tt-seal">TRANSPARENT PRICES · PC-SPAIN · </textPath></text></svg></span>
+      <a class="tt-price__item" href="#tt-plan-1"><span class="label">01 · Buying a second home</span><b><span data-count="3">3</span><i>%</i></b><small class="label">Minimum €5,750 excluding VAT</small></a>
+      <a class="tt-price__item" href="#tt-plan-2"><span class="label">02 · Property investment</span><b><i>€</i>1.750</b><small class="label">Start-up invoice, excluding VAT</small></a>
+    </div>
   </div>
 </section>
 
-<section class="sec bg-white">
-  <div class="wrap split">
-    <div class="split__label"><span class="label label--brass">Transparent prices</span></div>
-    <div class="split__main"><p class="lead lead--xl" data-words>We make sure you know exactly where you stand, so you can invest in the Spanish property market with confidence. Contact us for more information about our tailored prices!</p></div>
+<section class="sec tt-how bg-white">
+  <div class="wrap">
+    <div class="tt-how__head">
+      <span class="label label--brass">How commission works in Spain</span>
+      <p class="lead lead--xl" data-words>We make sure you know exactly where you stand, so you can invest in the Spanish property market with confidence. Contact us for more information about our tailored prices!</p>
+    </div>
+    <div class="tt-split" data-tt-split>
+      <div class="tt-split__cap"><span class="label">Valencia region</span><span class="label muted">Commission on the purchase price</span></div>
+      <div class="tt-split__bar">
+        <div class="tt-split__seg tt-split__seg--a"><b>3%</b><span>Seller</span><small>Pays their own agent</small></div>
+        <div class="tt-split__seg tt-split__seg--b"><b>3%</b><span>Buyer</span><small>Pays your own agent: PC-Spain</small></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="sec plans-sec">
-  <div class="wrap plans">
-    <article class="plan" data-reveal>
-      <div class="plan__top"><span class="plan__n">01</span><span class="label label--brass">Prices</span></div>
-      <h2 class="h3">Prices – Buying a second home in Spain</h2>
-      <div class="plan__fig">3%<small class="label">Minimum €5,750 excluding VAT</small></div>
-      <div class="plan__body"><p>Commissions work differently in Spain than in the Netherlands. Almost 90% of sales include a 5% commission in the sale price. In the Valencia region the seller pays 3% to their agent and the buyer pays 3% to their own agent. At PC-Spain we work the same way, with a minimum of €5,750 excluding VAT. For purchases outside Valencia we are paid by the selling agent. We always communicate any deviations transparently in advance.</p></div>
-    </article>
-    <article class="plan plan--navy on-dark" data-reveal=".15">
-      <div class="plan__top"><span class="plan__n">02</span><span class="label">Prices</span></div>
-      <h2 class="h3">Prices – Guidance when buying a property investment</h2>
-      <div class="plan__fig">€ 1.750,-<small class="label">Start-up invoice, excluding VAT</small></div>
-      <div class="plan__body"><p>When you buy a property investment we provide extensive guidance to make sure you get the most out of it. Our start-up costs include essential consultations, tours and project visits that give you full insight into the market and potential opportunities. Our prices are transparent, so you know exactly where you stand throughout the process.</p>
-        <p><strong>Start-up invoice: € 1,750 excluding VAT</strong></p><p>The start-up invoice includes:</p>
-        <ul><li>A consultation with an international tax adviser.</li><li>Legal advice from a property lawyer.</li><li>A two-day tour of Valencia and the surrounding area.</li><li>Viewing ongoing projects and potential investments.</li><li>Two days of guidance by a consultant with knowledge of Spanish investment opportunities.</li></ul></div>
-    </article>
+<section class="sec tt-plans">
+  <div class="wrap">
+    <div class="tt-plans__head"><span class="label label--brass">Prices</span><h2 class="h2" data-split>Two paths, one clear price</h2></div>
+    <div class="tt-plans__grid">
+      <article class="tt-plan" id="tt-plan-1" data-reveal>
+        <span class="tt-plan__n" aria-hidden="true">01</span>
+        <h3 class="h3">Prices – Buying a second home in Spain</h3>
+        <div class="tt-plan__fig">3%<small class="label">Minimum €5,750 excluding VAT</small></div>
+        <p>Commissions work differently in Spain than in the Netherlands. Almost 90% of sales include a 5% commission in the sale price. In the Valencia region the seller pays 3% to their agent and the buyer pays 3% to their own agent. At PC-Spain we work the same way, with a minimum of €5,750 excluding VAT. For purchases outside Valencia we are paid by the selling agent. We always communicate any deviations transparently in advance.</p>
+        <a class="lk" href="#tt-calc">Calculate your commission <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></a>
+      </article>
+      <article class="tt-plan" id="tt-plan-2" data-reveal=".15">
+        <span class="tt-plan__n" aria-hidden="true">02</span>
+        <h3 class="h3">Prices – Guidance when buying a property investment</h3>
+        <div class="tt-plan__fig">€ 1.750,-<small class="label">Start-up invoice, excluding VAT</small></div>
+        <p>When you buy a property investment we provide extensive guidance to make sure you get the most out of it. Our start-up costs include essential consultations, tours and project visits that give you full insight into the market and potential opportunities. Our prices are transparent, so you know exactly where you stand throughout the process.</p>
+        <p class="tt-plan__incl-t label">The start-up invoice includes:</p>
+        <ul class="tt-incl"><li><svg class="tt-check" viewBox="0 0 20 20" aria-hidden="true"><path pathLength="1" d="M4 10.5l4 4 8-9"/></svg><span>A consultation with an international tax adviser.</span></li><li><svg class="tt-check" viewBox="0 0 20 20" aria-hidden="true"><path pathLength="1" d="M4 10.5l4 4 8-9"/></svg><span>Legal advice from a property lawyer.</span></li><li><svg class="tt-check" viewBox="0 0 20 20" aria-hidden="true"><path pathLength="1" d="M4 10.5l4 4 8-9"/></svg><span>A two-day tour of Valencia and the surrounding area.</span></li><li><svg class="tt-check" viewBox="0 0 20 20" aria-hidden="true"><path pathLength="1" d="M4 10.5l4 4 8-9"/></svg><span>Viewing ongoing projects and potential investments.</span></li><li><svg class="tt-check" viewBox="0 0 20 20" aria-hidden="true"><path pathLength="1" d="M4 10.5l4 4 8-9"/></svg><span>Two days of guidance by a consultant with knowledge of Spanish investment opportunities.</span></li></ul>
+      </article>
+    </div>
+    <ul class="tt-promise" data-reveal>
+      <li><b>01</b><span>Always excluding VAT</span></li>
+      <li><b>02</b><span>Outside Valencia the selling agent pays us</span></li>
+      <li><b>03</b><span>Any deviations communicated in advance</span></li>
+    </ul>
   </div>
 </section>
 
-<section class="sec bg-white">
-  <div class="wrap calc" data-calc>
-    <div class="calc__head">
+<section class="sec bg-white" id="tt-calc">
+  <div class="wrap tt-calc calc" data-calc>
+    <div class="tt-calc__head calc__head">
       <span class="label label--brass">Prices when buying:</span>
       <h2 class="h2" data-split>Prices when buying</h2>
       <p class="muted">All commissions exclude VAT.</p>
     </div>
-    <div class="calc__box">
-      <label class="label" for="calc-range">Purchase price</label>
-      <output class="calc__amount" for="calc-range">€ 150.000</output>
+    <div class="tt-calc__box">
+      <div class="tt-calc__io">
+        <div><label class="label" for="calc-range">Purchase price</label><output class="calc__amount" for="calc-range">€ 150.000</output></div>
+        <div class="tt-calc__res"><span class="label">Commission</span><b class="calc__fee">€ 6.750,-</b></div>
+      </div>
       <input type="range" id="calc-range" min="50000" max="1000000" step="5000" value="150000">
       <div class="calc__scale label muted"><span>€ 50.000</span><span>€ 1.000.000</span></div>
-      <div class="calc__out"><span class="label">Commission</span><b class="calc__fee">€ 6.750,-</b></div>
-      <ol class="calc__tiers"><li data-max="100000"><span>for purchases up to € 100,000</span><b>€ 5.750,-</b></li><li data-max="150000"><span>for purchases up to € 150,000</span><b>€ 6.750,-</b></li><li data-max="200000"><span>for purchases up to € 200,000</span><b>€ 7.750,-</b></li><li data-max="0"><span>of the purchase price for purchases above € 200,000</span><b>4%</b></li></ol>
+      <ol class="calc__tiers tt-tiers"><li data-max="100000"><span>for purchases up to € 100,000</span><b>€ 5.750,-</b></li><li data-max="150000"><span>for purchases up to € 150,000</span><b>€ 6.750,-</b></li><li data-max="200000"><span>for purchases up to € 200,000</span><b>€ 7.750,-</b></li><li data-max="0"><span>of the purchase price for purchases above € 200,000</span><b>4%</b></li></ol>
     </div>
   </div>
 </section>

@@ -881,6 +881,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .gl-hero__globe { grid-column: 7 / span 6; position: relative; }
 .globe { display: block; width: 100%; aspect-ratio: 1; cursor: grab; touch-action: pan-y; }
 .globe:active { cursor: grabbing; }
+.globe { opacity: 0; transition: opacity 1.4s var(--ease); }
+.globe.is-ready { opacity: 1; }
 @media (max-width: 900px) { .gl-hero__text, .gl-hero__globe { grid-column: 1 / -1; } .gl-hero__globe { margin-top: 30px; } }
 .lead--xl { font-size: clamp(1.6rem, 3vw, 2.9rem); line-height: 1.28; }
 [data-words] .w { transition: opacity .3s; }

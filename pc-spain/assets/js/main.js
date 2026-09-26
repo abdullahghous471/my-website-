@@ -445,7 +445,7 @@
     let W = 0, R = 0, dpr = 1, base = -30, lat0 = rad(32), lon0 = rad(base), visible = false, dragX = null, dragBase = 0, t0 = performance.now();
     const resize = () => {
       W = cv.clientWidth; dpr = Math.min(2, window.devicePixelRatio || 1);
-      cv.width = W * dpr; cv.height = W * dpr; R = W * .4;
+      cv.width = W * dpr; cv.height = W * dpr; R = W * (W < 600 ? .45 : .4);
     };
     const proj = (la, lo) => {
       la = rad(la); lo = rad(lo);
@@ -494,12 +494,60 @@
       }
       earth.buf.getContext('2d').putImageData(earth.img, 0, 0);
     };
+    // GPU path: the same orthographic projection and lighting, evaluated per pixel in a shader
+    const glr = (() => {
+      try {
+        const c = document.createElement('canvas'), g = c.getContext('webgl', { premultipliedAlpha: true, antialias: false });
+        if (!g) return null;
+        const sh = (type, src) => { const o = g.createShader(type); g.shaderSource(o, src); g.compileShader(o); if (!g.getShaderParameter(o, g.COMPILE_STATUS)) throw 0; return o; };
+        const pr = g.createProgram();
+        g.attachShader(pr, sh(g.VERTEX_SHADER, 'attribute vec2 p;varying vec2 q;void main(){q=p;gl_Position=vec4(p,0.,1.);}'));
+        g.attachShader(pr, sh(g.FRAGMENT_SHADER, `#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+varying vec2 q;uniform sampler2D T;uniform float lon0,sl,cl,S;
+void main(){float rr=dot(q,q);if(rr>1.){gl_FragColor=vec4(0.);return;}
+float z=sqrt(1.-rr);float la=asin(clamp(q.y*cl+z*sl,-1.,1.));float lo=atan(q.x,z*cl-q.y*sl)+lon0;
+vec3 c=texture2D(T,vec2(fract((lo+3.14159265)/6.28318531),.5-la/3.14159265)).rgb;
+float lam=dot(vec3(q,z),normalize(vec3(-.45,.5,.74)));float s=min(1.12,.32+max(0.,lam)*.95)*(.82+.18*z);
+float a=clamp((1.-sqrt(rr))*S*.5,0.,1.);gl_FragColor=vec4(min(c*s,vec3(1.))*a,a);}`));
+        g.linkProgram(pr); if (!g.getProgramParameter(pr, g.LINK_STATUS)) return null;
+        g.useProgram(pr);
+        g.bindBuffer(g.ARRAY_BUFFER, g.createBuffer());
+        g.bufferData(g.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), g.STATIC_DRAW);
+        const loc = g.getAttribLocation(pr, 'p'); g.enableVertexAttribArray(loc); g.vertexAttribPointer(loc, 2, g.FLOAT, false, 0, 0);
+        const u = n => g.getUniformLocation(pr, n);
+        return { c, g, lon0: u('lon0'), sl: u('sl'), cl: u('cl'), S: u('S') };
+      } catch (e) { return null; }
+    })();
+    const glTex = img => {
+      const g = glr.g, t = g.createTexture();
+      g.bindTexture(g.TEXTURE_2D, t);
+      g.texImage2D(g.TEXTURE_2D, 0, g.RGB, g.RGB, g.UNSIGNED_BYTE, img);
+      g.texParameteri(g.TEXTURE_2D, g.TEXTURE_WRAP_S, g.REPEAT);
+      g.texParameteri(g.TEXTURE_2D, g.TEXTURE_WRAP_T, g.CLAMP_TO_EDGE);
+      g.texParameteri(g.TEXTURE_2D, g.TEXTURE_MIN_FILTER, g.LINEAR);
+      g.texParameteri(g.TEXTURE_2D, g.TEXTURE_MAG_FILTER, g.LINEAR);
+      return !g.getError();
+    };
+    const paintGL = () => {
+      const g = glr.g, S = Math.round(R * 2 * dpr);
+      if (glr.c.width !== S) { glr.c.width = glr.c.height = S; g.viewport(0, 0, S, S); }
+      g.uniform1f(glr.lon0, lon0); g.uniform1f(glr.sl, Math.sin(lat0)); g.uniform1f(glr.cl, Math.cos(lat0)); g.uniform1f(glr.S, S);
+      g.clearColor(0, 0, 0, 0); g.clear(g.COLOR_BUFFER_BIT); g.drawArrays(g.TRIANGLE_STRIP, 0, 4);
+      return glr.c;
+    };
     const texImg = new Image();
     texImg.onload = () => {
+      cv.classList.add('is-ready');
+      if (glr && glTex(texImg)) { earth.gpu = true; earth.ready = true; draw(performance.now()); return; }
       const tc = document.createElement('canvas'); tc.width = earth.TW = texImg.naturalWidth; tc.height = earth.TH = texImg.naturalHeight;
       const tx = tc.getContext('2d'); tx.drawImage(texImg, 0, 0);
       earth.tex = tx.getImageData(0, 0, earth.TW, earth.TH).data; earth.ready = true; earth.map = null; lastLon = null; draw(performance.now());
     };
+    texImg.onerror = () => cv.classList.add('is-ready');
     texImg.src = cv.dataset.earth || 'assets/img/earth.jpg';
     const hub = pts.find(p => p[0] === 'Amsterdam');
     const draw = (now) => {
@@ -507,13 +555,14 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, W, W);
       // realistic Earth: NASA Blue Marble texture, orthographic, lit from the upper left
-      const glow = ctx.createRadialGradient(c, c, R * .96, c, c, R * 1.16);
+      const gR = Math.min(R * 1.16, c - 1);
+      const glow = ctx.createRadialGradient(c, c, R * .96, c, c, gR);
       glow.addColorStop(0, 'rgba(120,170,235,.55)'); glow.addColorStop(.35, 'rgba(120,170,235,.18)'); glow.addColorStop(1, 'rgba(120,170,235,0)');
-      ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(c, c, R * 1.16, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(c, c, gR, 0, Math.PI * 2); ctx.fill();
       if (earth.ready) {
-        paintEarth();
+        const src = earth.gpu ? paintGL() : (paintEarth(), earth.buf);
         ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(earth.buf, c - R, c - R, R * 2, R * 2);
+        ctx.drawImage(src, c - R, c - R, R * 2, R * 2);
       } else {
         const g = ctx.createRadialGradient(c - R * .35, c - R * .4, R * .1, c, c, R);
         g.addColorStop(0, '#2C5D8F'); g.addColorStop(1, '#0B1B33');
@@ -527,6 +576,7 @@
       const phase = (now / 1400) % 1;
       pts.forEach(p => {
         if (p === hub) return;
+        if (proj(p[1], p[2]).z <= .05 || proj(hub[1], hub[2]).z <= .05) return;
         const a = vec(hub[1], hub[2]), b = vec(p[1], p[2]);
         const N = 64, far = Math.acos(a[0] * b[0] + a[1] * b[1] + a[2] * b[2]);
         const lift = Math.min(.35, .06 + far * .25);
@@ -539,7 +589,37 @@
         ctx.strokeStyle = 'rgba(214,186,140,.95)'; ctx.lineWidth = 1.4; ctx.stroke(); ctx.setLineDash([]);
       });
       // markers
-      ctx.font = `500 ${Math.max(11, W * .022)}px Jost, sans-serif`;
+      const compact = W < 600;
+      ctx.font = `500 ${compact ? 12.5 : Math.max(11, W * .022)}px Jost, sans-serif`;
+      if (compact) {
+        const vis = pts.map(p => ({ p, q: proj(p[1], p[2]) })).filter(o => o.q.z > 0).map(o => ({ ...o, X: c + o.q.x * R, Y: c - o.q.y * R }));
+        vis.forEach(o => {
+          const pulse = (now / 1600 + o.p[1]) % 1;
+          ctx.beginPath(); ctx.arc(o.X, o.Y, 3.5 + pulse * 10, 0, Math.PI * 2); ctx.strokeStyle = `rgba(214,186,140,${.7 * (1 - pulse)})`; ctx.lineWidth = 1; ctx.stroke();
+          ctx.beginPath(); ctx.arc(o.X, o.Y, 3.5, 0, Math.PI * 2); ctx.fillStyle = o.p === hub ? '#FFFFFF' : '#D6BA8C'; ctx.fill();
+        });
+        // labels to the right of their marker; stacked ones get a short leader line
+        const gap = 17, side = vis.filter(o => o.q.x < .5).sort((a, b) => a.Y - b.Y);
+        const cols = [];
+        side.forEach(o => { const col = cols.find(k => Math.abs(k.x - o.X) < 40); col ? col.items.push(o) : cols.push({ x: o.X, items: [o] }); });
+        ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+        cols.forEach(col => {
+          const lx = Math.max(...col.items.map(o => o.X)) + (col.items.length > 1 ? 30 : 11);
+          let prev = -1e9;
+          col.items.forEach(o => {
+            const ly = Math.max(o.Y, prev + gap); prev = ly;
+            if (col.items.length > 1) {
+              ctx.beginPath(); ctx.moveTo(o.X + 4, o.Y); ctx.lineTo(lx - 12, ly); ctx.lineTo(lx - 5, ly);
+              ctx.strokeStyle = 'rgba(255,255,255,.75)'; ctx.lineWidth = .8; ctx.stroke();
+            }
+            ctx.fillStyle = '#FFFFFF'; ctx.shadowColor = 'rgba(0,0,0,.8)'; ctx.shadowBlur = 5;
+            ctx.fillText(o.p[0], lx, ly); ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
+          });
+        });
+        vis.filter(o => o.q.x >= .5).forEach(o => { ctx.textAlign = 'right'; ctx.fillStyle = '#FFFFFF'; ctx.fillText(o.p[0], o.X - 10, o.Y); });
+        ctx.textBaseline = 'alphabetic';
+        return;
+      }
       pts.forEach(p => {
         const q = proj(p[1], p[2]);
         if (q.z <= 0) return;
@@ -561,7 +641,7 @@
       requestAnimationFrame(loop);
     };
     resize(); draw(performance.now());
-    addEventListener('resize', () => { resize(); draw(performance.now()); });
+    addEventListener('resize', () => { if (cv.clientWidth === W) return; resize(); draw(performance.now()); });
     new IntersectionObserver(es => es.forEach(e => visible = e.isIntersecting)).observe(cv);
     cv.addEventListener('pointerdown', e => { dragX = e.clientX; dragBase = lon0 * 180 / Math.PI; cv.setPointerCapture(e.pointerId); });
     cv.addEventListener('pointermove', e => { if (dragX === null) return; lon0 = rad(dragBase - (e.clientX - dragX) * .35); });

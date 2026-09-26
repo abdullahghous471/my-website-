@@ -1858,7 +1858,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .menu__close { left: auto; right: var(--gut); width: 46px; height: 46px; padding: 0; justify-content: center; font-size: 0; gap: 0; top: calc(env(safe-area-inset-top, 0px) + (var(--hd) - 46px) / 2); }
   .menu__close i { width: 18px; height: 18px; }
 }
-@media (max-width: 700px) { .band__title .h1[style] { font-size: 5.8vw !important; } }
+@media (max-width: 700px) { body:has(.pf-hero) .band__title .h1[style] { font-size: 5.8vw !important; } }
 
 /* v8 — home "Waarom PC-Spain" circle on phones: one compact block (title, full circle, text, controls) */
 @media (max-width: 700px) {
@@ -1884,4 +1884,54 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .orbit-count__of { padding-bottom: 0; }
   .orbit-intro > div[data-reveal] { grid-area: cta; margin-top: 30px; }
   .orbit-intro > div[data-reveal] .btn { width: 100%; justify-content: center; }
+}
+/* v8.1 — phones: the title lives inside the circle again (as on desktop); the description sits right under it */
+@media (max-width: 700px) {
+  .orbit::before { padding-top: 0; height: calc(90cqw + 176px); }
+  .orbit__ring, .orbit__nodes { left: 5cqw; width: 90cqw; height: 90cqw; }
+  .orbit__node { transform: translate(-50%, -50%) rotate(var(--a)) translateY(-45cqw) rotate(calc(-1 * var(--a) - var(--rot))); }
+  .orbit__core { left: 13.1cqw; top: 8.1cqw; width: 73.8cqw; height: 73.8cqw; }
+  .orbit__core::after { background: radial-gradient(circle, rgba(10,14,20,.62) 0%, rgba(10,14,20,.5) 55%, rgba(10,14,20,.3) 100%); }
+  .orbit__text { position: absolute; inset: auto; left: 13.1cqw; top: 8.1cqw; width: 73.8cqw; height: 73.8cqw; padding: 0 9cqw; border-radius: 50%; display: grid; place-items: center; text-align: center; color: #fff; }
+  .orbit__item { position: static; }
+  .orbit__item .label { color: rgba(255,255,255,.85); }
+  .orbit__item .h3 { color: #fff; font-size: clamp(1.45rem, 7cqw, 1.9rem); line-height: 1.12; margin: 12px 0 0; text-shadow: 0 2px 16px rgba(0,0,0,.45); }
+  .orbit__item p { position: absolute; left: -13.1cqw; right: -13.1cqw; top: calc(100% + 16.5cqw); margin: 0 auto; max-width: 36ch; text-align: center; color: #2A3342; text-shadow: none; font-size: 15.5px; line-height: 1.65; }
+  .orbit-ctrl, .orbit-count { margin-top: 18px; }
+}
+
+/* v8.2 — phone polish pass: legibility, rhythm and small layout faults */
+@media (max-width: 700px) {
+  :root { --muted: #4E5663; }
+  p { text-wrap: pretty; }
+
+  /* text over video: a deeper bottom shade so white copy always reads */
+  .band { min-height: 0; }
+  .band__media::after { background: linear-gradient(180deg, rgba(18,27,41,.3) 0%, rgba(18,27,41,.35) 30%, rgba(18,27,41,.82) 70%, rgba(18,27,41,.9) 100%); }
+  .band__text p { color: rgba(255,255,255,.94); font-size: 15.5px; }
+
+  /* Bodoni is a display face: keep long passages it sets short and airy */
+  .lead--xl { font-size: 1.2rem; line-height: 1.5; }
+  .sec { padding-block: 76px; }
+  .rq__q { font-size: 1.18rem; line-height: 1.6; }
+  .rlist__q { font-size: 1.1rem; line-height: 1.62; }
+  .pn-hero__lead { font-size: 1.15rem; line-height: 1.5; }
+
+  /* partners hero: no dead gap between title and intro */
+  .pn-hero__side { margin-top: 20px; padding-top: 0; }
+
+  /* filters: one swipeable row; the active underline sits on the rule, not on the next row */
+  .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 24px; margin-inline: calc(-1 * var(--gut)); padding: 0 var(--gut) 14px; -webkit-overflow-scrolling: touch; }
+  .filters::-webkit-scrollbar { display: none; }
+  .filters button { flex: 0 0 auto; white-space: nowrap; }
+  .filters button::after { bottom: -14px; }
+
+  /* home "Voordelen": the cards carry their own 01 / 06 */
+  .hs__count { display: none !important; }
+
+  /* sliders snap with the page margin instead of against the screen edge */
+  .drag { scroll-padding-inline: var(--gut); }
+
+  /* tips index: no hover indent on touch */
+  .tindex__list a:hover, .tindex__list a.on { padding-left: 0; }
 }

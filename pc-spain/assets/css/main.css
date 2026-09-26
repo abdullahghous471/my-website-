@@ -1751,3 +1751,109 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .menu__logo { position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 3; background: var(--white); padding: 14px 26px 16px; box-shadow: 0 8px 24px -16px rgba(18,27,41,.35); }
 .menu__logo img { width: clamp(150px, 13vw, 208px); height: auto; display: block; }
 @media (max-width: 900px) { .menu__logo { padding: 10px 16px 12px; } .menu__logo img { width: 112px; } }
+
+/* ==========================================================================
+   v8 — mobile overhaul (phones & small tablets only; desktop untouched)
+   ========================================================================== */
+@media (max-width: 900px) {
+  /* header: one clean bar — logo left, language + menu right */
+  :root { --hd: 64px; }
+  .hd, .hd.is-solid, .hd.is-light { grid-template-columns: 1fr auto auto; column-gap: 12px; color: var(--ink); background: rgba(241, 240, 236, .97); border-bottom: 1px solid var(--line); backdrop-filter: saturate(1.2) blur(8px); -webkit-backdrop-filter: saturate(1.2) blur(8px); }
+  .hd__logo, .hd.is-solid .hd__logo { order: -1; justify-self: start; align-self: center; margin: 0; padding: 0; background: none; box-shadow: none; }
+  .hd__logo img, .hd.is-solid .hd__logo img { width: 128px; }
+  .hd__right { order: 0; gap: 0; }
+  .hd__left { order: 1; gap: 0; }
+  .hd__lang { border: 0; padding: 0; gap: 2px; }
+  .hd__lang a { font-size: 11px; padding: 7px 8px; }
+  .hd__menu { width: 46px; height: 46px; padding: 0; justify-content: center; }
+  .hd__menu span { display: none; }
+  .hd__menu i { width: 20px; height: 9px; }
+  .hd__menu i::after { width: 100%; }
+  .intro__scroll { display: none; }
+}
+
+@media (max-width: 700px) {
+  :root { --gut: 22px; }
+  body { font-size: 16px; line-height: 1.7; font-weight: 350; }
+
+  /* headlines: sized so the longest Dutch words never clip */
+  .h1, .h1[style], .cta__inner .h1, .gl-hero .h1, .wk-hero .h1, .xp-hero .h1, .pf-hero__grid .h1,
+  .tf-hero .h1, .wl-hero .h1, .tp-hero .h1, .in-hero .h1, .lx-hero h1 { font-size: clamp(1.9rem, 9vw, 2.35rem) !important; line-height: .98; }
+  .h2 { font-size: clamp(1.7rem, 7.6vw, 2.05rem); line-height: 1.08; }
+  .lead { font-size: 1.22rem; line-height: 1.4; }
+  .intro__over h2 { font-size: clamp(1.95rem, 9.4vw, 2.4rem); }
+  .band__title .h1, .case__title { font-size: clamp(1.9rem, 9vw, 2.35rem) !important; }
+  .figs__t { font-size: 1.55rem; }
+  .figs__n { font-size: 4.2rem; }
+
+  /* home hero: legible copy over any footage */
+  .intro__window::after { background: linear-gradient(180deg, rgba(18,27,41,.2) 0%, rgba(18,27,41,0) 24%, rgba(18,27,41,.3) 48%, rgba(18,27,41,.86) 100%); }
+  .intro__over { padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)); row-gap: 20px; }
+  .intro__over-side { gap: 22px; }
+  .intro__over-side p { font-size: 16px; }
+  .intro__over-side .btn { width: 100%; justify-content: center; }
+
+  /* "Voordelen": native swipe carousel instead of a very long stack */
+  .hs__pin { min-height: 0; padding-block: 72px 56px; }
+  .hs__head { margin-bottom: 28px; }
+  .hs__track { flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 16px; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+  .hs__track::-webkit-scrollbar { display: none; }
+  .hs__head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .hs__head .h2 { max-width: 14ch; }
+  /* listings: landscape photos keep the list scannable */
+  .lgrid { gap: 40px 16px; }
+  .lgrid .lcard .frame { aspect-ratio: 4 / 3; }
+  .lgrid--3 .lcard:nth-child(3n+2) { margin-top: 0; }
+  .hs__card { flex: 0 0 84%; scroll-snap-align: start; scroll-margin-left: var(--gut); padding-top: 16px; }
+  .hs__card .frame { margin: 16px 0 20px; aspect-ratio: 4 / 3; }
+  .hs__card p { font-size: 15px; }
+  .hs__track::after { content: ""; flex: 0 0 1px; }
+  .hs__bar { display: block; margin: 28px var(--gut) 0; }
+  .hs__count { display: block; }
+
+  /* call-to-action bands */
+  .cta__inner { padding: 88px var(--gut); gap: 22px; }
+  .cta__inner .h1 { max-width: none; }
+  .cta__inner p { font-size: 16px; }
+
+  /* property pages: two-up gallery instead of eleven full-width photos */
+  .gallery { columns: 2; column-gap: 8px; }
+  .gallery button { margin-bottom: 8px; }
+  .gallery button:first-child { column-span: all; }
+
+  /* intake: the form comes straight after the title */
+  .in-grid { display: flex; flex-direction: column; }
+  .in-side { display: contents; }
+  .in-form { order: 2; margin-top: 28px; }
+  .in-steps { order: 3; margin-top: 48px; }
+  .in-contact { order: 4; }
+  .itiles--2 { grid-template-columns: 1fr; }
+  .itiles--2 .itile { min-height: 0; padding: 16px 18px; grid-template-columns: 30px 1fr; column-gap: 8px; }
+  .itiles--2 .itile__n { grid-row: span 2; }
+  .itile__t { font-size: 1.05rem; }
+  .iform__foot .btn { flex: 1; justify-content: center; }
+
+  /* footer: calm single column with a two-column link list */
+  .ft { padding-top: 64px; }
+  .ft__brand { margin-bottom: 40px; gap: 18px; }
+  .ft__brand img { width: 190px; }
+  .ft__col, .ft__col:first-of-type, .ft__col[style] { grid-column: span 6 !important; margin-bottom: 32px; }
+  .ft__col:last-child { grid-column: 1 / -1 !important; padding-top: 28px; border-top: 1px solid var(--line); }
+  .ft__col:last-child ul { grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+  .ft__top { padding-bottom: 24px; }
+  .ft__partner { padding-block: 26px; }
+  .ft__partner img { max-width: 230px; margin-top: 12px; }
+  .ft__bottom { flex-direction: column; align-items: flex-start; gap: 14px; padding-right: 84px; font-size: 13px; }
+
+  /* contact button: smaller, and it steps aside while reading */
+  .cbtn { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 50px; height: 50px; transition: background .4s, transform .5s var(--ease), opacity .4s; }
+  body.is-reading .cbtn { transform: translateY(90px); }
+}
+@media (max-width: 900px) {
+  /* menu overlay mirrors the mobile header: logo left, close where the menu button was */
+  .menu__logo { left: var(--gut); top: calc(env(safe-area-inset-top, 0px) + (var(--hd) - 42px) / 2); transform: none; background: none; box-shadow: none; padding: 0; }
+  .menu__logo img { width: 128px; }
+  .menu__close { left: auto; right: var(--gut); width: 46px; height: 46px; padding: 0; justify-content: center; font-size: 0; gap: 0; top: calc(env(safe-area-inset-top, 0px) + (var(--hd) - 46px) / 2); }
+  .menu__close i { width: 18px; height: 18px; }
+}
+@media (max-width: 700px) { .band__title .h1[style] { font-size: 5.8vw !important; } }

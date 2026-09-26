@@ -96,7 +96,7 @@
   }
 
   /* ------------------------------------------------ lazy / in-view videos (720p on phones) */
-  const vsrc = u => (innerWidth < 900 && /\.mp4$/.test(u)) ? u.replace(/\.mp4$/, '-m.mp4') : u;
+  const vsrc = u => (innerWidth < 900 && /\.mp4$/.test(u)) ? u.replace(/\.mp4$/, '-m.mp4?v=2') : u;
   const vids = $$('video[data-src]');
   const vio = new IntersectionObserver(es => es.forEach(e => {
     const v = e.target;
@@ -777,6 +777,26 @@
     $$('[data-cclose]', cd).forEach(b => b.addEventListener('click', () => set(false)));
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && cd.classList.contains('open')) set(false); });
   }
+
+  /* ------------------------------------------------ phones: swipe carousel progress, contact button steps aside while reading */
+  const hsM = $('.hs');
+  if (hsM) {
+    const track = $('.hs__track', hsM), bar = $('.hs__bar i', hsM), count = $('.hs__count b', hsM), cards = $$('.hs__card', hsM);
+    track.addEventListener('scroll', () => {
+      if (desktop()) return;
+      const max = track.scrollWidth - track.clientWidth, p = max > 0 ? track.scrollLeft / max : 0;
+      if (bar) bar.style.transform = `scaleX(${Math.max(1 / cards.length, p)})`;
+      if (count) count.textContent = String(Math.min(cards.length, Math.round(p * (cards.length - 1)) + 1)).padStart(2, '0');
+    }, { passive: true });
+    if (!desktop() && bar) bar.style.transform = `scaleX(${1 / cards.length})`;
+  }
+  let readY = scrollY;
+  addEventListener('scroll', () => {
+    const y = scrollY, nearEnd = y + innerHeight > document.documentElement.scrollHeight - 700;
+    if (Math.abs(y - readY) < 12) return;
+    document.body.classList.toggle('is-reading', !desktop() && y > readY && y > 300 && !nearEnd);
+    readY = y;
+  }, { passive: true });
 
   /* ------------------------------------------------ to top */
   $$('[data-top]').forEach(b => b.addEventListener('click', () => scrollTo(0)));

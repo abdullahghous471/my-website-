@@ -176,6 +176,23 @@ def intake_form(lang):
 
 
 # ---------------------------------------------------------------- contact v2: discreet button + slide-in panel
+# Contact avatar: a friendly robot in the house colours (navy, white, brass); animated in CSS
+ROBOT_SVG = (
+    '<svg class="bot" viewBox="0 0 64 64" aria-hidden="true">'
+    '<g class="bot__ant"><path d="M32 12V5.5" stroke="#233759" stroke-width="2" stroke-linecap="round"/><circle class="bot__tip" cx="32" cy="4.5" r="2.8" fill="#A9844C"/></g>'
+    '<rect x="11" y="20" width="4" height="9" rx="2" fill="#A9844C"/><rect x="49" y="20" width="4" height="9" rx="2" fill="#A9844C"/>'
+    '<rect x="14" y="11" width="36" height="27" rx="10" fill="#FBFBF9" stroke="#233759" stroke-width="2"/>'
+    '<rect x="19" y="17" width="26" height="15" rx="7.5" fill="#233759"/>'
+    '<g class="bot__eyes"><circle cx="27" cy="23.5" r="2.7" fill="#F3DDB0"/><circle cx="37" cy="23.5" r="2.7" fill="#F3DDB0"/></g>'
+    '<path d="M28.5 28.2q3.5 2.4 7 0" fill="none" stroke="#A9844C" stroke-width="1.6" stroke-linecap="round"/>'
+    '<rect x="28" y="37" width="8" height="4" fill="#233759"/>'
+    '<rect x="19" y="40" width="26" height="22" rx="7" fill="#FBFBF9" stroke="#233759" stroke-width="2"/>'
+    '<circle class="bot__core" cx="32" cy="49" r="3.2" fill="#A9844C"/>'
+    '<rect x="12.5" y="42" width="6" height="15" rx="3" fill="#233759"/>'
+    '<g class="bot__arm"><rect x="45.5" y="27" width="6" height="16" rx="3" fill="#233759"/><circle cx="48.5" cy="25.5" r="3.6" fill="#FBFBF9" stroke="#233759" stroke-width="2"/></g>'
+    '</svg>'
+)
+
 def contact_fab(lang):
     nl = lang == 'nl'
     L = (lambda a, b: a if nl else b)
@@ -188,7 +205,7 @@ def contact_fab(lang):
     ]
     items = ''.join(f'<li><a href="{h}"{x}><span class="cd__ic">{ic}</span><span class="cd__tx"><b>{t}</b><small>{s}</small></span><span class="cd__go" aria-hidden="true">{ARROW}</span></a></li>' for h, ic, t, s, x in rows)
     return f'''
-<button class="cbtn" type="button" data-copen aria-controls="cdrawer" aria-expanded="false">{PHONE_SVG}<span>Contact</span></button>
+<button class="cbtn cbtn--bot" type="button" data-copen aria-controls="cdrawer" aria-expanded="false"><span class="cbtn__hi" aria-hidden="true">{L("Hoi! Kan ik u helpen?", "Hi! Can I help you?")}</span><span class="cbtn__av">{ROBOT_SVG}</span><span class="cbtn__t">Contact</span></button>
 <div class="cd" id="cdrawer" data-cd aria-hidden="true">
   <div class="cd__shade" data-cclose></div>
   <aside class="cd__panel" role="dialog" aria-modal="true" aria-labelledby="cd-title">

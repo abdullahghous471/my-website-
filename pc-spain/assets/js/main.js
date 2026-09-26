@@ -196,7 +196,7 @@
 
     // Horizontal scroll
     const hs = $('.hs');
-    if (hs && desktop()) {
+    if (false && hs && desktop()) { // replaced by the free-scrolling carousel below (v9)
       const track = $('.hs__track', hs), bar = $('.hs__bar i', hs), count = $('.hs__count b', hs), cards = $$('.hs__card', hs);
       const dist = () => track.scrollWidth - innerWidth;
       gsap.to(track, {
@@ -853,6 +853,18 @@ float a=clamp((1.-sqrt(rr))*S*.5,0.,1.);gl_FragColor=vec4(min(c*s,vec3(1.))*a,a)
   });
 
 
+  /* ------------------------------------------------ contact robot: says hello once per visit */
+  const bot = $('.cbtn--bot');
+  if (bot) {
+    let greeted = false;
+    try { greeted = sessionStorage.getItem('pcs-hi') === '1'; } catch (e) {}
+    if (!greeted) {
+      setTimeout(() => { bot.classList.add('say'); try { sessionStorage.setItem('pcs-hi', '1'); } catch (e) {} }, 2800);
+      setTimeout(() => bot.classList.remove('say'), 9500);
+    }
+    bot.addEventListener('click', () => bot.classList.remove('say'));
+  }
+
   /* ------------------------------------------------ contact panel */
   const cd = $('[data-cd]'), copen = $('[data-copen]');
   if (cd && copen) {
@@ -867,17 +879,43 @@ float a=clamp((1.-sqrt(rr))*S*.5,0.,1.);gl_FragColor=vec4(min(c*s,vec3(1.))*a,a)
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && cd.classList.contains('open')) set(false); });
   }
 
-  /* ------------------------------------------------ phones: swipe carousel progress, contact button steps aside while reading */
+  /* ------------------------------------------------ "Voordelen": free sideways carousel (arrows, drag, swipe, keys) */
   const hsM = $('.hs');
   if (hsM) {
     const track = $('.hs__track', hsM), bar = $('.hs__bar i', hsM), count = $('.hs__count b', hsM), cards = $$('.hs__card', hsM);
-    track.addEventListener('scroll', () => {
-      if (desktop()) return;
+    const en = (document.documentElement.lang || '').startsWith('en');
+    const head = $('.hs__head', hsM);
+    const nav = document.createElement('div');
+    nav.className = 'hs__nav';
+    nav.innerHTML = `<button type="button" data-hs-prev aria-label="${en ? 'Previous' : 'Vorige'}"><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M26 5H1M5 1L1 5l4 4"/></svg></button><button type="button" data-hs-next aria-label="${en ? 'Next' : 'Volgende'}"><svg viewBox="0 0 26 10" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4"/></svg></button>`;
+    head && head.appendChild(nav);
+    track.setAttribute('tabindex', '0');
+    track.setAttribute('aria-label', en ? 'Advantages, scroll sideways' : 'Voordelen, scroll opzij');
+    const prevB = $('[data-hs-prev]', nav), nextB = $('[data-hs-next]', nav);
+    const stepW = () => (cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth * .8);
+    const update = () => {
       const max = track.scrollWidth - track.clientWidth, p = max > 0 ? track.scrollLeft / max : 0;
       if (bar) bar.style.transform = `scaleX(${Math.max(1 / cards.length, p)})`;
-      if (count) count.textContent = String(Math.min(cards.length, Math.round(p * (cards.length - 1)) + 1)).padStart(2, '0');
-    }, { passive: true });
-    if (!desktop() && bar) bar.style.transform = `scaleX(${1 / cards.length})`;
+      const k = track.scrollLeft > max - 4 ? cards.length - 1 : Math.round(track.scrollLeft / stepW());
+      if (count) count.textContent = String(Math.min(cards.length, k + 1)).padStart(2, '0');
+      prevB.disabled = track.scrollLeft < 4; nextB.disabled = track.scrollLeft > max - 4;
+    };
+    prevB.addEventListener('click', () => track.scrollBy({ left: -stepW(), behavior: reduce ? 'auto' : 'smooth' }));
+    nextB.addEventListener('click', () => track.scrollBy({ left: stepW(), behavior: reduce ? 'auto' : 'smooth' }));
+    track.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); nextB.click(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); prevB.click(); }
+    });
+    // mouse drag (touch and trackpads scroll natively)
+    let x0 = 0, s0 = 0, down = false, moved = false;
+    track.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button) return; down = true; moved = false; x0 = e.clientX; s0 = track.scrollLeft; track.classList.add('is-drag'); });
+    addEventListener('pointermove', e => { if (!down) return; const dx = e.clientX - x0; if (Math.abs(dx) > 4) moved = true; track.scrollLeft = s0 - dx; });
+    addEventListener('pointerup', () => { if (!down) return; down = false; track.classList.remove('is-drag'); });
+    track.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
+    track.addEventListener('dragstart', e => e.preventDefault());
+    track.addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
   }
   let readY = scrollY;
   addEventListener('scroll', () => {

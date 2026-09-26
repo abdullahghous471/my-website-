@@ -121,7 +121,7 @@ NAV = {
     ],
     'en': [
         ('Property Consultancy Spain', 'en.html', 'assets/video/valencia-ciencias.jpg', []),
-        ('Working method', 'en-working-method.html', 'assets/video/valencia-city.jpg', []),
+        ('Working method', 'en-working-method.html', 'assets/video/villa-garden.jpg', []),
         ('Expertises in Spain', 'en-expertises.html', media('https://pc-spain.com/wp-content/uploads/revslider/the7-corporate-slider/s0061.jpg'), []),
         ('Success stories', 'en-success-stories.html', media('https://pc-spain.com/wp-content/uploads/2024/10/Mislata-after.png'), []),
         ('Prices', 'en-prices.html', media('https://pc-spain.com/wp-content/uploads/2017/03/s025.jpg'), []),
@@ -522,7 +522,7 @@ def home_body(**k):
     <h2>{k['over_title']}</h2>
     <div class="intro__over-side">
       <p>{k['over_text']}</p>
-      <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:center">{btn(k['over_cta'][0], k['over_cta'][1], 'btn--light')}<button class="lk" data-video="assets/video/valencia-city.mp4">{k['video_label']} {ARROW}</button></div>
+      <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:center">{btn(k['over_cta'][0], k['over_cta'][1], 'btn--light')}<button class="lk" data-video="assets/video/villa-garden.mp4">{k['video_label']} {ARROW}</button></div>
     </div>
   </div>
   <div class="intro__scroll label"><span>Scroll</span><i></i></div>
@@ -559,7 +559,7 @@ def home_body(**k):
 </section>
 
 <section class="band">
-  <div class="band__media"><video muted loop playsinline preload="none" poster="assets/video/valencia-city.jpg" data-src="assets/video/valencia-city.mp4" data-parallax="10"></video></div>
+  <div class="band__media"><video muted loop playsinline preload="none" poster="assets/video/villa-garden.jpg" data-src="assets/video/villa-garden.mp4" data-parallax="10"></video></div>
   <div class="band__inner wrap"><div class="grid-12">
     <div class="band__title"><span class="label" data-reveal>{k['band_label']}</span><h2 class="h1" data-split style="margin-top:22px;font-size:clamp(2.6rem,6.4vw,6.8rem)">{k['band_title']}</h2></div>
     <div class="band__text" data-reveal=".2">{k['band_text']}{lk(*k['band_cta'])}</div>
@@ -661,7 +661,7 @@ def over_pc_spain():
   </div>
 </section>
 <section class="band band--expand">
-  <div class="band__media"><video muted loop playsinline preload="none" poster="assets/video/valencia-city.jpg" data-src="assets/video/valencia-city.mp4"></video></div>
+  <div class="band__media"><video muted loop playsinline preload="none" poster="assets/video/villa-garden.jpg" data-src="assets/video/villa-garden.mp4"></video></div>
   <div class="band__inner wrap"><div class="grid-12">
     <div class="band__title"><h2 class="h2" data-split>Wat kan PC-Spain voor jou doen?</h2></div>
     <div class="band__text" data-reveal=".2"><p>Of je nu een appartement of (tweede) woning zoekt of een belegging wilt doen in Spanje, wij kunnen je ondersteunen met ons team van consultants en ons uitgebreide netwerk. Het kopen van vastgoed in Spanje gaat alles behalve hetzelfde als in Nederland. Buiten de taal zijn de wetten, regels en de cultuur anders.</p></div>
@@ -703,7 +703,7 @@ def werkwijze():
         ('Bespreken van investeringsopties', ['In dit gesprek nemen we het volledige proces met u door en bespreken we diverse investeringsopties, zoals bankbeslagen, vastgoedveilingen of transformatieprojecten. We helpen u om de beste keuze te maken die aansluit bij uw investeringsstrategie.']),
         ('Bezoek aan investeringsobjecten', ['Wanneer u besluit om met ons samen te werken, plannen we een bezoek in naar Valencia of een andere door ons geselecteerde regio. Gedurende twee dagen begeleiden we u langs verschillende investeringsobjecten en bouwprojecten.', 'Tijdens deze dagen vinden er ook informatieve gesprekken plaats met internationale belastingadviseurs, bouwers en juristen.', 'Op deze manier bent u goed geïnformeerd en kunnen onze consultants al uw vragen beantwoorden.']),
     ]
-    return page_hero([('Home', 'index.html'), ('Over ons', 'over-pc-spain.html'), ('Werkwijze', '')], 'Makelaardij in', script='Spanje', aside='Werkwijze - Woning kopen in Spanje', video='assets/video/valencia-city.mp4', poster='assets/video/valencia-city.jpg') + f'''
+    return page_hero([('Home', 'index.html'), ('Over ons', 'over-pc-spain.html'), ('Werkwijze', '')], 'Makelaardij in', script='Spanje', aside='Werkwijze - Woning kopen in Spanje', video='assets/video/villa-garden.mp4', poster='assets/video/villa-garden.jpg') + f'''
 <section class="sec">
   <div class="wrap split">
     <div class="split__label"><span class="label label--brass">Makelaardij in Spanje</span></div>
@@ -1100,7 +1100,7 @@ COUNTERS_EN = '''</div></div></div></section><section class="sec--tight bg-navy 
 def build_en():
     write('en.html', 'Dutch Real Estate Agent in Spain - Property Consultancy Spain', 'Want to buy or rent a property in Spain? Let us advice you.', home_en(), lang='en')
     write('en-working-method.html', 'Working method - Property Consultancy Spain', 'Real Estate Agency in Spain – working method.',
-          en_generic('en-working-method.html', 'Working method', 'Working method', hero_video='assets/video/valencia-city.mp4', poster='assets/video/valencia-city.jpg',
+          en_generic('en-working-method.html', 'Working method', 'Working method', hero_video='assets/video/villa-garden.mp4', poster='assets/video/villa-garden.jpg',
                      fixups=[('<p>0Experts 0Satisfied customers 0Years of experience in Spain</p>', COUNTERS_EN), ('0Experts 0Satisfied customers 0Years of experience in Spain', '')]), lang='en')
     write('en-expertises.html', 'Expertises in Spain - Property Consultancy Spain', 'Purchasing support, legal advice, mortgage advice, refurbishment scan and property management.',
           en_generic('en-expertises.html', 'Expertises in Spain', 'Expertises in Spain', hero_img=IMG['s0061'], fixups=[('<h2>Expertises in Spain</h2><p>How do we work?</p>', '<h2>How do we work?</h2>')]), lang='en')

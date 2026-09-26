@@ -183,7 +183,7 @@ def werkwijze():
   <div class="figs" data-figs>
     <div class="figs__row"><div class="figs__line" data-dir="-1">
       <b class="figs__n" data-count="23">23</b>
-      <span class="figs__media"><video muted loop playsinline preload="none" poster="assets/video/valencia-city.jpg" data-src="assets/video/valencia-city.mp4"></video></span>
+      <span class="figs__media"><video muted loop playsinline preload="none" poster="assets/video/villa-garden.jpg" data-src="assets/video/villa-garden.mp4"></video></span>
       <span class="figs__t">Jaar ervaring in Spanje</span>
     </div></div>
     <div class="figs__row"><div class="figs__line figs__line--r" data-dir="1">

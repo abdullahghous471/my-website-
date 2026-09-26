@@ -125,7 +125,7 @@ def woning_kopen():
 # stock photos (laptop, calculator, money bag, office meeting, Basque coast) -> Valencia / process footage stills
 _ART_SWAP = {'2020-11-pc15': 'assets/video/lawyer-contract.jpg', '2020-11-pc2': 'assets/video/valencia-oldtown.jpg',
              '2020-11-pc1': 'assets/video/valencia-street.jpg', '2020-11-pc4': 'assets/video/contract-keys.jpg',
-             '2020-11-pc5': 'assets/video/valencia-city.jpg'}
+             '2020-11-pc5': 'assets/video/villa-garden.jpg'}
 _article_hero_orig = article_hero
 
 
@@ -293,7 +293,7 @@ def en_working_method():
   </div>
   <div class="wrap bento">
     <article class="bento__tile bento__tile--video">
-      <video muted loop playsinline preload="none" poster="assets/video/valencia-city.jpg" data-src="assets/video/valencia-city.mp4"></video>
+      <video muted loop playsinline preload="none" poster="assets/video/villa-garden.jpg" data-src="assets/video/villa-garden.mp4"></video>
       <div class="bento__in"><b data-count="23">23</b><span class="label">Years of experience in Spain</span></div>
     </article>
     <article class="bento__tile bento__tile--navy">

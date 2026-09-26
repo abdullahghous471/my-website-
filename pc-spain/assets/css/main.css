@@ -2096,3 +2096,22 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .hd--nav::before { content: ""; position: absolute; inset: 0 0 -40px 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(241,240,236,.9) 0%, rgba(241,240,236,.62) 55%, rgba(241,240,236,0) 100%); opacity: 1; transition: opacity .6s var(--ease); }
   .hd--nav.is-solid::before { opacity: 0; }
 }
+/* v10.1 — links in the bar from 1024px: tighter tiers for narrower laptop windows */
+@media (min-width: 1024px) {
+  .hd--nav .hd__menu { display: none; }
+  .hd--nav .hd__nav { display: flex; }
+  .hd--nav::before { content: ""; position: absolute; inset: 0 0 -40px 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(241,240,236,.9) 0%, rgba(241,240,236,.62) 55%, rgba(241,240,236,0) 100%); transition: opacity .6s var(--ease); }
+  .hd--nav.is-solid::before { opacity: 0; }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hd--nav { padding-inline: 28px; }
+  .hd--nav .hd__logo { padding: 12px 18px 14px; }
+  .hd--nav .hd__logo img, .hd--nav.is-solid .hd__logo img { width: 128px; }
+  .hd__nav a, .hd__ddbtn { font-size: 10.5px; letter-spacing: .11em; }
+  .hd--nav .hd__left, .hd__nav { gap: 15px; }
+  .hd--nav .hd__right { gap: 12px; }
+  .hd--nav .hd__lang { padding: 5px 6px; }
+  .hd--nav .hd__lang a { padding: 2px 5px; font-size: 10px; }
+  .hd__cta.hd__cta--solid { padding: 13px 14px; font-size: 10.5px; letter-spacing: .11em; gap: 8px; }
+  .hd__cta--solid svg { width: 16px; }
+}

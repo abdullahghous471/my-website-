@@ -886,6 +886,38 @@ float a=clamp((1.-sqrt(rr))*S*.5,0.,1.);gl_FragColor=vec4(min(c*s,vec3(1.))*a,a)
     bot.addEventListener('click', () => bot.classList.remove('say'));
   }
 
+  /* ------------------------------------------------ Sol, the site assistant: loaded on first use */
+  const chatBtn = $('[data-chat]');
+  if (chatBtn) {
+    const base = ($('script[src*="main"]') || {}).src ? $('script[src*="main"]').src.replace(/main[^/]*\.js.*$/, '') : 'assets/js/';
+    let loading = null;
+    const load = () => loading || (loading = new Promise((res, rej) => {
+      const add = (src, next) => { const sc = document.createElement('script'); sc.src = base + src; sc.onload = next; sc.onerror = rej; document.body.appendChild(sc); };
+      add('assistant-data.js?v=1', () => add('assistant.js?v=1', res));
+    }));
+    chatBtn.addEventListener('pointerenter', () => { load().catch(() => {}); }, { once: true });
+    chatBtn.addEventListener('click', () => {
+      chatBtn.classList.remove('say');
+      load().then(() => window.PCSChat && window.PCSChat.toggle()).catch(() => { location.href = document.documentElement.lang === 'en' ? 'en-intake.html' : 'intake.html'; });
+    });
+    // the robot's eyes follow the pointer
+    if (!reduce) {
+      let raf = 0, px = 0, py = 0;
+      addEventListener('pointermove', e => {
+        if (e.pointerType !== 'mouse') return;
+        px = e.clientX; py = e.clientY;
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const r = chatBtn.querySelector('.cbtn__av').getBoundingClientRect();
+          const dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height / 2), d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 260);
+          root.style.setProperty('--ex', (dx / d * k).toFixed(3));
+          root.style.setProperty('--ey', (dy / d * k).toFixed(3));
+        });
+      }, { passive: true });
+    }
+  }
+
   /* ------------------------------------------------ contact panel */
   const cd = $('[data-cd]'), copen = $('[data-copen]');
   if (cd && copen) {

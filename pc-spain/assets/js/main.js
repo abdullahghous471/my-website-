@@ -264,8 +264,17 @@
     const prevB = $('[data-orbit-prev]', sec), nextB = $('[data-orbit-next]', sec);
     prevB && prevB.addEventListener('click', () => go(i - 1, true));
     nextB && nextB.addEventListener('click', () => go(i + 1, true));
-    orb.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); });
-    orb.addEventListener('mouseleave', () => { paused = false; schedule(); });
+    // pause on mouse hover only: a tap on a phone must not freeze the rotation
+    orb.addEventListener('pointerenter', e => { if (e.pointerType !== 'mouse') return; paused = true; clearTimeout(timer); });
+    orb.addEventListener('pointerleave', e => { if (e.pointerType !== 'mouse') return; paused = false; schedule(); });
+    // swipe left / right on touch screens
+    let sx = null, sy = 0;
+    orb.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    orb.addEventListener('touchend', e => {
+      if (sx === null) return;
+      const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) go(i + (dx < 0 ? 1 : -1), true);
+    }, { passive: true });
     new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; schedule(); }), { threshold: .35 }).observe(orb);
     list.forEach(b => b.classList.toggle('on', +b.dataset.orbitGo === 0));
     if (!reduce) raf = requestAnimationFrame(draw);

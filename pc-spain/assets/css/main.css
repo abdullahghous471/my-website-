@@ -1859,3 +1859,29 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .menu__close i { width: 18px; height: 18px; }
 }
 @media (max-width: 700px) { .band__title .h1[style] { font-size: 5.8vw !important; } }
+
+/* v8 — home "Waarom PC-Spain" circle on phones: one compact block (title, full circle, text, controls) */
+@media (max-width: 700px) {
+  .orbit-sec { padding-block: 72px; }
+  .orbit-grid { display: grid; grid-template-columns: 1fr auto; column-gap: 16px; align-items: center;
+    grid-template-areas: "lab lab" "tit tit" "orb orb" "ctl cnt" "cta cta"; }
+  .orbit-intro { display: contents; }
+  .orbit-intro > .label { grid-area: lab; }
+  .orbit-intro .h2 { grid-area: tit; margin: 14px 0 30px; }
+  .orbit { grid-area: orb; width: 100%; margin: 0; }
+  .orbit::before { padding-top: 82%; }
+  .orbit__ring, .orbit__nodes { inset: auto; left: 9cqw; top: 0; width: 82cqw; height: 82cqw; }
+  .orbit__core { inset: auto; left: 16.4cqw; top: 7.4cqw; width: 67.2cqw; height: 67.2cqw; aspect-ratio: auto; }
+  .orbit__node { padding: 10px; transform: translate(-50%, -50%) rotate(var(--a)) translateY(-41cqw) rotate(calc(-1 * var(--a) - var(--rot))); }
+  .orbit__text { padding-top: 30px; min-height: 0; }
+  .orbit__item .h3 { font-size: 1.6rem; margin: 10px 0 10px; }
+  .orbit__item p { font-size: 15.5px; line-height: 1.65; }
+  .orbit-ctrl { grid-area: ctl; margin: 26px 0 0; gap: 10px; }
+  .orbit-ctrl button { width: 50px; height: 50px; }
+  .orbit-ctrl__bar { margin-left: 8px; }
+  .orbit-count { grid-area: cnt; margin: 26px 0 0; gap: 6px; align-items: baseline; }
+  .orbit-count__num { font-size: 2.2rem !important; color: var(--navy); -webkit-text-stroke: 0; }
+  .orbit-count__of { padding-bottom: 0; }
+  .orbit-intro > div[data-reveal] { grid-area: cta; margin-top: 30px; }
+  .orbit-intro > div[data-reveal] .btn { width: 100%; justify-content: center; }
+}

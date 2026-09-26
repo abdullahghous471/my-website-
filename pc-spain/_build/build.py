@@ -1149,6 +1149,7 @@ exec((HERE / 'pages_v4.py').read_text())
 exec((HERE / 'pages_v5.py').read_text())
 exec((HERE / 'pages_v6.py').read_text())
 exec((HERE / 'pages_v7.py').read_text())
+exec((HERE / 'pages_v8.py').read_text())
 
 # =====================================================================  run
 write('index.html', 'Nederlandse Makelaar in Spanje - Property Consultancy Spain', 'Property Consultancy Spain – Woning kopen of huren in Spanje. Ontmoet ons team van experts die u verbinden met topadvocaten, architecten en makelaars.', home_nl())

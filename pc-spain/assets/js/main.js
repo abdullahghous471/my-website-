@@ -71,7 +71,7 @@
   /* ------------------------------------------------ menu */
   const menu = $('.menu');
   if (menu) {
-    const items = $$('.menu__list > li > a', menu);
+    const items = $$('.menu__list > li > :first-child', menu);
     const imgs = $$('.menu__media img', menu);
     let tl = null;
     const open = () => {
@@ -94,6 +94,27 @@
     addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('is-open')) close(); });
     items.forEach((a, i) => a.addEventListener('mouseenter', () => imgs.forEach((im, j) => im.classList.toggle('on', j === i))));
   }
+
+  /* ------------------------------------------------ overlay menu fold-out + header dropdown */
+  $$('.menu__acc').forEach(btn => btn.addEventListener('click', () => {
+    const li = btn.closest('.menu__has'), open = !li.classList.contains('is-open');
+    li.classList.toggle('is-open', open); btn.setAttribute('aria-expanded', open);
+  }));
+  $$('[data-dd]').forEach(dd => {
+    const btn = $('.hd__ddbtn', dd), links = $$('.hd__ddp a', dd);
+    let t = 0;
+    const set = open => { clearTimeout(t); dd.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); };
+    btn.addEventListener('click', () => set(!dd.classList.contains('open')));
+    dd.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') set(true); });
+    dd.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') t = setTimeout(() => set(false), 180); });
+    dd.addEventListener('focusout', e => { if (!dd.contains(e.relatedTarget)) set(false); });
+    dd.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { set(false); btn.focus(); }
+      if (e.key === 'ArrowDown') { e.preventDefault(); set(true); const i = links.indexOf(document.activeElement); (links[i + 1] || links[0]).focus(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); const i = links.indexOf(document.activeElement); (links[i - 1] || links[links.length - 1]).focus(); }
+    });
+    document.addEventListener('click', e => { if (!dd.contains(e.target)) set(false); });
+  });
 
   /* ------------------------------------------------ lazy / in-view videos (720p on phones) */
   const vsrc = u => (innerWidth < 900 && /\.mp4$/.test(u)) ? u.replace(/\.mp4$/, '-m.mp4?v=2') : u;

@@ -122,7 +122,10 @@ def page_404(lang):
 
 # ---------------------------------------------------------------- Netlify: redirects from the old site, sitemap, robots
 def netlify_files():
-    lines = ['# Keep the build scripts private', '/_build/*  /404.html  404!', '', '# Old pc-spain.com (WordPress) addresses -> new pages']
+    # Works on Cloudflare Pages (and Netlify): targets use clean URLs (/werkwijze serves werkwijze.html).
+    # Rules whose old address already equals the clean URL are left out - the host serves those itself,
+    # and a redirect to the .html file would loop on Cloudflare.
+    lines = ['# Old pc-spain.com (WordPress) addresses -> new pages']
     seen = set()
     old = {k: v for k, v in PAGES.items() if k and v.endswith('.html')}
     old.update({s: LISTING_FILES[s] for s in C['listings']})
@@ -133,7 +136,10 @@ def netlify_files():
             if path in seen:
                 continue
             seen.add(path)
-            lines.append(f'{path:<60} /{v}  301')
+            target = '/' + ('' if v == 'index.html' else v[:-5])
+            if path.rstrip('/') == target:
+                continue
+            lines.append(f'{path:<60} {target}  301')
     (OUT / '_redirects').write_text('\n'.join(lines) + '\n')
     pages = sorted(p.name for p in OUT.glob('*.html') if p.name != '404.html')
     urls = ''.join(f'  <url><loc>{SITE_URL}/{"" if p == "index.html" else p}</loc></url>\n' for p in pages)

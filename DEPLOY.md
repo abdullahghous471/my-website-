@@ -21,6 +21,11 @@ Every push to the GitHub branch updates the live site automatically.
 5. Click **Save and Deploy**. After about a minute the site is live at `https://pc-spain.pages.dev`.
 6. In Netlify: **Site configuration → Build & deploy → Stop builds** (or delete the Netlify site), so it no longer uses credits.
 
+If Cloudflare created the project as a **Worker** (deploy command `npx wrangler deploy`), that works too:
+`wrangler.jsonc` tells it to publish the `pc-spain` folder. Make sure **Settings → Builds → Production branch**
+is `claude/laughing-gauss-fl0bjn` (the `main` branch does not contain the website), with root directory `/`,
+build command `rm -rf _build` and deploy command `npx wrangler deploy`.
+
 Notes
 - Addresses look cleaner on Cloudflare: `pc-spain.pages.dev/werkwijze` instead of `…/werkwijze.html`. Old links with `.html` keep working (they are forwarded automatically).
 - `pc-spain/_headers` holds the caching and security settings; `pc-spain/_redirects` forwards the old WordPress addresses.

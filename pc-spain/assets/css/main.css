@@ -2609,3 +2609,9 @@ body.at-hero .cbtn--bot .cbtn__hi { opacity: 0 !important; }
 @media (max-width: 900px) { .hero__media::before { display: none; } }
 .hero__place { letter-spacing: .14em; font-size: 10.5px; }
 .hero__media::before { background: radial-gradient(65% 85% at 82% 70%, rgba(18,27,41,.58) 0%, rgba(18,27,41,0) 72%); }
+/* v14.1 — no scroll-driven framing anywhere: media always shows full size */
+.band--expand .band__media, .ph__media { clip-path: none !important; }
+.stack__card { position: relative !important; top: auto !important; min-height: 0; transform: none !important; opacity: 1 !important; box-shadow: none; }
+.stack__card + .stack__card { margin-top: clamp(20px, 2.4vw, 36px); }
+.stack__media { min-height: clamp(360px, 38vw, 560px); }
+@media (max-width: 900px) { .stack__media { min-height: 0; } }

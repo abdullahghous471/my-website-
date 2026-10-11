@@ -15,7 +15,7 @@
   let lenis = null;
   if (hasGsap) gsap.registerPlugin(ScrollTrigger);
   if (hasGsap && !reduce && typeof window.Lenis !== 'undefined') {
-    lenis = new Lenis({ duration: 1.15, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    lenis = new Lenis({ lerp: 0.14, wheelMultiplier: 1 }); // smooth, but follows the wheel/trackpad closely
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
@@ -254,13 +254,16 @@
     const num = $('[data-orbit-num]', sec), bar = $('[data-orbit-bar]', sec);
     const n = nodes.length, step = 360 / n, DUR = 5200;
     let i = 0, rot = 0, timer = null, t0 = 0, raf = 0, paused = false, visible = false;
+    // progress ring: animate only while the circle is on screen and not paused
     const draw = () => {
+      raf = 0;
       if (!prog) return;
       const p = paused || !visible ? 0 : Math.min(1, (performance.now() - t0) / DUR);
       prog.style.strokeDasharray = `${(p * 100).toFixed(2)} 100`;
       if (bar) bar.style.transform = `scaleX(${p})`;
-      raf = requestAnimationFrame(draw);
+      if (visible && !paused && p < 1) raf = requestAnimationFrame(draw);
     };
+    const kick = () => { if (!raf && !reduce) raf = requestAnimationFrame(draw); };
     const go = (k, user) => {
       const next = (k + n) % n;
       let delta = ((next - i) % n + n) % n;          // always rotate forward
@@ -280,6 +283,7 @@
     const schedule = () => {
       clearTimeout(timer); t0 = performance.now();
       if (!reduce && visible && !paused) timer = setTimeout(() => go(i + 1), DUR);
+      kick();
     };
     nodes.concat(list).forEach(b => b.addEventListener('click', () => go(+b.dataset.orbitGo, true)));
     const prevB = $('[data-orbit-prev]', sec), nextB = $('[data-orbit-next]', sec);
@@ -296,9 +300,9 @@
       const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
       if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) go(i + (dx < 0 ? 1 : -1), true);
     }, { passive: true });
-    new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; schedule(); }), { threshold: .35 }).observe(orb);
+    new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; orb.classList.toggle('is-off', !visible); schedule(); }), { threshold: .35 }).observe(orb);
     list.forEach(b => b.classList.toggle('on', +b.dataset.orbitGo === 0));
-    if (!reduce) raf = requestAnimationFrame(draw);
+    kick();
   });
 
   /* ------------------------------------------------ testimonials */

@@ -568,7 +568,7 @@ def home_body(**k):
 
 <section class="sec">
   <div class="wrap split split--rev split--wide">
-    <div class="split__media"><figure class="frame frame--land" data-img><video muted loop playsinline preload="none" poster="assets/video/pool-house.jpg" data-src="assets/video/pool-house.mp4"></video></figure></div>
+    <div class="split__media"><figure class="frame frame--land" data-img><img src="assets/media/2024-10-nieuwbouw-pc-spain.jpg" alt="" loading="lazy" decoding="async"></figure></div>
     <div class="split__text">
       <span class="label label--brass" data-reveal>{k['exp_label']}</span>
       <h2 class="h2" data-split>{k['exp_title']}</h2>

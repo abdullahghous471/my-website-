@@ -1,7 +1,7 @@
 # Page templates (v4) – imported by build.py after its helpers are defined.
 # Every visible sentence is copy from pc-spain.com; only layout, media and labels are new.
 
-PANEL_VIDEOS = ['lawyer-contract', 'valencia-oldtown', 'valencia-street']
+PANEL_VIDEOS = ['lawyer-contract', 'valencia-oldtown', 'img:2020-11-pc1']
 
 
 def panels_html(label, heading, items):
@@ -9,7 +9,7 @@ def panels_html(label, heading, items):
     for i, (t, p) in enumerate(items):
         v = PANEL_VIDEOS[i % len(PANEL_VIDEOS)]
         cards += f'''<article class="panel{' is-open' if i == 0 else ''}" tabindex="0" aria-label="{t}">
-      <video muted loop playsinline preload="none" poster="assets/video/{v}.jpg" data-panel-src="assets/video/{v}.mp4"></video>
+      {f'<img src="assets/media/{v[4:]}.jpg" alt="" loading="lazy" decoding="async">' if v.startswith('img:') else f'<video muted loop playsinline preload="none" poster="assets/video/{v}.jpg" data-panel-src="assets/video/{v}.mp4"></video>'}
       <div class="panel__in">
         <span class="panel__num">{i + 1:02d}</span>
         <h3 class="panel__title">{t}</h3>
@@ -236,7 +236,7 @@ def werkwijze():
 # ----------------------------------------------------------------- EXPERTISES
 def expertises():
     xs = [
-        ('aankoop', 'Aankoopbegeleiding', ('video', 'valencia-street'), 'Ons team helpt jou met het zoeken van een droomhuis in Spanje. Door jarenlang zaken te doen in Spanje weten ze de beste match te maken. Een nieuwbouwwoning dicht aan het Spaanse strand? Of juist een knus appartement in een stad? Ze gaan graag met jouw wensen aan de slag! Er is een eigen aanbod van woningen beschikbaar, waar een match wordt gezocht. Zit jouw woning hier niet tussen? Geen probleem, dan kijken ze verder bij collega makelaars. De commissie voor de dienstverlening ons team wordt transparant besproken. Je hoeft je dus geen zorgen te maken dat je onbewust hoge commissies moet betalen.', ['Betrouwbare partner', 'Transparante tarieven', '100% persoonlijke aandacht'], 'intake.html', False, 'standaard'),
+        ('aankoop', 'Aankoopbegeleiding', ('img', '2020-11-pc1'), 'Ons team helpt jou met het zoeken van een droomhuis in Spanje. Door jarenlang zaken te doen in Spanje weten ze de beste match te maken. Een nieuwbouwwoning dicht aan het Spaanse strand? Of juist een knus appartement in een stad? Ze gaan graag met jouw wensen aan de slag! Er is een eigen aanbod van woningen beschikbaar, waar een match wordt gezocht. Zit jouw woning hier niet tussen? Geen probleem, dan kijken ze verder bij collega makelaars. De commissie voor de dienstverlening ons team wordt transparant besproken. Je hoeft je dus geen zorgen te maken dat je onbewust hoge commissies moet betalen.', ['Betrouwbare partner', 'Transparante tarieven', '100% persoonlijke aandacht'], 'intake.html', False, 'standaard'),
         ('juridisch', 'Juridisch advies', ('video', 'lawyer-contract'), 'Voor juridisch advies nemen we onze betrouwbaar advocatenkantoor in de arm! Een partij die zijn weg kent in de <strong>Spaanse wet- en regelgeving</strong>. De diensten van hen wordt niet enkel beperkt tot begeleiding bij de aankoop van een woning. Er zijn veel meer mogelijkheden! Wens jij bijvoorbeeld een bedrijf op te starten of dien je aangifte te doen in Spanje? Wij helpen jou graag verder.', ['Advies op meerdere rechtsgebieden', 'Professionele dienstverlening', 'Ervaring in de Spaanse wet- en regelgeving'], 'https://gimbrerelegal.com/', True, 'standaard'),
         ('hypotheek', 'Hypotheekadvies', ('video', 'contract-keys'), 'Is een hypotheek noodzakelijk of gewenst in jouw dossier? Ook op dit gebied is er expertise in ons team. We schakelen hiervoor Spaanse Hypotheek en haar team in. Een Nederlandstalige partner welke advies kan uitbrengen over een financiering bij een Spaanse bank. Met meerdere banken in hun netwerk, kunnen ze <strong>onafhankelijk hypotheekadvies</strong> uitbrengen. Gebaseerd op het klantprofiel. Iets wat hen uniek maakt!', ['Onafhankelijke hypotheekadvies', 'Schakel tussen klant en Spaanse bank', 'Specialisatie: ondernemerdossiers'], 'http://www.spaansehypotheek.nl', True, 'optioneel'),
         ('renovatie', 'Renovatie/<wbr>Verbouwing', ('ba', None), 'Wil je een Spaanse woning laten verbouwen? Property Consultancy Spain helpt jou met een <strong>verbouwing scan</strong>! Met onze experts maken we het voor de klant inzichtelijk wat de kosten en het tijdsbestek zal zijn voor de geplande renovatie. Maar ook of het plan juridisch gezien haalbaar is. Ondersteuning in de voorbereiding en/of begeleiding in het proces!', ['Realistische tijdsplanning en kostenbegroting', 'Juridische check', 'Advies voor- en tijdens de renovatie'], 'intake.html', False, 'optioneel'),
@@ -246,6 +246,8 @@ def expertises():
     for i, (key, name, (kind, src), text, ticks, href, ext, pkg) in enumerate(xs):
         if kind == 'video':
             med = f'<video muted loop playsinline preload="none" poster="assets/video/{src}.jpg" data-src="assets/video/{src}.mp4"></video>'
+        elif kind == 'img':
+            med = f'<img src="assets/media/{src}.jpg" alt="" loading="lazy" decoding="async">'
         else:
             med = f'''<div class="ba ba--fill">
           <img src="{IMG['after']}" alt="Renovatie – na"><img class="ba__before" src="{IMG['before']}" alt="Renovatie – voor">

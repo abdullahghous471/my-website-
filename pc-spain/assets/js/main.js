@@ -897,7 +897,7 @@ float a=clamp((1.-sqrt(rr))*S*.5,0.,1.);gl_FragColor=vec4(min(c*s,vec3(1.))*a,a)
     let loading = null;
     const load = () => loading || (loading = new Promise((res, rej) => {
       const add = (src, next) => { const sc = document.createElement('script'); sc.src = base + src; sc.onload = next; sc.onerror = rej; document.body.appendChild(sc); };
-      add('assistant-data.js?v=1', () => add('assistant.js?v=1', res));
+      add('assistant-data.js?v=2', () => add('assistant.js?v=2', res));
     }));
     chatBtn.addEventListener('pointerenter', () => { load().catch(() => {}); }, { once: true });
     chatBtn.addEventListener('click', () => {

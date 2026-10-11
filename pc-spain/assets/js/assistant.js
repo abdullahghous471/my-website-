@@ -44,7 +44,7 @@
   const INTENTS = [
     { id: 'greet', k: ['hoi', 'hallo', 'hey', 'hi', 'hello', 'goedemorgen', 'goedemiddag', 'goedenavond', 'good morning', 'good afternoon', 'dag sol', 'hola'],
       a: () => ({ t: L('Hallo! Ik ben Sol, de digitale assistent van PC-Spain. Waar kan ik u mee helpen?', 'Hello! I am Sol, the digital assistant of PC-Spain. How can I help you?'), c: CHIPS.start }) },
-    { id: 'thanks', k: ['bedankt', 'dank je', 'dankjewel', 'dank u', 'thanks', 'thank you', 'top', 'super', 'perfect', 'fijn', 'great'],
+    { id: 'thanks', k: ['nee bedankt', 'no thanks', 'bedankt', 'dank je', 'dankjewel', 'dank u', 'thanks', 'thank you', 'top', 'super', 'perfect', 'fijn', 'great'],
       a: () => ({ t: L('Graag gedaan! Kan ik u nog ergens anders mee helpen?', 'You are welcome! Is there anything else I can help with?'), c: CHIPS.more }) },
     { id: 'bye', k: ['doei', 'tot ziens', 'bye', 'goodbye', 'fijne dag', 'have a nice day'],
       a: () => ({ t: L('Tot ziens! U kunt ons altijd bereiken via WhatsApp of ' + PHONE + '.', 'Goodbye! You can always reach us via WhatsApp or ' + PHONE + '.') }) },
@@ -58,8 +58,7 @@
     { id: 'price', k: ['tarief', 'tarieven', 'kosten', 'kost', 'commissie', 'courtage', 'prijs', 'prijzen', 'honorarium', 'betalen', 'fee', 'fees', 'cost', 'costs', 'price', 'prices', 'pricing', 'commission', 'pay', 'charge', 'wat kost', 'what does it cost', 'how much', 'hoeveel'],
       a: () => ({ t: L('Onze tarieven zijn transparant, exclusief btw:', 'Our prices are transparent, excluding VAT:')
         + list(EN ? ['<b>Buying a second home:</b> 3% commission, minimum € 5,750', '<b>Property investment:</b> start-up invoice of € 1,750'] : ['<b>Aanschaf tweede woning:</b> 3% commissie, minimum € 5.750', '<b>Vastgoedbelegging:</b> opstartnota van € 1.750'])
-        + L('Typ een aankoopbedrag (bijv. <i>250.000</i>) en ik reken de commissie voor u uit.', 'Type a purchase price (e.g. <i>250,000</i>) and I will calculate the commission for you.')
-        + link(URL.prices, L('Bekijk de tarieven', 'View prices')), c: CHIPS.price }) },
+        + L('Schuif hieronder om uw commissie direct te berekenen:', 'Slide below to calculate your commission instantly:'), w: 'calc', v: 250000, c: CHIPS.price }) },
     { id: 'invest', k: ['belegging', 'beleggen', 'belegger', 'investeren', 'investering', 'rendement', 'verhuur', 'verhuren', 'invest', 'investment', 'investor', 'rental', 'yield', 'return', 'bankbeslag', 'veiling', 'auction', 'transformatie', 'transformation', 'co-living', 'studentenwoning'],
       a: () => ({ t: L('Voor beleggers verloopt het in drie stappen: een vrijblijvend gesprek (videocall of in Spanje), het bespreken van investeringsopties en een tweedaags bezoek aan investeringsobjecten in en rond Valencia. Denk aan bankbeslagen, vastgoedveilingen, transformatieobjecten, het splitsen van woningen, studentenwoningen, co-living en historische panden. De opstartnota is <b>€ 1.750,- excl. btw</b>.', 'For investors there are three steps: a no-obligation conversation (video call or in Spain), discussing investment options and a two-day visit to investment properties in and around Valencia. Think of bank repossessions, property auctions, transformation projects, splitting homes, student housing, co-living and historic buildings. The start-up invoice is <b>€ 1,750 excl. VAT</b>.')
         + '<div class="chat__links">' + link(URL.work, L('Werkwijze beleggen', 'Investing step by step')) + link(URL.portfolio, L('Portfolio', 'Portfolio')) + '</div>', c: CHIPS.invest }) },
@@ -98,6 +97,8 @@
         + link(URL.art('huis-kopen-spanje-wat-moet-je-weten'), L('Wat moet je weten?', 'What should you know?'))
         + link(URL.art('uitleg-aankoop-commissie-spanje'), L('Uitleg aankoopcommissie', 'Purchase commission explained'))
         + link(URL.tips, L('Alle tips', 'All tips')) + '</div>' }) },
+    { id: 'callback', k: ['terugbellen', 'bel mij', 'bel me', 'terugbel', 'call me back', 'call back', 'callback', 'bezichtiging plannen', 'plan een bezichtiging', 'plan a viewing', 'viewing', 'adviseur spreken', 'spreek een adviseur', 'talk to an adviser', 'speak to an adviser'],
+      a: () => ({ t: L('Graag! Laat uw gegevens achter, dan neemt een adviseur binnen één werkdag contact met u op.', 'Gladly! Leave your details and an adviser will contact you within one working day.'), w: 'lead' }) },
     { id: 'contact', k: ['contact', 'bellen', 'bel', 'telefoon', 'telefoonnummer', 'nummer', 'whatsapp', 'mail', 'email', 'e-mail', 'afspraak', 'videocall', 'spreken', 'medewerker', 'mens', 'persoon', 'call', 'phone', 'reach', 'appointment', 'meeting', 'human', 'person', 'talk'],
       a: () => ({ t: L('U kunt ons direct bereiken: <b>' + PHONE + '</b> of <b>' + MAIL + '</b>, ma t/m za 10:00 – 18:00.', 'You can reach us directly: <b>' + PHONE + '</b> or <b>' + MAIL + '</b>, Mon–Sat 10:00 – 18:00.') + contactRow() }) },
     { id: 'rent', k: ['huren', 'huur', 'rent', 'renting', 'lease'],
@@ -142,9 +143,11 @@
     if (!r.length) {
       return { t: L('Ik vind in ons huidige aanbod geen woning' + where + under + '. Ons team zoekt ook buiten het eigen aanbod, bij collega-makelaars. Laat weten wat u zoekt:', 'I cannot find a home' + where + under + ' in our current listings. Our team also searches beyond our own listings, with fellow agents. Tell us what you are looking for:') + contactRow() };
     }
-    const cards = r.slice(0, 3).map(x => `<a class="chat__home" href="${EN ? x.ue : x.u}">${x.i ? `<img src="${x.i}" alt="" loading="lazy">` : ''}<span><b>${esc(EN ? x.te : x.t)}</b><small>${esc(x.c)} · ${esc(x.pr ? (EN ? x.pr.replace(/\./g, ',') : x.pr) : L('Prijs op aanvraag', 'Price on request'))}</small></span></a>`).join('');
-    const more = r.length > 3 ? link(URL.buy + (city ? '#' + norm(city).trim().replace(/\s+/g, '-') : ''), L('Bekijk alle ' + r.length + ' woningen', 'View all ' + r.length + ' homes')) : link(URL.buy, L('Volledig aanbod', 'All properties'));
-    return { t: L(r.length + (r.length === 1 ? ' woning' : ' woningen') + where + under + ' in ons aanbod, bijvoorbeeld:', r.length + (r.length === 1 ? ' home' : ' homes') + where + under + ' in our listings, for example:') + `<div class="chat__homes">${cards}</div>` + more, c: CHIPS.homes };
+    const price = x => (x.pr ? (EN ? x.pr.replace(/\./g, ',') : x.pr) : L('Prijs op aanvraag', 'Price on request'));
+    const beds = x => (x.b ? (EN ? x.b.replace('slaapkamers', 'bedrooms').replace('slaapkamer', 'bedroom') : x.b) : '');
+    const cards = r.slice(0, 6).map(x => `<a class="chat__hcard" href="${EN ? x.ue : x.u}"><span class="chat__hcard-img">${x.i ? `<img src="${x.i}" alt="" loading="lazy">` : ''}<span class="label">${esc(x.c)}</span></span><span class="chat__hcard-tx"><b>${esc(EN ? x.te : x.t)}</b><span>${esc(price(x))}</span>${beds(x) ? `<small>${esc(beds(x))}</small>` : ''}<em>${L('Bekijk', 'View')} <svg viewBox="0 0 26 10" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4" fill="none" stroke="currentColor"/></svg></em></span></a>`).join('');
+    const more = r.length > 6 ? link(URL.buy + (city ? '#' + norm(city).trim().replace(/\s+/g, '-') : ''), L('Bekijk alle ' + r.length + ' woningen', 'View all ' + r.length + ' homes')) : link(URL.buy, L('Volledig aanbod', 'All properties'));
+    return { t: L(r.length + (r.length === 1 ? ' woning' : ' woningen') + where + under + ' in ons aanbod, bijvoorbeeld:', r.length + (r.length === 1 ? ' home' : ' homes') + where + under + ' in our listings, for example:') + `<div class="chat__row" data-row>${cards}</div>` + more, c: [L('Plan een bezichtiging', 'Plan a viewing'), ...CHIPS.homes.slice(0, 2)] };
   };
 
   const answer = raw => {
@@ -155,7 +158,7 @@
     if (amount && has(s, priceWords) && !has(s, ['woning', 'woningen', 'villa', 'appartement', 'home', 'homes', 'house', 'apartment'])) {
       const f = fee(amount);
       return { t: L('Bij een aankoopsom van <b>' + eur(amount) + '</b> is onze commissie <b>' + eur(f) + ',-</b> exclusief btw' + (amount > 200000 ? ' (4% boven € 200.000).' : ' (volgens onze staffel).'), 'For a purchase price of <b>' + eur(amount) + '</b> our commission is <b>' + eur(f) + '</b> excluding VAT' + (amount > 200000 ? ' (4% above € 200,000).' : ' (according to our fee scale).'))
-        + link(URL.calc, L('Open de rekentool', 'Open the calculator')), c: [L('Woningen tot ' + eur(amount), 'Homes up to ' + eur(amount)), L('Bijkomende kosten', 'Additional costs'), L('Contact', 'Contact')] };
+        , w: 'calc', v: amount, c: [L('Woningen tot ' + eur(amount), 'Homes up to ' + eur(amount)), L('Bijkomende kosten', 'Additional costs'), L('Bel mij terug', 'Call me back')] };
     }
     if (!city && has(s, ['alicante', 'costa blanca'])) {
       const n = LIST.filter(x => ALICANTE.includes(x.c)).length;
@@ -178,7 +181,7 @@
       const f = fee(amount);
       const n = LIST.filter(x => x.p && x.p <= amount).length;
       return { t: L('Bij een aankoopsom van <b>' + eur(amount) + '</b> is onze commissie <b>' + eur(f) + ',-</b> excl. btw. In ons aanbod staan <b>' + n + '</b> woningen tot dat bedrag.', 'For a purchase price of <b>' + eur(amount) + '</b> our commission is <b>' + eur(f) + '</b> excl. VAT. Our listings include <b>' + n + '</b> homes up to that amount.'),
-        c: [L('Woningen tot ' + eur(amount), 'Homes up to ' + eur(amount)), L('Wat kost het?', 'What does it cost?'), L('Contact', 'Contact')] };
+        w: 'calc', v: amount, c: [L('Woningen tot ' + eur(amount), 'Homes up to ' + eur(amount)), L('Wat kost het?', 'What does it cost?'), L('Bel mij terug', 'Call me back')] };
     }
     let best = null, bestScore = 0;
     INTENTS.forEach((it, i) => { const sc = score(s, it.k) - i * 0.001; if (sc > bestScore) { bestScore = sc; best = it; } });
@@ -189,21 +192,47 @@
 
   /* ---------------------------------------------------------------- interface */
   const KEY = 'pcs-chat-' + (EN ? 'en' : 'nl');
+  const ENDPOINT = 'https://formsubmit.co/ajax/' + MAIL;
   let log = [];
   try { log = JSON.parse(sessionStorage.getItem(KEY) || '[]'); } catch (e) {}
   const save = () => { try { sessionStorage.setItem(KEY, JSON.stringify(log.slice(-40))); } catch (e) {} };
+  const time = () => new Date().toLocaleTimeString(EN ? 'en-GB' : 'nl-NL', { hour: '2-digit', minute: '2-digit' });
+
+  // office status in Spanish time: Mon–Sat 10:00–18:00
+  const officeOpen = () => {
+    try {
+      const p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', weekday: 'short', hour: 'numeric', hour12: false }).formatToParts(new Date());
+      const d = p.find(x => x.type === 'weekday').value, h = +p.find(x => x.type === 'hour').value;
+      return d !== 'Sun' && h >= 10 && h < 18;
+    } catch (e) { return true; }
+  };
 
   const BOT = document.querySelector('.cbtn--bot .bot');
   const face = BOT ? BOT.outerHTML.replace('class="bot"', 'class="bot bot--mini"') : '';
+  const ARROW = '<svg viewBox="0 0 26 10" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>';
+  const IC = {
+    price: '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><path d="M20 11.5a5.5 5.5 0 1 0 0 9M9 14.5h8M9 17.5h8"/></svg>',
+    homes: '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 15 16 6l11 9M8 13v13h16V13M13 26v-7h6v7"/></svg>',
+    work: '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 8h4M6 16h4M6 24h4M14 8h12M14 16h12M14 24h8"/></svg>',
+    talk: '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 7h20v14H14l-6 5v-5H6z"/><path d="M11 12h10M11 16h6"/></svg>',
+  };
+  const TILES = [
+    ['price', L('Wat kost het?', 'What does it cost?'), L('Tarieven & rekentool', 'Prices & calculator')],
+    ['homes', L('Woningaanbod', 'Properties'), L('41 woningen aan de kust', '41 homes on the coast')],
+    ['work', L('Hoe werkt het?', 'How does it work?'), L('Van kennismaking tot deal', 'From first talk to deal')],
+    ['talk', L('Spreek een adviseur', 'Talk to an adviser'), L('Wij bellen u terug', 'We call you back')],
+  ];
+
   const root = document.createElement('div');
   root.className = 'chat';
   root.id = 'pcs-chat';
   root.setAttribute('role', 'dialog');
   root.setAttribute('aria-label', L('Chat met Sol, de assistent van PC-Spain', 'Chat with Sol, the PC-Spain assistant'));
   root.innerHTML = `
+    <div class="chat__grab" aria-hidden="true"><i></i></div>
     <div class="chat__hd">
       <span class="chat__av">${face}</span>
-      <div class="chat__who"><b>Sol</b><span><i></i>${L('PC-Spain assistent · antwoordt direct', 'PC-Spain assistant · replies instantly')}</span></div>
+      <div class="chat__who"><b>Sol</b><span class="chat__status"><i></i><em></em></span></div>
       <button type="button" class="chat__reset" aria-label="${L('Nieuw gesprek', 'New conversation')}" title="${L('Nieuw gesprek', 'New conversation')}"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10a6 6 0 1 0 2-4.5M4 3v3.5h3.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button>
       <button type="button" class="chat__x" aria-label="${L('Sluiten', 'Close')}"><i></i></button>
     </div>
@@ -211,67 +240,170 @@
     <div class="chat__chips"></div>
     <form class="chat__form" autocomplete="off">
       <label class="sr-only" for="chat-in">${L('Uw vraag', 'Your question')}</label>
-      <input id="chat-in" type="text" maxlength="300" placeholder="${L('Stel uw vraag…', 'Ask your question…')}">
-      <button type="submit" aria-label="${L('Versturen', 'Send')}"><svg viewBox="0 0 26 10" aria-hidden="true"><path d="M0 5h25M21 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      <input id="chat-in" type="text" maxlength="300" placeholder="${L('Stel uw vraag aan Sol…', 'Ask Sol a question…')}">
+      <button type="submit" aria-label="${L('Versturen', 'Send')}">${ARROW}</button>
     </form>
-    <div class="chat__foot"><a href="${WA}" target="_blank" rel="noopener">WhatsApp</a><a href="tel:${TEL}">${PHONE}</a><a href="mailto:${MAIL}">E-mail</a></div>`;
+    <div class="chat__foot"><a class="chat__wa" href="${WA}" target="_blank" rel="noopener">WhatsApp</a><a href="tel:${TEL}">${PHONE}</a><a href="mailto:${MAIL}">E-mail</a></div>`;
   document.body.appendChild(root);
   const logEl = root.querySelector('.chat__log'), chipsEl = root.querySelector('.chat__chips'), form = root.querySelector('.chat__form'), input = root.querySelector('input');
-  const btn = document.querySelector('.cbtn--bot');
+  const btn = document.querySelector('.cbtn--bot'), waLink = root.querySelector('.chat__wa');
+  const setStatus = () => {
+    const on = officeOpen();
+    root.querySelector('.chat__status').classList.toggle('off', !on);
+    root.querySelector('.chat__status em').textContent = on ? L('Online · adviseurs bereikbaar', 'Online · advisers available') : L('Antwoordt direct · team ma–za', 'Replies instantly · team Mon–Sat');
+  };
+  setStatus();
+
+  /* widgets inside answers */
+  const calcHTML = v => `<div class="chat__calc" data-calc-chat>
+      <div class="chat__calc-io"><span><small>${L('Aankoopsom', 'Purchase price')}</small><b data-cv>${eur(v)}</b></span><span><small>${L('Commissie excl. btw', 'Commission excl. VAT')}</small><b data-cf>${eur(fee(v))}</b></span></div>
+      <input type="range" min="50000" max="1000000" step="5000" value="${Math.min(1e6, Math.max(5e4, v))}" aria-label="${L('Aankoopsom', 'Purchase price')}">
+      <div class="chat__calc-sc"><span>€ 50k</span><span>€ 1M</span></div>
+      <a class="chat__lk" href="${URL.calc}">${L('Volledige rekentool', 'Full calculator')}${ARROW}</a></div>`;
+  const leadHTML = () => `<form class="chat__lead" novalidate>
+      <label><span>${L('Naam', 'Name')}</span><input name="Naam" autocomplete="name" required></label>
+      <label><span>${L('Telefoon of e-mail', 'Phone or e-mail')}</span><input name="Contact" autocomplete="tel" required></label>
+      <label class="chat__lead-pref"><span>${L('Voorkeur', 'Preference')}</span><select name="Voorkeur"><option>${L('Bellen', 'Phone call')}</option><option>WhatsApp</option><option>E-mail</option><option>${L('Videocall', 'Video call')}</option></select></label>
+      <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit">${L('Bel mij terug', 'Call me back')}${ARROW}</button>
+      <p class="chat__lead-note">${L('Uw gegevens gebruiken we alleen om contact op te nemen.', 'We only use your details to contact you.')} <a href="${EN ? 'en-privacy.html' : 'privacy.html'}">${L('Privacy', 'Privacy')}</a></p>
+      <p class="chat__lead-err" hidden></p>
+    </form>`;
+
+  const fitCalc = box => {
+    const r = box.querySelector('input'), v = +r.value;
+    r.style.setProperty('--p', ((v - r.min) / (r.max - r.min) * 100) + '%');
+    box.querySelector('[data-cv]').textContent = eur(v);
+    box.querySelector('[data-cf]').textContent = eur(fee(v));
+  };
+  logEl.addEventListener('input', e => { const box = e.target.closest('[data-calc-chat]'); if (box) fitCalc(box); });
+  logEl.addEventListener('submit', e => {
+    const f = e.target.closest('.chat__lead'); if (!f) return;
+    e.preventDefault();
+    const err = f.querySelector('.chat__lead-err'), name = f.Naam.value.trim(), contact = f.Contact.value.trim();
+    if (!name || !(/\S+@\S+\.\S+/.test(contact) || contact.replace(/\D/g, '').length >= 8)) {
+      err.hidden = false; err.textContent = L('Vul uw naam en een geldig telefoonnummer of e-mailadres in.', 'Please enter your name and a valid phone number or e-mail address.'); return;
+    }
+    err.hidden = true; f.classList.add('is-sending');
+    const asked = log.filter(m => m.who === 'me').map(m => m.t).slice(-6).join(' | ');
+    const body = { _subject: L('Terugbelverzoek via chat (Sol)', 'Call-back request via chat (Sol)'), _template: 'table', _captcha: 'false', _honey: f._honey.value,
+      Naam: name, Contact: contact, Voorkeur: f.Voorkeur.value, Taal: EN ? 'English' : 'Nederlands', Pagina: location.pathname, 'Vragen in de chat': asked || '-' };
+    fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) })
+      .then(r => { if (!r.ok) throw 0; return r.json(); })
+      .then(() => {
+        f.outerHTML = `<div class="chat__done"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18"/><path d="M12 20.5l5.5 5.5L28 15"/></svg><p><b>${L('Dank u, ' + esc(name.split(' ')[0]) + '!', 'Thank you, ' + esc(name.split(' ')[0]) + '!')}</b>${L('Een adviseur neemt binnen één werkdag contact met u op.', 'An adviser will contact you within one working day.')}</p></div>`;
+        const last = [...log].reverse().find(m => m.w === 'lead'); if (last) { last.w = 'done'; last.name = name; save(); }
+      })
+      .catch(() => { f.classList.remove('is-sending'); err.hidden = false; err.innerHTML = L('Versturen lukte niet. Stuur ons een <a href="' + WA + '" target="_blank" rel="noopener">WhatsApp</a> of bel ' + PHONE + '.', 'Sending failed. Send us a <a href="' + WA + '" target="_blank" rel="noopener">WhatsApp</a> or call ' + PHONE + '.'); });
+  });
+
+  const welcome = () => {
+    const hour = new Date().getHours();
+    const hi = hour < 12 ? L('Goedemorgen', 'Good morning') : hour < 18 ? L('Goedemiddag', 'Good afternoon') : L('Goedenavond', 'Good evening');
+    const w = document.createElement('div');
+    w.className = 'chat__welcome';
+    w.innerHTML = `<span class="label label--brass">${L('Digitale assistent', 'Digital assistant')}</span>
+      <h2>${hi}.<br>${L('Waarmee kan ik u helpen?', 'How can I help you?')}</h2>
+      <p>${L('Ik ben Sol. Ik ken onze woningen, tarieven en werkwijze, en breng u in contact met een adviseur.', 'I am Sol. I know our homes, prices and way of working, and can put you in touch with an adviser.')}</p>
+      <div class="chat__tiles">${TILES.map(([ic, t, sub], k) => `<button type="button" style="--k:${k}" data-q="${t}">${IC[ic]}<b>${t}</b><small>${sub}</small></button>`).join('')}</div>`;
+    w.querySelectorAll('button').forEach(b => b.addEventListener('click', () => ask(b.dataset.q)));
+    logEl.appendChild(w);
+    chips([]);
+  };
 
   const render = (m, animate) => {
+    const welcomeEl = logEl.querySelector('.chat__welcome'); if (welcomeEl) welcomeEl.remove();
     const el = document.createElement('div');
     el.className = 'chat__msg chat__msg--' + m.who + (animate ? ' is-new' : '');
-    el.innerHTML = m.who === 'me' ? `<p>${esc(m.t)}</p>` : `<div class="chat__txt">${m.t}</div>`;
+    if (m.who === 'me') el.innerHTML = `<p>${esc(m.t)}</p><time>${m.at || ''}</time>`;
+    else {
+      let extra = '';
+      if (m.w === 'calc') extra = calcHTML(m.v || 250000);
+      if (m.w === 'lead') extra = leadHTML();
+      if (m.w === 'done') extra = `<div class="chat__done"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18"/><path d="M12 20.5l5.5 5.5L28 15"/></svg><p><b>${L('Verzonden', 'Sent')}</b>${L('Een adviseur neemt contact met u op.', 'An adviser will contact you.')}</p></div>`;
+      el.innerHTML = `<span class="chat__mav">${face}</span><div class="chat__txt">${m.t}${extra}</div>`;
+    }
     logEl.appendChild(el);
-    if (m.who === 'bot' && animate) logEl.scrollTop = Math.max(0, el.offsetTop - logEl.offsetTop - 70);
+    el.querySelectorAll('[data-calc-chat]').forEach(fitCalc);
+    el.querySelectorAll('[data-row]').forEach(row => {           // drag the card row with a mouse
+      let x0 = 0, s0 = 0, down = false, moved = false;
+      row.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; moved = false; x0 = e.clientX; s0 = row.scrollLeft; });
+      row.addEventListener('pointermove', e => { if (!down) return; const dx = e.clientX - x0; if (Math.abs(dx) > 4) moved = true; row.scrollLeft = s0 - dx; });
+      ['pointerup', 'pointerleave'].forEach(t => row.addEventListener(t, () => { down = false; }));
+      row.addEventListener('click', e => { if (moved) e.preventDefault(); }, true);
+      row.addEventListener('dragstart', e => e.preventDefault());
+    });
+    if (m.who === 'bot' && animate) logEl.scrollTop = Math.max(0, el.offsetTop - logEl.offsetTop - 16);
     else logEl.scrollTop = logEl.scrollHeight;
   };
   const chips = list2 => {
     chipsEl.innerHTML = '';
-    (list2 || []).forEach(c => { const b = document.createElement('button'); b.type = 'button'; b.textContent = c; b.addEventListener('click', () => ask(c)); chipsEl.appendChild(b); });
+    (list2 || []).forEach((c, k) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = c; b.style.setProperty('--k', k); b.addEventListener('click', () => ask(c)); chipsEl.appendChild(b); });
   };
   let busy = false;
   const ask = text => {
     text = String(text || '').trim();
     if (!text || busy) return;
     busy = true;
-    const me = { who: 'me', t: text };
+    const me = { who: 'me', t: text, at: time() };
     log.push(me); render(me, true); chips([]);
+    waLink.href = 'https://wa.me/' + TEL.replace('+', '') + '?text=' + encodeURIComponent(L('Hallo PC-Spain, ik heb een vraag: ', 'Hello PC-Spain, I have a question: ') + text);
     const typing = document.createElement('div');
     typing.className = 'chat__msg chat__msg--bot chat__typing';
-    typing.innerHTML = '<span></span><span></span><span></span>';
+    typing.innerHTML = `<span class="chat__mav">${face}</span><div><span></span><span></span><span></span></div>`;
     logEl.appendChild(typing); logEl.scrollTop = logEl.scrollHeight;
     const a = answer(text);
     setTimeout(() => {
       typing.remove();
-      const m = { who: 'bot', t: a.t, c: a.c };
-      log.push(m); save(); render(m, true); chips(a.c); busy = false;
-    }, 450 + Math.min(900, a.t.length * 2));
+      const m = { who: 'bot', t: a.t, c: a.c, w: a.w, v: a.v };
+      log.push(m); render(m, true); chips(a.c);
+      // after a few questions, offer a personal call-back once
+      const asked = log.filter(x => x.who === 'me').length;
+      if (asked === 3 && !log.some(x => x.w === 'lead' || x.w === 'done' || x.offered)) {
+        setTimeout(() => {
+          const o = { who: 'bot', offered: 1, t: L('Zal een adviseur u persoonlijk terugbellen? Dat is vrijblijvend.', 'Shall an adviser call you back personally? No obligation.'), c: [L('Bel mij terug', 'Call me back'), L('Nee, bedankt', 'No, thanks')] };
+          log.push(o); save(); render(o, true); chips(o.c);
+        }, 1100);
+      }
+      save(); busy = false;
+    }, 500 + Math.min(900, a.t.length * 1.6));
   };
-  const greet = () => {
-    const hour = new Date().getHours();
-    const hi = hour < 12 ? L('Goedemorgen', 'Good morning') : hour < 18 ? L('Goedemiddag', 'Good afternoon') : L('Goedenavond', 'Good evening');
-    const m = { who: 'bot', t: hi + L('! Ik ben <b>Sol</b>, de digitale assistent van PC-Spain. Stel gerust uw vraag over woningen, tarieven of onze werkwijze.', '! I am <b>Sol</b>, the digital assistant of PC-Spain. Feel free to ask about homes, prices or how we work.'), c: CHIPS.start };
-    log.push(m); save(); render(m, true); chips(m.c);
+  const restore = () => {
+    logEl.innerHTML = '';
+    if (!log.length) { welcome(); return; }
+    log.forEach(m => render(m, false));
+    const last = [...log].reverse().find(m => m.who === 'bot'); chips(last ? last.c : CHIPS.start);
   };
-  const restore = () => { logEl.innerHTML = ''; log.forEach(m => render(m, false)); const last = [...log].reverse().find(m => m.who === 'bot'); chips(last ? last.c : CHIPS.start); };
 
   form.addEventListener('submit', e => { e.preventDefault(); const v = input.value; input.value = ''; ask(v); });
-  root.querySelector('.chat__reset').addEventListener('click', () => { log = []; save(); logEl.innerHTML = ''; greet(); input.focus(); });
+  root.querySelector('.chat__reset').addEventListener('click', () => { log = []; save(); restore(); input.focus(); });
+
+  // phones: drag the sheet down to close
+  let dy0 = null;
+  const grab = e => { if (matchMedia('(min-width: 701px)').matches) return; dy0 = e.clientY; root.style.transition = 'none'; };
+  [root.querySelector('.chat__grab'), root.querySelector('.chat__hd')].forEach(h => h.addEventListener('pointerdown', grab));
+  addEventListener('pointermove', e => { if (dy0 === null) return; const d = Math.max(0, e.clientY - dy0); root.style.transform = `translateY(${d}px)`; });
+  addEventListener('pointerup', e => {
+    if (dy0 === null) return;
+    const d = e.clientY - dy0; dy0 = null; root.style.transition = ''; root.style.transform = '';
+    if (d > 110) close();
+  });
 
   const open = () => {
+    setStatus();
     root.classList.add('open'); document.body.classList.add('chat-open');
     btn && btn.setAttribute('aria-expanded', 'true');
-    if (!log.length) greet(); else if (!logEl.children.length) restore();
-    setTimeout(() => { if (matchMedia('(min-width: 701px)').matches) input.focus(); }, 350);
+    if (!logEl.children.length) restore();
+    setTimeout(() => { if (matchMedia('(min-width: 701px)').matches) input.focus(); }, 380);
   };
   const close = () => {
     root.classList.remove('open'); document.body.classList.remove('chat-open');
-    btn && btn.setAttribute('aria-expanded', 'false'); btn && btn.focus();
+    btn && btn.setAttribute('aria-expanded', 'false'); btn && btn.focus({ preventScroll: true });
   };
   root.querySelector('.chat__x').addEventListener('click', close);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && root.classList.contains('open')) close(); });
-  if (log.length) restore();
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && root.classList.contains('open')) close();
+    if (e.key === '/' && !root.classList.contains('open') && !/input|textarea|select/i.test((document.activeElement || {}).tagName || '')) { e.preventDefault(); open(); }
+  });
   window.PCSChat = { open, close, toggle: () => (root.classList.contains('open') ? close() : open()), answer };
 })();

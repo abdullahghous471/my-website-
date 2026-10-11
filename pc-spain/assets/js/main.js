@@ -701,9 +701,12 @@ float a=clamp((1.-sqrt(rr))*S*.5,0.,1.);gl_FragColor=vec4(min(c*s,vec3(1.))*a,a)
   /* ---- scroll-driven extras (GSAP) ---- */
   const extras = () => {
     if (!hasGsap || reduce) return;
-    // large intro sentences: one gentle fade-up when they come into view (not tied to scrolling)
+    // words brighten as you read
     $$('[data-words]').forEach(el => {
-      gsap.from(el, { y: 30, autoAlpha: 0, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+      const words = el.textContent.trim().split(/\s+/);
+      el.innerHTML = words.map(w => `<span class="w">${w}</span>`).join(' ');
+      gsap.fromTo($$('.w', el), { opacity: .14 }, { opacity: 1, stagger: .05, ease: 'none',
+        scrollTrigger: { trigger: el, start: 'top 80%', end: 'bottom 45%', scrub: true } });
     });
     // collage route line draws in
     $$('.collage__route path').forEach(p => {
@@ -720,6 +723,14 @@ float a=clamp((1.-sqrt(rr))*S*.5,0.,1.);gl_FragColor=vec4(min(c*s,vec3(1.))*a,a)
         scrollTrigger: { trigger: rs, start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true,
           onUpdate: s => { if (prog) prog.style.strokeDashoffset = 100 - s.progress * 100; cards.forEach((c, k) => c.classList.toggle('lit', s.progress >= k / cards.length - .02)); } } });
     }
+    // stacking cards: earlier cards recede
+    const sc = $$('.stack__card');
+    if (desktop()) sc.forEach((card, k) => {
+      const next = sc[k + 1];
+      if (!next) return;
+      gsap.to(card, { scale: .94, opacity: .55, ease: 'none',
+        scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 30%', scrub: true } });
+    });
     ScrollTrigger.refresh();
   };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(extras, 50)); else addEventListener('load', extras);

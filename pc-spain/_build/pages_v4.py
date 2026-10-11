@@ -213,7 +213,7 @@ def werkwijze():
 </section>
 
 <section class="band band--expand">
-  <div class="band__media"><video muted loop playsinline preload="none" poster="assets/video/villa.jpg" data-src="assets/video/villa.mp4"></video></div>
+  <div class="band__media"><video muted loop playsinline preload="none" poster="assets/video/valencia-oldtown.jpg" data-src="assets/video/valencia-oldtown.mp4"></video></div>
   <div class="band__inner wrap"><div class="grid-12">
     <div class="band__title" style="grid-column:1 / -1"><h2 class="h1" data-split style="font-size:clamp(2.6rem,6.6vw,7rem);max-width:14ch">Wilt u een belegging aankopen in Spanje?</h2></div>
   </div></div>

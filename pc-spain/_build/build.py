@@ -506,7 +506,7 @@ def home_body(**k):
     nb = ''
     if k.get('nb_title'):
         nb = f'''<section class="band band--expand">
-  <div class="band__media"><video muted loop playsinline preload="none" poster="assets/video/villa.jpg" data-src="assets/video/villa.mp4"></video></div>
+  <div class="band__media"><img src="assets/media/2024-10-nieuwbouw-pc-spain.jpg" alt="" loading="lazy" decoding="async"></div>
   <div class="band__inner wrap"><div class="grid-12">
     <div class="band__title"><span class="label" data-reveal>{k['nb_label']}</span><h2 class="h2" data-split style="margin-top:22px">{k['nb_title']}</h2></div>
     <div class="band__text" data-reveal=".2">{k['nb_text']}{lk(*k['nb_cta'])}</div>
@@ -514,7 +514,7 @@ def home_body(**k):
 </section>'''
     return f'''
 <section class="intro" id="intro">
-  <div class="intro__window"><video autoplay muted loop playsinline preload="none" poster="assets/video/intro-montage.jpg" data-src="assets/video/intro-montage.mp4"></video></div>
+  <div class="intro__window"><video autoplay muted loop playsinline preload="none" poster="assets/video/intro-montage.jpg" data-src="assets/video/intro-montage-v2.mp4"></video></div>
   <h1 class="intro__title" aria-label="{re.sub('<[^>]+>', '', ' '.join(k['title_rows']) + ' ' + k['script'])}">{rows}<span class="script">{k['script']}</span></h1>
   <span class="intro__side intro__side--l label">{k['sides'][0]}</span>
   <span class="intro__side intro__side--r label">{k['sides'][1]}</span>
@@ -568,7 +568,7 @@ def home_body(**k):
 
 <section class="sec">
   <div class="wrap split split--rev split--wide">
-    <div class="split__media"><figure class="frame frame--land" data-img><img src="assets/media/2024-10-nieuwbouw-pc-spain.jpg" alt="" loading="lazy" decoding="async"></figure></div>
+    <div class="split__media"><figure class="frame frame--land" data-img><video muted loop playsinline preload="none" poster="assets/video/pool-house.jpg" data-src="assets/video/pool-house.mp4"></video></figure></div>
     <div class="split__text">
       <span class="label label--brass" data-reveal>{k['exp_label']}</span>
       <h2 class="h2" data-split>{k['exp_title']}</h2>

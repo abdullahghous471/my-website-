@@ -51,6 +51,18 @@
     leave(href);
   });
 
+  /* ------------------------------------------------ home hero entrance (no scrolling needed) */
+  const heroEl = $('.hero');
+  if (heroEl) {
+    const vid = $('video', heroEl);
+    const showVid = () => heroEl.classList.add('has-video');
+    if (vid) { vid.addEventListener('playing', showVid, { once: true }); if (vid.readyState > 2) showVid(); }
+    curtainReady.then(() => requestAnimationFrame(() => heroEl.classList.add('is-in')));
+    setTimeout(() => heroEl.classList.add('is-in'), 2500); // safety net
+    const atHero = () => document.body.classList.toggle('at-hero', scrollY < innerHeight * .55);
+    addEventListener('scroll', atHero, { passive: true }); atHero();
+  }
+
   /* ------------------------------------------------ header */
   const hd = $('.hd');
   const intro = $('#intro');
@@ -178,33 +190,7 @@
         scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
     });
 
-    // Home intro — arch window opens to full screen
-    if (intro) {
-      const win = $('.intro__window', intro);
-      const vid = $('video', win);
-      const mob = !desktop();
-      const title = $$('.intro__title .row > span, .intro__title .script', intro);
-      gsap.set(win, { '--shade': 0 });
-      const introTl = gsap.timeline({ paused: true })
-        .from(title, { yPercent: 120, duration: 1.4, stagger: .1, ease: 'expo.out' })
-        .from(win, { clipPath: mob ? 'inset(100% 16% 0% 16% round 50vw 50vw 0vw 0vw)' : 'inset(100% 37% 0% 37% round 40vw 40vw 0vw 0vw)', duration: 1.6, ease: 'expo.inOut' }, '<.1')
-        .from('.intro__side', { autoAlpha: 0, duration: 1 }, '<.6');
-      curtainReady.then(() => introTl.play());
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: intro, start: 'top top', end: '+=110%', pin: true, scrub: 1,
-          
-          }
-      });
-      tl.to(win, { clipPath: 'inset(0% 0% 0% 0% round 0vw 0vw 0vw 0vw)', ease: 'none', duration: 1 })
-        .to(vid, { scale: 1, ease: 'none', duration: 1 }, 0)
-        .to(win, { '--shade': 1, duration: .4 }, .55)
-        .to('.intro__title', { yPercent: -70, autoAlpha: 0, ease: 'none', duration: .45 }, 0)
-        .to('.intro__side', { autoAlpha: 0, duration: .25 }, 0)
-        .to('.intro__over', { autoAlpha: 1, duration: .3 }, .9)
-        .from('.intro__over > *', { y: 40, stagger: .08, duration: .3 }, .9)
-        .to({}, { duration: .15 });
-    }
-
+    // Home hero: full screen from the first frame; the entrance plays on its own (see .hero.is-in in CSS)
     // Page hero media opens wider on scroll
     $$('.ph__media').forEach(m => {
       gsap.to(m, { clipPath: 'inset(0 0px 0 0px)', ease: 'none',

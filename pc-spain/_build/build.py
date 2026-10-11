@@ -495,6 +495,7 @@ def home_nl():
 
 def home_body(**k):
     rows = ''.join(f'<span class="row"><span>{r}</span></span>' for r in k['title_rows'])
+    hero_rows = ''.join(f'<span class="hero__row" style="--r:{n}"><span>{r}</span></span>' for n, r in enumerate(k['title_rows']))
     pillars = ''.join(f'<article class="pillar"><span class="label label--brass">0{i+1}</span><h3 class="h3" data-split>{t}</h3><p data-reveal=".2">{p}</p></article>' for i, (t, p) in enumerate(k['pillars']))
     orbit = orbit_html(k['advies'])
     n = len(k['hs'])
@@ -513,20 +514,19 @@ def home_body(**k):
   </div></div>
 </section>'''
     return f'''
-<section class="intro" id="intro">
-  <div class="intro__window"><video autoplay muted loop playsinline preload="none" poster="assets/video/intro-montage.jpg" data-src="assets/video/intro-montage-v2.mp4"></video></div>
-  <h1 class="intro__title" aria-label="{re.sub('<[^>]+>', '', ' '.join(k['title_rows']) + ' ' + k['script'])}">{rows}<span class="script">{k['script']}</span></h1>
-  <span class="intro__side intro__side--l label">{k['sides'][0]}</span>
-  <span class="intro__side intro__side--r label">{k['sides'][1]}</span>
-  <div class="intro__over">
-    <h2>{k['over_title']}</h2>
-    <div class="intro__over-side">
+<section class="hero" id="intro">
+  <div class="hero__media"><video autoplay muted loop playsinline preload="auto" poster="assets/video/intro-montage.jpg" data-src="assets/video/intro-montage-v2.mp4"></video></div>
+  <div class="hero__in">
+    <h1 class="hero__title" aria-label="{re.sub('<[^>]+>', '', ' '.join(k['title_rows']) + ' ' + k['script'])}">{hero_rows}<span class="hero__row" style="--r:{len(k['title_rows'])}"><span class="script">{k['script']}</span></span></h1>
+    <div class="hero__side">
+      <span class="hero__place label">{k['sides'][0]} · {k['sides'][1]} · Barcelona · Amsterdam</span>
       <p>{k['over_text']}</p>
-      <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:center">{btn(k['over_cta'][0], k['over_cta'][1], 'btn--light')}<button class="lk" data-video="assets/video/villa-garden.mp4">{k['video_label']} {ARROW}</button></div>
+      <div class="hero__cta">{btn(k['over_cta'][0], k['over_cta'][1], 'btn--light')}<button class="lk" data-video="assets/video/villa-garden.mp4">{k['video_label']} {ARROW}</button></div>
     </div>
   </div>
-  <div class="intro__scroll label"><span>Scroll</span><i></i></div>
+  <a class="hero__down" href="#after-intro" aria-label="{'Scroll naar beneden' if k.get('lang', 'nl') == 'nl' else 'Scroll down'}"><i></i></a>
 </section>
+<span id="after-intro"></span>
 
 {panels_html(k['pillars_label'], k.get('pillars_heading', ''), k['pillars'])}
 

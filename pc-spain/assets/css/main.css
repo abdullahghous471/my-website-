@@ -2611,3 +2611,16 @@ body.at-hero .cbtn--bot .cbtn__hi { opacity: 0 !important; }
 .hero__media::before { background: radial-gradient(65% 85% at 82% 70%, rgba(18,27,41,.58) 0%, rgba(18,27,41,0) 72%); }
 /* v14.1 — no scroll-driven framing anywhere: media always shows full size */
 .band--expand .band__media, .ph__media { clip-path: none !important; }
+
+/* v15 — header logo without the white panel (desktop; phones already had none) */
+@media (min-width: 901px) {
+  .hd__logo, .hd.is-solid .hd__logo { background: none; box-shadow: none; padding: 0; margin-top: 0; align-self: center; }
+  .hd__logo img { width: clamp(150px, 12vw, 190px); }
+  .hd.is-solid .hd__logo img { width: clamp(140px, 10.5vw, 170px); }
+  .hd--nav .hd__logo img, .hd--nav.is-solid .hd__logo img { width: clamp(140px, 11vw, 180px); }
+}
+@media (min-width: 1024px) and (max-width: 1279px) { .hd--nav .hd__logo img, .hd--nav.is-solid .hd__logo img { width: 128px; } }
+/* top of the home page: a soft light glow keeps the logo crisp over any frame of the video */
+.hero ~ * .hd__logo, .hd:not(.is-solid) .hd__logo { position: relative; }
+.hd:not(.is-solid) .hd__logo::before { content: ""; position: absolute; inset: -22px -40px; z-index: -1; background: radial-gradient(closest-side, rgba(241,240,236,.75), rgba(241,240,236,0)); pointer-events: none; }
+.menu__logo { background: none; box-shadow: none; padding: 0; top: calc(env(safe-area-inset-top, 0px) + 18px); }

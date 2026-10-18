@@ -329,3 +329,9 @@ html:not(.js) .stage__inner { transform: none; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
   .grain { animation: none; }
 }
+
+/* version C: inbox counter beside the stacks */
+.inbox { display: flex; flex-direction: column; gap: 6px; margin: -6px 0 26px; }
+.inbox b { font: 800 clamp(3rem, 6vw, 5.6rem)/.9 var(--display); font-stretch: 115%; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+.scene ~ main .inbox b { transition: color .4s; }
+@media (min-width: 901px) { .statement .inbox { position: absolute; } .statement { position: relative; } }

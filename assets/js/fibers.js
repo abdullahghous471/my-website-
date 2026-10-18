@@ -103,9 +103,9 @@ if (renderer) {
       void main(){
         float spark = smoothstep(.975, 1., fract(u * 1.6 - uTime * .22 + seed * 7.));
         float ends = mix(1., smoothstep(0., .12, u) * smoothstep(1., .88, u), uEnds);
-        float tipHeat = uTipGlow * smoothstep(.75, 1., u);
+        float tipHeat = 0.;
         vC = mix(color, vec3(1., .86, .6), max(spark * .9, tipHeat));
-        vA = ends * (.32 + .3 * seed) + spark * .85 + tipHeat * .5;
+        vA = ends * (.32 + .3 * seed) * (1. - uTipGlow * .45 * smoothstep(.55, 1., u)) + spark * .85 * (1. - uTipGlow * .6);
         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.);
       }`,
     fragmentShader: /* glsl */`
@@ -134,8 +134,52 @@ if (renderer) {
         gl_FragColor = vec4(c * (core * 2.4 + halo * .9), min(1., core * 1.4 + halo * .7) * uGlow); }`
   });
   const tips = new THREE.Points(tipGeo, tipMat);
-  lines.frustumCulled = false; tips.frustumCulled = false; // positions change every frame
-  const group = new THREE.Group(); group.add(lines, tips); scene.add(group);
+  lines.frustumCulled = false; // positions change every frame
+
+  /* the mark, woven from fine parallel light strands (replaces any dots) */
+  const MS = .085 * .74, mk = [], mu = [], mw = [], mo = [];
+  const path = (pts, warm) => {
+    let L = 0; const acc = [0];
+    for (let i = 1; i < pts.length; i++) { L += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); acc.push(L); }
+    for (let k = 0; k < 9; k++) {
+      const off = (k - 4) * .011;
+      for (let i = 0; i < pts.length - 1; i++) for (const j of [i, i + 1]) {
+        const [x, y, nx, ny] = pts[j];
+        mk.push((x - 20) * MS + nx * off, -(y - 20) * MS + ny * off, .6); mu.push(acc[j] / L); mw.push(warm); mo.push(Math.abs(k - 4) / 4);
+      }
+    }
+  };
+  const arc = []; for (let i = 0; i <= 140; i++) { const a = .5 + (i / 140) * (Math.PI * 2 - 1); arc.push([20 + 16 * Math.cos(a), 20 - 16 * Math.sin(a), Math.cos(a), Math.sin(a)]); }
+  const line = (x0, y0, x1, y1, nx, ny) => { const r = []; for (let i = 0; i <= 30; i++) { const t = i / 30; r.push([x0 + (x1 - x0) * t, y0 + (y1 - y0) * t, nx, ny]); } return r; };
+  path(arc, 0); path(line(14.5, 12.5, 14.5, 27.5, 1, 0), 0); path(line(25.5, 12.5, 25.5, 27.5, 1, 0), 0); path(line(14.5, 20, 39, 20, 0, 1), 1);
+  const markGeo = new THREE.BufferGeometry();
+  markGeo.setAttribute('position', new THREE.Float32BufferAttribute(mk, 3));
+  markGeo.setAttribute('u', new THREE.Float32BufferAttribute(mu, 1));
+  markGeo.setAttribute('warm', new THREE.Float32BufferAttribute(mw, 1));
+  markGeo.setAttribute('edge', new THREE.Float32BufferAttribute(mo, 1));
+  const markMat = new THREE.ShaderMaterial({
+    uniforms: { uDraw: { value: 0 }, uShow: { value: 0 }, uTime: uniforms.uTime },
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+    vertexShader: /* glsl */`
+      attribute float u; attribute float warm; attribute float edge; varying float vU; varying float vW; varying float vE; varying float vY;
+      void main(){ vU = u; vW = warm; vE = edge; vY = position.y; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }`,
+    fragmentShader: /* glsl */`
+      uniform float uDraw, uShow, uTime; varying float vU; varying float vW; varying float vE; varying float vY;
+      void main(){
+        if (vU > uDraw) discard;
+        float head = smoothstep(uDraw - .06, uDraw, vU) * step(uDraw, .999);
+        float spark = smoothstep(.96, 1., fract(vU * .9 - uTime * .18));
+        float t = clamp(vY * .7 + .5, 0., 1.);
+        vec3 cool = mix(vec3(.43, .59, 1.), vec3(.66, .54, 1.), smoothstep(.0, .5, t));
+        vec3 hue = mix(cool, vec3(1., .44, .66), smoothstep(.5, 1., t));
+        hue = mix(hue, vec3(1., .48, .31), vW);
+        float core = 1. - vE;
+        vec3 c = mix(hue, vec3(1., .97, .94), core * .55 + head * .6 + spark * .5);
+        gl_FragColor = vec4(c, (.25 + core * .75) * uShow * (1. + head + spark * .6));
+      }`
+  });
+  const markLines = new THREE.LineSegments(markGeo, markMat); markLines.frustumCulled = false;
+  const group = new THREE.Group(); group.add(lines, markLines); scene.add(group);
 
   /* ---------- scroll choreography ---------- */
   const secs = [...document.querySelectorAll('[data-fibers]')];
@@ -166,7 +210,7 @@ if (renderer) {
   addEventListener('pointermove', e => { tmx = e.clientX / innerWidth - .5; tmy = e.clientY / innerHeight - .5; }, { passive: true });
 
   const o1 = [0, 0, 0], o2 = [0, 0, 0];
-  let t = 0, last = performance.now();
+  let t = 0, last = performance.now(), markDraw = 0;
   const frame = now => {
     requestAnimationFrame(frame);
     if (document.hidden) { last = now; return; }
@@ -194,7 +238,9 @@ if (renderer) {
     group.scale.setScalar(cur.s * (small ? .62 : 1));
     group.rotation.set(my * .12, mx * .2, cur.r);
     uniforms.uTime.value = t; uniforms.uAlpha.value = cur.a; uniforms.uEnds.value = cur.ends; uniforms.uTipGlow.value = cur.tip;
-    tipMat.uniforms.uGlow.value = cur.tip * Math.min(1, cur.a * 1.4);
+    markDraw = cur.tip > .85 ? Math.min(1, markDraw + dt * (reduce ? 9 : .55)) : Math.max(0, markDraw - dt * 1.5);
+    const dE = 1 - Math.pow(1 - markDraw, 3);
+    markMat.uniforms.uDraw.value = dE; markMat.uniforms.uShow.value = Math.min(1, cur.tip * 1.2) * Math.min(1, cur.a * 1.4);
     renderer.render(scene, camera);
   };
   requestAnimationFrame(frame);

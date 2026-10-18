@@ -1,64 +1,52 @@
-/* Helmwork · Abdullah portfolio */
+/* Helmwork · page behaviour (the 3D form lives in scene.js) */
 (() => {
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
-  const root = document.documentElement;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  root.classList.remove('no-js');
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const G = window.gsap, ST = window.ScrollTrigger;
+  if (G && ST) G.registerPlugin(ST);
 
   /* smooth scroll */
   let lenis = null;
   if (!reduce && window.Lenis) {
-    lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 1 });
-    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
-    requestAnimationFrame(raf);
+    lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1 });
+    if (G && ST) { lenis.on('scroll', ST.update); G.ticker.add(t => lenis.raf(t * 1000)); G.ticker.lagSmoothing(0); }
+    else { const raf = t => { lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf); }
   }
-  const goTo = target => lenis ? lenis.scrollTo(target, { offset: -70, duration: 1.3 }) : target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  const goTo = (t) => lenis ? lenis.scrollTo(t, { offset: t === 0 ? 0 : -20, duration: 1.4 }) : (t === 0 ? scrollTo({ top: 0, behavior: 'smooth' }) : t.scrollIntoView({ behavior: 'smooth' }));
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-    const id = a.getAttribute('href'); const t = id === '#top' ? document.body : $(id);
-    if (!t) return; e.preventDefault(); closeMenu(); goTo(id === '#top' ? 0 : t);
+    const id = a.getAttribute('href'); const t = id === '#top' ? 0 : $(id);
+    if (t === null) return; e.preventDefault(); closeMenu(); goTo(t);
   }));
 
-  /* hero headline: split into words, keep <em> */
-  $$('[data-split]').forEach(h => {
-    let i = 0;
-    const wrap = node => {
-      [...node.childNodes].forEach(n => {
-        if (n.nodeType === 3) {
-          const frag = document.createDocumentFragment();
-          n.textContent.split(/(\s+)/).forEach(part => {
-            if (!part) return;
-            if (/^\s+$/.test(part)) { frag.append(' '); return; }
-            const w = document.createElement('span'); w.className = 'w';
-            const s = document.createElement('span'); s.textContent = part; s.style.setProperty('--i', i++);
-            w.append(s); frag.append(w);
-          });
-          n.replaceWith(frag);
-        } else if (n.nodeType === 1) wrap(n);
-      });
+  /* intro loader */
+  const loader = $('[data-loader]'), ln = $('[data-loader-n]');
+  const begin = () => { document.body.classList.add('is-in'); };
+  if (loader && !reduce) {
+    const t0 = performance.now(), dur = 1300;
+    const tick = t => {
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      ln.textContent = String(Math.round(e * 100)).padStart(3, '0');
+      if (p < 1) requestAnimationFrame(tick);
+      else { loader.classList.add('done'); setTimeout(begin, 250); setTimeout(() => loader.remove(), 1300); }
     };
-    h.setAttribute('aria-label', h.textContent); wrap(h);
-    $$('.w', h).forEach(w => w.setAttribute('aria-hidden', 'true'));
-  });
-  const start = () => document.body.classList.add('is-in');
-  (document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 900))]) : Promise.resolve()).then(() => requestAnimationFrame(start));
+    requestAnimationFrame(tick);
+  } else { loader && loader.remove(); begin(); }
 
-  /* header */
+  /* header hides on scroll down */
   const hd = $('[data-hd]'); let lastY = 0;
-  const onScroll = () => {
-    const y = lenis ? lenis.scroll : scrollY;
-    hd.classList.toggle('is-scrolled', y > 20);
-    hd.classList.toggle('is-hidden', y > 500 && y > lastY + 2 && !document.body.classList.contains('menu-open'));
+  const onScroll = y => {
+    hd.classList.toggle('is-hidden', y > 400 && y > lastY + 2 && !document.body.classList.contains('menu-open'));
     if (y < lastY - 2) hd.classList.remove('is-hidden');
     lastY = y;
   };
-  lenis ? lenis.on('scroll', onScroll) : addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  lenis ? lenis.on('scroll', e => onScroll(e.scroll)) : addEventListener('scroll', () => onScroll(scrollY), { passive: true });
 
-  /* mobile menu */
+  /* menu */
   const btn = $('[data-menu-btn]'), menu = $('[data-menu]');
   function closeMenu() {
-    if (menu.hidden) return;
+    if (!menu || menu.hidden) return;
     menu.hidden = true; btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', 'Open menu');
     document.body.classList.remove('menu-open'); lenis && lenis.start();
   }
@@ -68,27 +56,36 @@
     document.body.classList.add('menu-open'); hd.classList.remove('is-hidden'); lenis && lenis.stop();
   });
   addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); closeVideo(); } });
-  matchMedia('(min-width: 861px)').addEventListener('change', e => e.matches && closeMenu());
 
-  /* reveal on scroll, staggered per row */
+  /* reveal */
   const io = new IntersectionObserver(es => {
     let k = 0;
     es.forEach(e => {
       if (!e.isIntersecting) return;
-      e.target.style.transitionDelay = (k++ * 90) + 'ms';
-      e.target.classList.add('is-vis'); io.unobserve(e.target);
-      setTimeout(() => { e.target.style.transitionDelay = ''; }, 1400);
+      const el = e.target; el.style.transitionDelay = (k++ * 90) + 'ms'; el.classList.add('is-vis'); io.unobserve(el);
+      setTimeout(() => { el.style.transitionDelay = ''; }, 1500);
     });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
   $$('[data-reveal]').forEach(el => io.observe(el));
 
-  /* count-up stats */
+  /* statement: words light up as you scroll */
+  const sp = $('[data-words]');
+  if (sp) {
+    sp.innerHTML = sp.textContent.trim().split(/\s+/).map(w => `<span class="wd">${w}</span>`).join(' ');
+    const words = $$('.wd', sp);
+    if (reduce) words.forEach(w => w.style.opacity = 1);
+    else if (G && ST) {
+      G.to(words, { opacity: 1, stagger: 0.08, ease: 'none', scrollTrigger: { trigger: sp, start: 'top 80%', end: 'bottom 45%', scrub: 0.6 } });
+    } else words.forEach(w => w.style.opacity = 1);
+  }
+
+  /* counters */
   const cio = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return; cio.unobserve(e.target);
     const el = e.target, to = +el.dataset.count, pre = el.dataset.pre || '', suf = el.dataset.suf || '';
     if (reduce) return;
-    const t0 = performance.now(), dur = 1600;
-    const step = t => { const p = Math.min(1, (t - t0) / dur), v = Math.round(to * (1 - Math.pow(1 - p, 3))); el.textContent = pre + v + suf; if (p < 1) requestAnimationFrame(step); };
+    const t0 = performance.now(), dur = 1700;
+    const step = t => { const p = Math.min(1, (t - t0) / dur), v = Math.round(to * (1 - Math.pow(1 - p, 4))); el.textContent = pre + v + suf; if (p < 1) requestAnimationFrame(step); };
     requestAnimationFrame(step);
   }), { threshold: 0.6 });
   $$('[data-count]').forEach(el => cio.observe(el));
@@ -97,54 +94,68 @@
   const rw = $('[data-roles]');
   if (rw && !reduce) {
     const roles = rw.dataset.roles.split('|'); let ri = 0;
-    setInterval(() => {
-      rw.classList.add('out');
-      setTimeout(() => { ri = (ri + 1) % roles.length; rw.textContent = roles[ri]; rw.classList.remove('out'); }, 360);
-    }, 2600);
+    setInterval(() => { rw.classList.add('out'); setTimeout(() => { ri = (ri + 1) % roles.length; rw.textContent = roles[ri]; rw.classList.remove('out'); }, 350); }, 2600);
   }
 
-  /* live operations board: a working day in ten seconds */
-  const board = $('[data-board]');
-  if (board) {
-    const back = $('[data-back]', board), backBar = $('[data-back-bar]', board), resp = $('[data-resp]', board), respBar = $('[data-resp-bar]', board);
-    const csat = $('[data-csat]', board), ring = $('[data-ring]', board), clock = $('[data-clock]', board), tasks = $$('[data-tasks] li', board);
-    const ease = p => 1 - Math.pow(1 - p, 3);
-    const render = p => { // p: 0..1 through the day
-      const e = ease(Math.min(1, p / 0.8));
-      const b = Math.round(200 * (1 - e)); back.textContent = b; backBar.style.transform = `scaleX(${Math.max(0.0001, b / 200)})`;
-      const m = Math.round(240 - 200 * e); resp.textContent = m >= 60 ? `${Math.floor(m / 60)}h ${String(m % 60).padStart(2, '0')}m` : `${m} min`;
-      respBar.style.transform = `scaleX(${m / 240})`;
-      const c = Math.round(100 * ease(Math.min(1, p / 0.9))); csat.textContent = c; ring.style.setProperty('--p', c);
-      const mins = 9 * 60 + Math.round(8 * 60 * p); clock.textContent = `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(mins % 60).padStart(2, '0')}`;
-      tasks.forEach((t, i) => t.classList.toggle('done', p > 0.18 + i * 0.18));
-    };
-    if (reduce) render(1);
-    else {
-      let t0 = null, visible = true;
-      new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(board);
-      const DAY = 9000, HOLD = 3500;
-      const loop = t => {
-        if (t0 === null) t0 = t + 900;
-        if (visible) {
-          const k = (t - t0) % (DAY + HOLD);
-          render(t < t0 ? 0 : Math.min(1, k / DAY));
-        } else t0 += 16;
-        requestAnimationFrame(loop);
-      };
-      render(0); requestAnimationFrame(loop);
-    }
+  /* featured project: the screen tilts flat as it scrolls in, phones float at their own depth */
+  const stage = $('[data-stage]'), inner = $('[data-stage-inner]');
+  if (stage && G && ST && !reduce) {
+    G.fromTo(inner, { rotateX: 26, scale: .9, y: 40 }, { rotateX: 0, scale: 1, y: 0, ease: 'none', scrollTrigger: { trigger: stage, start: 'top 95%', end: 'center 55%', scrub: 0.8 } });
+    $$('[data-depth]', stage).forEach(ph => {
+      const d = +ph.dataset.depth;
+      G.fromTo(ph, { yPercent: 18 * d }, { yPercent: -10 * d, ease: 'none', scrollTrigger: { trigger: stage, start: 'top bottom', end: 'bottom top', scrub: 0.8 } });
+    });
+  } else if (inner) inner.style.transform = 'none';
+
+  /* 3D tilt cards */
+  if (fine && !reduce) $$('[data-tilt]').forEach(c => {
+    let raf = 0;
+    c.addEventListener('pointermove', e => {
+      const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        c.style.transform = `perspective(1000px) rotateX(${(.5 - y) * 9}deg) rotateY(${(x - .5) * 11}deg) translateZ(0)`;
+        c.style.setProperty('--gx', x * 100 + '%'); c.style.setProperty('--gy', y * 100 + '%');
+      });
+    });
+    c.addEventListener('pointerleave', () => { cancelAnimationFrame(raf); c.style.transform = ''; });
+  });
+
+  /* services: cards on a 3D ring that turns with the scroll */
+  const ring = $('[data-ring]'), pin = $('[data-ring-pin]');
+  if (ring) {
+    const cards = $$('.rc', ring); cards.forEach((c, i) => c.style.setProperty('--i', i));
+    const flat = () => { ring.classList.add('ring--flat'); ring.parentElement.classList.add('is-flat'); };
+    if (G && ST && !reduce && innerWidth > 900) {
+      G.to(ring, {
+        rotateY: -320, ease: 'none',
+        scrollTrigger: { trigger: pin, start: 'top top', end: '+=260%', scrub: 1, pin: true, anticipatePin: 1 }
+      });
+      ST.matchMedia({ '(max-width: 900px)': () => { ST.getAll().forEach(s => s.pin === pin && s.kill(true)); G.set(ring, { clearProps: 'transform' }); flat(); } });
+    } else flat();
   }
 
-  /* active nav link */
+  /* active nav */
   const links = $$('.nav a');
   const sio = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
   }), { rootMargin: '-45% 0px -50% 0px' });
   links.forEach(a => { const s = $(a.getAttribute('href')); s && sio.observe(s); });
 
-  /* walkthrough video modal */
-  const vm = $('[data-vmodal]'), vv = $('[data-vmodal-video]');
-  let lastFocus = null;
+  /* cursor */
+  const cur = $('[data-cursor]');
+  if (fine && cur && !reduce) {
+    document.documentElement.classList.add('has-cursor');
+    let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
+    addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; cur.classList.add('on'); }, { passive: true });
+    document.addEventListener('pointerleave', () => cur.classList.remove('on'));
+    const loop = () => { cx += (x - cx) * .22; cy += (y - cy) * .22; cur.style.transform = `translate(${cx}px, ${cy}px)`; requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+    document.addEventListener('pointerover', e => cur.classList.toggle('is-link', !!e.target.closest('a, button')));
+  }
+
+  /* video modal */
+  const vm = $('[data-vmodal]'), vv = $('[data-vmodal-video]'); let lastFocus = null;
   $$('[data-video-open]').forEach(b => b.addEventListener('click', () => {
     lastFocus = b; vv.src = b.dataset.videoOpen; vm.hidden = false; lenis && lenis.stop();
     vv.play().catch(() => {}); $('[data-vmodal-close]', vm).focus();
@@ -159,7 +170,9 @@
   /* intro video */
   const mv = $('[data-meet]'), mc = $('[data-meet-play]');
   if (mv && mc) {
-    mc.addEventListener('click', () => { mc.hidden = true; mv.controls = true; mv.play().catch(() => {}); mv.focus(); });
+    mc.addEventListener('click', () => { mc.hidden = true; mv.controls = true; mv.play().catch(() => {}); });
     mv.addEventListener('play', () => { mc.hidden = true; mv.controls = true; });
   }
+
+  addEventListener('load', () => ST && ST.refresh());
 })();

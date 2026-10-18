@@ -365,3 +365,34 @@ html:not(.js) .stage__inner { transform: none; }
   .portal__btns .btn { flex: 1 1 100%; }
   .portal__in { width: 100%; }
 }
+
+/* version B: one theme carried from the hero portal */
+.theme-portal { --accent: #FF7B5C; --grad: linear-gradient(90deg, #FFB08F, #FF6B3D 30%, #FF6FA8 55%, #A989FF 78%, #7FA0FF); }
+.theme-portal .h2 em, .theme-portal .cta__h em { -webkit-text-stroke: 0; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.theme-portal .label { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; width: fit-content; }
+.theme-portal .btn--accent { background: var(--grad); color: #fff; }
+.theme-portal .btn--accent:hover { filter: brightness(1.1); background: var(--grad); color: #fff; }
+.theme-portal .case__bars i + i, .theme-portal .case__bars--one i { background: var(--grad); }
+.theme-portal .chips .chip--hot { background: var(--grad); border-color: transparent; }
+.theme-portal .rc--new { background: linear-gradient(160deg, rgba(255,111,168,.16), rgba(127,160,255,.10)); border-color: rgba(255,140,170,.4); }
+.theme-portal .stat, .theme-portal .case, .theme-portal .rev { background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)); }
+.theme-portal body, body.theme-portal { background: radial-gradient(1200px 600px at 50% -10%, rgba(169,137,255,.06), transparent 60%), var(--bg); }
+
+/* the promise: sticky stage while the mark builds */
+.mark-sec { position: relative; height: 260vh; }
+.mark-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.mark-cv { position: absolute; inset: 0; width: 100%; height: 100%; }
+.mark-copy { position: relative; height: 100%; display: flex; align-items: center; justify-content: flex-end; }
+.mark-copy__in { width: min(46%, 640px); }
+.mark-copy .statement__p { margin-left: 0; max-width: 18ch; }
+.stats-sec { padding: clamp(40px, 6vw, 80px) 0 clamp(60px, 8vw, 110px); }
+.stats-sec .stats { margin-top: 0; }
+.cta--portal { position: relative; overflow: hidden; }
+.cta--portal .portal { -webkit-mask: none; mask: none; }
+.cta--portal .cta__in { position: relative; z-index: 1; }
+@media (max-width: 760px) {
+  .mark-sec { height: 230vh; }
+  .mark-copy { align-items: flex-end; justify-content: flex-start; padding-bottom: 12svh; }
+  .mark-copy__in { width: 100%; }
+  .mark-copy .statement__p { font-size: clamp(1.5rem, 7vw, 2.2rem); max-width: none; }
+}

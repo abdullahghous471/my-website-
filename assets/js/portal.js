@@ -1,7 +1,7 @@
 /* Helmwork · hero portal: a ring of flowing light strands on a starfield (raw WebGL, no library). */
 (() => {
-  const canvas = document.querySelector('[data-portal]');
-  if (!canvas) return;
+document.querySelectorAll('[data-portal]').forEach(canvas => {
+  const mode = canvas.dataset.portalMode || 'hero';
   const gl = canvas.getContext('webgl', { antialias: false, premultipliedAlpha: true, alpha: true });
   if (!gl) { canvas.classList.add('portal--off'); return; }
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -92,15 +92,20 @@
     requestAnimationFrame(frame);
     if (!visible || document.hidden) return;
     const t = reduce ? 6 : (now - t0) / 1000;
-    if (introStart === null && started()) introStart = now;
-    const intro = introStart === null ? 0 : Math.min(1, (now - introStart) / 1600);
-    const ie = 1 - Math.pow(1 - intro, 3);
     const hr = host.getBoundingClientRect();
-    const sc = Math.min(1, Math.max(0, -hr.top / hr.height));
+    let ie, sc;
+    if (mode === 'cta') { // the ring gathers as the closing section arrives
+      const arr = Math.min(1, Math.max(0, 1 - hr.top / innerHeight)); ie = 1 - Math.pow(1 - arr, 3); sc = 0;
+    } else {
+      if (introStart === null && started()) introStart = now;
+      const intro = introStart === null ? 0 : Math.min(1, (now - introStart) / 1600);
+      ie = 1 - Math.pow(1 - intro, 3); sc = Math.min(1, Math.max(0, -hr.top / hr.height));
+    }
     mx += (tmx - mx) * .08; my += (tmy - my) * .08;
     gl.uniform2f(uRes, canvas.width, canvas.height); gl.uniform1f(uTime, t); gl.uniform1f(uScroll, sc);
     gl.uniform1f(uIntro, reduce ? 1 : ie); gl.uniform2f(uMouse, mx, my);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   };
   requestAnimationFrame(frame);
+});
 })();

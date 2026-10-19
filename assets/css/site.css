@@ -1038,3 +1038,25 @@ html:not(.js) .stage__inner { transform: none; }
 .ft__tag em { font-style: normal; background: var(--grad, linear-gradient(90deg,#FF9A6B,#FF6FA8,#8FA2FF)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .ft { padding-right: clamp(24px, 9vw, 120px); }
 @media (max-width: 900px) { .ft { padding-right: clamp(24px, 5vw, 72px); padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); } }
+
+/* ===== One type system for the whole page =====
+   H1 hero > H2 section heading (one size) > H3 card title (one size)
+   Lead text 17px, card text 15.5px, meta 12px mono. */
+.theme-portal :is(.h2, .dial__title, .qcs__title, .ab__h) { font: 400 clamp(2rem, 3.5vw, 3.25rem)/1.08 var(--body); font-stretch: 100%; letter-spacing: -.04em; text-transform: none; text-wrap: balance; }
+.theme-portal .cta--fibers .cta__h { font: 400 clamp(2.5rem, 5vw, 4.5rem)/1.02 var(--body); font-stretch: 100%; letter-spacing: -.045em; text-transform: none; }
+.theme-portal :is(.dial__h, .ph__cap h3, .qc__name, .rc h3, .step h3) { font: 500 clamp(1.15rem, 1.45vw, 1.35rem)/1.25 var(--body); font-stretch: 100%; letter-spacing: -.02em; text-transform: none; }
+.theme-portal .dial__h--big { font: 400 clamp(1.6rem, 2.4vw, 2.2rem)/1.12 var(--body); letter-spacing: -.035em; }
+.theme-portal .qc__q { font: 400 clamp(1.5rem, 2.5vw, 2.3rem)/1.15 var(--body); letter-spacing: -.035em; }
+.theme-portal .dial__time { font-size: clamp(2.2rem, 3.4vw, 3rem); }
+.theme-portal :is(.portal__p, .sec-hd__p, .ab__p, .cta__p) { font-size: 17px; line-height: 1.6; }
+.theme-portal :is(.dial__p, .ph__cap p, .qc__p, .rc p, .step p, .reviews blockquote) { font-size: 15.5px; line-height: 1.6; }
+.theme-portal .odo-item .mono { font-size: 12px; }
+.theme-portal .step h3 { margin-top: 0; }
+.rc__new { color: var(--accent); }
+@media (max-width: 900px) {
+  .theme-portal :is(.portal__p, .sec-hd__p, .ab__p, .cta__p) { font-size: 15.5px; }
+  .theme-portal :is(.dial__p, .ph__cap p, .qc__p, .rc p, .step p, .reviews blockquote) { font-size: 14.5px; }
+  .theme-portal :is(.dial__h, .ph__cap h3, .qc__name, .rc h3, .step h3) { font-size: 1.1rem; }
+}
+.theme-portal .plist b { font: 400 clamp(1.25rem, 2vw, 1.75rem)/1.2 var(--body); font-stretch: 100%; letter-spacing: -.025em; text-transform: none; }
+.theme-portal .plist a { padding: 18px 0; }

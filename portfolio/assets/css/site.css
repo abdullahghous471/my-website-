@@ -403,3 +403,8 @@ html:not(.js) .stage__inner { transform: none; }
 .cta--fibers .cta__in { position: relative; z-index: 1; }
 .cta--fibers .cta__h { font-size: clamp(2.8rem, 8.4vw, 9rem); }
 .cta--fibers .cta__p { margin: 24px 0 30px; }
+
+/* about without a photo */
+.about__grid--solo { grid-template-columns: minmax(0, 1fr); }
+.about__grid--solo .about__body { max-width: 900px; }
+.about__grid--solo .about__body .h2 { font-size: clamp(2.3rem, 5.4vw, 5rem); }

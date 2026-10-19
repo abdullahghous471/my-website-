@@ -70,47 +70,82 @@
 </section>
 
 <!-- THE PROMISE: the mark builds itself while the sentence lights up -->
-<section class="mark-sec promise" data-mark-sec data-fibers="tangle" data-form="-0.05 -0.68 1 -0.04 .62" data-form-m="0 -0.66 1 -0.1 .5" data-promise>
-  <div class="mark-sticky">
-    <div class="promise__stage">
-      <div class="frags" aria-hidden="true">
-      <span class="frag frag--mail" data-frag>Re: Re: Invoice?</span>
-      <span class="frag frag--shout" data-frag>Priority: urgent</span>
-      <span class="frag frag--tag" data-frag>Ticket #2481 · open</span>
-      <span class="frag frag--chat" data-frag>Can we reschedule?</span>
-      <span class="frag frag--tag" data-frag>Missed call (3)</span>
-      <span class="frag frag--mail" data-frag>Fwd: Refund request</span>
-      <span class="frag frag--shout" data-frag>SLA breached</span>
-      <span class="frag frag--chat" data-frag>Order status?</span>
-      <span class="frag frag--tag" data-frag>@Abdullah</span>
-      <span class="frag frag--mail" data-frag>Unread (214)</span>
-      <span class="frag frag--shout" data-frag>Overdue · 12</span>
-      <span class="frag frag--tag" data-frag>Bug in checkout</span>
-      <span class="frag frag--chat" data-frag>Owner: unassigned</span>
-      <span class="frag frag--mail" data-frag>Re: Sprint review</span>
-      <span class="frag frag--tag" data-frag>Slack · 47 new</span>
-      <span class="frag frag--shout" data-frag>Follow-up due</span>
-      <span class="frag frag--mail" data-frag>Password reset</span>
-      <span class="frag frag--chat" data-frag>Awaiting reply · 3d</span>
-      <span class="frag frag--tag" data-frag>CRM · 12 stale leads</span>
-      <span class="frag frag--mail" data-frag>Re: Q3 report</span>
-      <span class="frag frag--shout" data-frag>Due today</span>
-      <span class="frag frag--tag" data-frag>Calendar clash</span>
-      <span class="frag frag--chat" data-frag>Chat · no agent</span>
-      <span class="frag frag--mail" data-frag>New lead: Acme</span>
-      <span class="frag frag--tag" data-frag>Invoice #0042</span>
-      <span class="frag frag--chat" data-frag>Chat · 9 waiting</span>
+<section class="day" id="day" data-day data-fibers="river" data-form="0 -1.02 1 0 .22" data-form-m="0 -1.2 1 0 .1">
+  <div class="day__pin">
+    <div class="wrap day__head">
+      <div>
+        <p class="mono label">(01) A day, handled</p>
+        <h2 class="day__title">While you focus on growth, <em>this</em> runs in the background.</h2>
       </div>
-      <div class="promise__copy">
-        <p class="mono label">(01) The promise</p>
-        <h2 class="promise__h">
-          <span class="promise__line promise__line--a">Inbox overflowing. Customers waiting. Projects&nbsp;stuck.</span>
-          <span class="promise__line promise__line--b" aria-hidden="true">Imagine logging in tomorrow to find it all <em>handled.</em></span>
-        </h2>
-        <p class="promise__count mono" aria-hidden="true"><b data-open>214</b> open items</p>
-        <p class="promise__calm" aria-hidden="true">Emails sorted · Customers cared for · Schedules organised · Tasks checked off</p>
-      </div>
-      <p class="promise__hint mono" aria-hidden="true">Scroll to clear the noise</p>
+      <p class="day__clock" aria-hidden="true"><span class="mono">Today</span><b data-clock>08:00</b></p>
+    </div>
+    <div class="day__rail">
+      <div class="day__line" aria-hidden="true"><i data-day-fill></i></div>
+      <ol class="day__track" data-day-track>
+        <li class="day__ev" data-ev data-time="08:30">
+          <span class="day__dot" aria-hidden="true"></span>
+          <p class="day__t">08:30</p>
+          <p class="mono day__svc">Virtual assistant</p>
+          <h3 class="day__h">Inbox triaged</h3>
+          <p class="day__p">Urgent mail flagged, the rest sorted, answered or scheduled.</p>
+          <p class="day__chip">214 → 0 unread</p>
+        </li>
+        <li class="day__ev" data-ev data-time="09:30">
+          <span class="day__dot" aria-hidden="true"></span>
+          <p class="day__t">09:30</p>
+          <p class="mono day__svc">Customer support</p>
+          <h3 class="day__h">Overnight tickets resolved</h3>
+          <p class="day__p">Chats answered, refunds processed, every SLA met.</p>
+          <p class="day__chip">First reply · 40 min</p>
+        </li>
+        <li class="day__ev" data-ev data-time="11:00">
+          <span class="day__dot" aria-hidden="true"></span>
+          <p class="day__t">11:00</p>
+          <p class="mono day__svc">Project management</p>
+          <h3 class="day__h">Stand-up run, sprint moving</h3>
+          <p class="day__p">Board updated, blockers cleared with the developers.</p>
+          <p class="day__chip">0 blockers</p>
+        </li>
+        <li class="day__ev" data-ev data-time="12:30">
+          <span class="day__dot" aria-hidden="true"></span>
+          <p class="day__t">12:30</p>
+          <p class="mono day__svc">CRM &amp; client success</p>
+          <h3 class="day__h">New client onboarded</h3>
+          <p class="day__p">Welcome sent, follow-ups booked, pipeline moved forward.</p>
+          <p class="day__chip">12 leads updated</p>
+        </li>
+        <li class="day__ev" data-ev data-time="14:00">
+          <span class="day__dot" aria-hidden="true"></span>
+          <p class="day__t">14:00</p>
+          <p class="mono day__svc">Technical troubleshooting</p>
+          <h3 class="day__h">A vague bug, made clear</h3>
+          <p class="day__p">Reproduced, documented and handed to engineering.</p>
+          <p class="day__chip">Fixed same day</p>
+        </li>
+        <li class="day__ev" data-ev data-time="15:30">
+          <span class="day__dot" aria-hidden="true"></span>
+          <p class="day__t">15:30</p>
+          <p class="mono day__svc">Requirements &amp; proposals</p>
+          <h3 class="day__h">Scope written, SOW sent</h3>
+          <p class="day__p">Clear enough for developers, approved by the client.</p>
+          <p class="day__chip">Approved first time</p>
+        </li>
+        <li class="day__ev" data-ev data-time="17:00">
+          <span class="day__dot" aria-hidden="true"></span>
+          <p class="day__t">17:00</p>
+          <p class="mono day__svc">Stakeholder communication</p>
+          <h3 class="day__h">End-of-day update</h3>
+          <p class="day__p">You, the client and the team know exactly where things stand.</p>
+          <p class="day__chip">Everyone aligned</p>
+        </li>
+        <li class="day__ev day__ev--end" data-ev data-time="18:00">
+          <span class="day__dot" aria-hidden="true"></span>
+          <p class="day__t">18:00</p>
+          <p class="mono day__svc">You</p>
+          <h3 class="day__h day__h--big">Log in tomorrow. It’s all <em>handled.</em></h3>
+          <button class="btn btn--light" type="button" data-book-open>Book a 15-min intro call</button>
+        </li>
+      </ol>
     </div>
   </div>
 </section>
@@ -458,7 +493,7 @@
 <script src="assets/js/portal.js?v=2" defer></script>
 <script type="module" src="assets/js/fibers.js?v=6"></script>
 <script src="assets/js/extras.js?v=1" defer></script>
-<script src="assets/js/promise.js?v=8" defer></script>
+<script src="assets/js/day.js?v=1" defer></script>
 <script src="assets/js/book.js?v=1" defer></script>
 <script src="assets/js/assistant.js?v=1" defer></script>
 </body>

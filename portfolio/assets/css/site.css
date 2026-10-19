@@ -693,3 +693,40 @@ html:not(.js) .stage__inner { transform: none; }
 
 .promise__calm, .promise__h { text-shadow: 0 0 24px rgba(8,9,11,.95), 0 0 8px rgba(8,9,11,.9); }
 .promise__h em { text-shadow: none; }
+
+/* ============ (01) A day, handled ============ */
+.day { position: relative; }
+.day__pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: clamp(36px, 7vh, 72px); overflow: hidden; }
+.day__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+.day__title { font: 400 clamp(1.9rem, 3.6vw, 3.4rem)/1.08 var(--body); letter-spacing: -.04em; max-width: 17ch; text-wrap: balance; }
+.day__title em, .day__h em { font-style: normal; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.day__clock { display: grid; justify-items: end; gap: 6px; }
+.day__clock b { font: 300 clamp(3rem, 6.4vw, 6rem)/.9 var(--body); letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+.day__rail { position: relative; padding-left: clamp(20px, 5vw, 72px); }
+.day__line { position: absolute; left: 0; right: 0; top: 7px; height: 1px; background: var(--line); }
+.day__line i { position: absolute; inset: -.5px 0; background: var(--grad); transform-origin: left; transform: scaleX(0); box-shadow: 0 0 14px rgba(255,111,168,.8); }
+.day__track { display: flex; gap: clamp(28px, 3.4vw, 56px); width: max-content; will-change: transform; padding-right: clamp(20px, 5vw, 72px); }
+.day__ev { position: relative; width: clamp(250px, 21vw, 310px); padding-top: 38px; opacity: .32; transition: opacity .6s var(--ease); }
+.day__ev.on { opacity: 1; }
+.day__dot { position: absolute; left: 0; top: 2px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--faint); transition: all .5s var(--ease); }
+.day__ev.on .day__dot { background: #FF8FB4; border-color: #FF8FB4; box-shadow: 0 0 0 6px rgba(255,111,168,.14), 0 0 18px rgba(255,111,168,.9); }
+.day__t { font: 300 2.6rem/1 var(--body); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.day__svc { margin: 14px 0 10px; color: #FF8FB4; }
+.day__h { font: 500 1.25rem/1.25 var(--body); letter-spacing: -.02em; }
+.day__p { margin-top: 8px; color: var(--dim); font-size: 15px; line-height: 1.55; }
+.day__chip { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); font: 400 12px/1 var(--mono); letter-spacing: .04em; color: var(--fg); background: rgba(14,16,19,.6); transform: translateY(8px); opacity: 0; transition: opacity .6s var(--ease) .15s, transform .7s var(--ease) .15s; }
+.day__chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #3DDC84; box-shadow: 0 0 8px #3DDC84; }
+.day__ev.on .day__chip { opacity: 1; transform: none; }
+.day__ev--end { width: clamp(300px, 28vw, 420px); }
+.day__h--big { font: 400 clamp(1.8rem, 2.6vw, 2.5rem)/1.1 var(--body); letter-spacing: -.04em; margin-bottom: 22px; }
+/* phones: vertical timeline */
+.day--v .day__pin { position: relative; height: auto; padding: 110px 0 90px; gap: 40px; }
+.day--v .day__head { flex-direction: column; align-items: flex-start; gap: 18px; }
+.day--v .day__clock { justify-items: start; position: sticky; top: 80px; }
+.day--v .day__rail { padding-left: 40px; margin-left: clamp(20px, 5vw, 72px); }
+.day--v .day__line { left: 5px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
+.day--v .day__line i { transform-origin: top; transform: scaleY(0); inset: 0 -.5px; }
+.day--v .day__track { flex-direction: column; width: auto; gap: 44px; padding-right: 20px; }
+.day--v .day__ev { width: auto; padding-top: 0; }
+.day--v .day__dot { left: -40px; top: 12px; }
+.day--v .day__t { font-size: 2.1rem; }

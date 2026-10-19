@@ -653,3 +653,26 @@ html:not(.js) .stage__inner { transform: none; }
   .promise__hint { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .pcard__bar--bad i, .pcard__face--bad { animation: none !important; } }
+
+/* ============ the promise v2: kinetic noise → calm ============ */
+.frags { position: absolute; inset: 0; pointer-events: none; }
+.frag { position: absolute; left: 0; top: 0; white-space: nowrap; will-change: transform, opacity; transition: color .5s, filter .6s, text-shadow .6s, opacity .5s;
+  filter: blur(calc((1 - var(--z, .5)) * 2.2px)); color: rgba(236,236,240,.88); }
+.frag--mail { font: 500 17px/1 var(--mono); letter-spacing: .01em; }
+.frag--mail::before { content: "✉"; margin-right: 9px; opacity: .55; }
+.frag--tag { font: 400 13px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(200,202,210,.8); }
+.frag--chat { font: 400 italic 22px/1.1 var(--body); letter-spacing: -.01em; color: rgba(236,236,240,.92); }
+.frag--shout { font: 800 34px/1 var(--display); font-stretch: 120%; letter-spacing: -.03em; text-transform: uppercase; color: transparent; -webkit-text-stroke: 1.2px rgba(255,140,140,.85); }
+.frag.is-caught { filter: none; color: #fff; text-shadow: 0 0 18px rgba(255,111,168,.9), 0 0 2px #fff; }
+.frag--shout.is-caught { -webkit-text-stroke-color: #FFB3C8; }
+.promise__copy { top: 45%; }
+.promise__count { margin-top: 18px; color: var(--dim); transition: color .4s; }
+.promise__count b { font-weight: 500; color: #FF9C9C; font-variant-numeric: tabular-nums; transition: color .4s; }
+.promise__count.is-zero b { color: #7CF0AE; }
+.promise__calm { position: absolute; left: 0; right: 0; top: calc(100% + 4px); margin-top: 14px; font: 400 15px/1.5 var(--body); color: #B9BBC2; opacity: 0; }
+.promise__h { font-size: clamp(1.8rem, 3.6vw, 3.3rem); }
+@media (max-width: 760px) {
+  .frag--mail { font-size: 13px; } .frag--tag { font-size: 10.5px; } .frag--chat { font-size: 16px; } .frag--shout { font-size: 24px; }
+  .promise__calm { font-size: 13.5px; }
+}
+@media (prefers-reduced-motion: reduce) { .frag { display: none; } }

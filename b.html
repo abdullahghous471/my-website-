@@ -188,7 +188,7 @@
 </section>
 
 <!-- FEATURED WORK -->
-<section class="work" id="work" data-fibers="river" data-form="0 0.6 1 -0.06 .5">
+<section class="work" id="work" data-fibers="river" data-form="0 0.88 1 -0.04 .22" data-form-m="0 0.95 1 -0.06 .1">
   <div class="wrap">
     <div class="sec-hd">
       <p class="mono label">(02) Featured project · Website design &amp; delivery</p>
@@ -221,24 +221,41 @@
     </div>
   </div>
 
-  <div class="wrap work__grid">
-    <div class="work__col" data-reveal>
-      <h3 class="mono k">The problem</h3>
-      <p class="work__p">A Dutch–Spanish property consultancy with an outdated WordPress site. It loaded slowly, worked poorly on phones and had a confusing menu, so visitors left before getting in touch.</p>
+  <div class="wrap tfs-wrap">
+    <p class="tfs__intro" data-reveal>A Dutch–Spanish property consultancy was losing visitors to an outdated WordPress site. <em>Here’s what changed.</em></p>
+    <ol class="tfs">
+      <li class="tf" data-tf>
+        <div class="tf__before"><p class="mono tf__tag">Before</p><h3 class="tf__h"><span>Slow to load</span></h3><p class="tf__p">Big images, heavy theme, visitors waited.</p></div>
+        <div class="tf__line" aria-hidden="true"><i></i><span>→</span></div>
+        <div class="tf__after"><p class="mono tf__tag tf__tag--after">After · Speed</p><h3 class="tf__h">Fast, compressed, lazy-loaded</h3><p class="tf__p">WebP images, compressed video, loads in a blink.</p></div>
+      </li>
+      <li class="tf" data-tf>
+        <div class="tf__before"><p class="mono tf__tag">Before</p><h3 class="tf__h"><span>Clumsy on phones</span></h3><p class="tf__p">Layouts broke and text was hard to read.</p></div>
+        <div class="tf__line" aria-hidden="true"><i></i><span>→</span></div>
+        <div class="tf__after"><p class="mono tf__tag tf__tag--after">After · Mobile</p><h3 class="tf__h">Mobile-first on every page</h3><p class="tf__p">131 pages designed for the thumb first.</p></div>
+      </li>
+      <li class="tf" data-tf>
+        <div class="tf__before"><p class="mono tf__tag">Before</p><h3 class="tf__h"><span>Confusing menu</span></h3><p class="tf__p">People could not find the services.</p></div>
+        <div class="tf__line" aria-hidden="true"><i></i><span>→</span></div>
+        <div class="tf__after"><p class="mono tf__tag tf__tag--after">After · Structure</p><h3 class="tf__h">Clear navigation, two languages</h3><p class="tf__p">Dutch and English, every page in both.</p></div>
+      </li>
+      <li class="tf" data-tf>
+        <div class="tf__before"><p class="mono tf__tag">Before</p><h3 class="tf__h"><span>Visitors left without contact</span></h3><p class="tf__p">No easy way to ask a quick question.</p></div>
+        <div class="tf__line" aria-hidden="true"><i></i><span>→</span></div>
+        <div class="tf__after"><p class="mono tf__tag tf__tag--after">After · Leads</p><h3 class="tf__h">“Sol”, a chat assistant</h3><p class="tf__p">Answers questions, shows homes, books call-backs.</p></div>
+      </li>
+      <li class="tf" data-tf>
+        <div class="tf__before"><p class="mono tf__tag">Before</p><h3 class="tf__h"><span>Paid hosting, manual updates</span></h3><p class="tf__p">Every change was slow and cost money.</p></div>
+        <div class="tf__line" aria-hidden="true"><i></i><span>→</span></div>
+        <div class="tf__after"><p class="mono tf__tag tf__tag--after">After · €0 hosting</p><h3 class="tf__h">Free hosting, automatic updates</h3><p class="tf__p">Cloudflare, redeployed on every save.</p></div>
+      </li>
+    </ol>
+    <div class="tfs__foot" data-reveal>
       <dl class="work__nums">
         <div><dt class="mono">Pages</dt><dd>131</dd></div>
         <div><dt class="mono">Languages</dt><dd>2</dd></div>
         <div><dt class="mono">Hosting</dt><dd>€0</dd></div>
       </dl>
-    </div>
-    <div class="work__col" data-reveal>
-      <h3 class="mono k">What I delivered</h3>
-      <ul class="ticks">
-        <li>A premium bilingual site (Dutch and English) with a full-screen video intro and smooth animations</li>
-        <li>“Sol”, a built-in chat assistant that answers questions, shows matching homes, calculates fees and sends call-back requests to the inbox</li>
-        <li>Mobile-first layouts, compressed media and redirects from every old Google link</li>
-        <li>Free hosting on Cloudflare with automatic updates</li>
-      </ul>
       <div class="work__btns">
         <a class="btn btn--accent" href="https://my-website.pc-spain.workers.dev" target="_blank" rel="noopener">Visit the live site <span class="arr" aria-hidden="true">↗</span></a>
         <button class="btn btn--glass" type="button" data-video-open="assets/video/pcspain-walkthrough.mp4">Watch 30 s walkthrough</button>
@@ -520,6 +537,7 @@
 <script type="module" src="assets/js/fibers.js?v=6"></script>
 <script src="assets/js/extras.js?v=1" defer></script>
 <script src="assets/js/odo.js?v=1" defer></script>
+<script>document.addEventListener("DOMContentLoaded",()=>{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{rootMargin:"0px 0px -22% 0px"});document.querySelectorAll("[data-tf]").forEach(el=>io.observe(el))});</script>
 <script src="assets/js/dial.js?v=4" defer></script>
 <script src="assets/js/book.js?v=1" defer></script>
 <script src="assets/js/assistant.js?v=1" defer></script>

@@ -3,7 +3,7 @@
    - CALENDLY: a scheduling link (Calendly, Cal.com, Google appointment page). The window then shows that calendar.
    - EMAIL: an address; requests are sent there through FormSubmit (first request triggers a one-time activation e-mail).
    With neither set, the visitor picks a time and sends the request on Upwork. */
-window.HELMWORK_BOOKING = window.HELMWORK_BOOKING || { CALENDLY: '', EMAIL: '' };
+window.HELMWORK_BOOKING = window.HELMWORK_BOOKING || { CALENDLY: '', EMAIL: 'abdullahghous412@gmail.com' };
 
 (() => {
   const $ = (s, c = document) => c.querySelector(s);
@@ -12,9 +12,9 @@ window.HELMWORK_BOOKING = window.HELMWORK_BOOKING || { CALENDLY: '', EMAIL: '' }
   const dlg = $('[data-book]'), body = $('[data-book-body]'), steps = $$('.book__steps li', dlg);
   if (!dlg) return;
   const TYPES = [
+    { id: 'audit', name: 'Free operations audit', len: 30, text: 'Three quick wins for your inbox, support or delivery. No obligation.', free: true },
     { id: 'intro', name: 'Intro call', len: 15, text: 'Meet Abdullah and see if it is a fit.' },
-    { id: 'project', name: 'Project discussion', len: 30, text: 'Talk through scope, timeline and how he would run it.' },
-    { id: 'ops', name: 'Operations review', len: 45, text: 'Walk through your inbox, support or delivery process.' }
+    { id: 'project', name: 'Project discussion', len: 30, text: 'Talk through scope, timeline and how he would run it.' }
   ];
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'your time zone';
   const state = { type: null, day: null, time: null };
@@ -28,7 +28,7 @@ window.HELMWORK_BOOKING = window.HELMWORK_BOOKING || { CALENDLY: '', EMAIL: '' }
   const viewType = () => {
     setStep(0);
     body.innerHTML = `<p class="book__lead">What would you like to talk about?</p>
-      <div class="book__types">${TYPES.map(t => `<button type="button" class="book__type" data-type="${t.id}"><b>${t.name}</b><span class="mono">${t.len} min</span><em>${t.text}</em></button>`).join('')}</div>`;
+      <div class="book__types">${TYPES.map(t => `<button type="button" class="book__type${t.free ? ' book__type--free' : ''}" data-type="${t.id}"><b>${t.name}${t.free ? ' <i>Free</i>' : ''}</b><span class="mono">${t.len} min</span><em>${t.text}</em></button>`).join('')}</div>`;
     $$('[data-type]', body).forEach(b => b.addEventListener('click', () => { state.type = TYPES.find(t => t.id === b.dataset.type); viewTime(); }));
     $('[data-type]', body).focus();
   };
@@ -58,6 +58,7 @@ window.HELMWORK_BOOKING = window.HELMWORK_BOOKING || { CALENDLY: '', EMAIL: '' }
         <label>Your name<input name="name" id="bk-name" required autocomplete="name"></label>
         <label>Email<input name="email" id="bk-email" type="email" required autocomplete="email"></label>
         <label class="wide">What do you need help with?<textarea name="message" id="bk-msg" rows="3" placeholder="A few words about your project, inbox or support setup"></textarea></label>
+        <p class="book__privacy wide">Your details are only used to reply to this request. They’re sent to Abdullah by email (via FormSubmit), never shared or added to a mailing list, and deleted on request. <button type="button" data-privacy-open>Privacy</button></p>
         <p class="book__err" data-err hidden>Please add your name and a valid email address.</p>
         <div class="book__nav wide"><button type="button" class="btn btn--glass" data-back>Back</button><button type="submit" class="btn btn--light">Request this time</button></div>
       </form>`;
@@ -100,15 +101,16 @@ window.HELMWORK_BOOKING = window.HELMWORK_BOOKING || { CALENDLY: '', EMAIL: '' }
     body.innerHTML = `<iframe class="book__frame" src="${CFG.CALENDLY}" title="Book a meeting with Abdullah" loading="lazy"></iframe>`;
   };
 
-  const open = () => {
+  const open = type => {
     lastFocus = document.activeElement; dlg.hidden = false; document.documentElement.classList.add('book-open');
     state.type = state.day = state.time = null;
-    CFG.CALENDLY ? viewCalendly() : viewType();
+    const pre = TYPES.find(t => t.id === type);
+    if (CFG.CALENDLY) viewCalendly(); else if (pre) { state.type = pre; viewTime(); } else viewType();
     window.lenis && window.lenis.stop && window.lenis.stop();
   };
   function close() { dlg.hidden = true; document.documentElement.classList.remove('book-open'); lastFocus && lastFocus.focus && lastFocus.focus(); }
   window.HelmworkBook = { open, close };
-  document.addEventListener('click', e => { if (e.target.closest('[data-book-open]')) { e.preventDefault(); open(); } });
+  document.addEventListener('click', e => { const b = e.target.closest('[data-book-open]'); if (b) { e.preventDefault(); open(b.dataset.bookType); } });
   $$('[data-book-close]', dlg).forEach(b => b.addEventListener('click', close));
   dlg.addEventListener('click', e => { if (e.target === dlg) close(); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && !dlg.hidden) close(); });

@@ -94,7 +94,12 @@ document.querySelectorAll('[data-portal]').forEach(canvas => {
     const t = reduce ? 6 : (now - t0) / 1000;
     const hr = host.getBoundingClientRect();
     let ie, sc;
-    if (mode === 'cta') { // the ring gathers as the closing section arrives
+    if (mode === 'stat') { // ignites once when scrolled into view, each ring a little after the last
+      if (introStart === null && hr.top < innerHeight * .8) introStart = now + (+canvas.dataset.delay || 0) * 1000;
+      const intro = introStart === null ? 0 : Math.min(1, Math.max(0, (now - introStart) / 1800));
+      ie = 1 - Math.pow(1 - intro, 3); sc = 0;
+      host.classList.toggle('lit', intro > .35);
+    } else if (mode === 'cta') { // the ring gathers as the closing section arrives
       const arr = Math.min(1, Math.max(0, 1 - hr.top / innerHeight)); ie = 1 - Math.pow(1 - arr, 3); sc = 0;
     } else {
       if (introStart === null && started()) introStart = now;

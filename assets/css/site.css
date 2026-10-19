@@ -1060,3 +1060,17 @@ html:not(.js) .stage__inner { transform: none; }
 }
 .theme-portal .plist b { font: 400 clamp(1.25rem, 2vw, 1.75rem)/1.2 var(--body); font-stretch: 100%; letter-spacing: -.025em; text-transform: none; }
 .theme-portal .plist a { padding: 18px 0; }
+
+/* readability: brighter secondary text and stronger resting states */
+:root, .theme-portal { --dim: #AEB1B8; --faint: #80838B; }
+.ph__cap { opacity: .42; }
+.phs__foot { opacity: .7; }
+.theme-portal .step h3 { color: var(--fg); }
+.theme-portal .step p { color: var(--dim); }
+.qc .mono, .odo-item .mono, .ab__certs, .tags span, .reviews figcaption span { color: #B9BCC3; }
+.theme-portal .label, .theme-portal .mono { -webkit-font-smoothing: antialiased; }
+.theme-portal .book__title { font: 400 clamp(1.6rem, 3vw, 2.2rem)/1.1 var(--body); font-stretch: 100%; letter-spacing: -.035em; text-transform: none; }
+.theme-portal .menu__nav a { font-family: var(--body); font-weight: 400; font-stretch: 100%; text-transform: none; letter-spacing: -.035em; }
+@media (max-width: 900px) { .link { display: inline-flex; align-items: center; min-height: 40px; } .stage__tabs button, .tabs button { min-height: 40px; } }
+@media (max-width: 900px) { .theme-portal [role="tab"] { min-height: 40px; } }
+body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s; }

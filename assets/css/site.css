@@ -898,3 +898,4 @@ html:not(.js) .stage__inner { transform: none; }
   .ph__cap h3 { font-size: 1.1rem; } .ph__cap p { font-size: 13.5px; }
   .phs__foot { justify-content: center; } .phs__foot .work__nums { display: none; }
 }
+.phs__foot { justify-content: center; }

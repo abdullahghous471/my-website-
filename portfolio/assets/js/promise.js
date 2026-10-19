@@ -25,13 +25,13 @@
       let x, y, tries = 0, ok;
       const hw = Math.min(el.offsetWidth * .6, W * .3) + 12;
       do {
-        x = hw + rnd() * (W - hw * 2); y = (.1 + rnd() * .76) * H; tries++;
+        x = hw + rnd() * (W - hw * 2); y = H * (.12 + Math.floor(rnd() * (mob ? 11 : 13)) * (mob ? .068 : .058)); tries++;
         const inCentre = Math.abs(x - W / 2) < W * (mob ? .44 : .3) && Math.abs(y - H * .43) < H * (mob ? .2 : .16);
-        ok = !inCentre && placed.every(q => Math.abs(q[0] - x) > (q[2] + hw) * .9 || Math.abs(q[1] - y) > (mob ? 30 : 44));
+        ok = !inCentre && placed.every(q => Math.abs(q[0] - x) > (q[2] + hw) + 40 || Math.abs(q[1] - y) > 4);
       } while (tries < 80 && !ok);
       placed.push([x, y, hw]);
       const z = rnd();                                  // depth: 0 far … 1 near
-      return { el, x, y, z, rot: (rnd() - .5) * 14, sp: .3 + rnd() * .7, ph: rnd() * 6.28,
+      return { el, x, y, z, rot: 0, sp: .3 + rnd() * .7, ph: rnd() * 6.28,
         start: .12 + (i / use.length) * .38 + rnd() * .04 };  // when it gets pulled into the fibres
     });
     frags.forEach(f => { f.el.style.setProperty('--z', f.z.toFixed(2)); });
@@ -43,7 +43,7 @@
 
   let visible = false;
   new IntersectionObserver(es => { visible = es[0].isIntersecting; }, { rootMargin: '100px' }).observe(sec);
-  const ribbonY = (x, t) => H * (mob ? .86 : .76) + H * .045 * Math.sin(x / W * 5.6 + t * .5);
+  const ribbonY = (x, t) => H * (mob ? .86 : .84) + H * .045 * Math.sin(x / W * 5.6 + t * .5);
   const t0 = performance.now();
 
   const frame = now => {
@@ -58,14 +58,14 @@
       const k = clamp((p - f.start) / .3);                 // 0 floating … 1 carried away
       const dive = ease(clamp(k / .38)), ride = Math.pow(clamp((k - .2) / .8), 1.5);
       const drift = 1 - dive;
-      const fx = f.x + Math.sin(t * .25 * f.sp + f.ph) * 26 * drift + mx * 60 * (f.z - .3) * drift;
-      const fy = f.y + Math.cos(t * .3 * f.sp + f.ph) * 18 * drift + my * 40 * (f.z - .3) * drift - p * 90 * (f.z + .2) * drift;
+      const fx = f.x + Math.sin(t * .18 * f.sp + f.ph) * 18 * drift + mx * 24 * (f.z - .3) * drift;
+      const fy = f.y + my * 10 * (f.z - .3) * drift;
       const x = fx + (W * 1.18 - fx) * ride;
       const y = fy + (ribbonY(x, t) - fy) * dive;
-      const s = (.62 + f.z * .55) * (1 - .55 * dive);
-      f.el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) rotate(${f.rot * drift + Math.sin(t * 2 + f.ph) * 3 * dive * (1 - ride)}deg) scale(${s})`;
+      const s = 1 - .25 * dive;
+      f.el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) rotate(0deg) scale(${s})`;
       const behind = Math.abs(x - W / 2) < W * (mob ? .46 : .3) && Math.abs(y - H * .43) < H * (mob ? .15 : .13) && dive < .5;
-      f.el.style.opacity = (k >= 1 || behind ? 0 : (.32 + f.z * .68) * (1 - clamp((ride - .7) / .3)));
+      f.el.style.opacity = (k >= 1 || behind ? 0 : (.28 + f.z * .5) * (1 - .75 * dive) * (1 - clamp(ride / .45)));
       f.el.classList.toggle('is-caught', dive > .5);
       gone += clamp(ride / .7);
     });

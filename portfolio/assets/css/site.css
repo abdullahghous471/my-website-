@@ -676,3 +676,20 @@ html:not(.js) .stage__inner { transform: none; }
   .promise__calm { font-size: 13.5px; }
 }
 @media (prefers-reduced-motion: reduce) { .frag { display: none; } }
+
+/* the promise v3: one quiet label style, rows like a log */
+.frag, .frag--mail, .frag--tag, .frag--chat, .frag--shout { font: 400 12.5px/1 var(--mono) !important; letter-spacing: .08em; text-transform: uppercase; color: rgba(214,216,224,.9); -webkit-text-stroke: 0; filter: none; font-style: normal; }
+.frag::before { content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%; margin: 0 10px 2px 0; vertical-align: middle; background: rgba(255,255,255,.35); opacity: 1; }
+.frag--shout::before { background: #FF8A7A; }
+.frag--chat::before { background: #A989FF; }
+.frag--mail::before { background: #7FA0FF; }
+.frag.is-caught { color: #fff; text-shadow: 0 0 12px rgba(255,111,168,.55); }
+.frag.is-caught::before { background: #FF8FB4; box-shadow: 0 0 8px #FF8FB4; }
+.promise__h { font-weight: 400; letter-spacing: -.04em; }
+.promise__count { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: rgba(14,16,19,.6); }
+.promise__count::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #FF8A7A; transition: background .4s; }
+.promise__count.is-zero::before { background: #3DDC84; }
+@media (max-width: 760px) { .frag, .frag--mail, .frag--tag, .frag--chat, .frag--shout { font-size: 10.5px !important; } }
+
+.promise__calm, .promise__h { text-shadow: 0 0 24px rgba(8,9,11,.95), 0 0 8px rgba(8,9,11,.9); }
+.promise__h em { text-shadow: none; }

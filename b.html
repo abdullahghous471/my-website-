@@ -39,6 +39,7 @@
   <nav class="nav" aria-label="Main">
     <a href="#work">Work</a><a href="#results">Results</a><a href="#services">Services</a><a href="#about">About</a><a href="#reviews">Reviews</a>
   </nav>
+  <button class="hd__book" type="button" data-book-open aria-label="Book a meeting"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8.5 14.5h3"/></svg><span>Book a call</span></button>
   <a class="btn btn--light hd__cta" href="https://www.upwork.com/freelancers/~013c19993b7b8137ff?mp_source=share" target="_blank" rel="noopener">Hire me <span class="arr" aria-hidden="true">↗</span></a>
   <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" data-menu-btn><span></span><span></span></button>
 </header>
@@ -47,7 +48,7 @@
   <nav class="menu__nav" aria-label="Mobile">
     <a href="#work"><i>01</i>Work</a><a href="#results"><i>02</i>Results</a><a href="#services"><i>03</i>Services</a><a href="#about"><i>04</i>About</a><a href="#reviews"><i>05</i>Reviews</a>
   </nav>
-  <a class="btn btn--accent" href="https://www.upwork.com/freelancers/~013c19993b7b8137ff?mp_source=share" target="_blank" rel="noopener">Hire me on Upwork <span class="arr" aria-hidden="true">↗</span></a>
+  <div class="menu__btns"><button class="btn btn--glass" type="button" data-book-open><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8.5 14.5h3"/></svg> Book a call</button><a class="btn btn--accent" href="https://www.upwork.com/freelancers/~013c19993b7b8137ff?mp_source=share" target="_blank" rel="noopener">Hire me on Upwork <span class="arr" aria-hidden="true">↗</span></a></div>
 </div>
 
 <main id="main">
@@ -89,10 +90,10 @@
 <section class="stats-sec" data-fibers="river" data-form="0 -0.1 1 0 .5">
   <div class="wrap">
     <dl class="stats">
-      <div class="stat glass" data-reveal><dt>Revenue contributed</dt><dd data-count="400" data-pre="$" data-suf="K+">$400K+</dd></div>
-      <div class="stat glass" data-reveal><dt>Projects delivered</dt><dd data-count="85" data-suf="+">85+</dd></div>
-      <div class="stat glass" data-reveal><dt>Client satisfaction</dt><dd data-count="100" data-suf="%">100%</dd></div>
-      <div class="stat glass" data-reveal><dt>Years of experience</dt><dd data-count="5" data-suf="+">5+</dd></div>
+      <div class="stat glass" data-spot data-reveal><dt>Revenue contributed</dt><dd data-count="400" data-pre="$" data-suf="K+">$400K+</dd></div>
+      <div class="stat glass" data-spot data-reveal><dt>Projects delivered</dt><dd data-count="85" data-suf="+">85+</dd></div>
+      <div class="stat glass" data-spot data-reveal><dt>Client satisfaction</dt><dd data-count="100" data-suf="%">100%</dd></div>
+      <div class="stat glass" data-spot data-reveal><dt>Years of experience</dt><dd data-count="5" data-suf="+">5+</dd></div>
     </dl>
   </div>
 </section>
@@ -106,6 +107,14 @@
     </div>
   </div>
 
+  <div class="wrap devtabs-wrap">
+    <div class="devtabs" role="tablist" aria-label="Preview the PC-Spain website">
+      <button role="tab" aria-selected="true" data-dev="desk">Desktop</button>
+      <button role="tab" aria-selected="false" data-dev="mob">Mobile</button>
+      <button role="tab" aria-selected="false" data-dev="chat">Chat assistant</button>
+      <span class="devtabs__pill" aria-hidden="true"></span>
+    </div>
+  </div>
   <div class="stage" data-stage>
     <div class="stage__inner" data-stage-inner>
       <button class="stage__screen" type="button" data-video-open="assets/video/pcspain-walkthrough.mp4" aria-label="Watch the 30-second website walkthrough">
@@ -114,6 +123,12 @@
       </button>
       <figure class="stage__phone stage__phone--l" data-depth="1"><img src="assets/img/pcspain-mob.webp" width="780" height="1688" alt="PC-Spain on a phone" loading="lazy" decoding="async"></figure>
       <figure class="stage__phone stage__phone--r" data-depth="2"><img src="assets/img/pcspain-mob-chat.webp" width="780" height="1688" alt="Sol, the chat assistant, showing homes in Jávea" loading="lazy" decoding="async"></figure>
+      <div class="stage__focus" data-focus aria-hidden="true">
+        <figure class="focus__phone" data-focus-view="mob"><img src="assets/img/pcspain-mob.webp" width="780" height="1688" alt="" loading="lazy" decoding="async"></figure>
+        <figure class="focus__phone" data-focus-view="chat"><img src="assets/img/pcspain-mob-chat.webp" width="780" height="1688" alt="" loading="lazy" decoding="async"></figure>
+        <ul class="focus__notes" data-focus-view="mob"><li>Mobile-first layouts</li><li>Full-screen video intro</li><li>One-tap contact</li></ul>
+        <ul class="focus__notes" data-focus-view="chat"><li>Answers visitor questions</li><li>Shows matching homes</li><li>Sends call-back requests</li></ul>
+      </div>
     </div>
   </div>
 
@@ -154,7 +169,7 @@
       <p class="sec-hd__p" data-reveal>Projects where I took full ownership, built the system and delivered outcomes that moved the business forward.</p>
     </div>
     <div class="cases">
-      <article class="case glass" data-tilt data-reveal>
+      <article class="case glass" data-tilt data-spot data-reveal>
         <span class="glare" aria-hidden="true"></span>
         <p class="mono case__ind">AI platform</p>
         <h3 class="case__name">Hedy AI</h3>
@@ -165,7 +180,7 @@
         <p class="tags"><span>Customer support</span><span>Virtual assistant</span><span>Client success</span></p>
         <a class="link" href="https://www.upwork.com/freelancers/~013c19993b7b8137ff?mp_source=share" target="_blank" rel="noopener">View on Upwork <span class="arr" aria-hidden="true">↗</span></a>
       </article>
-      <article class="case glass" data-tilt data-reveal>
+      <article class="case glass" data-tilt data-spot data-reveal>
         <span class="glare" aria-hidden="true"></span>
         <p class="mono case__ind">Healthcare</p>
         <h3 class="case__name">PMcardio</h3>
@@ -176,7 +191,7 @@
         <p class="tags"><span>Technical support</span><span>Email management</span><span>Operations</span></p>
         <a class="link" href="https://www.upwork.com/freelancers/~013c19993b7b8137ff?mp_source=share" target="_blank" rel="noopener">View on Upwork <span class="arr" aria-hidden="true">↗</span></a>
       </article>
-      <article class="case glass" data-tilt data-reveal>
+      <article class="case glass" data-tilt data-spot data-reveal>
         <span class="glare" aria-hidden="true"></span>
         <p class="mono case__ind">Enterprise AI</p>
         <h3 class="case__name">Dust</h3>
@@ -221,7 +236,8 @@
       <p class="mono label">(05) How I work</p>
       <h2 class="h2" data-reveal>Ownership first.<br><em>Systems</em> that last.</h2>
     </div>
-    <ol class="steps">
+    <div class="steps__track" aria-hidden="true"><i data-steps-fill></i></div>
+    <ol class="steps" data-steps>
       <li class="step" data-reveal><span class="mono">Step 1</span><h3>Take ownership</h3><p>I step into your inbox, tools and backlog and learn how the business really runs.</p></li>
       <li class="step" data-reveal><span class="mono">Step 2</span><h3>Build the system</h3><p>Triage, templates, SLAs and escalation paths, so nothing depends on memory.</p></li>
       <li class="step" data-reveal><span class="mono">Step 3</span><h3>Run it daily</h3><p>Customers answered, calendars managed, projects moving and stakeholders updated.</p></li>
@@ -236,11 +252,11 @@
     <div class="sec-hd sec-hd--split">
       <div>
         <p class="mono label">(06) Live projects</p>
-        <h2 class="h2" data-reveal>Products I have <em>coordinated</em></h2>
+        <h2 class="h2" data-reveal>Products I have <em>coordinated</em> <sup class="count">11</sup></h2>
       </div>
       <p class="sec-hd__p" data-reveal>Live products across industries where I worked as project coordinator, support lead or virtual assistant.</p>
     </div>
-    <ul class="plist">
+    <ul class="plist" data-plist>
       <li><a href="https://www.kavanhealth.com/en" target="_blank" rel="noopener"><span class="mono">Healthcare</span><b>kavanhealth.com</b><span class="arr" aria-hidden="true">↗</span></a></li>
       <li><a href="https://habitnest.com" target="_blank" rel="noopener"><span class="mono">E-commerce</span><b>habitnest.com</b><span class="arr" aria-hidden="true">↗</span></a></li>
       <li><a href="https://www.techmicrousa.com" target="_blank" rel="noopener"><span class="mono">E-commerce</span><b>techmicrousa.com</b><span class="arr" aria-hidden="true">↗</span></a></li>
@@ -253,22 +269,32 @@
       <li><a href="https://play.google.com/store/apps/details?id=com.txdynamics.chainOfKOmmand&amp;hl=en" target="_blank" rel="noopener"><span class="mono">Mobile app</span><b>Chain of Command</b><span class="arr" aria-hidden="true">↗</span></a></li>
       <li><a href="https://play.google.com/store/apps/details?id=com.quickapp.handyman&amp;hl=en" target="_blank" rel="noopener"><span class="mono">Mobile app</span><b>Handyman App</b><span class="arr" aria-hidden="true">↗</span></a></li>
     </ul>
+    <div class="pchip" data-pchip aria-hidden="true"><span data-pchip-cat>Live</span>Visit site ↗</div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section class="about" id="about" data-fibers="river" data-form="0 -0.72 1 -0.05 .4">
-  <div class="wrap about__grid about__grid--solo">
+  <div class="wrap about__grid about__grid--glance">
     <div class="about__body">
       <p class="mono label">(07) About me</p>
       <h2 class="h2" data-reveal>I don’t just manage tasks. I <em>run</em> operations.</h2>
       <p data-reveal>I’m Abdullah, a technical support and customer success specialist with 5+ years of experience running the operational backbone of growing businesses. I have contributed to <strong>$400K+ in revenue</strong>, delivered <strong>85+ web and mobile projects</strong> and kept <strong>100% client satisfaction</strong> through empathy, clear communication and fast resolution.</p>
       <p data-reveal>My background spans IT project coordination, customer support, virtual assistance and CRM management across healthcare, AI, e-commerce, real estate, travel and education.</p>
-      <h3 class="mono k">Certifications &amp; achievements</h3>
-      <ul class="chips" data-reveal>
+    </div>
+    <aside class="glance glass" data-spot data-reveal aria-label="At a glance">
+      <p class="mono glance__k">At a glance</p>
+      <dl class="glance__rows">
+        <div><dt>Role</dt><dd>Operations lead · Support specialist · Project coordinator</dd></div>
+        <div><dt>Industries</dt><dd>Healthcare, AI, e-commerce, real estate, travel, education</dd></div>
+        <div><dt>Status</dt><dd><span class="dot" aria-hidden="true"></span>Available for new projects</dd></div>
+      </dl>
+      <p class="mono glance__k">Certifications &amp; achievements</p>
+      <ul class="chips">
         <li class="chip--hot">Upwork Top Rated</li><li>ClickUp Certified</li><li>Customer Success Certified</li><li>Duolingo English 120</li><li>3 yrs technical support</li><li>2 yrs project delivery</li>
       </ul>
-    </div>
+      <button class="btn btn--glass glance__btn" type="button" data-book-open>Book a 15-min intro call</button>
+    </aside>
   </div>
   <div class="tools" aria-label="Tools I work with">
     <div class="tools__track">
@@ -300,22 +326,28 @@
 <!-- REVIEWS -->
 <section class="reviews" id="reviews" data-fibers="river" data-form="0 0.82 1 -0.05 .4">
   <div class="wrap">
-    <div class="sec-hd">
-      <p class="mono label">(09) Client reviews</p>
-      <h2 class="h2" data-reveal>What clients <em>say</em></h2>
+    <div class="sec-hd sec-hd--split">
+      <div>
+        <p class="mono label">(09) Client reviews</p>
+        <h2 class="h2" data-reveal>What clients <em>say</em></h2>
+      </div>
+      <div class="rating glass" data-reveal>
+        <b>5.0</b><span class="stars" aria-hidden="true">★★★★★</span>
+        <p>Upwork Top Rated · 100% client satisfaction</p>
+      </div>
     </div>
     <div class="revs">
-      <figure class="rev glass" data-reveal>
+      <figure class="rev glass" data-spot data-reveal>
         <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
         <blockquote>“Abdullah is an outstanding support professional. He is proactive and often spots issues before we even raise them. He handles every query calmly and clearly, always aiming for smart, long-term solutions instead of quick fixes. His mix of strong technical skills and genuine care for customers really makes him stand out.”</blockquote>
         <figcaption><span class="av">KP</span><span><b>Kashor Pungi</b>Verified client · Upwork</span></figcaption>
       </figure>
-      <figure class="rev glass" data-reveal>
+      <figure class="rev glass" data-spot data-reveal>
         <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
         <blockquote>“Working with Abdullah was one of the best decisions we made for our operations. He took ownership of our entire support inbox within days, had a proper system running within a week, and our team finally had breathing room. Response times dropped dramatically. Genuinely professional and reliable.”</blockquote>
         <figcaption><span class="av">MR</span><span><b>Martin Reynolds</b>Verified client · Upwork</span></figcaption>
       </figure>
-      <figure class="rev glass" data-reveal>
+      <figure class="rev glass" data-spot data-reveal>
         <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
         <blockquote>“Abdullah managed our project coordination from requirements gathering all the way to delivery. He kept every stakeholder aligned, flagged risks before they became problems, and made sure nothing slipped through. If you need someone who takes ownership and runs with it, hire him.”</blockquote>
         <figcaption><span class="av">SA</span><span><b>Sarah Andersen</b>Verified client · Upwork</span></figcaption>
@@ -330,7 +362,10 @@
     <p class="mono label">(10) Got a project?</p>
     <h2 class="cta__h"><span>Let’s build</span><span>it right.</span></h2>
     <p class="cta__p">A mobile app, a support system, a website, a full product launch or just an overflowing inbox: I have done it before and I will deliver it for you.</p>
-    <a class="btn btn--light btn--lg" href="https://www.upwork.com/freelancers/~013c19993b7b8137ff?mp_source=share" target="_blank" rel="noopener">Hire me on Upwork <span class="arr" aria-hidden="true">↗</span></a>
+    <div class="cta__btns">
+      <a class="btn btn--light btn--lg" href="https://www.upwork.com/freelancers/~013c19993b7b8137ff?mp_source=share" target="_blank" rel="noopener">Hire me on Upwork <span class="arr" aria-hidden="true">↗</span></a>
+      <button class="btn btn--glass btn--lg" type="button" data-book-open><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8.5 14.5h3"/></svg> Book a meeting</button>
+    </div>
   </div>
 </section>
 </main>
@@ -341,9 +376,45 @@
     <span class="logo__word">Helmwork</span>
   </a>
   <p class="mono">Operations, support &amp; project delivery by Abdullah</p>
-  <p class="ft__links"><a href="https://www.upwork.com/freelancers/~013c19993b7b8137ff?mp_source=share" target="_blank" rel="noopener">Upwork ↗</a><a href="#top">Top ↑</a></p>
+  <p class="ft__links"><button type="button" data-book-open>Book a call</button><button type="button" data-ai-open>Ask my AI</button><a href="https://www.upwork.com/freelancers/~013c19993b7b8137ff?mp_source=share" target="_blank" rel="noopener">Upwork ↗</a><a href="#top">Top ↑</a></p>
   <p class="mono">© 2026 Helmwork</p>
 </footer>
+
+<div class="fabs">
+  <button class="fab-book" type="button" data-book-open aria-label="Book a meeting"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8.5 14.5h3"/></svg><span class="fab-tip">Book a call</span></button>
+  <button class="ai-launch" type="button" data-ai-open aria-label="Chat with my AI assistant" aria-expanded="false">
+    <canvas class="orb" data-orb width="64" height="64" aria-hidden="true"></canvas>
+    <span class="ai-hello" data-ai-hello>Hi! I'm Helm, Abdullah's AI assistant. Ask me anything.</span>
+  </button>
+</div>
+
+<div class="ai" data-ai role="dialog" aria-modal="false" aria-label="Chat with Helm, Abdullah's AI assistant" hidden>
+  <div class="ai__hd">
+    <canvas class="orb orb--hd" data-orb width="44" height="44" aria-hidden="true"></canvas>
+    <div class="ai__who"><b>Helm</b><span><i class="dot" aria-hidden="true"></i>AI assistant · replies instantly</span></div>
+    <button class="ai__icon" type="button" data-ai-reset aria-label="Start a new chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/></svg></button>
+    <button class="ai__icon" type="button" data-ai-close aria-label="Close chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="ai__log" data-ai-log aria-live="polite" data-lenis-prevent></div>
+  <div class="ai__chips" data-ai-chips></div>
+  <form class="ai__form" data-ai-form autocomplete="off">
+    <label class="sr" for="ai-in">Ask Helm a question</label>
+    <input id="ai-in" data-ai-in type="text" placeholder="Ask about services, results, booking…" maxlength="300">
+    <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+</div>
+
+<div class="book" data-book data-lenis-prevent role="dialog" aria-modal="true" aria-labelledby="book-title" hidden>
+  <div class="book__card glass">
+    <button class="book__x" type="button" data-book-close aria-label="Close">×</button>
+    <div class="book__head">
+      <p class="mono label">Book a meeting</p>
+      <h2 class="book__title" id="book-title">Let’s talk about your project</h2>
+      <ol class="book__steps" aria-hidden="true"><li class="on">Type</li><li>Time</li><li>Details</li></ol>
+    </div>
+    <div class="book__body" data-book-body></div>
+  </div>
+</div>
 
 <div class="vmodal" data-vmodal hidden>
   <div class="vmodal__in">
@@ -358,5 +429,8 @@
 <script src="assets/js/site.js?v=2" defer></script>
 <script src="assets/js/portal.js?v=2" defer></script>
 <script type="module" src="assets/js/fibers.js?v=6"></script>
+<script src="assets/js/extras.js?v=1" defer></script>
+<script src="assets/js/book.js?v=1" defer></script>
+<script src="assets/js/assistant.js?v=1" defer></script>
 </body>
 </html>

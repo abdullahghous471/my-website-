@@ -56,7 +56,7 @@
     sec.classList.toggle('is-done', cur >= T1 - 2);
     if (idx !== shown) {
       cards.forEach((c, i) => { c.classList.toggle('on', i === idx); c.classList.toggle('past', i < idx); c.setAttribute('aria-hidden', String(i !== idx)); });
-      num.textContent = String(idx + 1).padStart(2, '0'); shown = idx;
+      if (num) num.textContent = String(idx + 1).padStart(2, '0'); shown = idx;
     }
   };
   requestAnimationFrame(tick);

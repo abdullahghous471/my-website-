@@ -213,7 +213,7 @@ if (renderer) {
   let t = 0, last = performance.now(), markDraw = 0;
   const frame = now => {
     requestAnimationFrame(frame);
-    if (document.hidden) { last = now; return; }
+    if (document.hidden || document.documentElement.classList.contains('book-open')) { last = now; return; }
     const dt = Math.min(.05, (now - last) / 1000); last = now; t += reduce ? 0 : dt;
     const g = read(), f = 1 - Math.pow(.003, dt);
     cur.x += (g.x - cur.x) * f; cur.y += (g.y - cur.y) * f; cur.s += (g.s - cur.s) * f; cur.r += (g.r - cur.r) * f; cur.a += (g.a - cur.a) * f;

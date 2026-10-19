@@ -90,7 +90,7 @@ document.querySelectorAll('[data-portal]').forEach(canvas => {
 
   const frame = now => {
     requestAnimationFrame(frame);
-    if (!visible || document.hidden) return;
+    if (!visible || document.hidden || document.documentElement.classList.contains('book-open')) return;
     const t = reduce ? 6 : (now - t0) / 1000;
     const hr = host.getBoundingClientRect();
     let ie, sc;

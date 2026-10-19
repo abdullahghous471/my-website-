@@ -11,7 +11,7 @@
       const a = c.getBoundingClientRect(), b = next.getBoundingClientRect();
       const k = Math.min(1, Math.max(0, 1 - (b.top - a.top) / Math.max(1, a.height)));   // how far the next one covers this
       c.style.transform = `scale(${1 - k * .06})`;
-      c.style.filter = `brightness(${1 - k * .45})`;
+      c.style.filter = `brightness(${1 - k * .28})`;
     });
   };
   requestAnimationFrame(tick);

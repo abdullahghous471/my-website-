@@ -1018,3 +1018,18 @@ html:not(.js) .stage__inner { transform: none; }
 .ab__orbit { aspect-ratio: 1 / .78; max-width: 680px; }
 .ab__rings { top: 50%; }
 @media (max-width: 900px) { .ab__orbit { aspect-ratio: 1 / .85; } .orb-chip { font-size: 10.5px; padding: 6px 9px; } }
+/* skills orbit v2: hub mark, light rings, refined chips */
+.ab__cv { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.ab__core { width: 132px; height: 132px; padding: 0; background: radial-gradient(circle at 50% 45%, rgba(48,36,70,.9), rgba(12,12,18,.96) 72%); box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 0 0 14px rgba(255,111,168,.035), 0 0 90px -6px rgba(169,137,255,.6); animation: hub 4s ease-in-out infinite; }
+@keyframes hub { 50% { box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 0 0 22px rgba(255,111,168,.05), 0 0 120px 0 rgba(169,137,255,.7); } }
+.ab__mark { width: 66px; height: 66px; filter: drop-shadow(0 0 10px rgba(255,111,168,.6)); }
+.ab__use { position: absolute; left: 50%; top: calc(50% + 84px); transform: translateX(-50%); z-index: 60; width: 220px; text-align: center; font: 400 11.5px/1.4 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: #CFC6FF; transition: color .3s; pointer-events: none; text-shadow: 0 0 14px #08090B, 0 0 4px #08090B; }
+.ab__orbit.is-hover .ab__use { color: #fff; }
+.orb-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px 8px 10px; font-size: 13px; background: rgba(16,17,22,.82); border-color: rgba(255,255,255,.1); box-shadow: 0 8px 20px -10px #000; }
+.orb-chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--dot, #fff); box-shadow: 0 0 8px var(--dot, #fff); }
+.orb-chip--r2 { color: var(--fg); }
+@media (max-width: 900px) { .ab__core { width: 96px; height: 96px; } .ab__mark { width: 48px; height: 48px; } .ab__use { top: calc(50% + 60px); font-size: 10px; width: 180px; } .orb-chip { font-size: 10.5px; padding: 6px 9px 6px 8px; gap: 6px; } }
+.ab__use { top: auto; bottom: -14px; width: min(340px, 90%); font-size: 11px; padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.08); background: rgba(14,14,20,.7); transition: color .3s, border-color .3s, box-shadow .3s; }
+.ab__orbit.is-hover .ab__use { border-color: rgba(255,143,180,.45); box-shadow: 0 0 22px -6px rgba(255,111,168,.6); }
+@media (max-width: 900px) { .ab__use { top: auto; bottom: -30px; font-size: 9.5px; width: 92%; } .ab__orbit { margin-bottom: 30px; } }
+@media (max-width: 900px) { .ab__core { width: 74px; height: 74px; } .ab__mark { width: 38px; height: 38px; } }

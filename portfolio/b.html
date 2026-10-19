@@ -371,8 +371,11 @@
       <button class="btn btn--glass" type="button" data-book-open>Book a 15-min intro call</button>
     </div>
     <div class="ab__orbit" data-orbit2>
-      <svg class="ab__rings" viewBox="0 0 600 600" aria-hidden="true"><ellipse cx="300" cy="300" rx="165" ry="92"/><ellipse cx="300" cy="300" rx="235" ry="140"/><ellipse cx="300" cy="300" rx="292" ry="190"/></svg>
-      <div class="ab__core"><b>Abdullah</b><span class="mono" data-orbit-use>Hover a tool to see how I use it</span></div>
+      <canvas class="ab__cv" data-orbit-cv aria-hidden="true"></canvas>
+      <div class="ab__core" aria-hidden="true">
+        <svg class="ab__mark" viewBox="0 0 40 40" fill="none"><defs><linearGradient id="abg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A6B"/><stop offset=".5" stop-color="#FF6FA8"/><stop offset="1" stop-color="#8FA2FF"/></linearGradient></defs><path d="M35.4 15.6A16 16 0 1 0 35.4 24.4" stroke="url(#abg)" stroke-width="1.6"/><path d="M14.5 12.5v15M25.5 12.5v15" stroke="#fff" stroke-width="1.8"/><path d="M14.5 20H39" stroke="#FF7A50" stroke-width="1.8"/></svg>
+      </div>
+      <p class="ab__use" data-orbit-use>Hover a tool to see how I use it</p>
       <button type="button" class="orb-chip orb-chip--r0" data-chip data-ring="0" data-use="Team chat and stakeholder updates">Slack</button><button type="button" class="orb-chip orb-chip--r0" data-chip data-ring="0" data-use="Sprints, tasks and delivery tracking">ClickUp</button><button type="button" class="orb-chip orb-chip--r0" data-chip data-ring="0" data-use="Inbox triage, down to zero">Gmail / Outlook</button><button type="button" class="orb-chip orb-chip--r0" data-chip data-ring="0" data-use="Docs, sheets and shared drives">Google Workspace</button><button type="button" class="orb-chip orb-chip--r1" data-chip data-ring="1" data-use="Pipelines, onboarding and follow-ups">Zoho CRM</button><button type="button" class="orb-chip orb-chip--r1" data-chip data-ring="1" data-use="Live chat and customer support">Intercom</button><button type="button" class="orb-chip orb-chip--r1" data-chip data-ring="1" data-use="Lead nurture and client success">HubSpot</button><button type="button" class="orb-chip orb-chip--r1" data-chip data-ring="1" data-use="Boards for client projects">Trello</button><button type="button" class="orb-chip orb-chip--r1" data-chip data-ring="1" data-use="Client calls and stand-ups">Zoom · Meet</button><button type="button" class="orb-chip orb-chip--r2" data-chip data-ring="2" data-use="AI drafting, research and summaries">Claude</button><button type="button" class="orb-chip orb-chip--r2" data-chip data-ring="2" data-use="AI drafting and quick answers">ChatGPT</button><button type="button" class="orb-chip orb-chip--r2" data-chip data-ring="2" data-use="AI research inside Google tools">Gemini</button><button type="button" class="orb-chip orb-chip--r2" data-chip data-ring="2" data-use="User journeys and wireframes">Figma · Miro</button><button type="button" class="orb-chip orb-chip--r2" data-chip data-ring="2" data-use="Reports, SLAs and dashboards">Excel</button><button type="button" class="orb-chip orb-chip--r2" data-chip data-ring="2" data-use="Scheduling without clashes">Calendar</button>
     </div>
   </div>
@@ -507,7 +510,7 @@
 <script src="assets/js/odo.js?v=1" defer></script>
 <script src="assets/js/phone.js?v=1" defer></script>
 <script src="assets/js/stack.js?v=1" defer></script>
-<script src="assets/js/orbit.js?v=3" defer></script>
+<script src="assets/js/orbit.js?v=6" defer></script>
 <script src="assets/js/dial.js?v=4" defer></script>
 <script src="assets/js/book.js?v=1" defer></script>
 <script src="assets/js/assistant.js?v=1" defer></script>

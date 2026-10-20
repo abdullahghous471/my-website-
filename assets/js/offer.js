@@ -18,3 +18,9 @@
   });
   addEventListener('keydown', e => { if (e.key === 'Escape' && !pv.hidden) { e.stopImmediatePropagation(); close(); } }, true);
 })();
+/* About: credential badges rise in when the list scrolls into view */
+(() => {
+  const el = document.querySelector('[data-creds]');
+  if (!el) return;
+  new IntersectionObserver((es, io) => es.forEach(e => { if (e.isIntersecting) { el.classList.add('in'); io.disconnect(); } }), { threshold: .3 }).observe(el);
+})();

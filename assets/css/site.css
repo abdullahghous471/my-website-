@@ -1229,3 +1229,40 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
 .plist__ic { flex: none; width: clamp(32px, 2.8vw, 40px); height: clamp(32px, 2.8vw, 40px); border-radius: 10px; object-fit: cover; box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 6px 18px -8px #000; transition: transform .5s var(--ease); }
 .plist__ic--mono { display: grid; place-items: center; font: 600 13px/1 var(--body); letter-spacing: -.02em; color: #fff; background: linear-gradient(135deg, #3A5BD9, #7B4DDB); }
 .plist a:hover .plist__ic { transform: scale(1.08) rotate(-4deg); }
+
+/* About: tidy text column */
+.ab { align-items: center; }
+.ab__copy { max-width: 540px; }
+.theme-portal .ab__h { max-width: 15ch; margin-bottom: 24px; }
+.ab__p { max-width: 50ch; text-wrap: pretty; }
+.ab__copy .btn { margin-top: 4px; }
+
+/* About: credential badges */
+.creds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 28px 0 30px; }
+.cred { position: relative; overflow: hidden; display: flex; align-items: center; gap: 13px; padding: 13px 14px; border-radius: 16px; border: 1px solid rgba(255,255,255,.09); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)); transition: border-color .4s, transform .5s var(--ease), background .4s; }
+.cred::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.12), transparent); transform: skewX(-18deg); pointer-events: none; }
+.cred:hover { border-color: rgba(255,143,180,.4); transform: translateY(-2px); background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02)); }
+.cred:hover::after { animation: credShine .9s var(--ease); }
+@keyframes credShine { to { left: 120%; } }
+.cred__em { position: relative; flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.14), rgba(255,255,255,.02) 70%), #121219; }
+.cred__em::before { content: ""; position: absolute; inset: 0; border-radius: 50%; padding: 1.5px; background: conic-gradient(from 200deg, #FFB08F, #FF6FA8, #A989FF, #7FA0FF, #FFB08F); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; transition: transform 1.2s var(--ease); }
+.cred:hover .cred__em::before { transform: rotate(180deg); }
+.cred__em svg { width: 20px; height: 20px; }
+.cred__em--up svg { width: 22px; height: 22px; color: #6FDA44; }
+.cred__star { position: absolute; right: -3px; top: -3px; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; font-style: normal; color: #0B0B10; background: var(--grad); box-shadow: 0 0 10px rgba(255,111,168,.5); }
+.cred__em--num b { font: 600 14px/1 var(--body); letter-spacing: -.02em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cred__t { display: grid; gap: 3px; min-width: 0; }
+.cred__t b { font: 500 15px/1.2 var(--body); color: var(--fg); }
+.cred__t span { font: 400 11px/1.2 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.creds .cred { opacity: 0; transform: translateY(10px); transition: opacity .6s var(--ease), transform .6s var(--ease), border-color .4s, background .4s; transition-delay: calc(var(--k) * .09s), calc(var(--k) * .09s), 0s, 0s; }
+.creds.in .cred { opacity: 1; transform: none; }
+.creds.in .cred:hover { transform: translateY(-2px); }
+@media (max-width: 420px) { .cred { padding: 11px 11px; gap: 10px; } .cred__em { width: 38px; height: 38px; } .cred__t b { font-size: 14px; } .cred__t span { font-size: 10px; } }
+
+/* clock: stronger numerals */
+.theme-portal .dial__centre b { font-weight: 450; letter-spacing: -.04em; }
+.theme-portal .dial__time { font-weight: 450; letter-spacing: -.04em; }
+.theme-portal .tk__l { fill: #C9CCD2; font: 500 13px var(--mono); }
+.theme-portal .tk--h { stroke: rgba(255,255,255,.55); }
+@media (max-width: 900px) { .theme-portal .tk__l { font-size: 16px; } }
+.creds .cred { opacity: 1; transform: none; transition: border-color .4s, transform .5s var(--ease), background .4s; }

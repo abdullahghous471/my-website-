@@ -13,6 +13,8 @@ Older design versions live in `versions/` and are not published (see `.assetsign
    | Root directory | `portfolio` |
    | Build command | *(empty)* |
    | Deploy command | `npx wrangler deploy` |
+   *Alternative if Cloudflare says the root directory is not found:* leave Root directory empty (`/`)
+   and use the deploy command `npx wrangler deploy --config portfolio/wrangler.jsonc`.
 4. **Save and Deploy.** The site goes live at `https://helmwork.<your-subdomain>.workers.dev`.
    Every push to the branch republishes it automatically.
 

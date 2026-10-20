@@ -1266,3 +1266,10 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
 .theme-portal .tk--h { stroke: rgba(255,255,255,.55); }
 @media (max-width: 900px) { .theme-portal .tk__l { font-size: 16px; } }
 .creds .cred { opacity: 1; transform: none; transition: border-color .4s, transform .5s var(--ease), background .4s; }
+/* credential badges: monochrome white */
+.cred__em::before { background: rgba(255,255,255,.5); }
+.cred:hover .cred__em::before { transform: none; background: rgba(255,255,255,.9); }
+.cred__em--up svg { color: #fff; }
+.cred__star { background: #fff; box-shadow: none; color: #0B0B10; }
+.cred__em--num b { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: #fff; }
+.cred:hover { border-color: rgba(255,255,255,.28); }

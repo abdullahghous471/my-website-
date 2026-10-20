@@ -1295,3 +1295,21 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
 /* reserve the pinned clock section's scroll height before its script runs, so lazy images further down are not fetched early */
 .dial-sec { height: 560vh; }
 @media (max-width: 899px) { .dial-sec { height: 520vh; } }
+
+/* ===== mobile fixes ===== */
+/* clock: about two screens of scroll */
+.dial-sec { height: 300vh; }
+@media (max-width: 899px) { .dial-sec { height: 300vh; } }
+/* phone captions: only the active one shows on mobile (the dimmed rest overlapped) */
+@media (max-width: 900px) { .ph__cap { opacity: 0; } .ph__cap.on { opacity: 1; } }
+/* header gets a solid glass bar on mobile so text never shows through the logo */
+@media (max-width: 900px) { .hd { border-radius: 18px; background: rgba(10,10,14,.78); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); border: 1px solid rgba(255,255,255,.07); padding-top: 10px; padding-bottom: 10px; } }
+/* Helm's greeting bubble would cover content on small screens */
+@media (max-width: 900px) { .ai-hello { display: none !important; } }
+/* closing section: text sits below the light-strand logo on mobile */
+@media (max-width: 900px) { .cta--fibers { min-height: 100svh; } .cta--fibers .cta__in { padding-top: 34vh; } }
+@media (max-width: 900px) {
+  .stage__phone { display: none; }          /* side phones were cut off at the screen edge */
+  .cta--fibers .cta__in { padding-top: 22vh; }
+}
+.ph__screen { background: #0B0B10; }      /* no white flash before the screen image loads */

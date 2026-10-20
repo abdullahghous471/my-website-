@@ -183,7 +183,11 @@ if (renderer) {
 
   /* ---------- scroll choreography ---------- */
   const secs = [...document.querySelectorAll('[data-fibers]')];
-  const form = el => ((small && el.dataset.formM) || el.dataset.form || '0 0 1 0 .6').trim().split(/\s+/).map(Number);
+  const form = el => {
+    const f = ((small && el.dataset.formM) || el.dataset.form || '0 0 1 0 .6').trim().split(/\s+/).map(Number);
+    if (small && !el.dataset.formM && el.dataset.fibers === 'river') f[4] *= .35; // phones: keep fibres faint behind text
+    return f;
+  };
   const cur = { x: 0, y: 0, s: 1, r: 0, a: 0, ends: 0, tip: 0 };
   let A = 'ring', B = 'ring', q = 0;
   const read = () => {

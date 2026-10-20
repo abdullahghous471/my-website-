@@ -4,6 +4,12 @@ Static site in this folder (`index.html`, `assets/`). No build step.
 Older design versions live in `versions/` and are not published (see `.assetsignore`).
 
 ## Put it online free (Cloudflare)
+The live site deploys from the **`helmwork-site`** branch, which holds only this folder at its top level
+(kept in sync with `git subtree split --prefix portfolio -b helmwork-site` and a push).
+In Cloudflare's helmwork project: production branch `helmwork-site`, root directory empty,
+build command empty, deploy command `npx wrangler deploy`.
+
+### First-time setup (older notes)
 1. Cloudflare dashboard → **Compute (Workers & Pages)** → **Create** → **Import a repository** → `abdullahghous471/my-website-`.
 2. Project name: `helmwork`.
 3. Settings:

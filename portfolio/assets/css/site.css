@@ -1282,3 +1282,11 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
 .au__ag::before { background: rgba(255,255,255,.16); opacity: 1; }
 .au__ag li::before { border-color: rgba(255,255,255,.7); box-shadow: none; }
 .au__m { color: var(--dim); }
+
+/* service cards: icon + tools fill the top */
+.rc__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.rc__ic { flex: none; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: #fff; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); }
+.rc__ic svg { width: 22px; height: 22px; }
+.rc__tools { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 4px; font: 400 10.5px/1.2 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--dim); text-align: right; }
+.theme-portal .rc__new { font: 600 10px/1 var(--mono); letter-spacing: .06em; padding: 4px 8px; border-radius: 999px; background: #fff; color: #0B0B10; }
+.rc__ic { width: 52px; height: 52px; } .rc__ic svg { width: 25px; height: 25px; } .rc__tools { font-size: 11px; } @media (max-width: 900px) { .rc__ic { width: 44px; height: 44px; } .rc__ic svg { width: 21px; height: 21px; } .rc__tools { font-size: 10px; } }

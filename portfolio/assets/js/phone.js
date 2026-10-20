@@ -6,7 +6,7 @@
   const scr = [...sec.querySelectorAll('[data-scr]')], caps = [...sec.querySelectorAll('[data-cap]')];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const N = scr.length;
-  const size = () => { sec.style.height = (innerWidth < 900 ? 420 : 480) + 'vh'; };
+  const size = () => { sec.style.height = (innerWidth < 900 ? 300 : 340) + 'vh'; };
   addEventListener('resize', size); size();
   let visible = false;
   new IntersectionObserver(es => { visible = es[0].isIntersecting; }, { rootMargin: '200px' }).observe(sec);

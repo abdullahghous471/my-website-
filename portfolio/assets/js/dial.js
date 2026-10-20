@@ -33,7 +33,7 @@
   prog.style.strokeDasharray = LEN; prog.style.strokeDashoffset = LEN;
 
   let mobile = false;
-  const size = () => { mobile = innerWidth < 900; sec.style.height = (mobile ? 520 : 560) + 'vh'; };
+  const size = () => { mobile = innerWidth < 900; sec.style.height = (mobile ? 300 : 300) + 'vh'; };
   addEventListener('resize', size); size();
 
   let visible = false;

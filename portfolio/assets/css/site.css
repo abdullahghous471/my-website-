@@ -1273,3 +1273,12 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
 .cred__star { background: #fff; box-shadow: none; color: #0B0B10; }
 .cred__em--num b { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: #fff; }
 .cred:hover { border-color: rgba(255,255,255,.28); }
+/* audit section: one accent only (the timer ring) */
+.offer__card { background: radial-gradient(700px 380px at 100% 100%, rgba(127,160,255,.06), transparent 60%), linear-gradient(180deg, rgba(20,20,27,.94), rgba(12,13,17,.96)); }
+.offer__card::before { background: rgba(255,255,255,.1); }
+.offer__pill span { background: #fff; color: #0B0B10; }
+.offer__list li::before { background: none; color: #fff; border: 1.5px solid rgba(255,255,255,.55); font-size: 11px; }
+.au { box-shadow: 0 40px 90px -40px #000; }
+.au__ag::before { background: rgba(255,255,255,.16); opacity: 1; }
+.au__ag li::before { border-color: rgba(255,255,255,.7); box-shadow: none; }
+.au__m { color: var(--dim); }

@@ -33,3 +33,6 @@ Then add the site in Google Search Console and submit `sitemap.xml`.
 ## Bookings
 Booking requests go to abdullahghous412@gmail.com through FormSubmit. The first request sends a one-time
 "Activate" e-mail to that inbox: click it once.
+
+## Changelog
+- 2026-10-20: mobile fixes, clock section pins for two screens of scrolling.

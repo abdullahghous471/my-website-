@@ -1222,3 +1222,10 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
 .qc__logo:hover { background: rgba(255,255,255,.05); }
 @media (max-width: 900px) { .qc__logo { position: relative; top: auto; right: auto; width: auto; padding: 12px 16px; margin-top: 14px; border-radius: 12px; } .qc__logo img { height: 20px; } .qc--pink .qc__logo img { height: 17px; } }
 .qc__logo img { opacity: 1; }
+
+/* live projects: brand icon before each name */
+.plist b { display: inline-flex; align-items: center; gap: clamp(12px, 1.4vw, 18px); min-width: 0; }
+.plist b > span { min-width: 0; overflow-wrap: anywhere; }
+.plist__ic { flex: none; width: clamp(32px, 2.8vw, 40px); height: clamp(32px, 2.8vw, 40px); border-radius: 10px; object-fit: cover; box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 6px 18px -8px #000; transition: transform .5s var(--ease); }
+.plist__ic--mono { display: grid; place-items: center; font: 600 13px/1 var(--body); letter-spacing: -.02em; color: #fff; background: linear-gradient(135deg, #3A5BD9, #7B4DDB); }
+.plist a:hover .plist__ic { transform: scale(1.08) rotate(-4deg); }

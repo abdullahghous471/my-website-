@@ -20,19 +20,8 @@
     if (t === null) return; e.preventDefault(); closeMenu(); goTo(t);
   }));
 
-  /* intro loader */
-  const loader = $('[data-loader]'), ln = $('[data-loader-n]');
-  const begin = () => { document.body.classList.add('is-in'); };
-  if (loader && !reduce) {
-    const t0 = performance.now(), dur = 1300;
-    const tick = t => {
-      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
-      ln.textContent = String(Math.round(e * 100)).padStart(3, '0');
-      if (p < 1) requestAnimationFrame(tick);
-      else { loader.classList.add('done'); setTimeout(begin, 250); setTimeout(() => loader.remove(), 1300); }
-    };
-    requestAnimationFrame(tick);
-  } else { loader && loader.remove(); begin(); }
+  /* page intro: start straight away (no loading screen) */
+  requestAnimationFrame(() => document.body.classList.add('is-in'));
 
   /* header hides on scroll down */
   const hd = $('[data-hd]'); let lastY = 0;
@@ -142,18 +131,6 @@
     if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
   }), { rootMargin: '-45% 0px -50% 0px' });
   links.forEach(a => { const s = $(a.getAttribute('href')); s && sio.observe(s); });
-
-  /* cursor */
-  const cur = $('[data-cursor]');
-  if (fine && cur && !reduce) {
-    document.documentElement.classList.add('has-cursor');
-    let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
-    addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; cur.classList.add('on'); }, { passive: true });
-    document.addEventListener('pointerleave', () => cur.classList.remove('on'));
-    const loop = () => { cx += (x - cx) * .22; cy += (y - cy) * .22; cur.style.transform = `translate(${cx}px, ${cy}px)`; requestAnimationFrame(loop); };
-    requestAnimationFrame(loop);
-    document.addEventListener('pointerover', e => cur.classList.toggle('is-link', !!e.target.closest('a, button')));
-  }
 
   /* video modal */
   const vm = $('[data-vmodal]'), vv = $('[data-vmodal-video]'); let lastFocus = null;

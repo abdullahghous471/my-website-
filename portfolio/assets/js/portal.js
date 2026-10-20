@@ -73,7 +73,7 @@ document.querySelectorAll('[data-portal]').forEach(canvas => {
   const uRes = U('uRes'), uTime = U('uTime'), uScroll = U('uScroll'), uIntro = U('uIntro'), uMouse = U('uMouse');
 
   const host = canvas.parentElement;
-  const dpr = Math.min(devicePixelRatio, small ? 1.25 : 1.5);
+  const dpr = Math.min(devicePixelRatio, small ? 1.1 : 1.25);
   const resize = () => { const r = host.getBoundingClientRect(); canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr); gl.viewport(0, 0, canvas.width, canvas.height); };
   addEventListener('resize', resize); resize();
 

@@ -1313,3 +1313,9 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
   .cta--fibers .cta__in { padding-top: 22vh; }
 }
 .ph__screen { background: #0B0B10; }      /* no white flash before the screen image loads */
+
+/* PC-Spain project: invitation for visitors who want a similar site */
+.phs__cta { flex-basis: 100%; text-align: center; font-size: 16px; color: var(--dim); margin-top: 4px; }
+.phs__cta button { font: inherit; font-weight: 500; color: var(--fg); margin-left: 6px; border-bottom: 1px solid rgba(255,255,255,.35); padding-bottom: 1px; transition: border-color .3s; }
+.phs__cta button:hover { border-color: var(--fg); }
+@media (max-width: 900px) { .phs__cta { font-size: 14.5px; } .phs__cta button { display: inline-block; margin: 6px 0 0; } }

@@ -3,7 +3,7 @@
    - CALENDLY: a scheduling link (Calendly, Cal.com, Google appointment page). The window then shows that calendar.
    - EMAIL: an address; requests are sent there through FormSubmit (first request triggers a one-time activation e-mail).
    With neither set, the visitor picks a time and sends the request on Upwork. */
-window.HELMWORK_BOOKING = window.HELMWORK_BOOKING || { CALENDLY: '', EMAIL: 'abdullahghous412@gmail.com' };
+window.HELMWORK_BOOKING = window.HELMWORK_BOOKING || { CALENDLY: '', EMAIL: 'helmwork.tech@gmail.com' };
 
 (() => {
   const $ = (s, c = document) => c.querySelector(s);

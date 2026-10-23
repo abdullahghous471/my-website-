@@ -31,7 +31,7 @@ your own domain (Settings → Domains & Routes), replace that address in those t
 Then add the site in Google Search Console and submit `sitemap.xml`.
 
 ## Bookings
-Booking requests go to abdullahghous412@gmail.com through FormSubmit. The first request sends a one-time
+Booking requests go to helmwork.tech@gmail.com through FormSubmit. The first request sends a one-time
 "Activate" e-mail to that inbox: click it once.
 
 ## Changelog

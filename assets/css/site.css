@@ -1493,4 +1493,4 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
   .meet { padding-bottom: 24px; }
   .reviews { padding-top: 48px; }
 }
-@media (max-width: 760px) { .services__hd, .services__hd h2 { text-align: left; justify-content: flex-start; margin-left: 0; } .ring-stage.is-flat { padding: 0; } }
+@media (max-width: 760px) { .services__hd, .services__hd h2 { text-align: left; justify-content: flex-start; margin-left: 0; } .ring-stage.is-flat { padding: 0 20px; } }

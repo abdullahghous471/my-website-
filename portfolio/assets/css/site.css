@@ -1334,3 +1334,12 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
 .dial-sec .nd:focus-visible .nd__halo { stroke: #fff; stroke-width: 2; }
 @media (max-width: 900px) { .dial-sec .day__pin { min-height: 0; padding: 90px 0 60px; } .dial__play { bottom: 2%; font-size: 12px; } }
 .dial__play { bottom: auto; top: calc(100% + 6px); } @media (max-width: 900px) { .dial__play { top: calc(100% + 2px); } .dial__face { margin-bottom: 34px; } }
+
+/* clock side text: bolder, more character */
+.theme-portal .dial__title { font: 500 clamp(1.9rem, 3vw, 2.9rem)/1.08 var(--body); letter-spacing: -.045em; }
+.theme-portal .dial__time { font: 600 clamp(2.6rem, 4.2vw, 3.8rem)/1 var(--display); font-stretch: 112%; letter-spacing: -.04em; font-variant-numeric: tabular-nums; background: linear-gradient(180deg, #fff 30%, #B9BCC3); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.theme-portal .dial__h { font: 600 clamp(1.3rem, 1.8vw, 1.65rem)/1.2 var(--body); letter-spacing: -.025em; color: var(--fg); }
+.theme-portal .dial__p { font-size: 16.5px; line-height: 1.6; color: #C4C6CD; max-width: 42ch; }
+.theme-portal .day__chip { font-weight: 500; color: var(--fg); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.04); }
+.theme-portal .dial__h--big { font: 600 clamp(1.8rem, 2.8vw, 2.6rem)/1.1 var(--body); letter-spacing: -.04em; }
+@media (max-width: 900px) { .theme-portal .dial__p { font-size: 15px; } }

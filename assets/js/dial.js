@@ -38,7 +38,7 @@
   prog.style.strokeDasharray = LEN;
 
   // timing: sweep to the next moment, then rest on it so its card can be read
-  const SWEEP = 1.1, REST = 3.2, END_REST = 4;   // seconds
+  const SWEEP = .5, REST = 1, END_REST = 2;   // seconds
   let cur = T0, target = 0, hold = 0, playing = !reduce, visible = false, shown = -1, last = performance.now();
   if (reduce) { cur = T1; target = stops.length - 1; }
 

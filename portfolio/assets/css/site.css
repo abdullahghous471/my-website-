@@ -1343,3 +1343,20 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
 .theme-portal .day__chip { font-weight: 500; color: var(--fg); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.04); }
 .theme-portal .dial__h--big { font: 600 clamp(1.8rem, 2.8vw, 2.6rem)/1.1 var(--body); letter-spacing: -.04em; }
 @media (max-width: 900px) { .theme-portal .dial__p { font-size: 15px; } }
+
+/* clock side: the active moment sits in one clean card */
+.dial__cards { min-height: 236px; border-radius: 20px; border: 1px solid rgba(255,255,255,.09); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)); box-shadow: 0 30px 70px -40px #000; }
+.dial__card { inset: 26px 26px auto; display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 12px; align-items: center; transform: translateY(14px); filter: none; transition: opacity .35s var(--ease), transform .45s var(--ease); }
+.dial__card.past { transform: translateY(-14px); }
+.dial__card > * { grid-column: 1 / -1; }
+.dial__card .dial__svc { grid-column: 1; grid-row: 1; margin: 0; }
+.theme-portal .dial__card .dial__time { grid-column: 2; grid-row: 1; font: 500 12.5px/1 var(--mono); letter-spacing: .04em; color: var(--fg); background: rgba(255,255,255,.06); -webkit-background-clip: border-box; background-clip: border-box; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; padding: 6px 10px; }
+.dial__card .dial__h { margin-top: 18px; }
+.dial__card .dial__p { margin-top: 8px; }
+.dial__card .day__chip { justify-self: start; margin-top: 16px; }
+.dial__title { margin-bottom: clamp(22px, 4vh, 36px); }
+@media (max-width: 900px) {
+  .dial__cards { min-height: 216px; }
+  .dial__card { inset: 20px 20px auto; }
+  .dial__card .dial__h { margin-top: 14px; }
+}

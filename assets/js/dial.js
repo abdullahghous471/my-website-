@@ -53,6 +53,15 @@
     ic.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + ICON[key] + '</svg>';
     c.prepend(ic);
   });
+  // live status above the cards: "Live" dot, task count and a segmented progress bar
+  const side = sec.querySelector('.dial__cards');
+  const meta = document.createElement('div'); meta.className = 'dial__meta'; meta.setAttribute('aria-hidden', 'true');
+  meta.innerHTML = '<span class="dial__live"><i></i>Live · your day, handled</span><span class="dial__cnt"><b data-cnt>1</b> / ' + cards.length + ' done</span><span class="dial__seg">' + cards.map(() => '<i></i>').join('') + '</span>';
+  if (side) side.before(meta);
+  const segs = [...meta.querySelectorAll('.dial__seg i')], cnt = meta.querySelector('[data-cnt]');
+  // the current kind of work, shown under the time in the middle of the clock
+  const now = document.createElement('p'); now.className = 'dial__now';
+  const centre = sec.querySelector('.dial__centre'); if (centre) centre.appendChild(now);
   const LEN = 2 * Math.PI * R;
   prog.style.strokeDasharray = LEN;
 
@@ -94,6 +103,9 @@
       const y1 = c0 ? c0.offsetHeight + 10 : 0;
       if (c1) c1.style.setProperty('--y', y1 + 'px');
       if (c2) c2.style.setProperty('--y', (y1 + (c1 ? c1.offsetHeight * .94 : 0) + 8) + 'px');
+      segs.forEach((g, i) => { g.classList.toggle('on', i < idx); g.classList.toggle('cur', i === idx); });
+      if (cnt) cnt.textContent = idx + 1;
+      now.textContent = (cards[idx].querySelector('.dial__svc') || {}).textContent || '';
       if (num) num.textContent = String(idx + 1).padStart(2, '0'); shown = idx;
     }
   };

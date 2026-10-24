@@ -1319,3 +1319,18 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
 .phs__cta button { font: inherit; font-weight: 500; color: var(--fg); margin-left: 6px; border-bottom: 1px solid rgba(255,255,255,.35); padding-bottom: 1px; transition: border-color .3s; }
 .phs__cta button:hover { border-color: var(--fg); }
 @media (max-width: 900px) { .phs__cta { font-size: 14.5px; } .phs__cta button { display: inline-block; margin: 6px 0 0; } }
+
+/* clock dial plays by itself: normal section height, no scroll pinning */
+.dial-sec { height: auto !important; }
+.dial-sec .day__pin { position: relative; height: auto; min-height: 100svh; padding: clamp(80px, 10vh, 120px) 0; }
+.dial__face { position: relative; }
+.dial__play { position: absolute; left: 50%; bottom: 4%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px 7px 11px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); background: rgba(14,14,20,.75); color: var(--fg); font: 500 12.5px/1 var(--body); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); cursor: pointer; transition: border-color .3s; }
+.dial__play:hover { border-color: rgba(255,255,255,.35); }
+.dial__play svg { width: 14px; height: 14px; fill: currentColor; }
+.dial__play .i-play { display: none; }
+.is-paused .dial__play .i-play { display: inline; } .is-paused .dial__play .i-pause { display: none; }
+.dial-sec .nd { cursor: pointer; }
+.dial-sec .nd:focus-visible { outline: none; }
+.dial-sec .nd:focus-visible .nd__halo { stroke: #fff; stroke-width: 2; }
+@media (max-width: 900px) { .dial-sec .day__pin { min-height: 0; padding: 90px 0 60px; } .dial__play { bottom: 2%; font-size: 12px; } }
+.dial__play { bottom: auto; top: calc(100% + 6px); } @media (max-width: 900px) { .dial__play { top: calc(100% + 2px); } .dial__face { margin-bottom: 34px; } }

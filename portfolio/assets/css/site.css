@@ -1409,3 +1409,23 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
 .dial__card[data-depth="1"]::after, .dial__card[data-depth="2"]::after { content: "✓ Done"; grid-column: 3; grid-row: 1; display: none; }
 .dial__cards { min-height: 300px; }
 @media (max-width: 900px) { .dial__cards { min-height: 280px; } }
+
+/* services on phones: a clean list of all nine, no swiping */
+@media (max-width: 900px) {
+  .ring-stage.is-flat { padding: 0 max(16px, env(safe-area-inset-left, 0px)); }
+  .ring--flat { display: grid; grid-template-columns: 1fr; gap: 10px; overflow: visible; padding: 0; scroll-snap-type: none; }
+  .ring--flat .rc { flex: none; min-height: 0; padding: 18px; border-radius: 18px; display: grid; gap: 0; background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); }
+  .ring--flat .rc h3 { margin-top: 14px; }
+  .ring--flat .rc p { margin-top: 6px; }
+  .ring--flat .rc__ic { width: 42px; height: 42px; border-radius: 12px; }
+  .ring--flat .rc__tools { flex-direction: row; align-items: center; gap: 8px; padding-top: 0; }
+  .services__hd { margin-bottom: 22px; }
+}
+
+/* Mobile polish: stats strip + case-study numbers */
+@media (max-width: 760px) {
+  .odo-sec { padding: 56px 0 64px; }
+  .qc__foot { gap: 18px 16px; padding-top: 22px; align-items: start; }
+  .qc__res b { font-size: clamp(1.45rem, 7vw, 1.9rem); white-space: nowrap; }
+  .qc__res span { font-size: 10.5px; line-height: 1.35; }
+}

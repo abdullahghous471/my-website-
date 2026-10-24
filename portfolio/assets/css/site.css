@@ -1372,3 +1372,40 @@ body.menu-open .fabs { opacity: 0; pointer-events: none; transition: opacity .3s
 .ph__cap:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 8px; }
 .ph__screen { cursor: pointer; }
 @media (max-width: 900px) { .phs__pin { min-height: 0; padding: 30px 0 20px; } .ph__cap { pointer-events: none; } }
+
+/* clock side: moments arrive as a stack of live notifications */
+.dial__cards { min-height: 380px; border: 0; background: none; box-shadow: none; }
+.dial__card { inset: 0 0 auto; grid-template-columns: 44px minmax(0,1fr) auto; column-gap: 14px; row-gap: 0; align-items: start; padding: 18px 20px; border-radius: 22px; border: 1px solid rgba(255,255,255,.1); background: linear-gradient(180deg, rgba(34,33,44,.92), rgba(20,20,27,.94)); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 24px 50px -28px #000, inset 0 1px 0 rgba(255,255,255,.06); transform-origin: 50% 0; opacity: 0; transform: translateY(-24px) scale(.96); transition: opacity .4s var(--ease), transform .55s var(--ease), filter .4s var(--ease); }
+.dial__card > * { grid-column: 2 / -1; }
+.dial__card .ntf__ic { grid-column: 1; grid-row: 1 / span 4; width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; color: #fff; background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.12); }
+.dial__card .ntf__ic svg { width: 22px; height: 22px; }
+.dial__card .dial__svc { grid-column: 2; grid-row: 1; margin: 2px 0 0; font-size: 11px; }
+.theme-portal .dial__card .dial__time { grid-column: 3; grid-row: 1; padding: 0; border: 0; background: none; color: var(--dim); font-size: 11.5px; }
+.dial__card .dial__h { margin-top: 6px; }
+.dial__card .dial__p { margin-top: 4px; }
+.dial__card .day__chip { margin-top: 12px; }
+.dial__card .day__chip::before { content: "✓"; width: auto; height: auto; background: none; box-shadow: none; color: #5FD39A; font-weight: 700; }
+/* the stack: newest on top, earlier ones tucked underneath */
+.dial__card[data-depth="0"] { opacity: 1; transform: none; z-index: 3; pointer-events: auto; }
+.dial__card[data-depth="1"] { opacity: .55; transform: translateY(calc(100% - 46px)) scale(.94); z-index: 2; filter: saturate(.6); }
+.dial__card[data-depth="2"] { opacity: .25; transform: translateY(calc(100% + 4px)) scale(.88); z-index: 1; filter: saturate(.4); }
+.dial__card[data-depth="1"] .dial__p, .dial__card[data-depth="1"] .day__chip, .dial__card[data-depth="2"] .dial__p, .dial__card[data-depth="2"] .day__chip { visibility: hidden; }
+.dial__card[data-depth="x"] { opacity: 0; transform: translateY(-24px) scale(.96); }
+@media (max-width: 900px) {
+  .dial__cards { min-height: 330px; }
+  .dial__card { padding: 15px 16px; grid-template-columns: 38px minmax(0,1fr) auto; column-gap: 12px; }
+  .dial__card .ntf__ic { width: 38px; height: 38px; border-radius: 11px; }
+}
+/* stacked notifications: compact (icon + title + time only), placed under the newest */
+.dial__card[data-depth="1"], .dial__card[data-depth="2"] { padding-block: 12px; }
+.dial__card[data-depth="1"] .dial__p, .dial__card[data-depth="1"] .day__chip, .dial__card[data-depth="2"] .dial__p, .dial__card[data-depth="2"] .day__chip,
+.dial__card[data-depth="1"] .dial__svc, .dial__card[data-depth="2"] .dial__svc { display: none; }
+.dial__card[data-depth="1"] .ntf__ic, .dial__card[data-depth="2"] .ntf__ic { grid-row: 1; width: 32px; height: 32px; border-radius: 10px; }
+.dial__card[data-depth="1"] .ntf__ic svg, .dial__card[data-depth="2"] .ntf__ic svg { width: 17px; height: 17px; }
+.dial__card[data-depth="1"] .dial__h, .dial__card[data-depth="2"] .dial__h { grid-column: 2; grid-row: 1; margin: 0; align-self: center; font-size: 15px; }
+.dial__card[data-depth="1"] .dial__time, .dial__card[data-depth="2"] .dial__time { align-self: center; }
+.dial__card[data-depth="1"] { opacity: .6; transform: translateY(var(--y, 120px)) scale(.97); }
+.dial__card[data-depth="2"] { opacity: .3; transform: translateY(var(--y, 180px)) scale(.94); }
+.dial__card[data-depth="1"]::after, .dial__card[data-depth="2"]::after { content: "✓ Done"; grid-column: 3; grid-row: 1; display: none; }
+.dial__cards { min-height: 300px; }
+@media (max-width: 900px) { .dial__cards { min-height: 280px; } }

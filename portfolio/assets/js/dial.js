@@ -34,6 +34,25 @@
     g.addEventListener('click', go); g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
     nodesG.appendChild(g); return { g, m: stops[i] };
   });
+
+  // a small icon for each kind of work, so every moment reads like an app notification
+  const ICON = {
+    'virtual': '<path d="M3.5 13.5 6 5.5h12l2.5 8V18a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 18z"/><path d="M3.5 13.5h4.8l1.2 2h5l1.2-2h4.8"/>',
+    'support': '<path d="M4.5 13v-1a7.5 7.5 0 0 1 15 0v1"/><rect x="3.5" y="13" width="4" height="6" rx="1.6"/><rect x="16.5" y="13" width="4" height="6" rx="1.6"/>',
+    'project': '<rect x="3.5" y="4" width="17" height="16" rx="2.5"/><path d="M9.2 4v16M14.8 4v16"/>',
+    'crm': '<circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="9.5" r="2.3"/><path d="M15.8 14.8c2.4-.3 4.3 1.2 4.8 3.9"/>',
+    'technical': '<rect x="7.5" y="8" width="9" height="11" rx="4.5"/><path d="M12 8V5.5M7.5 12H4.5M19.5 12h-3M7.5 16.5l-2.5 1.5M16.5 16.5l2.5 1.5"/>',
+    'requirements': '<path d="M7 3.5h7l4 4V20.5H6.5V3.5z"/><path d="M14 3.5V8h4M9.5 12.5h5M9.5 15.5h5"/>',
+    'stakeholder': '<path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h7A2.5 2.5 0 0 1 16 6.5v4a2.5 2.5 0 0 1-2.5 2.5H9l-3.5 3v-3A2.5 2.5 0 0 1 4 10.5z"/><path d="M16 9h1.5A2.5 2.5 0 0 1 20 11.5V15l-3 2.5h-3"/>',
+    'you': '<path d="M12 3.5l2.2 5.3 5.3 2.2-5.3 2.2L12 18.5l-2.2-5.3L4.5 11l5.3-2.2z"/>'
+  };
+  cards.forEach(c => {
+    const svc = (c.querySelector('.dial__svc') || {}).textContent || '';
+    const key = Object.keys(ICON).find(k => svc.toLowerCase().includes(k)) || 'you';
+    const ic = document.createElement('span'); ic.className = 'ntf__ic'; ic.setAttribute('aria-hidden', 'true');
+    ic.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + ICON[key] + '</svg>';
+    c.prepend(ic);
+  });
   const LEN = 2 * Math.PI * R;
   prog.style.strokeDasharray = LEN;
 
@@ -63,14 +82,25 @@
     let idx = 0; nodes.forEach((n, i) => { const on = cur >= n.m - 1; n.g.classList.toggle('on', on); if (on) idx = i; });
     sec.classList.toggle('is-done', cur >= T1 - 2);
     if (idx !== shown) {
-      cards.forEach((c, i) => { c.classList.toggle('on', i === idx); c.classList.toggle('past', i < idx); c.setAttribute('aria-hidden', String(i !== idx)); });
+      cards.forEach((c, i) => {
+        const depth = idx - i;   // 0 = newest notification, 1-2 = stacked below, others hidden
+        c.classList.toggle('on', i === idx); c.classList.toggle('past', i < idx);
+        c.dataset.depth = depth >= 0 && depth <= 2 ? depth : 'x';
+        c.setAttribute('aria-hidden', String(i !== idx));
+      });
+      // place the stacked notifications right under the newest one
+      const at = d => cards.find(c => c.dataset.depth === String(d));
+      const c0 = at(0), c1 = at(1), c2 = at(2);
+      const y1 = c0 ? c0.offsetHeight + 10 : 0;
+      if (c1) c1.style.setProperty('--y', y1 + 'px');
+      if (c2) c2.style.setProperty('--y', (y1 + (c1 ? c1.offsetHeight * .94 : 0) + 8) + 'px');
       if (num) num.textContent = String(idx + 1).padStart(2, '0'); shown = idx;
     }
   };
 
   const tick = now => {
     requestAnimationFrame(tick);
-    const dt = Math.min(.1, (now - last) / 1000); last = now;
+    const dt = Math.min(.5, (now - last) / 1000); last = now;   // keep real-time pace even on slow devices
     if (!visible || document.hidden) return;
     if (playing) {
       const goal = stops[target];

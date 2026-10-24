@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Helmwork · Email signature</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  body { margin: 0; background: #F3F3F5; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #1A1A1F; }
+  main { max-width: 680px; margin: 0 auto; padding: 48px 20px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  p.lead { color: #55565E; margin: 0 0 28px; line-height: 1.5; }
+  .card { background: #fff; border-radius: 14px; padding: 28px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 10px 30px -18px rgba(0,0,0,.25); }
+  .mail { font-family: Arial, sans-serif; font-size: 14px; color: #1A1A1F; line-height: 1.5; margin-bottom: 18px; }
+  .btn { margin-top: 22px; display: inline-flex; gap: 8px; align-items: center; border: 0; border-radius: 999px; padding: 12px 20px; font: 600 15px system-ui, sans-serif; background: #111; color: #fff; cursor: pointer; }
+  .ok { margin-left: 12px; color: #1E8E5A; font-weight: 600; opacity: 0; transition: opacity .3s; }
+  ol { color: #33343B; line-height: 1.7; padding-left: 20px; }
+  .dark { background: #1F1F23; color: #E8E8EC; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Helmwork email signature</h1>
+  <p class="lead">This is how your signature looks at the end of an email. Click the button, then paste it into Gmail.</p>
+  <div class="card">
+    <div class="mail">Best regards,<br><br></div>
+    <div id="sig"><table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;color:#1A1A1F;border-collapse:collapse;">
+  <tr>
+    <td style="padding:0 14px 0 0;vertical-align:top;">
+      <a href="https://helmwork.pc-spain.workers.dev" style="text-decoration:none;"><img src="https://helmwork.pc-spain.workers.dev/assets/img/email/helmwork-mark.png" width="58" height="58" alt="Helmwork" style="display:block;border:0;width:58px;height:58px;border-radius:13px;"></a>
+    </td>
+    <td style="padding:0 0 0 14px;vertical-align:top;border-left:2px solid #FF7A50;">
+      <div style="font-size:15px;line-height:20px;font-weight:bold;color:#1A1A1F;">Abdullah Ghous</div>
+      <div style="font-size:13px;line-height:18px;color:#55565E;">Founder, Helmwork</div>
+      <div style="font-size:13px;line-height:18px;color:#55565E;padding-bottom:6px;">Websites &amp; operations for growing businesses</div>
+      <div style="font-size:12.5px;line-height:18px;">
+        <a href="https://helmwork.pc-spain.workers.dev" style="color:#E2486E;text-decoration:none;font-weight:bold;">helmwork.pc-spain.workers.dev</a>
+        <span style="color:#B0B2B8;">&nbsp;·&nbsp;</span>
+        <a href="mailto:helmwork.tech@gmail.com" style="color:#55565E;text-decoration:none;">helmwork.tech@gmail.com</a>
+        <span style="color:#B0B2B8;">&nbsp;·&nbsp;</span>
+        <a href="https://pk.linkedin.com/in/abdullah-ghous" style="color:#55565E;text-decoration:none;">LinkedIn</a>
+      </div>
+      <div style="font-size:12px;line-height:18px;color:#8A8C94;font-style:italic;padding-top:2px;">Your operations, steered.</div>
+    </td>
+  </tr>
+</table></div>
+  </div>
+  <button class="btn" id="copy" type="button">Copy signature</button><span class="ok" id="ok">Copied ✓</span>
+  <h2 style="font-size:17px;margin:36px 0 8px;">Add it to Gmail</h2>
+  <ol>
+    <li>Click <b>Copy signature</b> above.</li>
+    <li>Open Gmail → ⚙ <b>Settings</b> → <b>See all settings</b>.</li>
+    <li>In the <b>General</b> tab, scroll to <b>Signature</b> → <b>Create new</b> → name it "Helmwork".</li>
+    <li>Click into the signature box and paste (<b>Ctrl+V</b> / <b>Cmd+V</b>).</li>
+    <li>Under <b>Signature defaults</b>, choose "Helmwork" for new emails and replies.</li>
+    <li>Scroll to the bottom and click <b>Save Changes</b>.</li>
+  </ol>
+</main>
+<script>
+  document.getElementById('copy').addEventListener('click', async () => {
+    const el = document.getElementById('sig'), ok = document.getElementById('ok');
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([el.innerHTML], { type: 'text/html' }), 'text/plain': new Blob([el.innerText], { type: 'text/plain' }) })]);
+    } catch (e) {
+      const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand('copy'); s.removeAllRanges();
+    }
+    ok.style.opacity = 1; setTimeout(() => ok.style.opacity = 0, 2500);
+  });
+</script>
+</body>
+</html>

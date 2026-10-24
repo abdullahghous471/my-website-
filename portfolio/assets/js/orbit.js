@@ -13,6 +13,7 @@
   const items = chips.map(c => { const r = +c.dataset.ring, list = byRing[r]; return { c, r, a: list.indexOf(c) / list.length * Math.PI * 2 + r * .6, x: 0, y: 0 }; });
   chips.forEach(c => c.style.setProperty('--dot', `rgb(${COL[+c.dataset.ring].join(',')})`));
   let paused = false, hot = null, mx = 0, my = 0, tmx = 0, tmy = 0, link = 0;
+  if (matchMedia('(hover: none)').matches) use.textContent = use.textContent.replace('Hover', 'Tap');
   const def = use.textContent;
   chips.forEach(c => {
     const on = () => { paused = true; hot = c; use.textContent = c.dataset.use; stage.classList.add('is-hover'); c.classList.add('hot'); };

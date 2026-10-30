@@ -3,289 +3,377 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Black Apple Group | Independent Life Insurance Agent in Chicago, IL</title>
-<meta name="description" content="Independent life insurance in Chicago. Joseph Hull, licensed since 1991, compares 100+ carriers and explains your options before any recommendation. Book a free protection review.">
+<title>Black Apple Group — Independent Life Insurance, Chicago</title>
+<meta name="description" content="Independent life insurance in Chicago. Joseph Hull, licensed since 1991, compares 100+ carriers and explains every option before recommending one. Book a free protection review.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="canonical" href="https://www.blackapplegroup.com/">
-<meta name="theme-color" content="#0E1512">
-<meta property="og:title" content="Black Apple Group | Understand Your Protection">
-<meta property="og:description" content="Independent life insurance, explained before it is recommended. Licensed since 1991, Chicago, IL.">
-<meta property="og:image" content="https://www.blackapplegroup.com/og-image.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=5">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"InsuranceAgency","name":"Black Apple Group","url":"https://www.blackapplegroup.com/","telephone":"+1-708-705-7783","email":"joseph@blackapplegroup.com",
-"founder":{"@type":"Person","name":"Joseph Hull","sameAs":["https://www.linkedin.com/in/joseph-hull-1a779b71/"]},
-"address":{"@type":"PostalAddress","addressLocality":"Chicago","addressRegion":"IL","addressCountry":"US"},"areaServed":"US",
-"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00"}],
-"sameAs":["https://www.instagram.com/blackapplegroup","https://www.tiktok.com/@blackapplegroup","https://www.youtube.com/@blackapplegroup","https://www.facebook.com/103088345079189"]}
-</script>
+<meta name="theme-color" content="#02060f">
+<link rel="preload" href="assets/fonts/sora-variable.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{
+  font-family:'Sora';
+  src:url(assets/fonts/sora-variable.woff2) format('woff2-variations'),url(assets/fonts/sora-variable.woff2) format('woff2');
+  font-weight:100 800;font-style:normal;font-display:block;
+}
+:root{
+  --ink:#ffffff;--sub:#a9b1bf;--nav:#fbfdff;--foot:#f4f8fd;
+  --hair:rgba(196,214,232,.72);--chev:rgba(214,232,250,.90);
+  --navdim:#e8ecf0;--feat:#e2ebf5;
+  --veil:6,10,18;
+  --cover:max(calc(100vw / 1536), calc(100vh / 1024));
+  --fit:calc(100vh / 910);
+  --u:min(var(--cover), var(--fit));
+  --blur:calc(var(--u)*26);
+  --glow:calc(var(--u)*34);
+  --hairline:max(1px, calc(var(--u)*1.6));
+}
+@supports (height:100dvh){
+  :root{--cover:max(calc(100vw / 1536), calc(100dvh / 1024));--fit:calc(100dvh / 910);}
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%;margin:0;background:#02060f;overflow:hidden}
+body{font-family:'Sora',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:geometricPrecision}
+a{color:inherit;text-decoration:none}
+ul{margin:0;padding:0} li{list-style:none} h1,p{margin:0;font-weight:inherit}
+a:focus-visible{outline:2px solid #9fe0ff;outline-offset:3px;border-radius:4px}
+
+/* 4. background */
+.art{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;z-index:0;
+  user-select:none;-webkit-user-drag:none;pointer-events:none;background:#03060c}
+.veil{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(140% 60% at 50% 40%,rgba(var(--veil),.22) 0%,rgba(var(--veil),.08) 50%,rgba(var(--veil),0) 100%),
+    linear-gradient(180deg,rgba(var(--veil),0) 45%,rgba(var(--veil),.14) 100%);}
+.bar,.hero,.foot{position:fixed;z-index:1}
+
+/* 5. component skin */
+.brand svg{display:block;overflow:visible}
+.brand svg path:first-child{fill:none;stroke:var(--ink);stroke-width:1.4}
+.brand svg path:last-child{fill:var(--ink)}
+.caret,.navarrow{fill:none;stroke:var(--nav);stroke-linecap:round;stroke-linejoin:round}
+.navarrow{stroke-linecap:square;stroke-linejoin:miter}
+.pill{border:var(--hairline) solid var(--hair);border-radius:999px}
+.chev{fill:none;stroke:var(--chev);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.cta .arrow{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:square;stroke-linejoin:miter}
+.rule{background:linear-gradient(180deg,rgba(186,200,214,.70) 0%,rgba(206,220,232,.92) 52%,rgba(182,198,212,.68) 100%)}
+.cta{
+  border-radius:999px;
+  background:
+    linear-gradient(180deg,rgba(6,12,22,0) 45%,rgba(6,12,22,.12) 78%,rgba(6,12,22,.28) 100%),
+    linear-gradient(90deg,rgba(255,226,178,.17) 0%,rgba(255,236,208,.07) 22%,rgba(176,206,238,.03) 55%,rgba(150,196,244,.09) 100%),
+    linear-gradient(90deg,rgba(255,255,255,.24) 0%,rgba(255,255,255,.17) 12%,rgba(255,255,255,.11) 26%,rgba(255,255,255,.07) 42%,rgba(255,255,255,.05) 60%,rgba(255,255,255,.04) 80%,rgba(255,255,255,.04) 100%);
+  -webkit-backdrop-filter:blur(var(--blur)) saturate(.45);
+  backdrop-filter:blur(var(--blur)) saturate(.45);
+  box-shadow:0 calc(var(--u)*-2) calc(var(--u)*20) rgba(255,224,176,.20),
+             0 0 var(--glow) rgba(168,204,252,.16),
+             inset 0 var(--hairline) 0 0 rgba(255,251,242,.45);
+}
+.cta::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:var(--hairline);pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(255,252,246,.95) 0%,rgba(255,252,246,.20) 45%,rgba(255,252,246,0) 78%),
+    linear-gradient(90deg,rgba(255,228,182,.95) 0%,rgba(250,236,210,.70) 12%,rgba(226,230,234,.03) 32%,rgba(214,226,240,.02) 62%,rgba(200,228,250,.70) 90%,rgba(186,224,247,.95) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;
+}
+#word{font-variation-settings:'wght' 531;color:var(--ink)}
+#about,#product,#solutions,#login{font-variation-settings:'wght' 506;color:var(--nav)}
+#contact{font-variation-settings:'wght' 581;color:var(--navdim)}
+#h1a,#h1b{font-variation-settings:'wght' 424;color:var(--ink)}
+#sub1,#sub2{font-variation-settings:'wght' 446;color:var(--sub)}
+#cta{font-variation-settings:'wght' 497;color:var(--ink)}
+#f1,#f2,#f3,#f4{font-variation-settings:'wght' 534;color:var(--feat)}
+#foot1,#foot2{font-variation-settings:'wght' 521;color:var(--foot)}
+
+/* 6. entrance */
+@media (prefers-reduced-motion:no-preference){
+  :root{--ent-line:cubic-bezier(.16,1,.3,1);--ent-soft:cubic-bezier(.25,.8,.35,1);--rise:9px}
+  @keyframes en-wipe{
+    from{clip-path:inset(-.78em 0 calc(100% + .78em) 0);translate:0 var(--rise)}
+    to{clip-path:inset(-.78em 0 -.78em 0);translate:0 0}}
+  @keyframes en-lift{from{opacity:0;translate:0 var(--rise)}}
+  @keyframes en-settle{from{opacity:0;translate:0 calc(var(--rise)*.7);scale:.99}}
+  @keyframes en-draw{from{scale:1 0}}
+  html:not(.is-entered) .brand{animation:en-lift .60s var(--ent-soft) .12s backwards}
+  html:not(.is-entered) #about{animation:en-lift .55s var(--ent-soft) .20s backwards}
+  html:not(.is-entered) #product{animation:en-lift .55s var(--ent-soft) .25s backwards}
+  html:not(.is-entered) #solutions,html:not(.is-entered) .caret{animation:en-lift .55s var(--ent-soft) .30s backwards}
+  html:not(.is-entered) #login,html:not(.is-entered) .navarrow{animation:en-lift .55s var(--ent-soft) .35s backwards}
+  html:not(.is-entered) .pill{animation:en-settle .60s var(--ent-soft) .40s backwards}
+  html:not(.is-entered) .burger{animation:en-lift .60s var(--ent-soft) .40s backwards}
+  html:not(.is-entered) #h1a{animation:en-wipe .95s var(--ent-line) .34s backwards}
+  html:not(.is-entered) #h1b{animation:en-wipe .95s var(--ent-line) .44s backwards}
+  html:not(.is-entered) #sub1{animation:en-lift .70s var(--ent-soft) .74s backwards}
+  html:not(.is-entered) #sub2{animation:en-lift .70s var(--ent-soft) .80s backwards}
+  html:not(.is-entered) .cta{animation:en-lift .80s var(--ent-line) .94s backwards}
+  html:not(.is-entered) .feats li:nth-child(1){animation:en-lift .60s var(--ent-soft) 1.08s backwards}
+  html:not(.is-entered) .feats li:nth-child(2){animation:en-lift .60s var(--ent-soft) 1.15s backwards}
+  html:not(.is-entered) .feats li:nth-child(3){animation:en-lift .60s var(--ent-soft) 1.22s backwards}
+  html:not(.is-entered) .feats li:nth-child(4){animation:en-lift .60s var(--ent-soft) 1.29s backwards}
+  html:not(.is-entered) .rule{animation:en-draw .55s var(--ent-line) 1.34s backwards;transform-origin:top}
+  html:not(.is-entered) #foot1{animation:en-lift .60s var(--ent-soft) 1.42s backwards}
+  html:not(.is-entered) #foot2{animation:en-lift .60s var(--ent-soft) 1.48s backwards}
+}
+
+/* 7. ARCHITECTURE A — locked composition */
+@media (min-width:1200px) and (min-height:560px) and (min-aspect-ratio:100/95){
+  .bar,.hero,.foot{left:50%;width:calc(var(--u)*1536);transform:translateX(-50%)}
+  .bar{top:0;height:calc(var(--u)*120)}
+  .foot{bottom:0;height:calc(var(--u)*140)}
+  .hero{top:50%;height:calc(var(--u)*1024);transform:translate(-50%,-50%)}
+  .navtoggle,.burger,.scrim{display:none}
+  .navpanel{display:contents}
+  .bar > *,.foot > *,.hero > *,.pill,.caret,.navarrow{position:absolute}
+  .menu,.menu a,.login{position:static}
+  .title,.sub,.feats{inset:0;font-weight:inherit}
+  .bar span,.foot span,.title span,.sub span,.feats span,.cta span{position:absolute;line-height:0;white-space:nowrap}
+
+  .brand{left:calc(var(--u)*221);top:calc(var(--u)*53);display:flex;align-items:center;gap:calc(var(--u)*9)}
+  .brand svg{width:calc(var(--u)*20);height:calc(var(--u)*22)}
+  #word{position:relative;line-height:1;font-size:calc(var(--u)*21);letter-spacing:calc(var(--u)*4.2);transform:translate(0,0)}
+  .caret{left:calc(var(--u)*740);top:calc(var(--u)*62.4);width:calc(var(--u)*9);height:calc(var(--u)*6);stroke-width:1.25}
+  .navarrow{left:calc(var(--u)*1158);top:calc(var(--u)*61.6);width:calc(var(--u)*10);height:calc(var(--u)*9);stroke-width:1.2}
+  .pill{left:calc(var(--u)*1191.5);top:calc(var(--u)*43.5);width:calc(var(--u)*144);height:calc(var(--u)*44)}
+  .cta{left:calc(var(--u)*581);top:calc(var(--u)*555.2);width:calc(var(--u)*374);height:calc(var(--u)*46.6)}
+  .cta .arrow{position:absolute;left:calc(var(--u)*334);top:calc(var(--u)*17.8);width:calc(var(--u)*16);height:calc(var(--u)*11)}
+  .feats li{position:absolute;width:calc(var(--u)*230);height:calc(var(--u)*20)}
+  .feats .chev{position:absolute;left:0;top:0;width:calc(var(--u)*11);height:calc(var(--u)*20)}
+  .feats li:nth-child(1){left:calc(var(--u)*341);top:calc(var(--u)*718)}
+  .feats li:nth-child(2){left:calc(var(--u)*561);top:calc(var(--u)*719)}
+  .feats li:nth-child(3){left:calc(var(--u)*811);top:calc(var(--u)*721)}
+  .feats li:nth-child(4){left:calc(var(--u)*996);top:calc(var(--u)*722)}
+  .rule{left:calc(var(--u)*767);top:calc(var(--u)*792);width:calc(var(--u)*1);height:calc(var(--u)*57)}
+
+  #about{font-size:calc(var(--u)*13.5);letter-spacing:calc(var(--u)*-0.5);left:calc(var(--u)*477);top:calc(var(--u)*65.66)}
+  #product{font-size:calc(var(--u)*13.5);letter-spacing:calc(var(--u)*-0.167);left:calc(var(--u)*560);top:calc(var(--u)*65.66)}
+  #solutions{font-size:calc(var(--u)*13.5);letter-spacing:calc(var(--u)*-0.5);left:calc(var(--u)*665);top:calc(var(--u)*65.66)}
+  #login{font-size:calc(var(--u)*13.5);letter-spacing:calc(var(--u)*-0.227);left:calc(var(--u)*1012);top:calc(var(--u)*66.16)}
+  #contact{font-size:calc(var(--u)*13.5);letter-spacing:calc(var(--u)*0.25);left:0;right:0;text-align:center;top:calc(var(--u)*21.66);transform:translateX(0)}
+  #h1a,#h1b{font-size:calc(var(--u)*46.8);left:0;right:0;text-align:center}
+  #h1a{letter-spacing:calc(var(--u)*0.2);top:calc(var(--u)*285.222);transform:translateX(0)}
+  #h1b{letter-spacing:calc(var(--u)*-0.2);top:calc(var(--u)*335.222);transform:translateX(0)}
+  #sub1,#sub2{left:0;right:0;text-align:center}
+  #sub1{font-size:calc(var(--u)*20.6);letter-spacing:calc(var(--u)*0.1);top:calc(var(--u)*408.115);transform:translateX(0)}
+  #sub2{font-size:calc(var(--u)*19.1);letter-spacing:calc(var(--u)*-0.3);top:calc(var(--u)*432.153);transform:translateX(0)}
+  #cta{font-size:calc(var(--u)*21);letter-spacing:calc(var(--u)*-0.312);left:0;right:0;text-align:center;top:calc(var(--u)*23.113);transform:translateX(calc(var(--u)*-17))}
+  #f1,#f2,#f3,#f4{font-size:calc(var(--u)*14.6);letter-spacing:calc(var(--u)*-0.4);left:calc(var(--u)*26);top:calc(var(--u)*11.266)}
+  #foot1,#foot2{left:0;right:0;text-align:center}
+  #foot1{font-size:calc(var(--u)*16.3);letter-spacing:calc(var(--u)*-0.256);bottom:calc(var(--u)*101.344);transform:translateX(0)}
+  #foot2{font-size:calc(var(--u)*14.6);letter-spacing:calc(var(--u)*-0.1);bottom:calc(var(--u)*76.344);transform:translateX(0)}
+}
+
+/* 8. ARCHITECTURE B — flow */
+@media (max-width:1199px),(max-height:559px),(max-aspect-ratio:100/95){
+  :root{--c:min(calc(100vw / 430), calc(100vh / 860))}
+  body{display:flex;flex-direction:column;height:100vh;
+    padding:calc(env(safe-area-inset-top) + calc(var(--c)*24)) calc(var(--c)*22) calc(env(safe-area-inset-bottom) + calc(var(--c)*22))}
+  .bar,.hero,.foot{position:static;width:100%}
+  .bar{order:1;position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:calc(var(--c)*16)}
+  .brand{display:flex;align-items:center;gap:calc(var(--c)*8)}
+  .brand svg{width:calc(var(--c)*20);height:auto}
+  #word{font-size:calc(var(--c)*17);letter-spacing:.08em}
+
+  .navtoggle{position:absolute;top:0;right:0;width:1px;height:1px;opacity:0;margin:0;pointer-events:none}
+  .burger{display:inline-flex;align-items:center;justify-content:center;width:calc(var(--c)*42);height:calc(var(--c)*30);
+    border-radius:999px;cursor:pointer;border:var(--hairline) solid var(--hair);background:rgba(255,255,255,.03);
+    -webkit-backdrop-filter:blur(var(--blur)) saturate(.45);backdrop-filter:blur(var(--blur)) saturate(.45)}
+  .burger svg{width:calc(var(--c)*19);height:auto;fill:none;stroke:var(--nav);stroke-width:1.4;stroke-linecap:round}
+  .burger svg path{transform-box:fill-box;transform-origin:center;transition:transform .24s ease,opacity .18s ease}
+  .navtoggle:focus-visible ~ .burger{outline:2px solid #9fe0ff;outline-offset:3px}
+  .navtoggle:checked ~ .burger .b1{transform:translateY(6px) rotate(45deg)}
+  .navtoggle:checked ~ .burger .b2{opacity:0}
+  .navtoggle:checked ~ .burger .b3{transform:translateY(-6px) rotate(-45deg)}
+  .scrim{display:none;position:fixed;inset:0;z-index:-1}
+  .navtoggle:checked ~ .scrim{display:block}
+
+  .navpanel{position:absolute;top:calc(100% + calc(var(--c)*12));right:0;display:flex;flex-direction:column;gap:calc(var(--c)*2);
+    width:min(calc(var(--c)*268), 78vw);padding:calc(var(--c)*12);border-radius:calc(var(--c)*20);
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,.045) 100%),
+      linear-gradient(90deg,rgba(255,226,178,.06) 0%,rgba(150,196,244,.06) 100%),
+      linear-gradient(180deg,rgba(6,12,22,.60) 0%,rgba(6,12,22,.70) 100%);
+    -webkit-backdrop-filter:blur(var(--blur)) saturate(.45);backdrop-filter:blur(var(--blur)) saturate(.45);
+    box-shadow:0 calc(var(--c)*14) calc(var(--c)*38) rgba(2,6,14,.45);
+    opacity:0;transform:translateY(calc(var(--c)*-8)) scale(.985);transform-origin:100% 0;pointer-events:none;
+    transition:opacity .2s ease,transform .2s ease}
+  .navtoggle:checked ~ .navpanel{opacity:1;transform:none;pointer-events:auto}
+  .navpanel .menu{display:flex;flex-direction:column}
+  .navpanel .menu a,.navpanel .login{display:flex;align-items:center;gap:calc(var(--c)*8);padding:calc(var(--c)*10) calc(var(--c)*12);
+    border-radius:calc(var(--c)*12);font-size:calc(var(--c)*16);color:var(--nav);transition:background .15s ease}
+  .navpanel .menu a:hover,.navpanel .login:hover{background:rgba(255,255,255,.07)}
+  .navpanel .caret,.navpanel .navarrow{margin-left:auto;height:auto}
+  .navpanel .caret{width:calc(var(--c)*10)}
+  .navpanel .navarrow{width:calc(var(--c)*11)}
+  .navpanel .pill{margin-top:calc(var(--c)*8);text-align:center;white-space:nowrap;padding:calc(var(--c)*11) calc(var(--c)*16);font-size:calc(var(--c)*15)}
+
+  .hero{order:2;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:calc(var(--c)*20)}
+  .title{font-size:calc(var(--c)*32);line-height:1.14;max-width:16ch}
+  .sub{color:var(--sub);font-size:calc(var(--c)*16.5);line-height:1.4;max-width:28ch}
+  .cta{position:relative;display:inline-flex;align-items:center;gap:calc(var(--c)*12);padding:calc(var(--c)*16) calc(var(--c)*26);font-size:calc(var(--c)*17)}
+  .cta .arrow{width:calc(var(--c)*16);height:calc(var(--c)*11)}
+  .feats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(var(--c)*15) calc(var(--c)*13);width:100%;
+    max-width:calc(var(--c)*400);margin-top:calc(var(--c)*6)}
+  .feats li{display:flex;align-items:center;gap:calc(var(--c)*9);font-size:calc(var(--c)*14);text-align:left}
+  .feats .chev{width:calc(var(--c)*9);height:calc(var(--c)*16);flex:none}
+  .rule{width:1px;height:calc(var(--c)*33);margin:calc(var(--c)*19) auto 0}
+  .foot{order:3;text-align:center;color:var(--foot);font-size:calc(var(--c)*13);line-height:1.55}
+  .foot span{display:block}
+
+  /* B1. phone canvas */
+  @media (max-width:599px),(max-height:429px){
+    :root{--c:min(calc(100vw / 360), calc(100vh / 770), 1px);--rise:6px}
+    body{padding:calc(env(safe-area-inset-top) + calc(var(--c)*28)) calc(var(--c)*26) calc(env(safe-area-inset-bottom) + calc(var(--c)*26))}
+    .brand svg{width:calc(var(--c)*21)} #word{font-size:calc(var(--c)*17)}
+    .burger{width:calc(var(--c)*46);height:calc(var(--c)*33);position:relative}
+    .burger::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max(44px,100%);height:max(44px,100%)}
+    .burger svg{width:calc(var(--c)*21)}
+    .navpanel{width:min(calc(var(--c)*300), 82vw);padding:calc(var(--c)*15);border-radius:calc(var(--c)*22)}
+    .navpanel .login{order:-1}
+    .navpanel .menu a,.navpanel .login{font-size:calc(var(--c)*16);padding:calc(var(--c)*13) calc(var(--c)*14);
+      border-radius:calc(var(--c)*13);min-height:max(44px,calc(var(--c)*44))}
+    .navpanel .pill{font-size:calc(var(--c)*16);padding:calc(var(--c)*13) calc(var(--c)*18);margin-top:calc(var(--c)*9)}
+    .veil{background:
+      radial-gradient(130% 44% at 50% 45%,rgba(var(--veil),.54) 0%,rgba(var(--veil),.28) 55%,rgba(var(--veil),0) 100%),
+      linear-gradient(180deg,rgba(var(--veil),.34) 0%,rgba(var(--veil),0) 20%,rgba(var(--veil),0) 60%,rgba(var(--veil),.40) 100%)}
+    .hero{gap:calc(var(--c)*22)}
+    .title{font-size:calc(var(--c)*31);line-height:1.2;letter-spacing:-.002em;max-width:none;text-wrap:balance}
+    .title span{display:block}
+    .sub{font-size:calc(var(--c)*15.5);line-height:1.5;max-width:none;text-wrap:balance}
+    .sub span{display:block}
+    .cta{font-size:calc(var(--c)*16);padding:calc(var(--c)*15) calc(var(--c)*26);gap:calc(var(--c)*12)}
+    .cta .arrow{width:calc(var(--c)*17);height:calc(var(--c)*12)}
+    .feats{grid-template-columns:repeat(2,max-content);justify-content:center;width:auto;max-width:none;
+      gap:calc(var(--c)*16) calc(var(--c)*16);margin-top:calc(var(--c)*22)}
+    .feats li{font-size:calc(var(--c)*13);gap:calc(var(--c)*10)}
+    .feats .chev{width:calc(var(--c)*10);height:calc(var(--c)*18)}
+    .rule{height:calc(var(--c)*30);margin:calc(var(--c)*28) auto 0}
+    .foot{font-size:calc(var(--c)*12.5);line-height:1.65;text-wrap:balance}
+  }
+  /* landscape phones */
+  @media (max-height:429px) and (min-aspect-ratio:1/1){
+    :root{--c:min(calc(100vw / 760), calc(100vh / 430))}
+    .hero{gap:calc(var(--c)*12)}
+    .title{font-size:calc(var(--c)*30);line-height:1.2;max-width:28ch}
+    .sub{font-size:calc(var(--c)*15.5);max-width:52ch} .sub span{display:inline}
+    .cta{font-size:calc(var(--c)*15);padding:calc(var(--c)*12) calc(var(--c)*24)}
+    .feats{grid-template-columns:repeat(4,max-content);justify-content:center;max-width:none;gap:calc(var(--c)*24);margin-top:calc(var(--c)*2)}
+    .feats li{font-size:calc(var(--c)*13)}
+    .rule{height:calc(var(--c)*20);margin:calc(var(--c)*10) auto 0}
+    .foot{font-size:calc(var(--c)*12.5)}
+  }
+  /* B2. tablet canvas */
+  @media (min-width:600px) and (min-height:430px){
+    :root{--c:min(calc(100vw / 860), calc(100vh / 1120))}
+    body{padding:calc(env(safe-area-inset-top) + calc(var(--c)*40)) calc(var(--c)*44) calc(env(safe-area-inset-bottom) + calc(var(--c)*36))}
+    .brand svg{width:calc(var(--c)*30)} #word{font-size:calc(var(--c)*26)}
+    .burger{width:calc(var(--c)*60);height:calc(var(--c)*44)}
+    .burger svg{width:calc(var(--c)*27);stroke-width:1.2}
+    .navpanel{width:min(calc(var(--c)*340), 56vw);padding:calc(var(--c)*16);border-radius:calc(var(--c)*26);gap:calc(var(--c)*4)}
+    .navpanel .menu a,.navpanel .login{font-size:calc(var(--c)*20);padding:calc(var(--c)*13) calc(var(--c)*15);border-radius:calc(var(--c)*15);gap:calc(var(--c)*10)}
+    .navpanel .caret{width:calc(var(--c)*13)}
+    .navpanel .navarrow{width:calc(var(--c)*14)}
+    .navpanel .pill{margin-top:calc(var(--c)*10);padding:calc(var(--c)*14) calc(var(--c)*20);font-size:calc(var(--c)*19)}
+    .hero{gap:calc(var(--c)*26)}
+    .title{font-size:calc(var(--c)*46);line-height:1.15;max-width:none}
+    .title span{display:block}
+    .sub{font-size:calc(var(--c)*20);line-height:1.38;max-width:none}
+    .sub span{display:block}
+    .cta{gap:calc(var(--c)*14);padding:calc(var(--c)*18) calc(var(--c)*34);font-size:calc(var(--c)*20)}
+    .cta .arrow{width:calc(var(--c)*20);height:calc(var(--c)*14)}
+    .feats{grid-template-columns:repeat(2,max-content);justify-content:center;gap:calc(var(--c)*22) calc(var(--c)*54);max-width:none;margin-top:calc(var(--c)*12)}
+    .feats li{gap:calc(var(--c)*12);font-size:calc(var(--c)*16)}
+    .feats .chev{width:calc(var(--c)*12);height:calc(var(--c)*21)}
+    .rule{height:calc(var(--c)*46);margin:calc(var(--c)*30) auto 0}
+    .foot{font-size:calc(var(--c)*15)}
+    @media (min-aspect-ratio:1/1){
+      :root{--c:min(calc(100vw / 1040), calc(100vh / 780))}
+      .feats{grid-template-columns:repeat(4,max-content);gap:calc(var(--c)*40)}
+    }
+  }
+}
+
+/* 9. dynamic viewport */
+@supports (height:100dvh){
+  @media (max-width:1199px),(max-height:559px),(max-aspect-ratio:100/95){
+    :root{--c:min(calc(100vw / 430), calc(100dvh / 860))}
+    body{height:100dvh}
+    @media (max-width:599px),(max-height:429px){
+      :root{--c:min(calc(100vw / 360), calc(100dvh / 770), 1px)}}
+    @media (max-height:429px) and (min-aspect-ratio:1/1){
+      :root{--c:min(calc(100vw / 760), calc(100dvh / 430))}}
+    @media (min-width:600px) and (min-height:430px){
+      :root{--c:min(calc(100vw / 860), calc(100dvh / 1120))}
+      @media (min-aspect-ratio:1/1){
+        :root{--c:min(calc(100vw / 1040), calc(100dvh / 780))}}}
+  }
+}
+
+/* 10. reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="mark" viewBox="0 0 40 44"><path d="M20 12.6C15.6 9.4 6.8 9.6 4.6 18.2 2.6 26.6 8.6 40.4 14.2 41.2c2.8.4 4-1 5.8-1s3 1.4 5.8 1c5.6-.8 11.6-14.6 9.6-23C33.2 9.6 24.4 9.4 20 12.6Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M20 11.6c-.5-3.6.1-6.8 2-9.4.5 3.4 0 6.6-2 9.4Z" fill="currentColor"/></symbol>
-  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a11 11 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
-  <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-</svg>
-
-<header class="hd" data-header>
-  <a class="logo" href="#top" aria-label="Black Apple Group, home"><svg><use href="#mark"/></svg><span>Black Apple Group</span></a>
-  <nav class="nav" aria-label="Main"><a href="#coverage">Coverage</a><a href="#joseph">About Joseph</a><a href="#how">How it works</a><a href="#calculator">Calculator</a><a href="#join">Careers</a></nav>
-  <div class="hd__r">
-    <a class="hd__tel" href="tel:+17087057783" data-track="call_header"><svg><use href="#i-phone"/></svg><span>(708) 705-7783</span></a>
-    <a class="btn btn--cream btn--sm" href="#review" data-track="cta_header">Free review</a>
-    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" data-burger><i></i><i></i></button>
+<video class="art" autoplay muted loop playsinline preload="auto" aria-hidden="true" poster="assets/img/rain-poster.jpg" src="assets/video/rain-night.mp4"></video>
+<div class="veil"></div>
+<header class="bar">
+  <a class="brand" href="#" aria-label="Black Apple Group, home">
+    <svg viewBox="0 0 20 22" aria-hidden="true"><path d="M10 6.3C7.8 4.7 3.4 4.8 2.3 9.1 1.3 13.3 4.3 20.2 7.1 20.6c1.4.2 2-.5 2.9-.5s1.5.7 2.9.5c2.8-.4 5.8-7.3 4.8-11.5C16.6 4.8 12.2 4.7 10 6.3Z"/><path d="M10 5.8c-.25-1.8.05-3.4 1-4.7.25 1.7 0 3.3-1 4.7Z"/></svg>
+    <span id="word">BLACK APPLE</span>
+  </a>
+  <input class="navtoggle" type="checkbox" id="nav-open">
+  <label class="scrim" for="nav-open" aria-hidden="true"></label>
+  <label class="burger" for="nav-open" aria-label="Menu">
+    <svg viewBox="0 0 22 14" aria-hidden="true"><path class="b1" d="M1 1 H21"/><path class="b2" d="M1 7 H21"/><path class="b3" d="M1 13 H21"/></svg>
+  </label>
+  <div class="navpanel">
+    <nav class="menu">
+      <a href="#about"><span id="about">About</span></a>
+      <a href="#coverage"><span id="product">Coverage</span></a>
+      <a href="#strategy"><span id="solutions">Strategy</span>
+        <svg class="caret" viewBox="0 0 9 6" aria-hidden="true"><path d="M0.7 1.1 L4.5 4.6 L8.3 1.1"/></svg></a>
+    </nav>
+    <a class="login" href="tel:+17087057783"><span id="login">Call (708) 705-7783</span>
+      <svg class="navarrow" viewBox="0 0 10 9" aria-hidden="true"><path d="M0 4.5 H9.1 M5.4 0.9 L9.2 4.5 L5.4 8.1"/></svg></a>
+    <a class="pill" href="#review"><span id="contact">Free review</span></a>
   </div>
-  <div class="drawer" data-drawer><a href="#coverage">Coverage</a><a href="#joseph">About Joseph</a><a href="#how">How it works</a><a href="#calculator">Calculator</a><a href="#join">Careers</a><a class="drawer__tel" href="tel:+17087057783">Call (708) 705-7783</a></div>
 </header>
-
-<main id="top">
-
-<!-- THE STORY: a 3D home, pinned while four chapters play -->
-<section class="story" data-story>
-  <div class="story__pin">
-    <canvas class="story__cv" data-scene aria-hidden="true"></canvas>
-
-    <div class="story__txt">
-      <div class="ch ch--hero on" data-ch>
-        <p class="ch__k">Independent life insurance · Chicago</p>
-        <h1 class="ch__h">Protect the life <em>you're building.</em></h1>
-        <p class="ch__p">Joseph Hull has helped families understand their coverage since 1991. He compares 100+ carriers and explains every option, before he recommends one.</p>
-        <div class="ch__btns">
-          <a class="btn btn--cream" href="#review" data-track="cta_hero">Get a free protection review <svg><use href="#i-arrow"/></svg></a>
-          <button class="playlink" type="button" data-video data-track="video_hero"><span><svg><use href="#i-play"/></svg></span>A welcome from Joseph</button>
-        </div>
-      </div>
-      <div class="ch" data-ch>
-        <p class="ch__k">Your family</p>
-        <h2 class="ch__h">It starts with the <em>people inside.</em></h2>
-        <p class="ch__p">A mortgage, a paycheck, a college fund, a bedtime story. Life insurance is really about who depends on you, and for how long.</p>
-      </div>
-      <div class="ch" data-ch>
-        <p class="ch__k">The unexpected</p>
-        <h2 class="ch__h">Life rarely sends <em>a warning.</em></h2>
-        <p class="ch__p">An illness, an accident, a lost income. The families who come through it best are the ones who planned while the sky was clear.</p>
-      </div>
-      <div class="ch" data-ch>
-        <p class="ch__k">Protected</p>
-        <h2 class="ch__h">Coverage you understand, <em>before you need it.</em></h2>
-        <p class="ch__p">The right protection does not stop the storm. It keeps your home, your income and your plans standing when it comes.</p>
-        <div class="ch__btns"><a class="btn btn--cream" href="#review" data-track="cta_story_end">Start my free review <svg><use href="#i-arrow"/></svg></a></div>
-      </div>
-    </div>
-
-    <ol class="chnav" aria-label="Chapters">
-      <li><button type="button" data-chdot class="on"><span>Your home</span><i></i></button></li>
-      <li><button type="button" data-chdot><span>Your family</span><i></i></button></li>
-      <li><button type="button" data-chdot><span>The unexpected</span><i></i></button></li>
-      <li><button type="button" data-chdot><span>Protected</span><i></i></button></li>
-    </ol>
-  </div>
-</section>
-
-<!-- TRUST -->
-<section class="trust">
-  <div class="wrap trust__in">
-    <p><b>Since 1991</b><span>Licensed producer, IL No. 1356850</span></p>
-    <p><b>100+</b><span>Carriers compared for you</span></p>
-    <p><b>$0</b><span>For your protection review</span></p>
-    <p><b>One agent</b><span>From first question to claim</span></p>
-  </div>
-</section>
-
-<!-- LEGACY: cinematic video -->
-<section class="legacy">
-  <video class="legacy__v" src="assets/video/legacy.mp4" poster="assets/img/legacy.webp" muted loop playsinline preload="none" data-autoplay aria-hidden="true"></video>
-  <div class="wrap legacy__in">
-    <h2 class="big rv">Some promises <em>outlive us.</em></h2>
-    <p class="rv">Life insurance is the one plan you make entirely for someone else. We make sure it says exactly what you mean.</p>
-  </div>
-</section>
-
-<!-- COVERAGE: editorial list, hover shows a moving preview -->
-<section class="coverage" id="coverage">
-  <div class="wrap">
-    <div class="sec-hd">
-      <h2 class="h2 rv">What we <em>protect.</em></h2>
-      <p class="rv">Carrier-independent advice across life, income and retirement. Availability varies by state and eligibility.</p>
-    </div>
-    <ul class="clist" data-clist>
-      <li data-media="assets/video/hands.mp4"><a href="#review"><h3>Term life</h3><p>The most cover for the least cost, for the years your family depends on you.</p><span>Young families</span></a></li>
-      <li data-media="assets/img/family.webp"><a href="#review"><h3>Whole &amp; universal life</h3><p>Lifelong protection that builds cash value, including indexed universal life.</p><span>Lifelong · Cash value</span></a></li>
-      <li data-media="assets/img/hero-sm.webp"><a href="#review"><h3>Mortgage protection</h3><p>If income stops, the mortgage does not. Cover sized to keep the home in the family.</p><span>Homeowners</span></a></li>
-      <li data-media="assets/video/sunset.mp4"><a href="#review"><h3>Living benefits &amp; disability</h3><p>Access part of your benefit after a serious illness, or replace a paycheck you cannot earn.</p><span>Income · Illness</span></a></li>
-      <li data-media="assets/video/couple.mp4"><a href="#review"><h3>Retirement &amp; annuities</h3><p>Turn savings into dependable income for the years after work.</p><span>Pre-retirees</span></a></li>
-      <li data-media="assets/img/review.webp"><a href="#review"><h3>Final expense</h3><p>Final costs taken care of, so your family inherits memories, not bills.</p><span>Legacy</span></a></li>
-      <li data-media="assets/img/advisor.webp"><a href="#calculator"><h3>Debt elimination</h3><p>A debt snowball plan that frees cash for the things that matter.</p><span>Financial freedom</span></a></li>
-    </ul>
-  </div>
-  <div class="cpeek" data-cpeek aria-hidden="true"></div>
-</section>
-
-<!-- JOSEPH -->
-<section class="joseph" id="joseph">
-  <div class="wrap joseph__grid">
-    <figure class="joseph__pic rv">
-      <img src="assets/img/joseph.webp" alt="Joseph Hull, founder of Black Apple Group" loading="lazy" width="900" height="810">
-      <figcaption><b>Joseph Hull</b><span>Founder · Licensed since 1991</span></figcaption>
-    </figure>
-    <div class="joseph__copy">
-      <h2 class="h2 rv">Knowledge comes <em>before</em> recommendations.</h2>
-      <p class="lead rv">“I have helped families protect what they have built for more than three decades. My job is not to sell you the first policy that fits. It is to make sure you understand what you are buying, what you already own, and what it will really do for your family.”</p>
-      <div class="vals rv">
-        <p><b>Education first</b>You will understand your coverage as well as the person recommending it.</p>
-        <p><b>Carrier independence</b>No carrier owns us. The advice follows your needs.</p>
-        <p><b>Integrity always</b>If you do not need more coverage, we will tell you.</p>
-      </div>
-      <div class="joseph__btns rv">
-        <button class="btn btn--cream" type="button" data-video data-track="video_joseph"><svg><use href="#i-play"/></svg> Watch his 85-second welcome</button>
-        <a class="tlink" href="#book" data-track="book_joseph">Book a call with Joseph <svg><use href="#i-arrow"/></svg></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="wrap">
-    <div class="sec-hd">
-      <h2 class="h2 rv">The Black Apple <em>Strategy.</em></h2>
-      <p class="rv">Five calm steps from your first question to a plan you understand. No pressure at any point.</p>
-    </div>
-    <ol class="steps" data-steps>
-      <li class="rv"><h3>Educate</h3><p>Plain-English answers on how coverage really works.</p></li>
-      <li class="rv"><h3>Identify priorities</h3><p>Family, home, income, debt and the future you want.</p></li>
-      <li class="rv"><h3>Review what you have</h3><p>We read your current policies together, line by line.</p></li>
-      <li class="rv"><h3>Calculate the need</h3><p>DIME, retirement and debt calculators, not guesswork.</p></li>
-      <li class="rv"><h3>Compare options</h3><p>Real quotes from multiple carriers, side by side.</p></li>
-    </ol>
-    <div class="carriers rv"><span>Compared across 100+ carriers, including</span><p>Mutual of Omaha · Transamerica · AIG · Prudential · Nationwide · Lincoln Financial · Pacific Life · North American</p></div>
-  </div>
-</section>
-
-<!-- CALCULATOR -->
-<section class="calc" id="calculator">
-  <div class="wrap calc__grid">
-    <div>
-      <h2 class="h2 rv">How much does your family <em>actually</em> need?</h2>
-      <p class="lead rv">The DIME method adds Debt, Income, Mortgage and Education. Move the numbers and watch your estimate change.</p>
-      <p class="fine rv">Educational estimate only, not a recommendation.</p>
-    </div>
-    <form class="calc__card rv" data-calc novalidate>
-      <div class="calc__fields">
-        <label class="fld"><span>Debts (cards, loans, car)</span><input inputmode="numeric" data-k="debt" value="18,000"></label>
-        <label class="fld"><span>Annual income</span><input inputmode="numeric" data-k="income" value="72,000"></label>
-        <label class="fld fld--range"><span>Years to replace income <b data-years-out>10</b></span><input type="range" min="3" max="25" value="10" data-k="years"></label>
-        <label class="fld"><span>Mortgage balance</span><input inputmode="numeric" data-k="mortgage" value="240,000"></label>
-        <label class="fld"><span>Children's education</span><input inputmode="numeric" data-k="edu" value="60,000"></label>
-        <label class="fld"><span>Coverage you already have</span><input inputmode="numeric" data-k="have" value="100,000"></label>
-      </div>
-      <div class="calc__out">
-        <p>Estimated coverage gap</p>
-        <b data-calc-out>$938,000</b>
-        <div class="bars" data-bars></div>
-      </div>
-      <div class="calc__cap" data-calc-cap>
-        <p>Email me this breakdown with a free review of the gap.</p>
-        <div class="calc__row"><input type="email" placeholder="Email address" aria-label="Email address" data-cap-email><button class="btn btn--cream" type="submit" data-track="calc_lead">Send it</button></div>
-      </div>
-      <p class="calc__ok" data-calc-ok hidden><svg><use href="#i-check"/></svg> Sent. Joseph will follow up personally within one business day.</p>
-    </form>
-  </div>
-</section>
-
-<!-- REVIEW FORM + BOOKING -->
-<section class="review" id="review">
-  <video class="review__v" src="assets/video/sunset.mp4" poster="assets/img/sunset.webp" muted loop playsinline preload="none" data-autoplay aria-hidden="true"></video>
-  <div class="wrap review__grid">
-    <div class="review__copy">
-      <h2 class="h2 rv">Let's make your coverage <em>clear.</em></h2>
-      <ul class="ticks rv">
-        <li><svg><use href="#i-check"/></svg> 20–30 minutes by phone or video</li>
-        <li><svg><use href="#i-check"/></svg> Bring any policy you already own</li>
-        <li><svg><use href="#i-check"/></svg> No cost and no obligation</li>
-      </ul>
-      <div class="contact rv">
-        <a href="tel:+17087057783" data-track="call_review"><svg><use href="#i-phone"/></svg> (708) 705-7783</a>
-        <a href="sms:+17087057783" data-track="text_review">Text us</a>
-        <a href="mailto:joseph@blackapplegroup.com">joseph@blackapplegroup.com</a>
-        <span>Mon–Fri, 9 AM–6 PM Central</span>
-      </div>
-    </div>
-    <div class="formcard rv">
-      <div class="tabs" role="tablist">
-        <button type="button" role="tab" class="is-on" aria-selected="true" data-tab="form">Request a review</button>
-        <button type="button" role="tab" aria-selected="false" data-tab="book" id="book">Book a time</button>
-      </div>
-      <form class="lead-form" data-pane="form" data-lead novalidate>
-        <div class="row2">
-          <label class="fld"><span>First name</span><input name="first" autocomplete="given-name" required></label>
-          <label class="fld"><span>Last name</span><input name="last" autocomplete="family-name" required></label>
-        </div>
-        <div class="row2">
-          <label class="fld"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" required></label>
-          <label class="fld"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
-        </div>
-        <div class="row2">
-          <label class="fld"><span>State</span><select name="state" required><option value="">Select</option><option>Illinois</option><option>Indiana</option><option>Wisconsin</option><option>Michigan</option><option>Other state</option></select></label>
-          <label class="fld"><span>Best time to reach you</span><select name="time"><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label>
-        </div>
-        <fieldset class="chips"><legend>I'm interested in</legend>
-          <label><input type="checkbox"><span>New coverage</span></label><label><input type="checkbox"><span>Review my policy</span></label><label><input type="checkbox"><span>Mortgage protection</span></label><label><input type="checkbox"><span>Retirement</span></label><label><input type="checkbox"><span>Final expense</span></label>
-        </fieldset>
-        <label class="consent"><input type="checkbox" name="consent" required><span>By checking this box, I agree that Black Apple Group may contact me at the number and email provided, including by call or text message using automated technology, about insurance products and services. Consent is not a condition of purchase. Message and data rates may apply. Reply STOP to opt out. See our <a href="#privacy">Privacy Policy</a>.</span></label>
-        <button class="btn btn--cream btn--full" type="submit" data-track="lead_submit">Request my free review <svg><use href="#i-arrow"/></svg></button>
-        <p class="form__err" data-err hidden>Please fill in the highlighted fields and tick the consent box.</p>
-      </form>
-      <div class="book" data-pane="book" hidden>
-        <p class="book__h">Choose a 15-minute slot (Central Time)</p>
-        <div class="book__days" data-days></div>
-        <div class="book__slots" data-slots></div>
-        <button class="btn btn--cream btn--full" type="button" data-book-go disabled data-track="book_submit">Continue <svg><use href="#i-arrow"/></svg></button>
-      </div>
-      <div class="done" data-done hidden>
-        <span class="done__ic"><svg><use href="#i-check"/></svg></span>
-        <h3>Thank you. Your request is in.</h3>
-        <p data-done-p>Joseph will personally reach out within one business day. Want to talk sooner? Call <a href="tel:+17087057783">(708) 705-7783</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="join" id="join">
-  <div class="wrap join__in rv">
-    <div><h2>Build a career in protection.</h2><p>The Black Apple Agent Academy trains agents in our education-first approach. Commission-based; income is not guaranteed and depends on individual effort.</p></div>
-    <a class="tlink" href="#review" data-track="join_interest">Apply to the Academy <svg><use href="#i-arrow"/></svg></a>
-  </div>
-</section>
-
+<main class="hero">
+  <h1 class="title"><span id="h1a">Understand Your Protection</span>
+    <span id="h1b">Before You Ever Need It.</span></h1>
+  <p class="sub"><span id="sub1">Independent life insurance, explained in plain English</span>
+    <span id="sub2">for the families who depend on you.</span></p>
+  <a class="cta" href="#review"><span id="cta">Get a free protection review</span>
+    <svg class="arrow" viewBox="0 0 16 11" aria-hidden="true"><path d="M0 5.5 H14.6 M10.3 1.2 L14.9 5.5 L10.3 9.8"/></svg></a>
+  <ul class="feats">
+    <li><svg class="chev" viewBox="0 0 11 20" aria-hidden="true"><path d="M1.15 1.15 L9.6 10 L1.15 18.85"/></svg><span id="f1">Licensed since 1991</span></li>
+    <li><svg class="chev" viewBox="0 0 11 20" aria-hidden="true"><path d="M1.15 1.15 L9.6 10 L1.15 18.85"/></svg><span id="f2">100+ carriers compared</span></li>
+    <li><svg class="chev" viewBox="0 0 11 20" aria-hidden="true"><path d="M1.15 1.15 L9.6 10 L1.15 18.85"/></svg><span id="f3">Education first</span></li>
+    <li><svg class="chev" viewBox="0 0 11 20" aria-hidden="true"><path d="M1.15 1.15 L9.6 10 L1.15 18.85"/></svg><span id="f4">One agent, start to claim</span></li>
+  </ul>
+  <span class="rule" aria-hidden="true"></span>
 </main>
-
-<footer class="ft">
-  <div class="wrap ft__grid">
-    <div><a class="logo" href="#top"><svg><use href="#mark"/></svg><span>Black Apple Group</span></a><p class="ft__tag">Understand your protection.</p></div>
-    <div><h4>Contact</h4><a href="tel:+17087057783">(708) 705-7783</a><a href="mailto:joseph@blackapplegroup.com">joseph@blackapplegroup.com</a><p>Chicago, IL · Mon–Fri 9–6 CT</p></div>
-    <div><h4>Explore</h4><a href="#coverage">Coverage</a><a href="#how">The Black Apple Strategy</a><a href="#calculator">Calculators</a><a href="#join">Careers</a></div>
-    <div><h4>Follow</h4><a href="https://www.instagram.com/blackapplegroup" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@blackapplegroup" target="_blank" rel="noopener">YouTube</a><a href="https://www.facebook.com/103088345079189" target="_blank" rel="noopener">Facebook</a><a href="https://www.linkedin.com/in/joseph-hull-1a779b71/" target="_blank" rel="noopener">LinkedIn</a></div>
-  </div>
-  <div class="wrap ft__legal">
-    <p>Joseph Hull, licensed life insurance producer, Illinois License No. 1356850. Licensed in multiple states. Insurance products are issued by unaffiliated insurance carriers; not all products are available in all states. Information on this site is educational and is not tax, legal or investment advice. Video footage: Mixkit (free license).</p>
-    <p>© 2026 Black Apple Group · <a href="#privacy" id="privacy">Privacy Policy</a> · <a href="#terms">Terms of Use</a></p>
-  </div>
+<footer class="foot">
+  <span id="foot1">Trusted by families since 1991 · Chicago, IL</span>
+  <span id="foot2">Illinois License No. 1356850 · Products vary by state</span>
 </footer>
-
-<div class="mbar" data-mbar>
-  <a href="tel:+17087057783" data-track="call_mbar"><svg><use href="#i-phone"/></svg> Call</a>
-  <a class="mbar__go" href="#review" data-track="cta_mbar"><svg><use href="#i-cal"/></svg> Free review</a>
-</div>
-<div class="vmodal" data-vmodal hidden><div class="vmodal__box"><button class="vmodal__x" type="button" aria-label="Close video" data-vclose>×</button><div class="vmodal__frame" data-vframe></div></div></div>
-
-<script type="module" src="assets/js/scene.js?v=2"></script>
-<script src="assets/js/main.js?v=4" defer></script>
+<script>
+(function(){
+  var q=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)'),
+      v=document.querySelector('video.art');
+  if(!q||!v)return;
+  function sync(){ if(q.matches){v.pause();} else{var p=v.play();if(p)p.catch(function(){});} }
+  sync();
+  q.addEventListener ? q.addEventListener('change',sync) : q.addListener(sync);
+})();
+(function(){
+  var el=document.getElementById('foot2'),t;
+  function done(){ clearTimeout(t); if(el)el.removeEventListener('animationend',done); document.documentElement.classList.add('is-entered'); }
+  if(el)el.addEventListener('animationend',done);
+  t=setTimeout(done,4000);
+})();
+</script>
 </body>
 </html>

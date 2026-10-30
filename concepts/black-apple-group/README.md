@@ -1,9 +1,10 @@
-# Black Apple Group · homepage redesign (concept v2)
+# Black Apple Group · homepage redesign (concept v3)
 
-Ivory editorial pages in the PC-Spain style, with midnight scenes where strands of light (the Helmwork engine) tell the story:
-a light arch over the family (hero), a life line (life stages dial), a ring (coverage cards) and a house of light (closing band).
+A hand-built Three.js diorama tells the story while you scroll: your home (dusk) · your family (windows light up) ·
+the unexpected (storm, rain) · protected (a glass shield rises, the storm clears, sunrise).
 
-- `assets/js/light.js`: Three.js light strands; sections choose a shape with `data-light` and place it with `data-form`.
-- `assets/js/main.js`: life-stage dial, 3D coverage ring, strategy orbit, DIME calculator, lead form with TCPA consent, booking picker, assistant, video modal, `dataLayer` events.
+- `assets/js/scene.js`: the 3D home, island, garden, storm and shield; four scroll chapters.
+- `assets/js/main.js`: background videos, coverage list with cursor preview, DIME calculator, lead form with TCPA consent, booking picker, video modal, `dataLayer` events.
+- `assets/video/`: Mixkit stock footage (free licence), re-encoded to ~0.2–0.9 MB.
 - Forms are front-end only in this concept. Connect them to the CRM / email and the booking picker to Calendly or Google Calendar before launch.
 - `noindex` is set (meta + `_headers`). Remove it at launch.

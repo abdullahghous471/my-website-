@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Black Apple Group | Life Insurance Agent Chicago, IL</title>
+<meta name="description" content="Education-first life insurance in Chicago. Joseph Hull, licensed since 1991, compares 100+ carriers for life insurance, mortgage protection, living benefits and retirement income. Book a free protection review.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"InsuranceAgency","name":"Black Apple Group","url":"https://www.blackapplegroup.com/","telephone":"+1-708-705-7783","email":"joseph@blackapplegroup.com","founder":{"@type":"Person","name":"Joseph Hull"},"address":{"@type":"PostalAddress","addressLocality":"Chicago","addressRegion":"IL","addressCountry":"US"},"openingHours":"Mo-Fr 09:00-18:00","areaServed":"US","sameAs":["https://www.facebook.com/103088345079189","https://www.instagram.com/blackapplegroup/","https://www.linkedin.com/in/joseph-hull-1a779b71/","https://www.tiktok.com/@blackapplegroup","https://www.youtube.com/@blackapplegroup"]}</script>
+<style>
+:root{
+  --ink:#0A0A0B; --ink2:#131315; --ink3:#1C1C1F;
+  --gold:#D6A938; --gold2:#F1D27C; --gold3:#8F6B17;
+  --ivory:#F5F1E8; --paper:#FBF9F4; --text:#ECE9E2; --dim:#A19D94; --dark:#17150F; --darkdim:#5E5A50;
+  --line:rgba(255,255,255,.10); --lined:rgba(23,21,15,.12);
+  --serif:"Instrument Serif","Times New Roman",Georgia,serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ease:cubic-bezier(.16,.84,.24,1);
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px;background:var(--ink)}
+body{background:var(--ink);color:var(--text);font:400 16.5px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+ul,ol{list-style:none}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px;border-radius:6px}
+::selection{background:var(--gold);color:var(--ink)}
+.wrap{width:100%;max-width:1240px;margin-inline:auto;padding-left:var(--gl);padding-right:var(--gr)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before{content:"";width:26px;height:1px;background:currentColor}
+h1,h2,h3{font-weight:400;text-wrap:balance}
+.h2{font:400 clamp(2.4rem,5vw,4.1rem)/1.02 var(--serif);letter-spacing:-.01em}
+.h2 em,h1 em{font-style:italic;color:var(--gold2)}
+.light .h2 em{color:var(--gold3)}
+.lead{font-size:18px;color:var(--dim);max-width:58ch}
+.light{background:var(--ivory);color:var(--dark)}
+.light .lead{color:var(--darkdim)}
+.light .eyebrow{color:var(--gold3)}
+section{position:relative}
+.pad{padding-block:clamp(84px,11vw,150px)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font:600 15px/1 var(--sans);letter-spacing:.01em;border:1px solid transparent;cursor:pointer;transition:transform .5s var(--ease),background .3s,color .3s,border-color .3s,box-shadow .3s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold) 55%,#B98A1E);color:var(--ink);box-shadow:0 10px 30px -12px rgba(214,169,56,.6)}
+.btn-gold:hover{box-shadow:0 16px 40px -12px rgba(214,169,56,.75)}
+.btn-ghost{border-color:rgba(255,255,255,.28);color:var(--text)}
+.btn-ghost:hover{border-color:var(--gold2);color:var(--gold2)}
+.light .btn-ghost{border-color:var(--lined);color:var(--dark)}
+.btn .arr{transition:transform .4s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* header */
+.hd{position:fixed;inset:0 0 auto;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .4s,border-color .4s,backdrop-filter .4s;border-bottom:1px solid transparent}
+.hd.scrolled{background:rgba(10,10,11,.78);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border-color:var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:28px;height:78px;max-width:1400px}
+.logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.logo svg{width:34px;height:38px}
+.logo b{display:block;font:400 22px/1 var(--serif);letter-spacing:.01em}
+.logo small{display:block;font:600 9.5px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.nav{display:flex;gap:26px;margin-left:auto}
+.nav a{font-size:14.5px;font-weight:500;color:var(--dim);transition:color .25s;position:relative}
+.nav a:hover{color:var(--text)}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+.hd-call{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;color:var(--text)}
+.hd-call svg{width:17px;height:17px;color:var(--gold)}
+.hd .btn{min-height:44px;padding:0 20px;font-size:14px}
+.burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer;margin-left:auto;position:relative}
+.burger span{position:absolute;left:13px;right:13px;height:1.5px;background:var(--text);transition:transform .35s var(--ease)}
+.burger span:first-child{top:18px}.burger span:last-child{top:25px}
+.burger[aria-expanded="true"] span:first-child{transform:translateY(3.5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:49;background:rgba(10,10,11,.97);padding:120px var(--gr) 40px var(--gl);display:flex;flex-direction:column;gap:6px}
+.mnav a{font:400 34px/1.3 var(--serif);border-bottom:1px solid var(--line);padding-block:10px}
+.mnav .btn{margin-top:24px;font:600 16px/1 var(--sans)}
+[hidden]{display:none!important}
+@media (max-width:1120px){.nav{display:none}.hd-call{margin-left:auto}}
+@media (max-width:720px){.hd-call,.hd .btn{display:none}.burger{display:block}}
+
+/* hero */
+.hero{min-height:max(720px,100svh);display:flex;align-items:center;overflow:hidden;padding-top:110px;padding-bottom:150px;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(60% 70% at 72% 45%,rgba(214,169,56,.16),transparent 60%),radial-gradient(50% 60% at 10% 100%,rgba(214,169,56,.07),transparent 60%),var(--ink)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.35;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:80px 80px;mask:radial-gradient(70% 70% at 70% 45%,#000,transparent 75%);-webkit-mask:radial-gradient(70% 70% at 70% 45%,#000,transparent 75%)}
+#apple{position:absolute;top:0;right:0;width:62%;height:100%;z-index:-1}
+.hero .wrap{max-width:1400px}
+.hero-copy{max-width:790px;position:relative}
+.hero .lead{max-width:50ch}
+.hero h1{font:400 clamp(3.2rem,7.6vw,7.2rem)/.92 var(--serif);letter-spacing:-.02em;margin:24px 0 26px}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln>span{display:inline-block}
+.hero .lead{font-size:clamp(17px,1.6vw,19.5px);color:#C9C5BC}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.trust{display:flex;flex-wrap:wrap;gap:12px 30px;margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
+.trust div{display:flex;flex-direction:column;gap:3px}
+.trust b{font:400 30px/1 var(--serif);color:var(--gold2)}
+.trust span{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.scroll-cue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+.scroll-cue i{width:1px;height:42px;background:linear-gradient(var(--gold),transparent);animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:900px){#apple{width:100%;opacity:.3}.hero{padding-bottom:120px}.scroll-cue{display:none}}
+
+/* quick review form */
+.qf-sec{margin-top:-90px;z-index:3}
+.qf{background:linear-gradient(180deg,var(--ink3),var(--ink2));border:1px solid rgba(214,169,56,.28);border-radius:26px;padding:clamp(24px,3.4vw,40px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2fr);gap:clamp(20px,3vw,44px);align-items:center;box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
+.qf h2{font:400 clamp(1.9rem,3vw,2.5rem)/1.05 var(--serif)}
+.qf h2 em{font-style:italic;color:var(--gold2)}
+.qf p.sub{color:var(--dim);font-size:15px;margin-top:10px}
+.qf form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:600}
+.field input,.field select{height:50px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);padding:0 14px;width:100%;transition:border-color .25s,background .25s;appearance:none;-webkit-appearance:none}
+.field select{background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 20px) 22px,calc(100% - 15px) 22px;background-size:5px 5px;background-repeat:no-repeat}
+.field select option{background:var(--ink2)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--gold);background:rgba(214,169,56,.06)}
+.consent{grid-column:1/-2;display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.5;color:var(--dim)}
+.consent input{margin-top:3px;accent-color:var(--gold);flex-shrink:0;width:16px;height:16px}
+.qf form .btn{grid-column:-2/-1;align-self:end}
+.ok{grid-column:1/-1;display:flex;gap:14px;align-items:center;padding:18px 20px;border-radius:14px;background:rgba(214,169,56,.1);border:1px solid rgba(214,169,56,.35)}
+.ok b{color:var(--gold2)}
+@media (max-width:1000px){.qf{grid-template-columns:1fr}}
+@media (max-width:640px){.qf form{grid-template-columns:1fr 1fr}.consent,.qf form .btn{grid-column:1/-1}}
+@media (max-width:420px){.qf form{grid-template-columns:1fr}}
+
+/* carriers marquee */
+.carriers{padding-block:70px 30px}
+.carriers p{text-align:center;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-bottom:26px}
+.mq{overflow:hidden;mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq-row{display:flex;gap:64px;width:max-content;animation:mq 38s linear infinite}
+.mq-row span{font:400 clamp(1.5rem,2.4vw,2rem)/1 var(--serif);color:#7E7A72;white-space:nowrap;transition:color .3s}
+.mq-row span:hover{color:var(--gold2)}
+.mq-row span::after{content:"✦";font-size:.5em;color:var(--gold3);margin-left:64px;vertical-align:middle}
+@keyframes mq{to{transform:translateX(-50%)}}
+.carriers small{display:block;text-align:center;margin-top:20px;font-size:12px;color:#6B675F}
+
+/* meet joseph */
+.meet{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(36px,6vw,90px);align-items:center}
+.portrait{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/4.4;background:#ddd}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;transform:scale(1.04);transition:transform 1.2s var(--ease)}
+.portrait:hover img{transform:scale(1.08)}
+.portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,10,11,.75))}
+.play{position:absolute;left:22px;right:22px;bottom:22px;z-index:2;display:flex;align-items:center;gap:14px;padding:14px 18px 14px 14px;border-radius:999px;background:rgba(10,10,11,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:#fff;width:fit-content;transition:background .3s}
+.play:hover{background:rgba(10,10,11,.85)}
+.play i{width:46px;height:46px;border-radius:50%;background:var(--gold);display:grid;place-items:center;position:relative;flex-shrink:0}
+.play i::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--gold);animation:ping 2.4s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(.85);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.play svg{width:16px;height:16px;margin-left:3px;fill:var(--ink)}
+.play b{display:block;font-size:14.5px}
+.play small{display:block;font-size:12px;color:#CFCBC2}
+.badge{position:absolute;top:22px;right:22px;z-index:2;background:var(--ivory);color:var(--dark);border-radius:18px;padding:14px 16px;text-align:center;box-shadow:0 20px 40px -20px rgba(0,0,0,.5)}
+.badge b{display:block;font:400 34px/1 var(--serif);color:var(--gold3)}
+.badge span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.meet h2{margin:18px 0 22px}
+.meet .lead+.lead{margin-top:14px}
+.creds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:34px 0}
+.creds div{border-top:1px solid var(--lined);padding-top:14px}
+.creds b{display:block;font:400 22px/1.1 var(--serif)}
+.creds span{font-size:13px;color:var(--darkdim)}
+.sig{font:italic 400 30px/1 var(--serif);color:var(--gold3)}
+@media (max-width:900px){.meet{grid-template-columns:1fr}.portrait{max-width:560px}}
+@media (max-width:480px){.creds{grid-template-columns:1fr}}
+
+/* services */
+.sec-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:56px}
+.sec-hd .h2{margin-top:18px;max-width:14ch}
+.sec-hd .lead{max-width:44ch}
+.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:26px;overflow:hidden}
+.sv{background:var(--ink);padding:30px 26px 28px;display:flex;flex-direction:column;gap:14px;min-height:270px;position:relative;overflow:hidden;transition:background .4s}
+.sv::before{content:"";position:absolute;inset:auto -40% -60% auto;width:260px;height:260px;border-radius:50%;background:radial-gradient(closest-side,rgba(214,169,56,.22),transparent);opacity:0;transition:opacity .5s}
+.sv:hover{background:var(--ink2)}
+.sv:hover::before{opacity:1}
+.sv .ic{width:46px;height:46px;border-radius:14px;border:1px solid rgba(214,169,56,.35);display:grid;place-items:center;color:var(--gold2)}
+.sv .ic svg{width:22px;height:22px}
+.sv h3{font:400 26px/1.1 var(--serif);margin-top:auto}
+.sv p{font-size:14.5px;color:var(--dim);line-height:1.55}
+.sv .go{font-size:13px;font-weight:600;color:var(--gold);display:flex;gap:6px;align-items:center}
+.sv .go span{transition:transform .4s var(--ease)}
+.sv:hover .go span{transform:translateX(4px)}
+@media (max-width:1000px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.svc{grid-template-columns:1fr}.sv{min-height:0}}
+
+/* strategy */
+.strat{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(36px,6vw,90px)}
+.strat-hd{position:sticky;top:120px;align-self:start}
+.strat-hd .h2{margin:18px 0 22px}
+.strat-hd .btn{margin-top:30px}
+.steps{position:relative;display:flex;flex-direction:column}
+.steps::before{content:"";position:absolute;left:27px;top:28px;bottom:28px;width:1px;background:var(--lined)}
+.steps .fill{position:absolute;left:26.5px;top:28px;width:2px;z-index:0;height:0;background:linear-gradient(var(--gold2),var(--gold3));transition:height .2s linear}
+.step{display:grid;grid-template-columns:56px 1fr;gap:22px;padding-block:22px}
+.step .n{width:56px;height:56px;border-radius:50%;background:var(--paper);border:1px solid var(--lined);display:grid;place-items:center;font:400 24px/1 var(--serif);color:var(--darkdim);position:relative;z-index:1;transition:background .5s,color .5s,border-color .5s}
+.step.on .n{background:var(--dark);color:var(--gold2);border-color:var(--dark)}
+.step h3{font:400 30px/1.1 var(--serif);margin:10px 0 8px}
+.step p{color:var(--darkdim);max-width:52ch}
+.step ul{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.step li{font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(143,107,23,.1);color:#6E5313}
+@media (max-width:900px){.strat{grid-template-columns:1fr}.strat-hd{position:static}}
+
+/* DIME */
+.dime{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(36px,5vw,80px);align-items:center}
+.dime .h2{margin:18px 0 22px}
+.dime-card{background:linear-gradient(180deg,var(--ink3),var(--ink2));border:1px solid var(--line);border-radius:26px;padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:18px}
+.dgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.dgrid .field label{display:flex;gap:8px;align-items:center}
+.dgrid .field label b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;background:var(--gold);color:var(--ink);font-size:11px;letter-spacing:0}
+.money{position:relative}
+.money::before{content:"$";position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--dim)}
+.money input{padding-left:28px}
+.total{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding:20px 22px;border-radius:18px;background:rgba(214,169,56,.08);border:1px solid rgba(214,169,56,.3)}
+.total span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:600}
+.total b{display:block;font:400 clamp(2.4rem,5vw,3.4rem)/1 var(--serif);color:var(--gold2);font-variant-numeric:tabular-nums;margin-top:6px}
+.dbar{display:flex;height:8px;border-radius:99px;overflow:hidden;background:var(--line);gap:2px}
+.dbar i{display:block;height:100%;transition:width .6s var(--ease)}
+.dleg{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12.5px;color:var(--dim)}
+.dleg span{display:flex;align-items:center;gap:7px}
+.dleg i{width:9px;height:9px;border-radius:3px}
+.email-res{display:flex;gap:10px}
+.email-res .field{flex:1}
+.email-res .btn{align-self:end}
+.dnote{font-size:12px;color:#77736B}
+@media (max-width:900px){.dime{grid-template-columns:1fr}}
+@media (max-width:520px){.dgrid{grid-template-columns:1fr}.email-res{flex-direction:column}}
+
+/* values */
+.vals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.vl{background:var(--paper);border:1px solid var(--lined);border-radius:22px;padding:28px 24px;display:flex;flex-direction:column;gap:12px;transition:transform .6s var(--ease),box-shadow .6s}
+.vl:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(23,21,15,.35)}
+.vl .n{font:italic 400 44px/1 var(--serif);color:var(--gold3)}
+.vl h3{font:400 26px/1.1 var(--serif)}
+.vl p{font-size:14.5px;color:var(--darkdim)}
+.photo-band{margin-top:56px;display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+.photo-band figure{border-radius:24px;overflow:hidden;position:relative;height:clamp(240px,30vw,420px)}
+.photo-band img{width:100%;height:100%;object-fit:cover}
+.photo-band figcaption{position:absolute;left:18px;bottom:16px;background:rgba(251,249,244,.92);color:var(--dark);font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px}
+@media (max-width:1000px){.vals{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.vals,.photo-band{grid-template-columns:1fr}}
+
+/* insights */
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.post{border:1px solid var(--line);border-radius:22px;padding:28px 26px;display:flex;flex-direction:column;gap:14px;min-height:280px;background:var(--ink);transition:border-color .4s,background .4s}
+.post:hover{border-color:rgba(214,169,56,.45);background:var(--ink2)}
+.post .tag{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.post h3{font:400 28px/1.12 var(--serif)}
+.post p{font-size:14.5px;color:var(--dim)}
+.post .go{margin-top:auto;font-size:13.5px;font-weight:600;display:flex;justify-content:space-between;color:var(--text)}
+.post .go span{color:var(--gold);transition:transform .4s var(--ease)}
+.post:hover .go span{transform:translate(3px,-3px)}
+@media (max-width:900px){.posts{grid-template-columns:1fr}.post{min-height:0}}
+
+/* join */
+.join{border-radius:30px;overflow:hidden;position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);background:linear-gradient(120deg,#1A1406,#0E0D0A 60%);border:1px solid rgba(214,169,56,.3)}
+.join-copy{padding:clamp(30px,5vw,64px);display:flex;flex-direction:column;gap:18px}
+.join-copy .h2{font-size:clamp(2.2rem,4.2vw,3.5rem)}
+.join ul{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;margin:6px 0 10px}
+.join li{display:flex;gap:10px;font-size:15px;color:#CFCAC0}
+.join li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:9px;flex-shrink:0}
+.join .fine{font-size:12px;color:#7D786E}
+.join figure{position:relative;min-height:320px}
+.join figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.join figure::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0F0D09,transparent 45%)}
+@media (max-width:900px){.join{grid-template-columns:1fr}.join figure{min-height:240px;order:-1}.join figure::after{background:linear-gradient(0deg,#0F0D09,transparent 60%)}}
+@media (max-width:480px){.join ul{grid-template-columns:1fr}}
+
+/* final cta */
+.cta{text-align:center;overflow:hidden;isolation:isolate}
+.cta::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 60% at 50% 100%,rgba(214,169,56,.2),transparent 70%)}
+.cta h2{font:400 clamp(3rem,8vw,6.6rem)/.95 var(--serif);letter-spacing:-.02em;margin:22px auto 24px;max-width:13ch}
+.cta h2 em{font-style:italic;color:var(--gold2)}
+.cta .lead{margin-inline:auto}
+.cta .hero-btns{justify-content:center}
+.contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden;margin:64px auto 0;max-width:900px;text-align:left}
+.contact div{background:var(--ink);padding:22px 24px}
+.contact span{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:600}
+.contact b,.contact a{display:block;font:400 22px/1.3 var(--serif);margin-top:6px;word-break:break-word}
+.contact a:hover{color:var(--gold2)}
+@media (max-width:720px){.contact{grid-template-columns:1fr}}
+
+/* footer */
+.ft{border-top:1px solid var(--line);padding-block:56px 40px;color:var(--dim);font-size:14px}
+.ft-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.ft-links{display:grid;grid-template-columns:repeat(3,auto);gap:10px 46px}
+.ft-links a:hover{color:var(--gold2)}
+.soc{display:flex;gap:10px;margin-top:20px}
+.soc a{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:border-color .3s,color .3s}
+.soc a:hover{border-color:var(--gold);color:var(--gold2)}
+.soc svg{width:16px;height:16px;fill:currentColor}
+.legal{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;line-height:1.6;color:#6F6B63;display:flex;flex-direction:column;gap:8px}
+@media (max-width:640px){.ft-links{grid-template-columns:repeat(2,auto)}}
+
+/* mobile action bar */
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;gap:10px;padding:10px var(--gr) calc(10px + env(safe-area-inset-bottom,0px)) var(--gl);background:rgba(10,10,11,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .5s var(--ease)}
+.mbar.show{transform:none}
+.mbar .btn{flex:1;min-height:48px;padding:0 14px}
+@media (max-width:720px){.mbar{display:flex}.ft{padding-bottom:110px}}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.js .hero h1 .ln>span{transform:translateY(105%);transition:transform 1.3s var(--ease);transition-delay:var(--d,0s)}
+.js.loaded .hero h1 .ln>span{transform:none}
+.js .hero .fade{opacity:0;transform:translateY(18px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease);transition-delay:var(--d,0s)}
+.js.loaded .hero .fade{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .js .rv,.js .hero .fade{opacity:1;transform:none}
+  .js .hero h1 .ln>span{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hd" id="hd">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Black Apple Group, back to top">
+      <svg viewBox="0 0 34 38" fill="none" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1D27C"/><stop offset="1" stop-color="#B98A1E"/></linearGradient></defs><path d="M17 11.5c-2.6-2-5.7-2.6-8.6-1.6C3.7 11.6 1.5 16.6 2.2 22c.9 7.1 5.4 14 10 14 1.8 0 2.8-1 4.8-1s3 1 4.8 1c4.6 0 9.1-6.9 10-14 .7-5.4-1.5-10.4-6.2-12.1-2.9-1-6-.4-8.6 1.6z" fill="#0A0A0B" stroke="url(#lg)" stroke-width="1.4"/><path d="M17 11.5c0-3.2 1-6.6 3.4-9" stroke="url(#lg)" stroke-width="1.6" stroke-linecap="round"/><path d="M19.5 6.2c2.4-2.6 6-3.2 8.6-2.4-1 3-4.2 5-8.6 2.4z" fill="url(#lg)"/></svg>
+      <span><b>Black Apple Group</b><small>Life · Protection · Retirement</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">Services</a><a href="#strategy">Strategy</a><a href="#tools">Free tools</a><a href="#about">About Joseph</a><a href="#insights">Insights</a><a href="#join">Join the team</a>
+    </nav>
+    <a class="hd-call" href="tel:+17087057783"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>(708) 705-7783</a>
+    <a class="btn btn-gold" href="#review">Free protection review</a>
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav" id="burger"><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile" hidden>
+  <a href="#services">Services</a><a href="#strategy">Strategy</a><a href="#tools">Free tools</a><a href="#about">About Joseph</a><a href="#insights">Insights</a><a href="#join">Join the team</a>
+  <a class="btn btn-gold" href="#review">Book a free protection review</a>
+  <a class="btn btn-ghost" href="tel:+17087057783">Call (708) 705-7783</a>
+</nav>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="apple" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow fade">Chicago · Licensed since 1991</span>
+      <h1><span class="ln"><span>Understand</span></span><span class="ln"><span style="--d:.12s">your <em>protection.</em></span></span></h1>
+      <p class="lead fade" style="--d:.35s">You deserve to understand your coverage as well as the person recommending it. Joseph Hull compares 100+ carriers and explains every option in plain words, with no jargon and no pressure.</p>
+      <div class="hero-btns fade" style="--d:.5s">
+        <a class="btn btn-gold" href="#review">Book a free protection review <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="https://www.blackapplegroup.com/instant-quote">Get an instant quote</a>
+      </div>
+      <div class="trust fade" style="--d:.65s">
+        <div><b>35 yrs</b><span>Helping families</span></div>
+        <div><b>100+</b><span>Carriers compared</span></div>
+        <div><b>IL #1356850</b><span>Licensed producer</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK REVIEW FORM -->
+<section class="qf-sec" id="review">
+  <div class="wrap">
+    <div class="qf rv">
+      <div>
+        <h2>Start your free <em>protection review</em></h2>
+        <p class="sub">Takes 30 seconds. Joseph replies within one business day, Mon–Fri 9–6 CT.</p>
+      </div>
+      <form id="qform" novalidate>
+        <div class="field"><label for="q-name">First name</label><input id="q-name" name="name" autocomplete="given-name" required placeholder="Maria"></div>
+        <div class="field"><label for="q-phone">Phone</label><input id="q-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(312) 555-0142"></div>
+        <div class="field"><label for="q-email">Email</label><input id="q-email" name="email" type="email" autocomplete="email" required placeholder="maria@email.com"></div>
+        <div class="field"><label for="q-need">I'm interested in</label><select id="q-need" name="need"><option>Life insurance</option><option>Mortgage protection</option><option>Review my current policy</option><option>Living benefits</option><option>Final expense</option><option>Retirement &amp; annuities</option></select></div>
+        <label class="consent"><input type="checkbox" id="q-consent" required> I agree that Black Apple Group may contact me by phone, text and email about my request. Consent is not a condition of purchase. Message &amp; data rates may apply; reply STOP to opt out.</label>
+        <button class="btn btn-gold" type="submit">Request my review <span class="arr" aria-hidden="true">→</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CARRIERS -->
+<section class="carriers" aria-label="Carriers">
+  <p>Independent. Shopping 100+ top-rated carriers for you</p>
+  <div class="mq"><div class="mq-row">
+    <span>Mutual of Omaha</span><span>Transamerica</span><span>AIG</span><span>Prudential</span><span>Nationwide</span><span>Lincoln Financial</span><span>Pacific Life</span><span>North American</span>
+    <span aria-hidden="true">Mutual of Omaha</span><span aria-hidden="true">Transamerica</span><span aria-hidden="true">AIG</span><span aria-hidden="true">Prudential</span><span aria-hidden="true">Nationwide</span><span aria-hidden="true">Lincoln Financial</span><span aria-hidden="true">Pacific Life</span><span aria-hidden="true">North American</span>
+  </div></div>
+  <small>Carrier and product availability varies by state and eligibility.</small>
+</section>
+
+<!-- MEET JOSEPH -->
+<section class="light pad" id="about" style="margin-top:70px">
+  <div class="wrap meet">
+    <div class="portrait rv">
+      <img src="assets/joseph.webp" width="900" height="810" alt="Joseph Hull, founder of Black Apple Group" loading="lazy">
+      <div class="badge"><b>1991</b><span>Licensed since</span></div>
+      <a class="play" href="https://vimeo.com/1231287031" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></i><span><b>Watch Joseph's welcome</b><small>1:25 · Education first. Personal service always.</small></span></a>
+    </div>
+    <div class="rv" style="--d:.1s">
+      <span class="eyebrow">Meet Joseph Hull</span>
+      <h2 class="h2">Knowledge comes before <em>recommendations.</em></h2>
+      <p class="lead">For more than three decades, Joseph has helped individuals and families make sense of life insurance and financial planning. He founded Black Apple Group on one belief: every family deserves honest, education-first guidance.</p>
+      <p class="lead">Because he works with more than 100 top-rated carriers, he's never tied to one company's products. His only loyalty is to you.</p>
+      <div class="creds">
+        <div><b>Since 1991</b><span>Licensed life insurance producer</span></div>
+        <div><b>Thousands</b><span>of families helped</span></div>
+        <div><b>Multi-state</b><span>Serving clients beyond Illinois</span></div>
+      </div>
+      <p class="sig">Joseph Hull</p>
+      <p style="font-size:13.5px;color:var(--darkdim);margin-top:4px">Founder, Black Apple Group</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="pad" id="services">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="rv"><span class="eyebrow">What we help with</span><h2 class="h2">Protection for every <em>stage of life.</em></h2></div>
+      <p class="lead rv" style="--d:.1s">Clear explanations, side-by-side comparisons and personal service, from your first policy to your retirement income.</p>
+    </div>
+    <div class="svc">
+      <a class="sv rv" href="https://www.blackapplegroup.com/life-insurance-info"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.3 7.5 9.5 4.3-1.2 7.5-4.9 7.5-9.5V6z"/><path d="m8.8 12.2 2.3 2.3 4.3-4.6"/></svg></span><h3>Life insurance</h3><p>Term, whole and universal life from 100+ carriers, matched to your family and budget.</p><span class="go">Learn more <span>→</span></span></a>
+      <a class="sv rv" style="--d:.06s" href="https://www.blackapplegroup.com/insights/what-is-mortgage-protection"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg></span><h3>Mortgage protection</h3><p>If something happens to you, your family can stay in the home you built together.</p><span class="go">Learn more <span>→</span></span></a>
+      <a class="sv rv" style="--d:.12s" href="https://www.blackapplegroup.com/services"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M8 11h2l1-2 2 4 1-2h2"/></svg></span><h3>Living benefits</h3><p>Policies that can pay while you're alive if you face a critical, chronic or terminal illness.</p><span class="go">Learn more <span>→</span></span></a>
+      <a class="sv rv" style="--d:.18s" href="https://www.blackapplegroup.com/insights/disability-insurance"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6" width="17" height="13" rx="2"/><path d="M8 6V4.5h8V6M3.5 11h17M11 14h2"/></svg></span><h3>Disability income</h3><p>Replace part of your paycheck if illness or injury keeps you from working.</p><span class="go">Learn more <span>→</span></span></a>
+      <a class="sv rv" href="https://www.blackapplegroup.com/insights/final-expense-life-insurance"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c4-2 6-5 6-9V5l-6-2-6 2v7c0 4 2 7 6 9z"/><path d="M12 8v6M9 11h6"/></svg></span><h3>Final expense</h3><p>Affordable whole life coverage so your family isn't left with the bills.</p><span class="go">Learn more <span>→</span></span></a>
+      <a class="sv rv" style="--d:.06s" href="https://www.blackapplegroup.com/insights/what-is-an-annuity-retirement-income"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16M6 16V11M10 16V8M14 16v-5M18 16V5"/></svg></span><h3>Retirement &amp; annuities</h3><p>Whole life and annuity strategies built to provide dependable income in retirement.</p><span class="go">Learn more <span>→</span></span></a>
+      <a class="sv rv" style="--d:.12s" href="https://www.blackapplegroup.com/debt-snowball-calculator"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.2c-.5-.8-1.4-1.2-2.5-1.2-1.4 0-2.5.8-2.5 2s1.1 1.6 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1.1 0-2-.4-2.5-1.2M12 6.5V8M12 16v1.5"/></svg></span><h3>Debt elimination</h3><p>A debt-snowball plan that helps families become debt-free faster.</p><span class="go">Try the calculator <span>→</span></span></a>
+      <a class="sv rv" style="--d:.18s" href="https://www.blackapplegroup.com/insights/insurance-organized"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="3.5" width="15" height="17" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></svg></span><h3>Policy organizer</h3><p>The Black Apple Insurance Vault keeps policies, premiums and beneficiaries in one place.</p><span class="go">Get organized <span>→</span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGY -->
+<section class="light pad" id="strategy">
+  <div class="wrap strat">
+    <div class="strat-hd rv">
+      <span class="eyebrow">The Black Apple Strategy</span>
+      <h2 class="h2">More than <em>just insurance.</em></h2>
+      <p class="lead">Life insurance is one piece of a stronger financial picture. The Black Apple Strategy brings protection, debt reduction and retirement preparation together in a clear plan built around your family's goals.</p>
+      <a class="btn btn-ghost" href="https://www.blackapplegroup.com/insights/black-apple-group-strategy">Read the full strategy <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+    <div class="steps" id="steps" role="list">
+      <span class="fill" id="stepfill" aria-hidden="true"></span>
+      <div class="step" role="listitem"><span class="n">1</span><div><h3>Educate</h3><p>Education comes before recommendations. We start with the topics that apply to you, in plain language.</p><ul><li>Life insurance</li><li>Living benefits</li><li>Underwriting</li><li>Beneficiaries</li></ul></div></div>
+      <div class="step" role="listitem"><span class="n">2</span><div><h3>Identify your priorities</h3><p>Who depends on your income? What would happen to the mortgage? How long could your household manage without your paycheck?</p></div></div>
+      <div class="step" role="listitem"><span class="n">3</span><div><h3>Review what you have</h3><p>We look at your existing policies, beneficiaries, employer benefits and old 401(k)s. A review doesn't mean replacing anything.</p></div></div>
+      <div class="step" role="listitem"><span class="n">4</span><div><h3>Calculate the need</h3><p>Real numbers, not guesses: the DIME method, a retirement calculator and a debt payoff plan.</p></div></div>
+      <div class="step" role="listitem"><span class="n">5</span><div><h3>Compare your options</h3><p>Coverage, term, premium, living benefits and cash value, side by side across carriers, so you choose with confidence.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIME TOOL -->
+<section class="pad" id="tools">
+  <div class="wrap dime">
+    <div class="rv">
+      <span class="eyebrow">Free tool · D.I.M.E. method</span>
+      <h2 class="h2">How much coverage does your family <em>need?</em></h2>
+      <p class="lead">The DIME method adds up your Debts, Income replacement, Mortgage and Education costs. It's a simple starting point. Joseph will refine it with you in your free review.</p>
+      <div class="hero-btns"><a class="btn btn-ghost" href="https://www.blackapplegroup.com/retirement-income-calculator">Retirement calculator</a><a class="btn btn-ghost" href="https://www.blackapplegroup.com/debt-snowball-calculator">Debt payoff calculator</a></div>
+    </div>
+    <div class="dime-card rv" style="--d:.1s">
+      <div class="dgrid">
+        <div class="field"><label for="d-debt"><b>D</b>Debts (cars, cards, loans)</label><div class="money"><input id="d-debt" type="number" inputmode="numeric" min="0" step="1000" value="28000"></div></div>
+        <div class="field"><label for="d-inc"><b>I</b>Yearly income</label><div class="money"><input id="d-inc" type="number" inputmode="numeric" min="0" step="1000" value="72000"></div></div>
+        <div class="field"><label for="d-yrs"><b>I</b>Years to replace income</label><input id="d-yrs" type="number" inputmode="numeric" min="0" max="40" value="10"></div>
+        <div class="field"><label for="d-mort"><b>M</b>Mortgage balance</label><div class="money"><input id="d-mort" type="number" inputmode="numeric" min="0" step="1000" value="240000"></div></div>
+        <div class="field"><label for="d-kids"><b>E</b>Children</label><input id="d-kids" type="number" inputmode="numeric" min="0" max="10" value="2"></div>
+        <div class="field"><label for="d-edu"><b>E</b>Education per child</label><div class="money"><input id="d-edu" type="number" inputmode="numeric" min="0" step="1000" value="60000"></div></div>
+      </div>
+      <div class="total" aria-live="polite"><div><span>Estimated coverage need</span><b id="d-total">$1,108,000</b></div><span id="d-mo" style="text-transform:none;letter-spacing:0;font-weight:500">Example figures. Change any box.</span></div>
+      <div class="dbar" aria-hidden="true"><i id="b-d" style="background:#F1D27C"></i><i id="b-i" style="background:#D6A938"></i><i id="b-m" style="background:#9E7A22"></i><i id="b-e" style="background:#5E4A16"></i></div>
+      <div class="dleg"><span><i style="background:#F1D27C"></i>Debts</span><span><i style="background:#D6A938"></i>Income</span><span><i style="background:#9E7A22"></i>Mortgage</span><span><i style="background:#5E4A16"></i>Education</span></div>
+      <form class="email-res" id="dform" novalidate>
+        <div class="field"><label for="d-email">Email me this result + a free review</label><input id="d-email" type="email" autocomplete="email" placeholder="you@email.com" required></div>
+        <button class="btn btn-gold" type="submit">Send</button>
+      </form>
+      <p class="dnote">Calculators provide estimates, not guarantees or individual financial advice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="light pad">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="rv"><span class="eyebrow">Why families choose us</span><h2 class="h2">Built on <em>trust.</em></h2></div>
+      <p class="lead rv" style="--d:.1s">You're not a policy number. Joseph builds lasting relationships and is there long after the paperwork is signed.</p>
+    </div>
+    <div class="vals">
+      <div class="vl rv"><span class="n">i.</span><h3>Education first</h3><p>We explain your options clearly, with no jargon and no pressure, because informed clients make better decisions.</p></div>
+      <div class="vl rv" style="--d:.08s"><span class="n">ii.</span><h3>Carrier independence</h3><p>With 100+ top-rated carriers, we shop the market on your behalf for the right coverage at the right price.</p></div>
+      <div class="vl rv" style="--d:.16s"><span class="n">iii.</span><h3>Personal service</h3><p>One advisor who knows your family, answers your calls and reviews your coverage as life changes.</p></div>
+      <div class="vl rv" style="--d:.24s"><span class="n">iv.</span><h3>Integrity always</h3><p>Recommendations are driven by your needs, not commissions. Honest advice is the foundation.</p></div>
+    </div>
+    <div class="photo-band">
+      <figure class="rv"><img src="assets/family.webp" width="1400" height="933" alt="A family planning their finances together" loading="lazy"><figcaption>Free resources: glossary, calculators, policy organizer</figcaption></figure>
+      <figure class="rv" style="--d:.1s"><img src="assets/signing.webp" width="1400" height="934" alt="Reviewing a life insurance policy" loading="lazy"><figcaption>Free policy reviews</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="pad" id="insights">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="rv"><span class="eyebrow">Insights</span><h2 class="h2">Straight talk, <em>plain words.</em></h2></div>
+      <a class="btn btn-ghost rv" href="https://www.blackapplegroup.com/insights">All 25 articles <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+    <div class="posts">
+      <a class="post rv" href="https://www.blackapplegroup.com/insights/what-is-mortgage-protection"><span class="tag">Mortgage protection</span><h3>What is mortgage protection, and do you need it?</h3><p>How life insurance can keep your family in the home if the unexpected happens.</p><span class="go">Read article <span>↗</span></span></a>
+      <a class="post rv" style="--d:.08s" href="https://www.blackapplegroup.com/insights/indexed-universal-life-benefits-costs-risks"><span class="tag">IUL</span><h3>Indexed universal life: benefits, costs and risks</h3><p>An honest look at how IUL works, before anyone pitches it to you.</p><span class="go">Read article <span>↗</span></span></a>
+      <a class="post rv" style="--d:.16s" href="https://www.blackapplegroup.com/insights/benefits-of-life-insurance-policy-review"><span class="tag">Policy review</span><h3>Why a life insurance policy review matters</h3><p>Old beneficiaries, outdated coverage and gaps you didn't know about.</p><span class="go">Read article <span>↗</span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section id="join" style="padding-bottom:clamp(84px,11vw,150px)">
+  <div class="wrap">
+    <div class="join rv">
+      <div class="join-copy">
+        <span class="eyebrow">Business opportunity</span>
+        <h2 class="h2">Become the agent who can <em>explain the difference.</em></h2>
+        <p class="lead" style="color:#BDB8AE">New to insurance or already licensed, the Black Apple Agent Academy gives you a structured way to learn, practice and grow your business.</p>
+        <ul><li>Agent Academy training</li><li>Multiple carrier options</li><li>A daily business system</li><li>Ongoing guidance</li></ul>
+        <div class="hero-btns" style="margin-top:4px"><a class="btn btn-gold" href="https://www.blackapplegroup.com/business-opportunity">Explore the opportunity <span class="arr" aria-hidden="true">→</span></a></div>
+        <p class="fine">Commission-based, independent contractor opportunity. Earnings vary based on production, policy placement, expenses and contract terms; income is not guaranteed.</p>
+      </div>
+      <figure><img src="assets/team.webp" width="995" height="638" alt="A compass held up on a forest path" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta pad" style="padding-top:clamp(40px,6vw,80px)">
+  <div class="wrap">
+    <span class="eyebrow rv">Free protection review</span>
+    <h2 class="rv">Let's make your coverage <em>clear.</em></h2>
+    <p class="lead rv">Questions about a policy you own, or coverage you're considering? Start with a free, no-obligation review.</p>
+    <div class="hero-btns rv"><a class="btn btn-gold" href="#review">Book my free review <span class="arr" aria-hidden="true">→</span></a><a class="btn btn-ghost" href="tel:+17087057783">Call (708) 705-7783</a></div>
+    <div class="contact rv">
+      <div><span>Phone</span><a href="tel:+17087057783">(708) 705-7783</a></div>
+      <div><span>Email</span><a href="mailto:joseph@blackapplegroup.com">joseph@blackapplegroup.com</a></div>
+      <div><span>Hours</span><b>Mon–Fri · 9–6 CT</b></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div>
+        <a class="logo" href="#top" aria-label="Black Apple Group, back to top"><svg viewBox="0 0 34 38" fill="none" aria-hidden="true"><path d="M17 11.5c-2.6-2-5.7-2.6-8.6-1.6C3.7 11.6 1.5 16.6 2.2 22c.9 7.1 5.4 14 10 14 1.8 0 2.8-1 4.8-1s3 1 4.8 1c4.6 0 9.1-6.9 10-14 .7-5.4-1.5-10.4-6.2-12.1-2.9-1-6-.4-8.6 1.6z" fill="#0A0A0B" stroke="url(#lg)" stroke-width="1.4"/><path d="M17 11.5c0-3.2 1-6.6 3.4-9" stroke="url(#lg)" stroke-width="1.6" stroke-linecap="round"/><path d="M19.5 6.2c2.4-2.6 6-3.2 8.6-2.4-1 3-4.2 5-8.6 2.4z" fill="url(#lg)"/></svg><span><b>Black Apple Group</b><small>Education first</small></span></a>
+        <div class="soc">
+          <a href="https://www.facebook.com/103088345079189" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.5H16l.4-3H13.5V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z"/></svg></a>
+          <a href="https://www.instagram.com/blackapplegroup/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm4.9-8.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zM21 7.6c-.1-1.5-.4-2.8-1.5-3.9S17 2.3 15.4 2.2C13.9 2.1 10.1 2.1 8.6 2.2 7 2.3 5.7 2.6 4.6 3.7S3.1 6.1 3 7.6c-.1 1.5-.1 7.3 0 8.8.1 1.5.4 2.8 1.5 3.9s2.5 1.4 4 1.5c1.5.1 5.4.1 6.9 0 1.5-.1 2.8-.4 3.9-1.5s1.4-2.5 1.5-3.9c.1-1.5.1-7.3 0-8.8z"/></svg></a>
+          <a href="https://www.linkedin.com/in/joseph-hull-1a779b71/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zm1.8 13H3.6V9h3.5z"/></svg></a>
+          <a href="https://www.tiktok.com/@blackapplegroup" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-1.8-2.5V9.7a5.7 5.7 0 1 0 4.9 5.7V9.1a7.4 7.4 0 0 0 4.3 1.4V7.4a4.3 4.3 0 0 1-3.2-1.6z"/></svg></a>
+          <a href="https://www.youtube.com/@blackapplegroup" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3z"/></svg></a>
+        </div>
+      </div>
+      <nav class="ft-links" aria-label="Footer">
+        <a href="https://www.blackapplegroup.com/services">Services</a><a href="https://www.blackapplegroup.com/strategy">Strategy</a><a href="https://www.blackapplegroup.com/life-insurance-info">Resources</a>
+        <a href="https://www.blackapplegroup.com/insights">Insights</a><a href="https://www.blackapplegroup.com/about">About</a><a href="https://www.blackapplegroup.com/business-opportunity">Business opportunity</a>
+        <a href="https://www.blackapplegroup.com/get-a-quote">Get a quote</a><a href="https://www.blackapplegroup.com/life-insurance-glossary">Glossary</a><a href="https://www.blackapplegroup.com/contact">Contact</a>
+      </nav>
+    </div>
+    <div class="legal">
+      <p>Joseph Hull, Licensed Life Insurance Producer, Illinois Producer License No. 1356850. Serving clients in multiple states. Carrier and product availability varies by state and eligibility. Quotes are estimates; final rates are subject to underwriting approval.</p>
+      <p>© 2026 Black Apple Group. All rights reserved. · <a href="https://www.blackapplegroup.com/privacy-policy">Privacy Policy</a> · <a href="https://www.blackapplegroup.com/terms-of-use">Terms of Use</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar">
+  <a class="btn btn-ghost" href="tel:+17087057783">Call</a>
+  <a class="btn btn-gold" href="#review">Free review</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var doc=document.documentElement;doc.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.addEventListener('load',function(){doc.classList.add('loaded')});
+  setTimeout(function(){doc.classList.add('loaded')},1200);
+
+  /* header + mobile bar */
+  var hd=document.getElementById('hd'),mbar=document.getElementById('mbar');
+  function onScroll(){var y=window.scrollY;hd.classList.toggle('scrolled',y>30);mbar.classList.toggle('show',y>window.innerHeight*.7)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* mobile menu */
+  var burger=document.getElementById('burger'),mnav=document.getElementById('mnav');
+  function setMenu(open){burger.setAttribute('aria-expanded',open);mnav.hidden=!open;document.body.style.overflow=open?'hidden':''}
+  burger.addEventListener('click',function(){setMenu(mnav.hidden)});
+  mnav.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
+
+  /* reveal on scroll */
+  var rvs=[].slice.call(document.querySelectorAll('.rv'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    rvs.forEach(function(el){io.observe(el)});
+  }else rvs.forEach(function(el){el.classList.add('in')});
+
+  /* strategy progress line */
+  var steps=document.getElementById('steps'),fill=document.getElementById('stepfill'),items=[].slice.call(steps.querySelectorAll('.step'));
+  function stepProg(){
+    var r=steps.getBoundingClientRect(),mid=window.innerHeight*.6;
+    var p=Math.min(1,Math.max(0,(mid-r.top-28)/(r.height-56)));
+    fill.style.height=(p*(r.height-56))+'px';
+    items.forEach(function(it){var b=it.getBoundingClientRect();it.classList.toggle('on',b.top+28<mid)});
+  }
+  window.addEventListener('scroll',stepProg,{passive:true});stepProg();
+
+  /* forms (demo: no backend yet) */
+  function okMsg(form,html){var d=document.createElement('div');d.className='ok';d.setAttribute('role','status');d.innerHTML=html;form.innerHTML='';form.appendChild(d)}
+  document.getElementById('qform').addEventListener('submit',function(e){
+    e.preventDefault();var f=e.target;
+    if(!f.checkValidity()){f.reportValidity();return}
+    okMsg(f,'<span>✓</span><div><b>Thank you, '+(f.name.value.replace(/[<>&"]/g,'')||'')+'.</b> Joseph will call you within one business day to set up your free protection review.</div>');
+  });
+  document.getElementById('dform').addEventListener('submit',function(e){
+    e.preventDefault();var f=e.target;if(!f.checkValidity()){f.reportValidity();return}
+    okMsg(f,'<span>✓</span><div><b>Sent.</b> Your DIME estimate is on its way, with a link to book your free review.</div>');
+  });
+
+  /* DIME calculator */
+  var ids=['d-debt','d-inc','d-yrs','d-mort','d-kids','d-edu'],el={};ids.forEach(function(i){el[i]=document.getElementById(i)});
+  var totalEl=document.getElementById('d-total'),shown=0,raf;
+  function v(i){var n=parseFloat(el[i].value);return isFinite(n)&&n>0?n:0}
+  function fmt(n){return '$'+Math.round(n).toLocaleString('en-US')}
+  function calc(){
+    var D=v('d-debt'),I=v('d-inc')*v('d-yrs'),M=v('d-mort'),E=v('d-kids')*v('d-edu'),T=D+I+M+E;
+    var parts={'b-d':D,'b-i':I,'b-m':M,'b-e':E};
+    Object.keys(parts).forEach(function(k){document.getElementById(k).style.width=(T?parts[k]/T*100:0)+'%'});
+    cancelAnimationFrame(raf);var from=shown,t0=performance.now();
+    (function tick(t){var p=reduce?1:Math.min(1,(t-t0)/700);p=1-Math.pow(1-p,3);shown=from+(T-from)*p;totalEl.textContent=fmt(shown);if(p<1)raf=requestAnimationFrame(tick)})(t0);
+  }
+  ids.forEach(function(i){el[i].addEventListener('input',calc)});calc();
+
+  /* ---------- Three.js hero: black apple, gold facets, protection ring ---------- */
+  var canvas=document.getElementById('apple');
+  if(!window.THREE||!canvas)return;
+  var renderer;
+  try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true,powerPreference:'high-performance'})}catch(err){return}
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.outputEncoding=THREE.sRGBEncoding;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
+  var scene=new THREE.Scene();
+  var camera=new THREE.PerspectiveCamera(32,1,.1,100);camera.position.set(0,0,9);
+
+  /* soft studio reflections built from a tiny scene */
+  var pmrem=new THREE.PMREMGenerator(renderer),env=new THREE.Scene();
+  env.add(new THREE.Mesh(new THREE.SphereGeometry(20,24,16),new THREE.MeshBasicMaterial({color:0x050505,side:THREE.BackSide})));
+  function panel(c,x,y,z,w,h){var m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:c,side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);env.add(m)}
+  panel(0xfff1cc,-6,5,6,6,4);panel(0xd6a938,7,1,3,3,8);panel(0x8899aa,0,-7,4,10,2);panel(0xffffff,2,6,-6,8,2);
+  scene.environment=pmrem.fromScene(env,.04).texture;
+
+  var apple=new THREE.Group();scene.add(apple);
+
+  /* apple body: smooth lathe profile */
+  var prof=[[0,-1.02],[.22,-1.06],[.42,-1.0],[.66,-.86],[.86,-.62],[.98,-.3],[1.03,.02],[1.0,.34],[.9,.62],[.72,.84],[.5,.93],[.3,.9],[.15,.8],[.05,.7],[0,.66]].map(function(p){return new THREE.Vector2(p[0],p[1])});
+  var curve=new THREE.SplineCurve(prof),pts=curve.getPoints(80);
+  var body=new THREE.LatheGeometry(pts,128);
+  var pos=body.attributes.position,vv=new THREE.Vector3();
+  for(var i=0;i<pos.count;i++){vv.fromBufferAttribute(pos,i);var a=Math.atan2(vv.z,vv.x);var k=1+.035*Math.cos(a*5)*Math.max(0,-vv.y+.2);pos.setXYZ(i,vv.x*k*1.04,vv.y,vv.z*k)}
+  body.computeVertexNormals();
+  var blackMat=new THREE.MeshPhysicalMaterial({color:0x0b0b0d,metalness:.55,roughness:.18,clearcoat:1,clearcoatRoughness:.08,envMapIntensity:1.4});
+  var bodyMesh=new THREE.Mesh(body,blackMat);apple.add(bodyMesh);
+
+  /* gold facet shell that draws in */
+  var shellGeo=new THREE.LatheGeometry(curve.getPoints(14),22);
+  var sp=shellGeo.attributes.position;for(i=0;i<sp.count;i++){vv.fromBufferAttribute(sp,i);sp.setXYZ(i,vv.x*1.1,vv.y*1.03,vv.z*1.06)}
+  var wire=new THREE.LineSegments(new THREE.WireframeGeometry(shellGeo),new THREE.LineBasicMaterial({color:0xe8c35f,transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending}));
+  apple.add(wire);
+
+  /* stem + leaf */
+  var gold=new THREE.MeshPhysicalMaterial({color:0xd6a938,metalness:1,roughness:.25,clearcoat:.6,envMapIntensity:1.6});
+  var stem=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(0,.62,0),new THREE.Vector3(.03,.85,0),new THREE.Vector3(.12,1.08,0),new THREE.Vector3(.2,1.2,0)]),24,.035,10,false),gold);
+  apple.add(stem);
+  var ls=new THREE.Shape();ls.moveTo(0,0);ls.bezierCurveTo(.18,.22,.52,.26,.72,.06);ls.bezierCurveTo(.5,-.14,.18,-.12,0,0);
+  var leaf=new THREE.Mesh(new THREE.ExtrudeGeometry(ls,{depth:.02,bevelEnabled:true,bevelThickness:.012,bevelSize:.012,bevelSegments:3,curveSegments:24}),gold);
+  leaf.position.set(.12,1.02,0);leaf.rotation.set(.3,-.4,.45);apple.add(leaf);
+
+  /* protection ring: gold particles orbiting */
+  var N=2600,rg=new THREE.BufferGeometry(),rp=new Float32Array(N*3),rs=new Float32Array(N),ra=[];
+  for(i=0;i<N;i++){var ang=Math.random()*Math.PI*2,rad=1.75+Math.pow(Math.random(),2)*.55*(Math.random()<.5?-1:1),h=(Math.random()-.5)*.08;ra.push([ang,rad,h,.15+Math.random()*.35]);rs[i]=Math.random()}
+  rg.setAttribute('position',new THREE.BufferAttribute(rp,3));rg.setAttribute('seed',new THREE.BufferAttribute(rs,1));
+  var dotTex=(function(){var c=document.createElement('canvas');c.width=c.height=64;var g=c.getContext('2d'),gr=g.createRadialGradient(32,32,0,32,32,32);gr.addColorStop(0,'rgba(255,240,200,1)');gr.addColorStop(.3,'rgba(241,210,124,.8)');gr.addColorStop(1,'rgba(214,169,56,0)');g.fillStyle=gr;g.fillRect(0,0,64,64);var t=new THREE.CanvasTexture(c);return t})();
+  var ringMat=new THREE.PointsMaterial({size:.05,map:dotTex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:0});
+  var ring=new THREE.Points(rg,ringMat);
+  var ringGroup=new THREE.Group();ringGroup.add(ring);ringGroup.rotation.set(1.18,0,-.28);scene.add(ringGroup);
+
+  /* thin gold orbit lines */
+  function orbit(r,tilt,op){var c=new THREE.EllipseCurve(0,0,r,r,0,Math.PI*2),g=new THREE.BufferGeometry().setFromPoints(c.getPoints(160));var l=new THREE.LineLoop(g,new THREE.LineBasicMaterial({color:0xd6a938,transparent:true,opacity:op,depthWrite:false}));l.rotation.set(tilt[0],tilt[1],tilt[2]);l.userData.op=op;scene.add(l);return l}
+  var orbits=[orbit(2.05,[1.18,0,-.28],.35),orbit(2.45,[1.32,.3,.2],.16),orbit(1.6,[1.0,-.4,-.5],.12)];
+
+  /* floating dust */
+  var M=420,dg=new THREE.BufferGeometry(),dp=new Float32Array(M*3);
+  for(i=0;i<M;i++){dp[i*3]=(Math.random()-.5)*12;dp[i*3+1]=(Math.random()-.5)*8;dp[i*3+2]=(Math.random()-.5)*6-1}
+  dg.setAttribute('position',new THREE.BufferAttribute(dp,3));
+  var dust=new THREE.Points(dg,new THREE.PointsMaterial({size:.035,map:dotTex,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending}));scene.add(dust);
+
+  /* lights */
+  scene.add(new THREE.AmbientLight(0xffffff,.15));
+  var key=new THREE.DirectionalLight(0xfff0d0,1.6);key.position.set(-4,5,5);scene.add(key);
+  var rim=new THREE.DirectionalLight(0xd6a938,2.6);rim.position.set(5,1,-4);scene.add(rim);
+  var glow=new THREE.PointLight(0xf1d27c,2.2,9);glow.position.set(2,-1,3);scene.add(glow);
+
+  /* layout */
+  var baseX=0;
+  function resize(){var w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();var mobile=window.innerWidth<900;baseX=mobile?0:.15;var s=mobile?.85:1;apple.scale.setScalar(s);ringGroup.scale.setScalar(s);orbits.forEach(function(o){o.scale.setScalar(s)})}
+  window.addEventListener('resize',resize);resize();
+
+  var mx=0,my=0,tx=0,ty=0;
+  window.addEventListener('pointermove',function(e){tx=(e.clientX/window.innerWidth-.5);ty=(e.clientY/window.innerHeight-.5)},{passive:true});
+
+  var t0=performance.now(),visible=true;
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(canvas);
+  function ease(x){return 1-Math.pow(1-Math.min(1,Math.max(0,x)),3)}
+
+  function frame(now){
+    requestAnimationFrame(frame);
+    if(!visible)return;
+    var t=(now-t0)/1000,intro=reduce?1:ease(t/2.2),sc=window.scrollY/window.innerHeight;
+    mx+=(tx-mx)*.05;my+=(ty-my)*.05;
+    var spin=reduce?0:t*.25;
+    apple.rotation.y=spin+mx*.8+sc*1.6;
+    apple.rotation.x=-.12+my*.35;
+    apple.rotation.z=.08;
+    apple.position.set(baseX+mx*.25,Math.sin(t*1.1)*.06-sc*.6,0);
+    var s0=.6+.4*intro;bodyMesh.scale.setScalar(s0);stem.scale.setScalar(s0);leaf.scale.setScalar(s0);
+    wire.scale.setScalar(s0);wire.material.opacity=(reduce?.22:(t<2.6?ease(t/1.6)*.55:.22+Math.sin(t*1.4)*.06));
+    /* ring particles */
+    for(var j=0;j<N;j++){var q=ra[j];var ang=q[0]+(reduce?0:t*q[3]*.6);var r=q[1]*(.75+.25*intro)*(1+sc*.35);rp[j*3]=Math.cos(ang)*r;rp[j*3+1]=Math.sin(ang)*r;rp[j*3+2]=q[2]+Math.sin(ang*3+t)*.03}
+    rg.attributes.position.needsUpdate=true;
+    ringMat.opacity=.95*ease((t-.4)/1.6);
+    ringGroup.position.copy(apple.position);ringGroup.rotation.z=-.28+mx*.3+(reduce?0:t*.05);ringGroup.rotation.x=1.18+my*.2;
+    orbits.forEach(function(o,k){o.position.copy(apple.position);o.rotation.z+=reduce?0:.0012*(k%2?-1:1);o.material.opacity=o.userData.op*ease((t-.8-k*.25)/1.4)});
+    dust.rotation.y=t*.02;dust.position.y=Math.sin(t*.3)*.1;
+    glow.position.x=2+Math.sin(t*.7)*1.5;glow.position.y=-1+Math.cos(t*.5)*1.2;
+    camera.position.x=mx*.4;camera.position.y=-my*.3;camera.lookAt(baseX*.5,0,0);
+    renderer.render(scene,camera);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

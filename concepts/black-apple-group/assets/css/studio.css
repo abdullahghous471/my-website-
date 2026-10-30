@@ -1,0 +1,29 @@
+/* Studio palette: charcoal stage, warm white light, steel-blue rim. Overrides style.css. */
+:root { --bg: #0b0b0d; --bg2: #111114; --bg3: #17171b; --cream: #F1ECE4; --cream2: #E2DBD0; --sage: #C9B9A3; --ink: #121214; }
+body { background: var(--bg); }
+.story { height: 520vh; }
+.story__pin { background: #0b0b0d; }
+.story__pin::after { background: radial-gradient(120% 90% at 62% 45%, transparent 45%, rgba(5,5,6,.6) 100%), linear-gradient(90deg, rgba(8,8,10,.82) 0%, rgba(8,8,10,.35) 34%, transparent 55%); }
+.ch__h em, .h2 em, .big em { color: #D9CBB6; }
+.ch__k { color: #BFAF98; }
+/* layer labels, burger-menu style: a dot on the layer, a hairline out to the text */
+.labels { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.lbl { position: absolute; left: var(--x); top: var(--y); margin: 0; width: 260px; opacity: 0; transition: opacity .3s; }
+.lbl::before { content: ""; position: absolute; top: -4px; left: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--cream); box-shadow: 0 0 0 4px rgba(241,236,228,.18); }
+.lbl::after { content: ""; position: absolute; top: 0; height: 1px; width: 70px; background: linear-gradient(90deg, rgba(241,236,228,.8), rgba(241,236,228,.25)); }
+.lbl b, .lbl span { display: block; position: relative; }
+.lbl b { font: 400 24px/1.1 var(--serif); color: var(--cream); }
+.lbl span { margin-top: 4px; font-size: 13.5px; line-height: 1.45; color: var(--dim); }
+.lbl--r::after { left: 4px; } .lbl--r b, .lbl--r span { left: 86px; top: -14px; }
+.lbl--l::after { right: calc(100% - 4px); left: auto; width: 70px; transform: translateX(0); }
+.lbl--l::after { left: -74px; }
+.lbl--l b, .lbl--l span { left: -344px; top: -14px; text-align: right; }
+@media (max-width: 860px) {
+  .story { height: 480vh; }
+  .story__pin::after { background: linear-gradient(0deg, rgba(8,8,10,.94) 0%, rgba(8,8,10,.6) 38%, transparent 62%); }
+  .lbl { width: 96px; }
+  .lbl::after { width: 26px; }
+  .lbl b { font-size: 13px; line-height: 1.15; } .lbl span { display: none; }
+  .lbl--r b { left: 38px; top: -9px; }
+  .lbl--l::after { left: -30px; } .lbl--l b { left: -134px; top: -9px; }
+}

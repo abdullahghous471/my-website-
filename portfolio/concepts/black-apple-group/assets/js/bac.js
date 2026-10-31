@@ -28,3 +28,8 @@
   const io = new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting && !reduce) { v.preload = 'auto'; v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 });
   document.querySelectorAll('video[data-play], .hero video.film').forEach(v => io.observe(v));
 })();
+/* films ease in (fade + slow zoom) as they scroll into view */
+(() => {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('fx-in'); io.unobserve(e.target); } }), { threshold: .18 });
+  document.querySelectorAll('.fx, .fx-sec, .jcard').forEach(el => io.observe(el));
+})();

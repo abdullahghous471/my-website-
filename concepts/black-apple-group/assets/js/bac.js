@@ -33,3 +33,29 @@
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('fx-in'); io.unobserve(e.target); } }), { threshold: .18 });
   document.querySelectorAll('.fx, .fx-sec, .jcard').forEach(el => io.observe(el));
 })();
+/* Nine ways: deal the cards from a deck in the middle, then let them flip */
+(() => {
+  const grid = document.querySelector('[data-deal]'); if (!grid) return;
+  const cards = [...grid.querySelectorAll('.flip')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  cards.forEach(c => {
+    c.addEventListener('click', e => { if (!e.target.closest('a')) c.classList.toggle('is-flipped'); });
+    c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.classList.toggle('is-flipped'); } });
+  });
+  if (reduce) { cards.forEach(c => c.classList.add('landed')); return; }
+  grid.classList.add('deal-wait');
+  const deal = () => {
+    const g = grid.getBoundingClientRect(), gx = g.left + g.width / 2, gy = g.top + Math.min(g.height, innerHeight) / 2;
+    cards.forEach((c, i) => {
+      const r = c.getBoundingClientRect(), dx = gx - (r.left + r.width / 2), dy = gy - (r.top + r.height / 2);
+      c.style.transition = 'none'; c.style.transform = `translate(${dx}px, ${dy}px) rotate(${(i % 2 ? 1 : -1) * (4 + i)}deg) scale(.82)`; c.style.zIndex = 20 - i;
+    });
+    grid.offsetWidth; grid.classList.remove('deal-wait');
+    cards.forEach((c, i) => setTimeout(() => {
+      c.classList.add('dealing'); c.style.transition = ''; c.style.transform = ''; c.style.opacity = 1;
+      setTimeout(() => { c.classList.add('landed'); c.classList.remove('dealing'); c.style.zIndex = ''; }, 900);
+    }, 250 + i * 110));
+  };
+  const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { io.disconnect(); deal(); } }, { threshold: .25 });
+  io.observe(grid);
+})();

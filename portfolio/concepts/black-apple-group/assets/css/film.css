@@ -1,0 +1,51 @@
+/* Real footage: cinematic films and photos instead of 3D */
+.grain { display: none; }
+html, body { background: #070C16 !important; }
+.hero--film, .cta--film { position: relative; overflow: hidden; isolation: isolate; }
+.hero--film > .film, .cta--film > .film { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; max-width: none !important; margin: 0 !important; object-fit: cover; z-index: -2; border-radius: 0 !important; transform: none !important; }
+.hero--film > .film__shade, .cta--film > .film__shade { position: absolute !important; inset: 0 !important; margin: 0 !important; }
+.film__shade { position: absolute; inset: 0; z-index: -1; background: radial-gradient(120% 80% at 50% 45%, rgba(7,12,22,.35) 0%, rgba(7,12,22,.72) 70%), linear-gradient(180deg, rgba(7,12,22,.55) 0%, rgba(7,12,22,.15) 40%, rgba(7,12,22,.85) 100%); }
+.hero--film .portal__in { position: relative; z-index: 1; }
+.cta--film .film__shade { background: linear-gradient(180deg, #070C16 0%, rgba(7,12,22,.45) 30%, rgba(7,12,22,.55) 70%, #070C16 100%); }
+.cta--film .cta__in { position: relative; z-index: 1; }
+
+.moments { padding: clamp(90px, 11vw, 150px) 0; }
+.moments__hd { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: end; margin-bottom: 44px; }
+.moments__hd .sec-hd__p { margin: 0; }
+.mgrid { display: grid; grid-template-columns: 1.15fr 1fr 1fr; grid-template-rows: 300px 300px; gap: 16px; }
+.mtile { position: relative; overflow: hidden; border-radius: 22px; display: block; color: #fff; text-decoration: none; background: #0E1626; }
+.mtile--tall { grid-row: span 2; }
+.mtile--wide { grid-column: span 2; }
+.mtile video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: transform 1.4s cubic-bezier(.2,.7,.1,1); }
+.mtile:hover video { transform: scale(1); }
+.mtile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(5,9,16,.88) 0%, rgba(5,9,16,.2) 55%, rgba(5,9,16,0) 100%); }
+.mtile__in { position: absolute; left: 24px; right: 24px; bottom: 22px; z-index: 1; display: grid; gap: 6px; }
+.mtile__in .mono { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #F4C27E; }
+.mtile__in b { font-size: clamp(1.3rem, 2vw, 1.75rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.15; }
+.mtile__in i { font-style: normal; font-size: 14px; color: #8ED1C8; opacity: .9; }
+
+.jcard { position: relative; margin: 0; border-radius: 26px; overflow: hidden; aspect-ratio: 4 / 4.4; max-width: 520px; justify-self: end; width: 100%; box-shadow: 0 40px 80px -40px #000; }
+.jcard img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+.jcard::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(5,9,16,.85), transparent 50%); }
+.jcard figcaption { position: absolute; left: 26px; bottom: 24px; z-index: 1; display: grid; gap: 4px; }
+.jcard figcaption b { font-size: 26px; font-weight: 500; }
+.jcard figcaption span { font-size: 13px; color: rgba(255,255,255,.7); }
+.jcard__play { position: absolute; right: 18px; top: 18px; z-index: 2; display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,.25); background: rgba(7,12,22,.55); color: #fff; font: inherit; font-size: 13px; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.jcard__play span { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #F1ECE4; color: #0A0F18; font-size: 11px; }
+
+.au--photo { position: relative; overflow: hidden; }
+.au__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .28; z-index: 0; border-radius: inherit; }
+.au--photo > *:not(.au__img) { position: relative; z-index: 1; }
+
+@media (max-width: 900px) {
+  .moments__hd { grid-template-columns: 1fr; gap: 16px; }
+  .mgrid { grid-template-columns: 1fr 1fr; grid-template-rows: 340px 240px 240px; }
+  .mtile--tall { grid-column: span 2; grid-row: auto; }
+  .mtile--wide { grid-column: span 2; }
+  .jcard { justify-self: stretch; max-width: none; margin-top: 30px; }
+}
+@media (max-width: 560px) {
+  .mgrid { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-rows: 260px; }
+  .mtile--tall, .mtile--wide { grid-column: auto; }
+  .mtile__in b { font-size: 1.3rem; }
+}

@@ -22,3 +22,9 @@
   const on = () => { const r = rv.getBoundingClientRect(); bar.classList.toggle('on', scrollY > innerHeight * .7 && !(r.top < innerHeight * .8 && r.bottom > 0)); };
   addEventListener('scroll', on, { passive: true }); on();
 })();
+/* background films play only while on screen */
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io = new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting && !reduce) { v.preload = 'auto'; v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 });
+  document.querySelectorAll('video[data-play], .hero video.film').forEach(v => io.observe(v));
+})();

@@ -10,13 +10,13 @@
 <link rel="canonical" href="https://www.blackapplegroup.com/">
 <link rel="stylesheet" href="assets/css/hw.css?v=2">
 <link rel="stylesheet" href="assets/css/bac.css?v=1">
+<link rel="stylesheet" href="assets/css/film.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"InsuranceAgency","name":"Black Apple Group","url":"https://www.blackapplegroup.com/","telephone":"+1-708-705-7783","email":"joseph@blackapplegroup.com","founder":{"@type":"Person","name":"Joseph Hull"},"address":{"@type":"PostalAddress","addressLocality":"Chicago","addressRegion":"IL","addressCountry":"US"},"openingHours":"Mo-Fr 09:00-18:00"}</script>
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body class="theme-portal">
 <a class="skip" href="#main">Skip to content</a>
 
-<canvas class="fibers" data-fibers-canvas aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
 <div class="frame" aria-hidden="true"></div>
 
@@ -47,7 +47,9 @@
 <main id="main">
 
 <!-- HERO: the particles gather into an apple with glowing seeds -->
-<section class="hero hero--portal" id="top" data-fibers="ring" data-form="0 0.03 1.12 0 .95" data-form-m="0 0.28 1.15 0 .8" data-hold=".35">
+<section class="hero hero--portal hero--film" id="top" data-form="0 0.03 1.12 0 .95" data-form-m="0 0.28 1.15 0 .8" data-hold=".35">
+  <video class="film" src="assets/video/hero-sunset.mp4" poster="assets/img/hero-sunset.webp" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <div class="film__shade" aria-hidden="true"></div>
   <div class="portal__in">
     <p class="mono hero__k">Independent life insurance · Chicago · Since 1991</p>
     <h1 class="portal__h" data-lines>
@@ -63,7 +65,7 @@
 </section>
 
 <!-- LIFE STAGES: the dial plays a life from 20 to 80 -->
-<section class="day dial-sec" id="life" data-dial data-fibers="river" data-hold=".93" data-form="0 -1.05 1 0 .3" data-form-m="0 -1.25 1 0 .14">
+<section class="day dial-sec" id="life" data-dial data-hold=".93" data-form="0 -1.05 1 0 .3" data-form-m="0 -1.25 1 0 .14">
   <div class="day__pin">
     <div class="wrap dial">
       <div class="dial__face">
@@ -150,7 +152,7 @@
   </div>
 </section>
 
-<section class="stats-sec odo-sec" data-odo-sec data-fibers="river" data-form="0 0.02 1 -0.04 .32" data-form-m="0 -1.3 1 0 .05">
+<section class="stats-sec odo-sec" data-odo-sec data-form="0 0.02 1 -0.04 .32" data-form-m="0 -1.3 1 0 .05">
   <div class="wrap">
     <div class="odo-sweep" aria-hidden="true"><i></i></div>
     <ul class="odos">
@@ -166,8 +168,24 @@
   </div>
 </section>
 
+<!-- MOMENTS: real life, real reasons -->
+<section class="moments" id="moments">
+  <div class="wrap">
+    <div class="moments__hd">
+      <h2 class="h2">The moments <em>worth protecting.</em></h2>
+      <p class="sec-hd__p">Life insurance is not about policies. It is about the people in these pictures, and making sure their life carries on as planned.</p>
+    </div>
+    <div class="mgrid">
+      <a class="mtile mtile--tall" href="#review"><video src="assets/video/newhome.mp4" poster="assets/img/newhome.webp" muted loop playsinline preload="none" data-play></video><span class="mtile__in"><span class="mono">First home</span><b>Keep the keys in the family</b><i>Mortgage protection →</i></span></a>
+      <a class="mtile" href="#review"><video src="assets/video/park.mp4" poster="assets/img/park.webp" muted loop playsinline preload="none" data-play></video><span class="mtile__in"><span class="mono">Growing up</span><b>Every step they take with you</b><i>Term life →</i></span></a>
+      <a class="mtile" href="#review"><video src="assets/video/bedtime.mp4" poster="assets/img/bedtime.webp" muted loop playsinline preload="none" data-play></video><span class="mtile__in"><span class="mono">Bedtime stories</span><b>The traditions that outlive us</b><i>Whole life →</i></span></a>
+      <a class="mtile mtile--wide" href="#review"><video src="assets/video/legacy.mp4" poster="assets/img/legacy.webp" muted loop playsinline preload="none" data-play></video><span class="mtile__in"><span class="mono">Three generations</span><b>Leave love, not bills</b><i>Final expense &amp; legacy →</i></span></a>
+    </div>
+  </div>
+</section>
+
 <!-- COVERAGE: 3D ring inside the halo -->
-<section class="services" id="coverage" data-fibers="loop" data-form="0 -0.32 1 0 .8" data-form-m="0 -1.3 1 0 .05">
+<section class="services" id="coverage" data-form="0 -0.32 1 0 .8" data-form-m="0 -1.3 1 0 .05">
   <div class="services__pin" data-ring-pin>
     <div class="wrap services__hd">
       <h2 class="h2">Nine ways to protect <em>your family</em></h2>
@@ -189,7 +207,7 @@
 </section>
 
 <!-- STRATEGY -->
-<section class="process" id="strategy" data-fibers="river" data-form="0 0.8 1 -0.06 .4">
+<section class="process" id="strategy" data-form="0 0.8 1 -0.06 .4">
   <div class="wrap">
     <div class="sec-hd">
       <h2 class="h2" data-reveal>The Black Apple Strategy.<br><em>Knowledge</em> before recommendations.</h2>
@@ -206,7 +224,7 @@
 </section>
 
 <!-- ABOUT JOSEPH: carriers orbit the apple -->
-<section class="about about--orbit" id="about" data-fibers="river" data-form="0 -1.3 1 0 .05">
+<section class="about about--orbit" id="about" data-form="0 -1.3 1 0 .05">
   <div class="wrap ab">
     <div class="ab__copy">
       <h2 class="ab__h">One agent, from the first question <em>to the claim.</em></h2>
@@ -220,17 +238,16 @@
       </ul>
       <button class="btn btn--glass" type="button" data-video>Watch the 85-second welcome</button>
     </div>
-    <div class="ab__orbit" data-orbit2>
-      <canvas class="ab__cv" data-orbit-cv aria-hidden="true"></canvas>
-      <div class="ab__core" aria-hidden="true"><svg class="ab__mark" style="color:#F4C27E"><use href="#bag"/></svg></div>
-      <p class="ab__use" data-orbit-use>Hover a carrier to see what we compare</p>
-      <button type="button" class="orb-chip orb-chip--r0" data-chip data-ring="0" data-use="Term, whole life and final expense">Mutual of Omaha</button><button type="button" class="orb-chip orb-chip--r0" data-chip data-ring="0" data-use="Term, IUL and living benefits">Transamerica</button><button type="button" class="orb-chip orb-chip--r0" data-chip data-ring="0" data-use="Term and guaranteed universal life">AIG</button><button type="button" class="orb-chip orb-chip--r1" data-chip data-ring="1" data-use="Term and universal life">Prudential</button><button type="button" class="orb-chip orb-chip--r1" data-chip data-ring="1" data-use="IUL and annuities">Nationwide</button><button type="button" class="orb-chip orb-chip--r1" data-chip data-ring="1" data-use="Term, UL and annuities">Lincoln Financial</button><button type="button" class="orb-chip orb-chip--r2" data-chip data-ring="2" data-use="IUL and retirement income">Pacific Life</button><button type="button" class="orb-chip orb-chip--r2" data-chip data-ring="2" data-use="Term and IUL with living benefits">North American</button><button type="button" class="orb-chip orb-chip--r2" data-chip data-ring="2" data-use="And 90+ more carriers">+ 90 more</button>
-    </div>
+    <figure class="jcard">
+      <img src="assets/img/joseph.webp" alt="Joseph Hull, founder of Black Apple Group" width="900" height="810" loading="lazy">
+      <button class="jcard__play" type="button" data-video aria-label="Play Joseph's welcome video"><span>▶</span>Watch his 85-second welcome</button>
+      <figcaption><b>Joseph Hull</b><span>Founder · Licensed since 1991</span></figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- FREE REVIEW -->
-<section class="offer" id="review" data-fibers="river" data-form="0 0.92 1 -0.04 .14">
+<section class="offer" id="review" data-form="0 0.92 1 -0.04 .14">
   <div class="wrap">
     <div class="offer__card" data-offer>
       <div class="offer__copy">
@@ -245,7 +262,8 @@
           <p class="rv-msg" data-rv-msg hidden></p>
         </form>
       </div>
-      <div class="au" aria-hidden="true">
+      <div class="au au--photo" aria-hidden="true">
+        <img class="au__img" src="assets/img/review.webp" alt="" loading="lazy">
         <div class="au__clock">
           <svg viewBox="0 0 120 120"><defs><linearGradient id="aug" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8D9AE"/><stop offset=".5" stop-color="#4FB3A9"/><stop offset="1" stop-color="#3F78BA"/></linearGradient></defs><circle cx="60" cy="60" r="52" class="au__trk"/><circle cx="60" cy="60" r="52" class="au__arc" stroke="url(#aug)"/></svg>
           <div class="au__t"><b>30</b><span>minutes</span></div>
@@ -260,7 +278,7 @@
   </div>
 </section>
 
-<section class="faq" id="faq" data-fibers="river" data-form="0 -1.3 1 0 .05">
+<section class="faq" id="faq" data-form="0 -1.3 1 0 .05">
   <div class="wrap faq__in">
     <div class="faq__hd">
       <h2 class="h2">Questions families <em>ask</em></h2>
@@ -278,7 +296,9 @@
   </div>
 </section>
 
-<section class="cta cta--fibers" data-fibers="bundle" data-form="0 0.36 .95 0 1" data-form-m="0 0.42 .85 0 .5">
+<section class="cta cta--fibers cta--film" data-form="0 0.36 .95 0 1" data-form-m="0 0.42 .85 0 .5">
+  <video class="film" src="assets/video/tree-sunset.mp4" poster="assets/img/tree-sunset.webp" muted loop playsinline preload="none" data-play aria-hidden="true"></video>
+  <div class="film__shade" aria-hidden="true"></div>
   <div class="wrap cta__in">
     <h2 class="cta__h"><span>Understand your</span><span>protection.</span></h2>
     <p class="cta__p">What you plant today protects the people who come next. Start with a free 30-minute protection review.</p>
@@ -313,12 +333,12 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/vendor/lenis.min.js" defer></script>
 <script src="assets/js/hw/site.js?v=2" defer></script>
-<script src="assets/js/stars.js?v=3" defer></script>
+
 <script src="assets/js/hw/extras.js?v=1" defer></script>
 <script src="assets/js/hw/odo.js?v=1" defer></script>
-<script src="assets/js/hw/orbit.js?v=1" defer></script>
+
 <script src="assets/js/hw/dial.js?v=1" defer></script>
 <script src="assets/js/hw/offer.js?v=1" defer></script>
-<script src="assets/js/bac.js?v=1" defer></script>
+<script src="assets/js/bac.js?v=2" defer></script>
 </body>
 </html>

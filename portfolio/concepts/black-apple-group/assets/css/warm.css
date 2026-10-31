@@ -70,3 +70,30 @@ main, .ft, .hd { position: relative; z-index: 1; }
 .au__arc { stroke: #E9B26E; }
 .rv-consent input, .rv-form input[type=checkbox] { accent-color: #E9B26E; }
 .hero--film .portal__in { display: flex !important; flex-direction: column !important; align-items: flex-start !important; }
+
+/* Nine ways: cards dealt from a deck, icons draw themselves, flip to the real moment */
+.deal__sub { margin: 14px auto 0; text-align: center; }
+.cgrid .flip { position: relative; min-height: 250px; perspective: 1200px; list-style: none; outline: none; }
+.flip__in { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.2,.8,.2,1); }
+.flip:hover .flip__in, .flip:focus-visible .flip__in, .flip.is-flipped .flip__in { transform: rotateY(180deg); }
+.cgrid .flip .rc { position: absolute !important; inset: 0 !important; min-height: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: none !important; }
+.cgrid .flip:hover .rc { transform: none !important; }
+.rc__hint { position: absolute; right: 22px; bottom: 18px; font-size: 12px; color: rgba(246,215,167,.55); letter-spacing: .04em; }
+.flip__b { position: absolute; inset: 0; border-radius: 20px; overflow: hidden; transform: rotateY(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; border: 1px solid rgba(233,178,110,.4); background: #1A1613; }
+.flip__b img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 1.4s cubic-bezier(.2,.7,.1,1); }
+.flip:hover .flip__b img, .flip.is-flipped .flip__b img { transform: scale(1); }
+.flip__b::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14,11,9,.94) 0%, rgba(14,11,9,.55) 55%, rgba(14,11,9,.15) 100%); }
+.flip__t { position: absolute; left: 22px; right: 22px; bottom: 20px; z-index: 1; display: grid; gap: 6px; }
+.flip__t .mono { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #E9B26E; }
+.flip__t b { font-size: 22px; font-weight: 500; color: #fff; }
+.flip__t p { margin: 0; font-size: 14px; line-height: 1.5; color: rgba(255,245,230,.82); }
+.flip__t a { margin-top: 4px; font-size: 13.5px; color: #F6D7A7; text-decoration: none; }
+.flip__t a:hover { text-decoration: underline; }
+/* dealt in: JS sets each card's start offset, then lets it fly to its place */
+.cgrid.deal-wait .flip { opacity: 0; }
+.cgrid .flip.dealing { transition: transform 1s cubic-bezier(.18,.9,.25,1.05), opacity .5s ease; }
+/* icons draw themselves once the card lands */
+.cgrid .rc__ic svg * { stroke-dasharray: 80; stroke-dashoffset: 80; transition: stroke-dashoffset 1.4s ease .2s; }
+.cgrid .flip.landed .rc__ic svg * { stroke-dashoffset: 0; }
+@media (max-width: 560px) { .cgrid .flip { min-height: 220px; } }
+@media (prefers-reduced-motion: reduce) { .flip__in { transition: none; } .cgrid .rc__ic svg * { stroke-dashoffset: 0; } }

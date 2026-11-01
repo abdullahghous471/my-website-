@@ -36,3 +36,11 @@
   ring.addEventListener('click', e => { const f = e.target.closest('.flip'); if (f && !e.target.closest('a')) f.classList.toggle('is-flipped'); });
   ring.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { const f = e.target.closest('.flip'); if (f) { e.preventDefault(); f.classList.toggle('is-flipped'); } } });
 })();
+
+/* Dawn lines: open each section's top line as the section comes into view */
+(() => {
+  const secs = document.querySelectorAll('.day, .moments, .services, .process, .about, .offer, .faq');
+  if (!('IntersectionObserver' in window)) { secs.forEach(s => s.classList.add('dawn-in')); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('dawn-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -15% 0px' });
+  secs.forEach(s => io.observe(s));
+})();

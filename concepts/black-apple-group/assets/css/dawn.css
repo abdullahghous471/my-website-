@@ -17,3 +17,11 @@
 /* the line draws open from the centre when its section arrives */
 .dawn-in::before { transform: translateX(-50%) scaleX(1) !important; opacity: var(--dawn-line) !important; }
 @media (prefers-reduced-motion: reduce) { .day::before, .moments::before, .services::before, .process::before, .about::before, .offer::before, .faq::before { transition: none; } }
+
+/* finishing touches: brand focus ring, selection colour, slim scrollbar */
+:focus-visible { outline: 2px solid #FFC46B; outline-offset: 3px; border-radius: 6px; }
+.lite :focus-visible { outline-color: #B8743F; }
+::selection { background: rgba(255,196,107,.35); color: inherit; }
+html { scrollbar-width: thin; scrollbar-color: rgba(255,196,107,.35) transparent; }
+.lite { scrollbar-color: rgba(120,90,60,.35) transparent; }
+img, video { -webkit-user-drag: none; }

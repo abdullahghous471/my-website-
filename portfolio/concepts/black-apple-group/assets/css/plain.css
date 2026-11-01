@@ -1,0 +1,6 @@
+/* Plain base: every decorative background shade switched off on both editions.
+   (Video overlays stay: they keep text readable over footage.) */
+.ambient { display: none !important; }
+.day::before, .stats-sec::before, .moments::before, .services::before, .process::before, .about::before, .offer::before, .faq::before { content: none !important; display: none !important; }
+.cgrid .rc.glass { background: rgba(255,240,220,.035) !important; }
+.lite .cgrid .rc.glass { background: #fff !important; }

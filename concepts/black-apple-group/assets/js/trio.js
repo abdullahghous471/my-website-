@@ -29,35 +29,3 @@
     if (!was) c.classList.add('on');
   });
 })();
-
-/* Background tone: each section has its own deep colour, and the page blends between them as you scroll */
-(() => {
-  const tones = [
-    ['#top', [18, 15, 13]],      // charcoal under the film
-    ['#life', [43, 26, 14]],     // cognac
-    ['.stats-sec', [44, 22, 18]],// terracotta
-    ['#moments', [11, 35, 33]],  // deep sea-teal
-    ['#coverage', [40, 18, 30]], // wine
-    ['#strategy', [14, 26, 43]], // night ocean
-    ['#about', [42, 30, 16]],    // espresso gold
-    ['#review', [12, 36, 32]],   // deep teal
-    ['#faq', [28, 20, 17]],      // warm umber
-    ['.cta', [18, 15, 13]]
-  ].map(([s, c]) => [document.querySelector(s), c]).filter(t => t[0]);
-  const root = document.documentElement;
-  let raf = 0;
-  const paint = () => {
-    raf = 0;
-    const mid = scrollY + innerHeight / 2;
-    const pts = tones.map(([el, c]) => { const r = el.getBoundingClientRect(); return [scrollY + r.top + r.height / 2, c]; });
-    let c = pts[0][1];
-    if (mid >= pts[pts.length - 1][0]) c = pts[pts.length - 1][1];
-    else for (let i = 0; i < pts.length - 1; i++) {
-      const [y0, c0] = pts[i], [y1, c1] = pts[i + 1];
-      if (mid >= y0 && mid < y1) { let t = (mid - y0) / (y1 - y0); t = t * t * (3 - 2 * t); c = c0.map((v, k) => Math.round(v + (c1[k] - v) * t)); break; }
-    }
-    root.style.setProperty('--wbg', `rgb(${c.join(',')})`);
-  };
-  const ask = () => { if (!raf) raf = requestAnimationFrame(paint); };
-  addEventListener('scroll', ask, { passive: true }); addEventListener('resize', ask); paint();
-})();

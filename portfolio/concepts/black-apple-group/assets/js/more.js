@@ -122,7 +122,7 @@
     type(b.textContent);
     plan.classList.add('swap');
     setTimeout(() => {
-      $('[data-pz-img]').src = `assets/img/cards/${d.img}.webp`;
+      $('[data-pz-img]').src = `assets/img/pz/${b.dataset.p}.webp`;
       $('[data-pz-h]').textContent = d.h;
       $('[data-pz-covers]').innerHTML = d.c.map(c => `<li>${c}</li>`).join('');
       $('[data-pz-qs]').innerHTML = d.q.map(q => `<li>${q}</li>`).join('');
@@ -137,5 +137,7 @@
   });
   // "Run my numbers first" opens the matching calculator tab
   document.addEventListener('click', e => { const g = e.target.closest('[data-tab-go]'); if (g) { const t = document.querySelector(`[data-tab="${g.dataset.tabGo}"]`); t && t.click(); } });
+  // warm the other five photos once the section is near, so switching is instant
+  new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { Object.keys(P).forEach(k => { const i = new Image(); i.src = `assets/img/pz/${k}.webp`; }); o.disconnect(); } }, { rootMargin: '600px' }).observe(wrap);
   pick(btns[0]);
 })();

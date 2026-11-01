@@ -313,3 +313,70 @@
 .lite .sub-hero .kick { color: #FFC46B !important; }
 .lite .crumbs, .lite .crumbs span { color: rgba(255,244,232,.65) !important; } .lite .crumbs a { color: #fff !important; }
 .lite .sub-hero .btn--light { background: #FFF6EC !important; color: #16110E !important; }
+
+/* ---------- starting plan: photo sits inside the card, no fade ---------- */
+.pz__plan { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr) !important; padding: 12px; gap: 0; }
+.pz__img { margin: 0; min-height: 0 !important; aspect-ratio: 5 / 4; border-radius: 20px; overflow: hidden; align-self: stretch; }
+.pz__img::after { display: none !important; }
+.pz__img img { transition: opacity .3s ease, transform 1.2s cubic-bezier(.2,.8,.2,1); }
+.pz__plan.swap .pz__img img { opacity: .2; transform: scale(1.03); }
+.pz__plan.swap { opacity: 1 !important; transform: none !important; }
+.pz__plan.swap .pz__body { opacity: .25; transform: translateY(6px); }
+.pz__body { transition: opacity .22s ease, transform .22s ease; padding: clamp(20px, 3vw, 40px) clamp(20px, 3vw, 40px) clamp(20px, 3vw, 40px) clamp(24px, 3.4vw, 48px) !important; }
+@media (max-width: 860px) {
+  .pz__plan { grid-template-columns: 1fr !important; padding: 10px; }
+  .pz__img { aspect-ratio: 16 / 10; }
+  .pz__body { padding: 22px 14px 14px !important; }
+}
+
+/* ---------- footer ---------- */
+.ft { display: none !important; }
+.bft { position: relative; padding: clamp(60px, 8vw, 110px) 0 28px; border-top: 1px solid rgba(255,226,190,.08); background: radial-gradient(60% 80% at 100% 0%, rgba(255,196,107,.07), transparent 60%), #0E0B09; overflow: hidden; }
+.bft__top { display: grid; grid-template-columns: 1.35fr .8fr .9fr 1.15fr; gap: clamp(28px, 4vw, 60px); }
+.bft__logo { display: inline-flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; }
+.bft__logo svg { width: 34px; height: 34px; }
+.bft__logo span { display: grid; line-height: 1; }
+.bft__logo b { font-size: 16px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; }
+.bft__logo small { margin-top: 6px; font: 400 9.5px/1 var(--mono, monospace); letter-spacing: .32em; text-transform: uppercase; color: rgba(255,244,232,.55); }
+.bft__brand p { margin: 20px 0 22px; max-width: 34ch; font-size: 15px; line-height: 1.6; color: rgba(255,244,232,.68); }
+.bft__h { margin: 4px 0 16px; font: 500 11px var(--mono, monospace); letter-spacing: .16em; text-transform: uppercase; color: #E9B26E; }
+.bft__col { display: flex; flex-direction: column; gap: 11px; }
+.bft__col a { width: fit-content; font-size: 15px; color: rgba(255,244,232,.78); text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: color .3s, background-size .35s; }
+.bft__col a:hover { color: #fff; background-size: 100% 1px; }
+.bft__talk { padding: 24px; border-radius: 22px; border: 1px solid rgba(255,226,190,.1); background: rgba(255,240,220,.035); display: flex; flex-direction: column; gap: 8px; align-self: start; }
+.bft__talk .bft__h { margin-top: 0; }
+.bft__tel { font-size: clamp(1.5rem, 2.2vw, 1.9rem); font-weight: 500; letter-spacing: -.02em; color: #fff; text-decoration: none; }
+.bft__mail { font-size: 14.5px; color: rgba(255,244,232,.78); text-decoration: none; word-break: break-all; }
+.bft__tel:hover, .bft__mail:hover { color: #FFC46B; }
+.bft__hours { display: flex; align-items: center; gap: 8px; margin: 4px 0 8px; font-size: 13px; color: rgba(255,244,232,.6); }
+.bft__hours i { width: 7px; height: 7px; border-radius: 50%; background: #2EC4B6; box-shadow: 0 0 0 4px rgba(46,196,182,.15); }
+.bft__btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.bft__btns .btn { min-height: 44px; padding: 0 18px; font-size: 14px; }
+.bft__word { margin: clamp(40px, 6vw, 80px) 0 0; font: 600 clamp(4rem, 15.5vw, 15rem)/.8 var(--body); letter-spacing: -.06em; text-transform: uppercase; white-space: nowrap; text-align: center;
+  color: transparent; -webkit-text-stroke: 1px rgba(255,226,190,.14); background: linear-gradient(180deg, rgba(255,196,107,.12), transparent 75%); -webkit-background-clip: text; background-clip: text; user-select: none; }
+.bft__base { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 22px; padding-top: 20px; border-top: 1px solid rgba(255,226,190,.08); font-size: 13.5px; color: rgba(255,244,232,.55); }
+.bft__base nav { display: flex; gap: 22px; }
+.bft__base a, .bft__base button { color: rgba(255,244,232,.7); text-decoration: none; font: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+.bft__base a:hover, .bft__base button:hover { color: #fff; }
+@media (max-width: 1000px) { .bft__top { grid-template-columns: 1fr 1fr; } .bft__brand { grid-column: 1 / -1; } }
+@media (max-width: 620px) {
+  .bft { padding-bottom: 96px; }
+  .bft__top { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
+  .bft__talk { grid-column: 1 / -1; }
+  .bft__base { justify-content: center; text-align: center; }
+}
+/* light */
+.lite .bft { background: radial-gradient(60% 80% at 100% 0%, rgba(255,196,107,.14), transparent 60%), #F1E9DE; border-color: rgba(30,25,21,.08); }
+.lite .bft__logo, .lite .bft__tel { color: #1E1915 !important; }
+.lite .bft__logo small, .lite .bft__hours, .lite .bft__base { color: #675B51 !important; }
+.lite .bft__brand p, .lite .bft__col a, .lite .bft__mail, .lite .bft__base a, .lite .bft__base button { color: #4A413A !important; }
+.lite .bft__col a:hover, .lite .bft__base a:hover, .lite .bft__base button:hover { color: #1E1915 !important; }
+.lite .bft__tel:hover, .lite .bft__mail:hover { color: #8F5A33 !important; }
+.lite .bft__h { color: #8F5A33 !important; }
+.lite .bft__talk { background: #fff; border-color: rgba(30,25,21,.08); box-shadow: 0 20px 40px -30px rgba(110,70,30,.45); }
+.lite .bft__word { -webkit-text-stroke: 1px rgba(110,70,30,.2); background: linear-gradient(180deg, rgba(184,116,63,.14), transparent 75%); -webkit-background-clip: text; background-clip: text; }
+.lite .bft__base { border-color: rgba(30,25,21,.1); }
+.lite .bft .btn--light { background: #1E1915 !important; color: #FAF6F0 !important; }
+.lite .bft .btn--light:hover { background: #000 !important; }
+.lite .bft .btn--glass { background: #fff !important; color: #1E1915 !important; border: 1px solid rgba(30,25,21,.15) !important; }
+.bft__word { font-size: clamp(3rem, 12.4vw, 12.5rem) !important; letter-spacing: -.055em !important; overflow: hidden; }

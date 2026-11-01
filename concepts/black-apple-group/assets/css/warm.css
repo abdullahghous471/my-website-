@@ -2,7 +2,6 @@
 :root { --wbg: #120F0D; --wbg2: #1A1613; --gold: #E9B26E; --gold2: #F6D7A7; --peach: #EBA27A; }
 html, body { background: var(--wbg) !important; }
 .theme-portal { --accent: var(--gold); --grad: linear-gradient(90deg, #F6D7A7, #E9B26E 45%, #EBA27A); }
-.portal__h em, .h2 em, .ab__h em, .dial__title em, .dial__h em, .cta__h em { background: linear-gradient(90deg, #F6D7A7, #E9B26E 50%, #EBA27A) !important; -webkit-background-clip: text !important; background-clip: text !important; color: transparent !important; }
 .hero__k, .mtile__in .mono { color: var(--gold) !important; }
 .mtile__in i { color: var(--gold2) !important; }
 .glass, .rc, .offer__card, .faq__it, .cred, .lc, .dial__card { background-color: rgba(255,240,220,.035) !important; }

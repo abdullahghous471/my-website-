@@ -143,3 +143,15 @@ html, body, body.lite { background: #FAF6F0 !important; color: var(--ink) !impor
     linear-gradient(0deg, #FAF6F0 0%, rgba(250,246,240,.9) 34%, rgba(250,246,240,.55) 58%, rgba(250,246,240,.1) 80%),
     linear-gradient(180deg, rgba(20,14,10,.45), rgba(20,14,10,0) 18%) !important; }
 }
+
+/* ---------- light: ring cards and soft FAQ ---------- */
+.lite .cring .flip .rc { background: linear-gradient(160deg, #FFFFFF, #FBF5EC) !important; border-color: rgba(30,25,21,.07) !important; box-shadow: 0 30px 60px -34px rgba(110,70,30,.45) !important; }
+.lite .cring .rc h3 { color: var(--ink) !important; } .lite .cring .rc p { color: var(--ink2) !important; }
+.lite .cring .rc__tools, .lite .cring .rc__hint { color: #8A7E73 !important; }
+.lite .cring .flip__b { box-shadow: 0 30px 60px -34px rgba(110,70,30,.5); }
+.lite .faq .faq__it { background: rgba(255,255,255,.55) !important; border-color: rgba(30,25,21,.05) !important; box-shadow: none !important; }
+.lite .faq .faq__it:hover { background: rgba(255,255,255,.75) !important; }
+.lite .faq .faq__it[open] { background: rgba(255,255,255,.85) !important; border-color: rgba(214,150,72,.18) !important; box-shadow: 0 14px 30px -24px rgba(110,70,30,.35) !important; }
+.lite .faq .faq__it summary { color: var(--ink) !important; }
+.lite .faq .faq__it summary i { border-color: rgba(30,25,21,.14) !important; color: var(--ink) !important; }
+.lite .faq .faq__it[open] summary i { background: rgba(214,150,72,.16) !important; color: #8A5A2B !important; }

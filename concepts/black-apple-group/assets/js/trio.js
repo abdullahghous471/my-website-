@@ -29,3 +29,10 @@
     if (!was) c.classList.add('on');
   });
 })();
+
+/* Nine-ways ring: tap or Enter turns a card over (hover does it on desktop) */
+(() => {
+  const ring = document.querySelector('.cring'); if (!ring) return;
+  ring.addEventListener('click', e => { const f = e.target.closest('.flip'); if (f && !e.target.closest('a')) f.classList.toggle('is-flipped'); });
+  ring.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { const f = e.target.closest('.flip'); if (f) { e.preventDefault(); f.classList.toggle('is-flipped'); } } });
+})();

@@ -66,7 +66,7 @@
     ['Debt elimination', 'debt|snowball|credit card|loan', 'A step-by-step plan that clears balances and frees up cash for what matters.']
   ];
   const STEPS = ['<b>Educate:</b> plain-English answers on how coverage really works', '<b>Identify priorities:</b> family, home, income, debt and the future you want', '<b>Review what you have:</b> your current policies, read together line by line', '<b>Calculate the need:</b> DIME, retirement and debt calculators, not guesswork', '<b>Compare options:</b> real quotes from many carriers, side by side'];
-  const CHIPS = ['What cover do I need?', 'Term vs whole life', 'Is the review free?', 'Who is Joseph?', 'Review my policy', 'Talk to Joseph'];
+  const CHIPS = ['What cover do I need?', 'Term vs whole life', 'Instant quote', 'Is the review free?', 'Who is Joseph?', 'Become an agent', 'Talk to Joseph'];
 
   const go = (sel, label) => ({ action: `<button type="button" class="ai-act" data-go="${sel}">${label}</button>` });
   const review = { action: '<button type="button" class="ai-act ai-act--hot" data-go="#review">Book a free review</button>' };
@@ -75,7 +75,7 @@
 
   const INTENTS = [
     { id: 'hi', w: .6, k: ['hi', 'hello', 'hey', 'good morning', 'good evening', 'salam'], a: () => [{ text: 'Hello! 👋 I can explain the types of cover, how a review works, or help you reach Joseph. What would you like to know?' }] },
-    { id: 'need', w: 1.2, k: ['how much cover', 'how much coverage', 'how much insurance', 'how much life', 'need', 'enough', 'dime', 'amount', 'calculate', 'right for me', 'which one', 'best policy', 'recommend'], a: () => [{ text: 'A good starting point is the <b>DIME</b> method:' }, { list: ['<b>D</b>ebt you would leave behind', '<b>I</b>ncome for the years your family depends on you', '<b>M</b>ortgage balance', '<b>E</b>ducation for your children', 'then subtract the cover you already have'] }, { text: 'Joseph works out the real number with you in the free review.' }, note, review] },
+    { id: 'need', w: 1.2, k: ['how much cover', 'how much coverage', 'how much insurance', 'how much life', 'need', 'enough', 'dime', 'amount', 'calculate', 'right for me', 'which one', 'best policy', 'recommend'], a: () => [{ text: 'A good starting point is the <b>DIME</b> method:' }, { list: ['<b>D</b>ebt you would leave behind', '<b>I</b>ncome for the years your family depends on you', '<b>M</b>ortgage balance', '<b>E</b>ducation for your children', 'then subtract the cover you already have'] }, { text: 'Try the DIME calculator on this page, then Joseph checks the real number with you in the free review.' }, note, go('#tools', 'Open the calculator'), review] },
     { id: 'tvw', w: 1.4, k: ['term or whole', 'term vs', 'whole vs', 'versus', 'difference', 'compare term', 'term and whole'], a: () => [{ text: '<b>Term</b> covers a set number of years and costs the least. <b>Whole life</b> lasts your whole life and builds cash value, so it costs more. Many families mix both.' }, { text: 'Joseph shows you real quotes for each before you decide.' }, note, review] },
     { id: 'free', w: 1.3, k: ['free', 'cost of review', 'obligation', 'charge for', 'pay for the review'], a: () => [{ text: 'Yes, the protection review is free and there is no obligation. If you do not need more coverage, Joseph will tell you.' }, review] },
     { id: 'price', w: 1.1, k: ['price', 'premium', 'cost', 'quote', 'cheap', 'expensive', 'per month', 'monthly', 'rates', 'how much is', 'how much does', 'afford'], a: () => [{ text: 'Prices depend on your age, health, the amount and the type of cover, so I can’t give a number here. Joseph compares real quotes from many carriers for you, side by side, at no cost.' }, review, call] },
@@ -90,6 +90,13 @@
     { id: 'health', w: 1.2, k: ['health', 'diabet', 'smoker', 'smoke', 'medical', 'exam', 'pre-existing', 'condition', 'age'], a: () => [{ text: 'Health and age affect which carriers and prices are available, and some policies need no medical exam. Because Joseph compares many carriers, he can often find options for people with health conditions.' }, note, review] },
     { id: 'privacy', w: 1.3, k: ['privacy', 'data', 'sell my', 'spam', 'store'], a: () => [{ text: 'Your details are only used to contact you about your review and are never sold. I run in your browser and don’t store what you type.' }] },
     { id: 'bot', k: ['are you ai', 'bot', 'robot', 'real person', 'chatgpt'], a: () => [{ text: 'I’m Ava, Black Apple’s assistant. I answer from this website, so I keep to general information. For anything about your situation, Joseph will help you himself.' }, review] },
+    { id: 'calc', w: 1.3, k: ['calculator', 'calculate', 'estimate', 'dime calculator', 'worksheet', 'tool'], a: () => [{ text: 'There are three free calculators on this page: <b>life cover (DIME)</b>, <b>debt snowball</b> and <b>retirement income</b>, plus a printable DIME worksheet and a policy inventory.' }, go('#tools', 'Open the calculators')] },
+    { id: 'quote', w: 1.4, k: ['instant quote', 'online quote', 'quote now', 'get a quote', 'quote tool'], a: () => [{ text: 'Joseph’s instant quote tool shows real-time estimates from 100+ carriers. Final rates depend on underwriting, and he can walk you through the results.' }, { action: '<button type="button" class="ai-act ai-act--hot" data-quote-open>Open instant quote</button>' }, review] },
+    { id: 'debt2', w: 1.3, k: ['debt free', 'pay off debt', 'snowball', 'get out of debt'], a: () => [{ text: 'The debt snowball pays the smallest balance first, then rolls that payment into the next one. Try the calculator to see your debt-free date and the interest you could save.' }, go('#tools', 'Try the debt snowball')] },
+    { id: 'join', w: 1.4, k: ['career', 'job', 'join', 'become an agent', 'agent academy', 'recruit', 'work with you', 'hiring', 'opportunity', 'get licensed'], a: () => [{ text: 'Black Apple runs an Agent Academy for new and licensed agents: product education, scripts, recorded training, planning tools and follow-up guidance. It is commission-based as an independent contractor, and income is not guaranteed.' }, go('#join', 'See the Agent Academy'), review] },
+    { id: 'gloss', w: 1.2, k: ['glossary', 'meaning', 'define', 'term mean', 'beneficiary', 'underwriting', 'rate class', 'death benefit'], a: () => [{ text: 'The Learn section explains common terms in plain English (beneficiary, death benefit, living benefits, rate class, underwriting), and the full glossary has 54 terms.' }, go('#learn', 'Open the glossary')] },
+    { id: 'articles', w: 1.1, k: ['article', 'blog', 'insight', 'read more', 'learn more', 'guide'], a: () => [{ text: 'Joseph writes plain-English articles on policy reviews, IUL, whole life, 401(k) fees, mortgage protection and debt payoff.' }, go('#learn', 'See the latest articles')] },
+    { id: 'social', w: 1.2, k: ['facebook', 'instagram', 'tiktok', 'youtube', 'linkedin', 'social'], a: () => [{ text: 'You’ll find Black Apple Group on Facebook, Instagram, TikTok, YouTube and LinkedIn. The links are in the footer.' }] },
     { id: 'thanks', k: ['thank', 'thanks', 'great', 'perfect', 'helpful'], a: () => [{ text: 'You’re welcome! Anything else I can explain?' }] }
   ];
   COVER.forEach(([name, keys, text], i) => INTENTS.push({ id: 'cv' + i, w: 1.25, k: keys.split('|'), a: () => [{ text: `<b>${name}:</b> ${text}` }, note, review] }));
@@ -127,7 +134,7 @@
     if (acts.length) add('bot ai-msg--acts', acts.map(render).join(''));
     setChips(); busy = false; setTimeout(() => { speaking = 0; }, 600);
   };
-  const MAP = { 'what cover do i need?': 'need', 'term vs whole life': 'tvw', 'is the review free?': 'free', 'who is joseph?': 'joseph', 'review my policy': 'policy', 'talk to joseph': 'contact' };
+  const MAP = { 'what cover do i need?': 'need', 'term vs whole life': 'tvw', 'is the review free?': 'free', 'who is joseph?': 'joseph', 'review my policy': 'policy', 'talk to joseph': 'contact', 'instant quote': 'quote', 'become an agent': 'join' };
   const ask = async q => {
     if (!q.trim()) return;
     while (busy) await new Promise(r => setTimeout(r, 120));

@@ -20,14 +20,14 @@ html, body, body.lite { background: #FAF6F0 !important; color: var(--ink) !impor
 .lite main h1, .lite main h2, .lite main h3, .lite main h4, .lite .h2, .lite .ab__h, .lite .dial__title, .lite .dial__h { color: var(--ink) !important; }
 .lite main p, .lite main li, .lite main dd, .lite main summary, .lite main label { color: var(--ink2); }
 .lite .h2 em, .lite .ab__h em, .lite .dial__title em, .lite .dial__h em, .lite .day__title em, .lite .day__h em,
-.lite .theme-portal .h2 em, .lite .faq em, .lite .offer em { color: #A08F80 !important; }
-.lite .mono, .lite .label, .lite .theme-portal .label { color: #8A7E73 !important; }
+.lite .theme-portal .h2 em, .lite .faq em, .lite .offer em { color: #8A7363 !important; }
+.lite .mono, .lite .label, .lite .theme-portal .label { color: #675B51 !important; }
 
 /* ---------- header: ivory glass once past the film ---------- */
 .lite .hd.hd--air.is-scrolled { background: rgba(250,246,240,.82) !important; box-shadow: 0 10px 30px -20px rgba(60,40,20,.35) !important; }
 .lite .hd.hd--air.is-scrolled::after { background: rgba(30,25,21,.08); }
 .lite .hd.hd--air.is-scrolled .hd__nav a, .lite .hd.hd--air.is-scrolled .hd__tel, .lite .hd.hd--air.is-scrolled .hd__brand, .lite .hd.hd--air.is-scrolled .hd__mark { color: var(--ink) !important; }
-.lite .hd.hd--air.is-scrolled .hd__word small { color: #8A7E73; }
+.lite .hd.hd--air.is-scrolled .hd__word small { color: #675B51; }
 .lite .hd.hd--air.is-scrolled .hd__cta { border-color: var(--ink); color: var(--ink); }
 .lite .hd.hd--air.is-scrolled .hd__cta:hover { background: var(--ink); color: #FAF6F0; }
 .lite .hd.hd--air.is-scrolled .burger, .lite .hd.hd--air.is-scrolled .hd__tel { border-color: rgba(30,25,21,.3) !important; }
@@ -57,7 +57,7 @@ html, body, body.lite { background: #FAF6F0 !important; color: var(--ink) !impor
 }
 .lite .rc__ic, .lite .cgrid .rc__ic { color: var(--ink) !important; border-color: rgba(30,25,21,.14) !important; background: #FFF8EF !important; }
 .lite .rc h3, .lite .rc p { color: var(--ink) !important; } .lite .rc p { color: var(--ink2) !important; }
-.lite .rc__tools, .lite .rc__hint { color: #8A7E73 !important; }
+.lite .rc__tools, .lite .rc__hint { color: #675B51 !important; }
 
 /* ---------- carriers: dark-grey logos on paper, colour on hover ---------- */
 .lite .car__w { filter: invert(1) brightness(.25); opacity: .55; }
@@ -67,7 +67,7 @@ html, body, body.lite { background: #FAF6F0 !important; color: var(--ink) !impor
 
 /* ---------- stats ---------- */
 .lite .odo, .lite .odo * { color: var(--ink) !important; }
-.lite .odo__k { color: var(--ink) !important; } .lite .odo__s { color: #8A7E73 !important; }
+.lite .odo__k { color: var(--ink) !important; } .lite .odo__s { color: #675B51 !important; }
 .lite .odo-item { border-color: rgba(30,25,21,.1) !important; }
 .lite .stats-sec .odos, .lite .odos { border-color: rgba(30,25,21,.1) !important; }
 
@@ -98,14 +98,14 @@ html, body, body.lite { background: #FAF6F0 !important; color: var(--ink) !impor
 .lite .nd.on .nd__dot { fill: #2EC4B6 !important; stroke: #fff !important; }
 .lite .nd.on .nd__halo { fill: rgba(46,196,182,.18) !important; }
 .lite .dial__centre b, .lite .dial__centre .dial__time, .lite .theme-portal .dial__time { color: var(--ink) !important; background: none !important; -webkit-background-clip: border-box !important; -webkit-text-fill-color: var(--ink) !important; }
-.lite .dial__centre .mono, .lite .dial__centre p { color: #8A7E73 !important; }
+.lite .dial__centre .mono, .lite .dial__centre p { color: #675B51 !important; }
 .lite .dial__centre span, .lite .dial__centre em, .lite .dial__centre i { color: var(--ink) !important; border-color: rgba(30,25,21,.18) !important; background: #FAF6F0 !important; }
 .lite .dial__play { background: #fff !important; color: var(--ink) !important; border-color: rgba(30,25,21,.15) !important; }
 .lite .dial__live { color: var(--ink) !important; }
 .lite .dial__cnt, .lite .dial__cnt b { color: var(--ink2) !important; }
 .lite .dial__seg i { background: rgba(30,25,21,.1) !important; } .lite .dial__seg i.on { background: rgba(30,25,21,.4) !important; }
 .lite .dial__card .dial__h { color: var(--ink) !important; } .lite .dial__card .dial__p { color: var(--ink2) !important; }
-.lite .dial__card .dial__time, .lite .theme-portal .dial__card .dial__time { color: #8A7E73 !important; -webkit-text-fill-color: #8A7E73 !important; background: none !important; }
+.lite .dial__card .dial__time, .lite .theme-portal .dial__card .dial__time { color: #675B51 !important; -webkit-text-fill-color: #675B51 !important; background: none !important; }
 .lite .dial__card .ntf__ic { color: var(--ink) !important; background: #FFF4E6 !important; border: 1px solid rgba(30,25,21,.1); }
 .lite .day__chip { color: var(--ink) !important; background: #FFF4E6 !important; border-color: rgba(30,25,21,.12) !important; }
 .lite .dial__card .dial__svc { color: #B0754A !important; }
@@ -132,8 +132,8 @@ html, body, body.lite { background: #FAF6F0 !important; color: var(--ink) !impor
 .lite .cta--film a:not(.btn) { color: rgba(255,255,255,.85) !important; }
 
 /* ---------- footer ---------- */
-.lite .ft__tag, .lite .ft__tag em { color: var(--ink) !important; } .lite .ft__tag em { color: #A08F80 !important; }
-.lite .ft [class*="legal"], .lite .ft small, .lite .ft .mono { color: #8A7E73 !important; }
+.lite .ft__tag, .lite .ft__tag em { color: var(--ink) !important; } .lite .ft__tag em { color: #8A7363 !important; }
+.lite .ft [class*="legal"], .lite .ft small, .lite .ft .mono { color: #675B51 !important; }
 .lite .dial__centre { background: none !important; }
 .lite .dial__now { background: #FFF4E6 !important; color: var(--ink) !important; border-color: rgba(30,25,21,.12) !important; }
 .lite .cred__em { background: #FFF4E6 !important; color: var(--ink) !important; border: 1px solid rgba(30,25,21,.12) !important; box-shadow: 0 8px 18px -10px rgba(120,80,40,.4) !important; }
@@ -147,7 +147,7 @@ html, body, body.lite { background: #FAF6F0 !important; color: var(--ink) !impor
 /* ---------- light: ring cards and soft FAQ ---------- */
 .lite .cring .flip .rc { background: linear-gradient(160deg, #FFFFFF, #FBF5EC) !important; border-color: rgba(30,25,21,.07) !important; box-shadow: 0 30px 60px -34px rgba(110,70,30,.45) !important; }
 .lite .cring .rc h3 { color: var(--ink) !important; } .lite .cring .rc p { color: var(--ink2) !important; }
-.lite .cring .rc__tools, .lite .cring .rc__hint { color: #8A7E73 !important; }
+.lite .cring .rc__tools, .lite .cring .rc__hint { color: #675B51 !important; }
 .lite .cring .flip__b { box-shadow: 0 30px 60px -34px rgba(110,70,30,.5); }
 .lite .faq .faq__it { background: rgba(255,255,255,.55) !important; border-color: rgba(30,25,21,.05) !important; box-shadow: none !important; }
 .lite .faq .faq__it:hover { background: rgba(255,255,255,.75) !important; }
@@ -155,3 +155,20 @@ html, body, body.lite { background: #FAF6F0 !important; color: var(--ink) !impor
 .lite .faq .faq__it summary { color: var(--ink) !important; }
 .lite .faq .faq__it summary i { border-color: rgba(30,25,21,.14) !important; color: var(--ink) !important; }
 .lite .faq .faq__it[open] summary i { background: rgba(214,150,72,.16) !important; color: #8A5A2B !important; }
+
+/* Joseph's name on the photo: white on a deeper fade so it always reads */
+.lite .jcard::after { background: linear-gradient(0deg, rgba(14,18,32,.88) 0%, rgba(14,18,32,.55) 24%, transparent 46%) !important; }
+.lite .jcard figcaption b { color: #fff !important; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+.lite .jcard figcaption span { color: rgba(255,255,255,.82) !important; }
+.lite .jcard__play { background: rgba(255,255,255,.85) !important; color: #1E1915 !important; border-color: rgba(30,25,21,.1) !important; }
+.lite .jcard__play span { background: #1E1915 !important; color: #fff !important; }
+/* readability: small labels and footer legal text at AA contrast on ivory */
+.lite .hd.hd--air.is-scrolled .hd__word small, .lite .dial__now, .lite .dial__card .dial__time, .lite .theme-portal .dial__card .dial__time, .lite .odo__s, .lite .ft__legal { color: #675B51 !important; -webkit-text-fill-color: #675B51 !important; }
+.lite .dial__card .dial__svc { color: #8F5A33 !important; }
+.lite main em, .lite .ft__tag em { color: #7A6455 !important; }
+.lite .hero--film .portal__h em { color: #A0643A !important; }
+.lite .dial__h em, .lite .dial__title em { color: #7A6455 !important; }
+/* review agenda sits on a dark photo: keep its type white */
+.lite .au--photo, .lite .au--photo b, .lite .au--photo strong, .lite .au--photo h3 { color: #fff !important; -webkit-text-fill-color: #fff !important; }
+.lite .au--photo p, .lite .au--photo li p { color: rgba(255,255,255,.84) !important; }
+.lite .au--photo .au__m, .lite .au--photo span { color: rgba(255,236,210,.8) !important; -webkit-text-fill-color: rgba(255,236,210,.8) !important; }

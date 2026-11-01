@@ -90,3 +90,52 @@
   });
   addEventListener('keydown', e => { if (e.key === 'Escape' && qm && !qm.hidden) closeQ(); });
 })();
+
+/* Start where you are: finish the sentence, the plan rebuilds around you */
+(() => {
+  const wrap = document.querySelector('[data-pz]'); if (!wrap) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const P = {
+    parent:  { img: 'park', h: 'Protect the years they depend on you.', c: ['Term life', 'Living benefits'], q: ['How many years until your youngest is independent?', 'Would your partner keep the home on one income?', 'Is cover through work enough, or tied to the job?'], t: 'Life insurance or mortgage protection', calc: 'dime' },
+    home:    { img: 'newhome', h: 'Keep the keys in the family.', c: ['Mortgage protection', 'Term life'], q: ['What is left on the mortgage, and for how long?', 'Could the family cover payments without your income?', 'Do you want the home paid off, or the payments covered?'], t: 'Life insurance or mortgage protection', calc: 'dime' },
+    earner:  { img: 'hero', h: 'Protect the paycheck everything runs on.', c: ['Disability income', 'Living benefits', 'Term life'], q: ['How long could the household manage without your pay?', 'What would a serious illness cost beyond insurance?', 'Which bills must never stop?'], t: 'Life insurance or mortgage protection', calc: 'dime' },
+    retire:  { img: 'tree-sunset', h: 'Turn savings into income you can count on.', c: ['Annuities', 'Retirement planning', 'Whole life'], q: ['When do you want work to become optional?', 'Is there an old 401(k) to bring together?', 'How do you feel about outliving your savings?'], t: 'Retirement or annuity information', calc: 'ret' },
+    parents: { img: 'legacy', h: 'Leave love, not bills.', c: ['Final expense', 'Whole life'], q: ['Do your parents have any cover today?', 'Who would handle final costs and arrangements?', 'Is budget or health the bigger concern?'], t: 'Life insurance or mortgage protection', calc: 'dime' },
+    covered: { img: 'advisor', h: 'Find out what your policy really does.', c: ['Free policy review', 'Beneficiary check'], q: ['Is your cover through work, or your own?', 'When were your beneficiaries last updated?', 'Has your family or mortgage changed since you bought it?'], t: 'Review my existing coverage', calc: 'dime' }
+  };
+  const $ = s => document.querySelector(s);
+  const slot = $('[data-pz-slot]'), plan = $('[data-pz-plan]'), btns = [...wrap.querySelectorAll('[data-p]')];
+  let typing = 0;
+  const type = text => {
+    clearInterval(typing);
+    if (reduce) { slot.textContent = text; return; }
+    let cur = slot.textContent;
+    typing = setInterval(() => {
+      if (!text.startsWith(cur)) cur = cur.slice(0, -1); else if (cur.length < text.length) cur = text.slice(0, cur.length + 1); else return clearInterval(typing);
+      slot.textContent = cur;
+    }, 22);
+  };
+  const pick = (b, focus) => {
+    const d = P[b.dataset.p];
+    btns.forEach(x => { const on = x === b; x.setAttribute('aria-checked', on); x.tabIndex = on ? 0 : -1; });
+    if (focus) b.focus();
+    type(b.textContent);
+    plan.classList.add('swap');
+    setTimeout(() => {
+      $('[data-pz-img]').src = `assets/img/cards/${d.img}.webp`;
+      $('[data-pz-h]').textContent = d.h;
+      $('[data-pz-covers]').innerHTML = d.c.map(c => `<li>${c}</li>`).join('');
+      $('[data-pz-qs]').innerHTML = d.q.map(q => `<li>${q}</li>`).join('');
+      const cta = $('[data-pz-cta]'); cta.dataset.topic = d.t; cta.firstChild.textContent = b.dataset.p === 'covered' ? 'Review my current policy ' : b.dataset.p === 'retire' ? 'Plan my retirement income ' : 'Start my free review ';
+      $('[data-pz-calc]').dataset.tabGo = d.calc;
+      plan.classList.remove('swap');
+    }, reduce ? 0 : 220);
+  };
+  btns.forEach((b, i) => {
+    b.addEventListener('click', () => pick(b));
+    b.addEventListener('keydown', e => { const k = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key]; if (k) { e.preventDefault(); pick(btns[(i + k + btns.length) % btns.length], true); } });
+  });
+  // "Run my numbers first" opens the matching calculator tab
+  document.addEventListener('click', e => { const g = e.target.closest('[data-tab-go]'); if (g) { const t = document.querySelector(`[data-tab="${g.dataset.tabGo}"]`); t && t.click(); } });
+  pick(btns[0]);
+})();

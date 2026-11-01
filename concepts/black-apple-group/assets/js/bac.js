@@ -17,9 +17,9 @@
   document.querySelectorAll('[data-video]').forEach(b => b.addEventListener('click', () => {
     vf.innerHTML = '<iframe src="https://player.vimeo.com/video/1231287031?autoplay=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen" allowfullscreen title="Welcome from Joseph Hull"></iframe>'; vm.hidden = false;
   }));
-  $('[data-vm-x]').addEventListener('click', close); vm.addEventListener('click', e => { if (e.target === vm) close(); });
+  if (vm) { $('[data-vm-x]').addEventListener('click', close); vm.addEventListener('click', e => { if (e.target === vm) close(); }); }
   const bar = $('[data-mbar]'), rv = $('#review');
-  const on = () => { const r = rv.getBoundingClientRect(); bar.classList.toggle('on', scrollY > innerHeight * .7 && !(r.top < innerHeight * .8 && r.bottom > 0)); };
+  const on = () => { if (!bar) return; if (!rv) { bar.classList.toggle('on', scrollY > innerHeight * .4); return; } const r = rv.getBoundingClientRect(); bar.classList.toggle('on', scrollY > innerHeight * .7 && !(r.top < innerHeight * .8 && r.bottom > 0)); };
   addEventListener('scroll', on, { passive: true }); on();
 })();
 /* background films play only while on screen */

@@ -392,3 +392,9 @@
   .hd__tel { width: 40px; height: 40px; justify-content: center; border-radius: 50%; border: 1px solid rgba(255,255,255,.4); }
   .lite .hd.hd--air.is-scrolled .hd__tel { border-color: rgba(30,25,21,.3) !important; }
 }
+/* phones: the welcome-video button becomes a small play icon in the corner, clear of Joseph's face */
+@media (max-width: 760px) {
+  .jcard__play { left: auto !important; right: 14px !important; top: 14px !important; padding: 6px !important; gap: 0 !important; font-size: 0 !important; }
+  .jcard__play span { width: 38px !important; height: 38px !important; font-size: 13px !important; }
+  .jcard { aspect-ratio: 930 / 1024 !important; }
+}

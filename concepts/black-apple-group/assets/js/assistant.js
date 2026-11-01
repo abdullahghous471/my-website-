@@ -39,7 +39,15 @@
     ctx.beginPath(); ctx.ellipse(c, c, R * .2 * (1 + sp * .15), R * .2 * (1 + sp * .15), 0, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
   };
   let t0 = performance.now(), live = false;
-  const loop = now => { if (!live) return; requestAnimationFrame(loop); const t = reduce ? 1 : (now - t0) / 1000; orbs.forEach(o => { if (o.cv.offsetParent !== null) drawOrb(o, t); }); };
+  // light on the processor: ~20 fps while the chat is closed, smooth only while it is open or Ava is speaking
+  let lastDraw = 0;
+  const loop = now => {
+    if (!live) return; requestAnimationFrame(loop);
+    if (document.hidden) return;
+    const open = !document.querySelector('[data-ai]')?.hidden;
+    if (now - lastDraw < (open || speaking ? 16 : 50)) return; lastDraw = now;
+    const t = reduce ? 1 : (now - t0) / 1000; orbs.forEach(o => { if (o.cv.offsetParent !== null) drawOrb(o, t); });
+  };
   $$('[data-orb]').forEach(addOrb);
   // start the orb only once the page is idle, so it never slows the first paint
   const wake = () => { if (!live) { live = true; requestAnimationFrame(loop); } };

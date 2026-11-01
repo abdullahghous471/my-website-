@@ -35,7 +35,7 @@
       track.classList.toggle('done', p2 >= .99);
     };
     addEventListener('scroll', tick, { passive: true }); addEventListener('resize', tick); tick();
-    (function loop() { tick(); requestAnimationFrame(loop); })();
+    // (per-frame loop removed: the scroll listener above keeps it in sync)
   }
 
   /* Live projects: a small chip follows the cursor over the list */

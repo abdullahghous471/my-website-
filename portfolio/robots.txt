@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://helmwork.pc-spain.workers.dev/sitemap.xml

@@ -1,0 +1,22 @@
+/* Three-colour blend: honey gold → coral → sea-teal (golden hour over the water) */
+:root {
+  --c1: #FFC46B; --c2: #FF7E67; --c3: #2EC4B6;
+  --trio: linear-gradient(100deg, #FFC46B 0%, #FF7E67 50%, #2EC4B6 100%);
+  --trio-soft: linear-gradient(100deg, rgba(255,196,107,.18), rgba(255,126,103,.14) 50%, rgba(46,196,182,.16));
+}
+.theme-portal { --accent: #FF7E67; --grad: var(--trio); }
+.hero__k, .mtile__in .mono, .flip__t .mono, .dial__card .dial__svc { color: var(--c1) !important; }
+.mtile__in i, .flip__t a { color: #8EE3DA !important; }
+.dial__live i, .dial__seg i.cur, .lc::after, .dial__card::before, .steps__track i { background: var(--trio) !important; }
+.cgrid .rc__ic { color: var(--c2) !important; }
+.cgrid .flip:hover .rc { border-color: rgba(255,126,103,.45) !important; }
+.flip__b { border-color: rgba(46,196,182,.45) !important; }
+.rv-consent input { accent-color: var(--c2) !important; }
+.ambient i:nth-child(1) { background: radial-gradient(circle, rgba(255,196,107,.26), transparent 65%) !important; }
+.ambient i:nth-child(2) { background: radial-gradient(circle, rgba(255,126,103,.2), transparent 65%) !important; }
+.ambient i:nth-child(3) { background: radial-gradient(circle, rgba(46,196,182,.16), transparent 65%) !important; }
+.btn--light { background: #FFF6EC !important; }
+.btn--light:hover { background: #fff !important; box-shadow: 0 10px 34px -10px rgba(255,126,103,.6) !important; }
+
+.stats-sec.odo-sec { padding-bottom: 40px !important; }
+.logos { display: none !important; }

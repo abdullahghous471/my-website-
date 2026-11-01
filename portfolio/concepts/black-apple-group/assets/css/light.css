@@ -1,0 +1,174 @@
+/* Light edition: warm ivory paper, ink type, the same gold / coral / teal light behind sections.
+   Loaded only by light.html, after every other stylesheet. */
+:root, .lite {
+  --bg: #FAF6F0; --bg-2: #F3ECE2; --wbg: #FAF6F0; --wbg2: #F3ECE2;
+  --fg: #1E1915; --dim: #6E645B; --faint: #9A9087;
+  --line: rgba(30,25,21,.11); --glass: rgba(255,255,255,.7); --glass-2: rgba(255,255,255,.9);
+  --ink: #1E1915; --ink2: #4A413A; --paper: #FFFFFF;
+}
+html, body, body.lite { background: #FAF6F0 !important; color: var(--ink) !important; }
+.lite ::selection { background: rgba(255,126,103,.25); }
+
+/* soft drifting light, warmer and a little stronger so it reads on paper */
+.lite .ambient i:nth-child(1) { background: radial-gradient(circle, rgba(255,196,107,.38), transparent 65%) !important; }
+.lite .ambient i:nth-child(2) { background: radial-gradient(circle, rgba(255,126,103,.24), transparent 65%) !important; }
+.lite .ambient i:nth-child(3) { background: radial-gradient(circle, rgba(46,196,182,.22), transparent 65%) !important; }
+.lite .ambient i { opacity: .7 !important; }
+.lite .grain { display: none !important; }
+
+/* ---------- type ---------- */
+.lite main h1, .lite main h2, .lite main h3, .lite main h4, .lite .h2, .lite .ab__h, .lite .dial__title, .lite .dial__h { color: var(--ink) !important; }
+.lite main p, .lite main li, .lite main dd, .lite main summary, .lite main label { color: var(--ink2); }
+.lite .h2 em, .lite .ab__h em, .lite .dial__title em, .lite .dial__h em, .lite .day__title em, .lite .day__h em,
+.lite .theme-portal .h2 em, .lite .faq em, .lite .offer em { color: #8A7363 !important; }
+.lite .mono, .lite .label, .lite .theme-portal .label { color: #675B51 !important; }
+
+/* ---------- header: ivory glass once past the film ---------- */
+.lite .hd.hd--air.is-scrolled { background: rgba(250,246,240,.82) !important; box-shadow: 0 10px 30px -20px rgba(60,40,20,.35) !important; }
+.lite .hd.hd--air.is-scrolled::after { background: rgba(30,25,21,.08); }
+.lite .hd.hd--air.is-scrolled .hd__nav a, .lite .hd.hd--air.is-scrolled .hd__tel, .lite .hd.hd--air.is-scrolled .hd__brand, .lite .hd.hd--air.is-scrolled .hd__mark { color: var(--ink) !important; }
+.lite .hd.hd--air.is-scrolled .hd__word small { color: #675B51; }
+.lite .hd.hd--air.is-scrolled .hd__cta { border-color: var(--ink); color: var(--ink); }
+.lite .hd.hd--air.is-scrolled .hd__cta:hover { background: var(--ink); color: #FAF6F0; }
+.lite .hd.hd--air.is-scrolled .burger, .lite .hd.hd--air.is-scrolled .hd__tel { border-color: rgba(30,25,21,.3) !important; }
+.lite .hd.hd--air.is-scrolled .burger span { background: var(--ink) !important; }
+.lite .menu { background: #FAF6F0 !important; }
+.lite .menu__nav a { color: var(--ink) !important; }
+
+/* ---------- hero: the film stays, washed with morning light from the left ---------- */
+.lite .hero--film .film__shade { background:
+  linear-gradient(0deg, #FAF6F0 0%, rgba(250,246,240,.6) 16%, rgba(250,246,240,0) 42%),
+  linear-gradient(90deg, rgba(250,246,240,.92) 0%, rgba(250,246,240,.7) 34%, rgba(250,246,240,0) 62%),
+  linear-gradient(180deg, rgba(20,14,10,.4), rgba(20,14,10,0) 22%) !important; }
+.lite .hero--film .portal__h, .lite .hero--film .portal__h * { color: var(--ink) !important; }
+.lite .hero--film .portal__h em { color: #B0754A !important; }
+.lite .hero--film .portal__p { color: var(--ink2) !important; }
+.lite .hero--film .hero__k { color: #8A6A4E !important; }
+
+/* ---------- buttons ---------- */
+.lite main .btn--light, .lite .cta .btn--light { background: var(--ink) !important; color: #FAF6F0 !important; }
+.lite main .btn--light:hover { background: #000 !important; box-shadow: 0 12px 30px -12px rgba(30,25,21,.5) !important; }
+.lite main .btn--glass, .lite main .btn--ghost { background: rgba(255,255,255,.7) !important; color: var(--ink) !important; border: 1px solid rgba(30,25,21,.14) !important; }
+
+/* ---------- surfaces: white cards with a warm shadow ---------- */
+.lite .glass, .lite .rc.glass, .lite .cgrid .rc.glass, .lite .dial__card, .lite .faq details, .lite .offer__card, .lite .ab__cred li, .lite .cred li {
+  background: rgba(255,255,255,.82) !important; border-color: rgba(30,25,21,.08) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 18px 40px -26px rgba(90,60,30,.35) !important; color: var(--ink);
+}
+.lite .rc__ic, .lite .cgrid .rc__ic { color: var(--ink) !important; border-color: rgba(30,25,21,.14) !important; background: #FFF8EF !important; }
+.lite .rc h3, .lite .rc p { color: var(--ink) !important; } .lite .rc p { color: var(--ink2) !important; }
+.lite .rc__tools, .lite .rc__hint { color: #675B51 !important; }
+
+/* ---------- carriers: dark-grey logos on paper, colour on hover ---------- */
+.lite .car__w { filter: invert(1) brightness(.25); opacity: .55; }
+.lite .car::before { background: #fff; box-shadow: 0 16px 34px -18px rgba(90,60,30,.45); }
+.lite .car__n { color: var(--ink2); }
+.lite .cars__k, .lite .cars__k b { color: var(--ink2); } .lite .cars__k b { color: var(--ink); }
+
+/* ---------- stats ---------- */
+.lite .odo, .lite .odo * { color: var(--ink) !important; }
+.lite .odo__k { color: var(--ink) !important; } .lite .odo__s { color: #675B51 !important; }
+.lite .odo-item { border-color: rgba(30,25,21,.1) !important; }
+.lite .stats-sec .odos, .lite .odos { border-color: rgba(30,25,21,.1) !important; }
+
+/* ---------- photo card and footer ---------- */
+.lite .jcard { box-shadow: 0 40px 80px -40px rgba(90,60,30,.45) !important; }
+.lite .jcard::after { background: linear-gradient(0deg, rgba(20,24,40,.78), transparent 42%) !important; }
+.lite .ft { background: #F1E9DE !important; color: var(--ink) !important; border-top: 1px solid rgba(30,25,21,.08); }
+.lite .ft a, .lite .ft p, .lite .ft li, .lite .ft span, .lite .ft b, .lite .ft h3, .lite .ft h4 { color: var(--ink2) !important; }
+.lite .ft .logo, .lite .ft .logo__word { color: var(--ink) !important; }
+.lite .mbar { background: rgba(250,246,240,.94) !important; border-color: rgba(30,25,21,.1) !important; }
+.lite .mbar a { color: var(--ink) !important; }
+
+/* film sections keep their own dark grade: type there stays white */
+.lite .cta--film h2, .lite .cta--film p, .lite .cta--film .h2, .lite .cta--film .cta__h { color: #fff !important; }
+.lite .cta--film .cta__h em, .lite .cta--film .h2 em { color: rgba(255,244,232,.6) !important; }
+.lite .cta--film .btn--light { background: #FFF6EC !important; color: #16110E !important; }
+.lite .mtile h3, .lite .mtile p, .lite .mtile b { color: #fff !important; }
+
+/* ---------- age dial on paper ---------- */
+.lite .dial__inner { fill: #FFFFFF !important; stroke: rgba(30,25,21,.08) !important; filter: drop-shadow(0 24px 40px rgba(120,80,40,.18)); }
+.lite .dial__track { stroke: rgba(30,25,21,.1) !important; }
+.lite .tk { stroke: rgba(30,25,21,.18) !important; } .lite .tk--h { stroke: rgba(30,25,21,.5) !important; }
+.lite .tk__l { fill: #6E645B !important; }
+.lite .dial__hand line { stroke: rgba(30,25,21,.5) !important; }
+.lite .dial__hand circle { fill: #FF7E67 !important; filter: drop-shadow(0 0 8px rgba(255,126,103,.6)) !important; }
+.lite .dial__hub { fill: var(--ink) !important; }
+.lite .nd__dot { fill: #FAF6F0 !important; stroke: rgba(30,25,21,.35) !important; }
+.lite .nd.on .nd__dot { fill: #2EC4B6 !important; stroke: #fff !important; }
+.lite .nd.on .nd__halo { fill: rgba(46,196,182,.18) !important; }
+.lite .dial__centre b, .lite .dial__centre .dial__time, .lite .theme-portal .dial__time { color: var(--ink) !important; background: none !important; -webkit-background-clip: border-box !important; -webkit-text-fill-color: var(--ink) !important; }
+.lite .dial__centre .mono, .lite .dial__centre p { color: #675B51 !important; }
+.lite .dial__centre span, .lite .dial__centre em, .lite .dial__centre i { color: var(--ink) !important; border-color: rgba(30,25,21,.18) !important; background: #FAF6F0 !important; }
+.lite .dial__play { background: #fff !important; color: var(--ink) !important; border-color: rgba(30,25,21,.15) !important; }
+.lite .dial__live { color: var(--ink) !important; }
+.lite .dial__cnt, .lite .dial__cnt b { color: var(--ink2) !important; }
+.lite .dial__seg i { background: rgba(30,25,21,.1) !important; } .lite .dial__seg i.on { background: rgba(30,25,21,.4) !important; }
+.lite .dial__card .dial__h { color: var(--ink) !important; } .lite .dial__card .dial__p { color: var(--ink2) !important; }
+.lite .dial__card .dial__time, .lite .theme-portal .dial__card .dial__time { color: #675B51 !important; -webkit-text-fill-color: #675B51 !important; background: none !important; }
+.lite .dial__card .ntf__ic { color: var(--ink) !important; background: #FFF4E6 !important; border: 1px solid rgba(30,25,21,.1); }
+.lite .day__chip { color: var(--ink) !important; background: #FFF4E6 !important; border-color: rgba(30,25,21,.12) !important; }
+.lite .dial__card .dial__svc { color: #B0754A !important; }
+
+/* ---------- coverage cards: icons and backs ---------- */
+.lite .rc__ic svg { stroke: var(--ink) !important; color: var(--ink) !important; }
+.lite .flip__b { background: #fff !important; }
+
+/* ---------- review form ---------- */
+.lite .rv-form input:not([type=checkbox]), .lite .rv-form select { background: #fff !important; color: var(--ink) !important; border: 1px solid rgba(30,25,21,.16) !important; }
+.lite .rv-form input::placeholder { color: #9A9087 !important; }
+.lite .rv-form input:focus, .lite .rv-form select:focus { border-color: #FF7E67 !important; box-shadow: 0 0 0 3px rgba(255,126,103,.18) !important; outline: none; }
+.lite .rv-consent span { color: #6E645B !important; }
+.lite .offer .mono, .lite .offer [class*="tag"] { color: #6E645B !important; }
+
+/* ---------- about credentials ---------- */
+.lite .about [class*="cred"] b, .lite .about [class*="cred"] strong { color: var(--ink) !important; }
+.lite .about [class*="cred"] i, .lite .about [class*="cred"] .num, .lite .about [class*="cred"] svg { color: var(--ink) !important; }
+
+/* ---------- closing film: a framed media band so it never bleeds grey into the paper ---------- */
+.lite .cta--film { margin: 0 clamp(12px, 2vw, 28px) clamp(12px, 2vw, 28px); border-radius: clamp(20px, 3vw, 36px); }
+.lite .cta--film .film__shade { background: linear-gradient(180deg, rgba(18,15,13,.35), rgba(18,15,13,.55)) !important; }
+.lite .cta--film .btn--glass, .lite .cta--film .btn:not(.btn--light) { background: rgba(255,255,255,.16) !important; color: #fff !important; border: 1px solid rgba(255,255,255,.4) !important; }
+.lite .cta--film a:not(.btn) { color: rgba(255,255,255,.85) !important; }
+
+/* ---------- footer ---------- */
+.lite .ft__tag, .lite .ft__tag em { color: var(--ink) !important; } .lite .ft__tag em { color: #8A7363 !important; }
+.lite .ft [class*="legal"], .lite .ft small, .lite .ft .mono { color: #675B51 !important; }
+.lite .dial__centre { background: none !important; }
+.lite .dial__now { background: #FFF4E6 !important; color: var(--ink) !important; border-color: rgba(30,25,21,.12) !important; }
+.lite .cred__em { background: #FFF4E6 !important; color: var(--ink) !important; border: 1px solid rgba(30,25,21,.12) !important; box-shadow: 0 8px 18px -10px rgba(120,80,40,.4) !important; }
+.lite .cred__em *, .lite .cred__em--num b { color: var(--ink) !important; -webkit-text-fill-color: var(--ink) !important; }
+@media (max-width: 760px) {
+  .lite .hero--film .film__shade { background:
+    linear-gradient(0deg, #FAF6F0 0%, rgba(250,246,240,.9) 34%, rgba(250,246,240,.55) 58%, rgba(250,246,240,.1) 80%),
+    linear-gradient(180deg, rgba(20,14,10,.45), rgba(20,14,10,0) 18%) !important; }
+}
+
+/* ---------- light: ring cards and soft FAQ ---------- */
+.lite .cring .flip .rc { background: linear-gradient(160deg, #FFFFFF, #FBF5EC) !important; border-color: rgba(30,25,21,.07) !important; box-shadow: 0 30px 60px -34px rgba(110,70,30,.45) !important; }
+.lite .cring .rc h3 { color: var(--ink) !important; } .lite .cring .rc p { color: var(--ink2) !important; }
+.lite .cring .rc__tools, .lite .cring .rc__hint { color: #675B51 !important; }
+.lite .cring .flip__b { box-shadow: 0 30px 60px -34px rgba(110,70,30,.5); }
+.lite .faq .faq__it { background: rgba(255,255,255,.55) !important; border-color: rgba(30,25,21,.05) !important; box-shadow: none !important; }
+.lite .faq .faq__it:hover { background: rgba(255,255,255,.75) !important; }
+.lite .faq .faq__it[open] { background: rgba(255,255,255,.85) !important; border-color: rgba(214,150,72,.18) !important; box-shadow: 0 14px 30px -24px rgba(110,70,30,.35) !important; }
+.lite .faq .faq__it summary { color: var(--ink) !important; }
+.lite .faq .faq__it summary i { border-color: rgba(30,25,21,.14) !important; color: var(--ink) !important; }
+.lite .faq .faq__it[open] summary i { background: rgba(214,150,72,.16) !important; color: #8A5A2B !important; }
+
+/* Joseph's name on the photo: white on a deeper fade so it always reads */
+.lite .jcard::after { background: linear-gradient(0deg, rgba(14,18,32,.88) 0%, rgba(14,18,32,.55) 24%, transparent 46%) !important; }
+.lite .jcard figcaption b { color: #fff !important; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+.lite .jcard figcaption span { color: rgba(255,255,255,.82) !important; }
+.lite .jcard__play { background: rgba(255,255,255,.85) !important; color: #1E1915 !important; border-color: rgba(30,25,21,.1) !important; }
+.lite .jcard__play span { background: #1E1915 !important; color: #fff !important; }
+/* readability: small labels and footer legal text at AA contrast on ivory */
+.lite .hd.hd--air.is-scrolled .hd__word small, .lite .dial__now, .lite .dial__card .dial__time, .lite .theme-portal .dial__card .dial__time, .lite .odo__s, .lite .ft__legal { color: #675B51 !important; -webkit-text-fill-color: #675B51 !important; }
+.lite .dial__card .dial__svc { color: #8F5A33 !important; }
+.lite main em, .lite .ft__tag em { color: #7A6455 !important; }
+.lite .hero--film .portal__h em { color: #A0643A !important; }
+.lite .dial__h em, .lite .dial__title em { color: #7A6455 !important; }
+/* review agenda sits on a dark photo: keep its type white */
+.lite .au--photo, .lite .au--photo b, .lite .au--photo strong, .lite .au--photo h3 { color: #fff !important; -webkit-text-fill-color: #fff !important; }
+.lite .au--photo p, .lite .au--photo li p { color: rgba(255,255,255,.84) !important; }
+.lite .au--photo .au__m, .lite .au--photo span { color: rgba(255,236,210,.8) !important; -webkit-text-fill-color: rgba(255,236,210,.8) !important; }

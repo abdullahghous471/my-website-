@@ -1,0 +1,23 @@
+/* Ava, the assistant: Helmwork's chat, in Black Apple's palette */
+.ai-launch { background: radial-gradient(circle at 50% 40%, #2A1F18, #120F0D) !important; box-shadow: 0 14px 34px -10px rgba(0,0,0,.7), 0 0 0 1px rgba(255,196,107,.22) !important; }
+.ai { background: rgba(22,18,15,.96) !important; border-color: rgba(255,226,190,.1) !important; }
+.ai__hd { background: linear-gradient(90deg, rgba(255,196,107,.08), rgba(46,196,182,.06)) !important; }
+.ai__who .dot { background: #2EC4B6 !important; box-shadow: 0 0 8px #2EC4B6 !important; }
+.ai-msg--me p { background: linear-gradient(100deg, #E8A85C, #E9715D) !important; color: #1A120D !important; }
+.ai-act--hot { background: #FFF6EC !important; color: #16110E !important; border-color: transparent !important; }
+.ai-chip:hover, .ai-act:hover { border-color: rgba(255,196,107,.5) !important; }
+.ai-note { padding: 0 4px !important; background: none !important; border: 0 !important; font-size: 12px !important; line-height: 1.45; color: rgba(255,244,232,.5); }
+.ai__form button { background: linear-gradient(100deg, #FFC46B, #FF7E67) !important; color: #16110E !important; }
+@media (max-width: 900px) { .fabs { bottom: calc(max(12px, env(safe-area-inset-bottom, 0px)) + 70px) !important; right: 14px !important; } .ai-launch, .ai-launch .orb { width: 54px !important; height: 54px !important; } }
+/* light edition */
+.lite .ai { background: rgba(255,252,247,.97) !important; border-color: rgba(30,25,21,.08) !important; box-shadow: 0 30px 70px -30px rgba(90,60,30,.45) !important; color: #1E1915; }
+.lite .ai__hd { border-color: rgba(30,25,21,.08) !important; }
+.lite .ai__who b, .lite .ai__icon { color: #1E1915 !important; } .lite .ai__who span { color: #6E645B !important; }
+.lite .ai-msg--bot > p, .lite .ai-msg--bot > ul { background: #F4EDE3 !important; border-color: rgba(30,25,21,.05) !important; color: #2A231E !important; }
+.lite .ai-note { color: #8A7E73 !important; background: none !important; }
+.lite .ai-chip, .lite .ai-act { background: #fff !important; color: #1E1915 !important; border: 1px solid rgba(30,25,21,.14) !important; }
+.lite .ai-act--hot { background: #1E1915 !important; color: #FAF6F0 !important; }
+.lite .ai__form { border-color: rgba(30,25,21,.08) !important; } .lite .ai__form input { background: #fff !important; color: #1E1915 !important; border-color: rgba(30,25,21,.14) !important; }
+.lite .ai-hello { background: #fff !important; color: #1E1915 !important; border-color: rgba(30,25,21,.08) !important; }
+.lite .ai-typing i { background: #8A7E73 !important; }
+.ai-msg--bot > p.ai-note, .lite .ai-msg--bot > p.ai-note { background: none !important; border: 0 !important; padding: 0 4px !important; }

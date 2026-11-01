@@ -1,0 +1,27 @@
+/* Option C, "dawn line": a thin gold → coral → teal line at the top of each section,
+   with a faint sunrise glow just beneath it. The rest of the page stays plain. */
+:root { --dawn-glow: rgba(255,160,100,.15); --dawn-line: .55; }
+.lite { --dawn-glow: rgba(255,170,110,.20); --dawn-line: .7; }
+.day, .moments, .services, .process, .about, .offer, .faq { position: relative; isolation: isolate; }
+.day::after, .moments::after, .services::after, .process::after, .about::after, .offer::after, .faq::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 200px; z-index: -1; pointer-events: none;
+  background: radial-gradient(55% 100% at 50% 0%, var(--dawn-glow), transparent 72%);
+}
+.day::before, .moments::before, .services::before, .process::before, .about::before, .offer::before, .faq::before {
+  content: "" !important; display: block !important; position: absolute; top: 0; left: 50%; width: min(1100px, 84%); height: 1px; z-index: 0; pointer-events: none;
+  transform: translateX(-50%) scaleX(.2); opacity: 0; animation: none !important;
+  background: linear-gradient(90deg, transparent, #FFC46B 22%, #FF7E67 50%, #2EC4B6 78%, transparent);
+  -webkit-mask-image: none !important; mask-image: none !important; inset: 0 auto auto 50%;
+  transition: transform 1.6s cubic-bezier(.2,.8,.2,1), opacity 1.2s ease;
+}
+/* the line draws open from the centre when its section arrives */
+.dawn-in::before { transform: translateX(-50%) scaleX(1) !important; opacity: var(--dawn-line) !important; }
+@media (prefers-reduced-motion: reduce) { .day::before, .moments::before, .services::before, .process::before, .about::before, .offer::before, .faq::before { transition: none; } }
+
+/* finishing touches: brand focus ring, selection colour, slim scrollbar */
+:focus-visible { outline: 2px solid #FFC46B; outline-offset: 3px; border-radius: 6px; }
+.lite :focus-visible { outline-color: #B8743F; }
+::selection { background: rgba(255,196,107,.35); color: inherit; }
+html { scrollbar-width: thin; scrollbar-color: rgba(255,196,107,.35) transparent; }
+.lite { scrollbar-color: rgba(120,90,60,.35) transparent; }
+img, video { -webkit-user-drag: none; }

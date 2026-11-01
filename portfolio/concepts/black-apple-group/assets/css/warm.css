@@ -1,0 +1,100 @@
+/* Warm palette: deep warm charcoal + gold, to match the sunset footage */
+:root { --wbg: #120F0D; --wbg2: #1A1613; --gold: #E9B26E; --gold2: #F6D7A7; --peach: #EBA27A; }
+html, body { background: var(--wbg) !important; }
+.theme-portal { --accent: var(--gold); --grad: linear-gradient(90deg, #F6D7A7, #E9B26E 45%, #EBA27A); }
+.hero__k, .mtile__in .mono { color: var(--gold) !important; }
+.mtile__in i { color: var(--gold2) !important; }
+.glass, .rc, .offer__card, .faq__it, .cred, .lc, .dial__card { background-color: rgba(255,240,220,.035) !important; }
+.offer__card { background: linear-gradient(160deg, rgba(255,226,190,.07), rgba(255,226,190,.02)) !important; border-color: rgba(255,226,190,.12) !important; }
+.dial__card[data-depth="0"] { border-color: rgba(233,178,110,.35) !important; }
+
+/* ambient light: three soft warm glows drifting slowly behind the page */
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.ambient i { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55; }
+.ambient i:nth-child(1) { width: 52vw; height: 52vw; left: -12vw; top: -10vw; background: radial-gradient(circle, rgba(233,178,110,.28), transparent 65%); animation: drift1 26s ease-in-out infinite alternate; }
+.ambient i:nth-child(2) { width: 46vw; height: 46vw; right: -14vw; top: 30vh; background: radial-gradient(circle, rgba(235,162,122,.2), transparent 65%); animation: drift2 32s ease-in-out infinite alternate; }
+.ambient i:nth-child(3) { width: 60vw; height: 40vw; left: 20vw; bottom: -18vw; background: radial-gradient(circle, rgba(246,215,167,.14), transparent 65%); animation: drift3 38s ease-in-out infinite alternate; }
+@keyframes drift1 { to { transform: translate(14vw, 18vh) scale(1.15); } }
+@keyframes drift2 { to { transform: translate(-16vw, -14vh) scale(.9); } }
+@keyframes drift3 { to { transform: translate(-12vw, -10vh) scale(1.1); } }
+main, .ft, .hd { position: relative; z-index: 1; }
+
+/* hero: movie-poster layout, family visible, headline low and big */
+.hero--film { justify-content: flex-end !important; align-items: stretch !important; text-align: left !important; min-height: 100svh; padding-bottom: clamp(60px, 10vh, 110px) !important; }
+.hero--film .portal__in { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 72px); text-align: left; }
+.hero--film .portal__h { font-size: clamp(3rem, 7vw, 7rem) !important; line-height: .95 !important; max-width: 11ch; text-align: left; letter-spacing: -.035em; }
+.hero--film .portal__h .ln { display: block; }
+.hero--film .hero__k, .hero--film .portal__p { text-align: left; margin-left: 0; }
+.hero--film .portal__p { max-width: 46ch; font-size: 18px; }
+.hero--film .portal__btns { justify-content: flex-start; }
+.hero--film .film { object-position: 50% 30%; animation: kenburns 24s ease-out both; }
+@keyframes kenburns { from { transform: scale(1.12) !important; } to { transform: scale(1); } }
+.hero--film .film__shade { background: linear-gradient(0deg, rgba(18,15,13,.95) 0%, rgba(18,15,13,.55) 32%, rgba(18,15,13,.05) 62%, rgba(18,15,13,.35) 100%), linear-gradient(90deg, rgba(18,15,13,.55), transparent 55%) !important; }
+.cta--film .film__shade { background: linear-gradient(180deg, var(--wbg) 0%, rgba(18,15,13,.4) 28%, rgba(18,15,13,.5) 72%, var(--wbg) 100%) !important; }
+
+/* films ease in */
+.fx video, .fx-sec .film { transform: scale(1.12); opacity: 0; transition: transform 2.2s cubic-bezier(.2,.7,.1,1), opacity 1.4s ease; }
+.fx.fx-in video, .fx-sec.fx-in .film { transform: scale(1); opacity: 1; }
+.fx.fx-in:hover video { transform: scale(1.04); }
+.jcard img { transform: scale(1.06); transition: transform 2s cubic-bezier(.2,.7,.1,1); }
+.jcard.fx-in img { transform: none; }
+
+/* coverage: calm grid instead of the 3D ring */
+.services__pin { position: static !important; height: auto !important; padding: clamp(80px, 10vw, 140px) 0 !important; }
+.cgrid { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.cgrid .rc { position: relative !important; transform: none !important; width: auto !important; height: auto !important; min-height: 220px; inset: auto !important; opacity: 1 !important; padding: 26px; border-radius: 20px; border: 1px solid rgba(255,226,190,.1); transition: border-color .4s, transform .5s cubic-bezier(.2,.7,.1,1), background .4s; }
+.cgrid .rc:hover { border-color: rgba(233,178,110,.45); transform: translateY(-4px) !important; background-color: rgba(255,226,190,.06) !important; }
+.cgrid .rc__ic { color: var(--gold); }
+@media (max-width: 900px) { .cgrid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) {
+  .cgrid { grid-template-columns: 1fr; }
+  .cgrid .rc { min-height: 0; }
+  .hero--film .portal__h { font-size: clamp(2.6rem, 12vw, 3.6rem) !important; }
+  .hero--film .portal__p { font-size: 15.5px; }
+  .hero--film .portal__btns .btn { width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .ambient i, .hero--film .film { animation: none; } .fx video, .fx-sec .film { opacity: 1; transform: none; } }
+/* hero: one clean left edge */
+.hero--film .portal__in > * { margin-left: 0 !important; margin-right: 0 !important; text-align: left !important; }
+.hero--film .portal__h, .hero--film .portal__h .ln, .hero--film .portal__h .ln > span { text-align: left !important; justify-content: flex-start !important; margin-left: 0 !important; }
+.hero--film .hero__k { display: block; }
+/* gold instead of teal on the remaining accents */
+.dial__live i, .dial__seg i.cur, .lc::after, .dial__card::before { background: linear-gradient(90deg, #F6D7A7, #E9B26E, #EBA27A) !important; box-shadow: none !important; }
+.dial__live i::after { border-color: #E9B26E !important; }
+.nd.on .nd__dot, .dial-sec .nd.on circle:last-child { fill: #E9B26E !important; stroke: #F6D7A7 !important; }
+.dial__hand circle { filter: drop-shadow(0 0 8px #E9B26E) !important; }
+.dial__card .day__chip::before { color: #E9B26E !important; text-shadow: none !important; }
+.dial__card .day__chip { border-color: rgba(233,178,110,.3) !important; background: rgba(233,178,110,.07) !important; }
+.dial__card .dial__svc { color: #E9B26E !important; }
+.au__arc { stroke: #E9B26E; }
+.rv-consent input, .rv-form input[type=checkbox] { accent-color: #E9B26E; }
+.hero--film .portal__in { display: flex !important; flex-direction: column !important; align-items: flex-start !important; }
+
+/* Nine ways: cards dealt from a deck, icons draw themselves, flip to the real moment */
+.deal__sub { margin: 14px auto 0; text-align: center; }
+.cgrid .flip { position: relative; min-height: 250px; perspective: 1200px; list-style: none; outline: none; }
+.flip__in { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.2,.8,.2,1); }
+.flip:hover .flip__in, .flip:focus-visible .flip__in, .flip.is-flipped .flip__in { transform: rotateY(180deg); }
+.cgrid .flip .rc { position: absolute !important; inset: 0 !important; min-height: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: none !important; }
+.cgrid .flip:hover .rc { transform: none !important; }
+.rc__hint { position: absolute; right: 22px; bottom: 18px; font-size: 12px; color: rgba(246,215,167,.55); letter-spacing: .04em; }
+.flip__b { position: absolute; inset: 0; border-radius: 20px; overflow: hidden; transform: rotateY(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; border: 1px solid rgba(233,178,110,.4); background: #1A1613; }
+.flip__b img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 1.4s cubic-bezier(.2,.7,.1,1); }
+.flip:hover .flip__b img, .flip.is-flipped .flip__b img { transform: scale(1); }
+.flip__b::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14,11,9,.94) 0%, rgba(14,11,9,.55) 55%, rgba(14,11,9,.15) 100%); }
+.flip__t { position: absolute; left: 22px; right: 22px; bottom: 20px; z-index: 1; display: grid; gap: 6px; }
+.flip__t .mono { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #E9B26E; }
+.flip__t b { font-size: 22px; font-weight: 500; color: #fff; }
+.flip__t p { margin: 0; font-size: 14px; line-height: 1.5; color: rgba(255,245,230,.82); }
+.flip__t a { margin-top: 4px; font-size: 13.5px; color: #F6D7A7; text-decoration: none; }
+.flip__t a:hover { text-decoration: underline; }
+/* dealt in: JS sets each card's start offset, then lets it fly to its place */
+.cgrid.deal-wait .flip { opacity: 0; }
+.cgrid .flip.dealing { transition: transform 1s cubic-bezier(.18,.9,.25,1.05), opacity .5s ease; }
+/* icons draw themselves once the card lands */
+.cgrid .rc__ic svg * { stroke-dasharray: 80; stroke-dashoffset: 80; transition: stroke-dashoffset 1.4s ease .2s; }
+.cgrid .flip.landed .rc__ic svg * { stroke-dashoffset: 0; }
+@media (max-width: 560px) { .cgrid .flip { min-height: 220px; } }
+@media (prefers-reduced-motion: reduce) { .flip__in { transition: none; } .cgrid .rc__ic svg * { stroke-dashoffset: 0; } }
+.jcard img { object-position: 50% 18% !important; }
+.jcard__play { right: auto !important; left: 16px !important; top: 16px !important; }

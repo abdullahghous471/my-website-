@@ -1,0 +1,42 @@
+/* Nine ways: the Helmwork 3D ring. Cards stand on a turning carousel (hw/site.js spins it with the scroll);
+   each card keeps its photo on the back, so the far side of the ring shows the real moments. */
+.services .services__hd { text-align: center; }
+.services .ring-stage { --cw: clamp(240px, 21vw, 290px); --R: calc(var(--cw) * 1.66); height: calc(var(--cw) * 1.45); perspective: 1500px; perspective-origin: 50% 35%; }
+.cring { list-style: none; margin: 0; padding: 0; height: calc(var(--cw) * 1.24); }
+.cring .flip { position: absolute; inset: 0; list-style: none; outline: none; min-height: 0; perspective: none;
+  transform: rotateY(calc(var(--k) * 40deg)) translateZ(var(--R)); transform-style: preserve-3d; }
+.cring .flip__in { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.2,.8,.2,1); }
+.cring .flip:hover .flip__in, .cring .flip:focus-visible .flip__in, .cring .flip.is-flipped .flip__in { transform: rotateY(180deg); }
+.cring .flip .rc { position: absolute !important; inset: 0 !important; transform: none !important; margin: 0; padding: 24px 22px; border-radius: 22px;
+  display: flex; flex-direction: column; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border: 1px solid rgba(255,226,190,.12); background: linear-gradient(160deg, rgba(40,30,24,.92), rgba(24,19,16,.92)) !important; box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); }
+.cring .rc__top { display: flex; justify-content: space-between; align-items: flex-start; }
+.cring .rc__ic { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; border: 1px solid rgba(255,226,190,.16); color: #FFF4E8; }
+.cring .rc__ic svg { width: 22px; height: 22px; }
+.cring .rc__tools { font: 400 10.5px/1.2 var(--mono, monospace); letter-spacing: .12em; text-transform: uppercase; color: rgba(255,244,232,.55); text-align: right; }
+.cring .rc h3 { margin-top: auto; font-size: 1.35rem; color: #fff; }
+.cring .rc p { margin-top: 10px; font-size: 14.5px; line-height: 1.5; color: rgba(255,244,232,.68); }
+.cring .rc__hint { margin-top: 14px; font-size: 12px; letter-spacing: .04em; color: rgba(255,244,232,.5); }
+.cring .flip__b { border-radius: 22px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); }
+
+/* phones and reduced motion: hw/site.js lays the ring flat as a swipeable row */
+.cring.ring--flat { height: auto; display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px clamp(16px, 5vw, 72px) 22px; }
+.cring.ring--flat .flip { position: relative; inset: auto; transform: none; flex: 0 0 min(80vw, 300px); height: 340px; scroll-snap-align: center; }
+@media (max-width: 760px) {
+  .cring.ring--flat { display: flex !important; grid-template-columns: none !important; overflow-x: auto !important; padding: 6px 4px 22px !important; }
+  .cring.ring--flat .flip { height: 320px; }
+}
+
+/* FAQ: soft, separate rounded rows instead of hard ruled boxes */
+.faq .faq__list { border: 0 !important; display: grid; gap: 10px; background: none !important; box-shadow: none !important; }
+.faq .faq__it { border: 1px solid rgba(255,240,220,.06) !important; border-radius: 18px !important; background: rgba(255,240,220,.03) !important; box-shadow: none !important; padding: 0 22px; transition: background .4s, border-color .4s; }
+.faq .faq__it:hover { background: rgba(255,240,220,.05) !important; }
+.faq .faq__it[open] { background: rgba(255,240,220,.055) !important; border-color: rgba(255,196,107,.16) !important; }
+.faq .faq__it summary { padding: 20px 0; font-size: clamp(1.02rem, 1.3vw, 1.15rem); font-weight: 450; }
+.faq .faq__it summary i { width: 30px; height: 30px; border-color: rgba(255,240,220,.14); }
+.faq .faq__it[open] summary i { background: rgba(255,196,107,.16) !important; color: #FFE2B8 !important; border-color: transparent; }
+.faq .faq__a { padding: 0 44px 22px 0; font-size: 15px; }
+
+/* the ring needs its section pinned while it turns (an older rule forced it static) */
+.services .services__pin[data-ring-pin] { position: relative !important; min-height: 100svh; height: auto !important; display: flex; flex-direction: column; justify-content: center; padding: clamp(90px, 11vh, 130px) 0 clamp(40px, 6vh, 70px) !important; overflow: hidden; }
+.services .services__pin[data-ring-pin][style*="fixed"] { position: fixed !important; }

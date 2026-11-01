@@ -380,3 +380,15 @@
 .lite .bft .btn--light:hover { background: #000 !important; }
 .lite .bft .btn--glass { background: #fff !important; color: #1E1915 !important; border: 1px solid rgba(30,25,21,.15) !important; }
 .bft__word { font-size: clamp(3rem, 12.4vw, 12.5rem) !important; letter-spacing: -.055em !important; overflow: hidden; }
+
+/* header: button labels never wrap; at laptop widths the phone shows as an icon to make room */
+.hd__cta, .hd__tel, .hd__nav a, .btn { white-space: nowrap; }
+.hd__cta, .hd__tel { flex-shrink: 0; }
+.hd__cta { justify-content: center; line-height: 1; }
+@media (max-width: 1280px) and (min-width: 1081px) {
+  .hd__r { gap: 18px !important; }
+  .hd__nav { gap: 20px !important; }
+  .hd__tel span { display: none; }
+  .hd__tel { width: 40px; height: 40px; justify-content: center; border-radius: 50%; border: 1px solid rgba(255,255,255,.4); }
+  .lite .hd.hd--air.is-scrolled .hd__tel { border-color: rgba(30,25,21,.3) !important; }
+}
